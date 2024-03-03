@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<stats stat_object_definition_id="e078e210-b9ba-48e5-afe3-c5eb91ba8545">
+  <stat_objects>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Object_Indestructible" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Generics" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="20" enumeration_type_name="ActPart" />
+        <field name="UseAPCost" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="Weight" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
+        <field name="Vitality" type="IntegerStatObjectFieldDefinition" value="-1" />
+        <field name="PiercingResistance" type="IntegerStatObjectFieldDefinition" value="100" />
+        <field name="PhysicalResistance" type="IntegerStatObjectFieldDefinition" value="100" />
+        <field name="FireResistance" type="IntegerStatObjectFieldDefinition" value="100" />
+        <field name="EarthResistance" type="IntegerStatObjectFieldDefinition" value="100" />
+        <field name="WaterResistance" type="IntegerStatObjectFieldDefinition" value="100" />
+        <field name="AirResistance" type="IntegerStatObjectFieldDefinition" value="100" />
+        <field name="PoisonResistance" type="IntegerStatObjectFieldDefinition" value="100" />
+      </fields>
+    </stat_object>
+  </stat_objects>
+</stats>

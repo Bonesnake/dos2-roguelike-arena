@@ -1,0 +1,221 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+PROC
+PROC_RoguelikeAdventure_GeneratePath((INTEGER)_Region, (INTEGER)_SectionCountMax)
+THEN
+PROC_RoguelikeAdventure_ResetSectionConnectionStates(_Region);
+PROC_RoguelikeAdventure_ResetSectionExitStates(_Region);
+
+PROC
+PROC_RoguelikeAdventure_GeneratePath((INTEGER)_Region, (INTEGER)_SectionCountMax)
+AND
+IntegertoString(_Region, _RegionString)
+AND
+StringConcatenate("SectionPool", _RegionString, _Key)
+AND
+QRY_RoguelikeAdventure_IntegerPoolSelectRandom(_Key)
+AND
+DB_RoguelikeAdventure_IntegerPoolSelectedValue(_Key, _Section)
+THEN
+DB_Singleton("RoguelikeAdventure_RegionPathGeneratorSectionCount", 1);
+PROC_RoguelikeAdventure_GenerateExit(_Region, _Section, 0);
+PROC_RoguelikeAdventure_GeneratePathRecursively(_Region, _Section, _SectionCountMax);
+
+PROC
+PROC_RoguelikeAdventure_GeneratePath((INTEGER)_Region, (INTEGER)_SectionCountMax)
+AND
+DB_RoguelikeAdventure_SectionConnections(_Region, _Section, _Connection)
+AND
+QRY_RoguelikeAdventure_IsSectionOpen(_Region, _Section)
+AND
+QRY_RoguelikeAdventure_IsSectionOpen(_Region, _Connection)
+AND
+DB_RoguelikeAdventure_SectionConnectionStates(_Region, _Section, _Connection, 0)
+THEN
+NOT DB_RoguelikeAdventure_SectionConnectionStates(_Region, _Section, _Connection, 0);
+DB_RoguelikeAdventure_SectionConnectionStates(_Region, _Section, _Connection, 1);
+
+PROC
+PROC_RoguelikeAdventure_GeneratePath((INTEGER)_Region, (INTEGER)_SectionCountMax)
+THEN
+PROC_RoguelikeAdventure_DebugSectionConnectionStates(_Region);
+PROC_RoguelikeAdventure_DebugSectionExitStates(_Region);
+
+PROC
+PROC_RoguelikeAdventure_GeneratePathRecursively((INTEGER)_Region, (INTEGER)_Section, (INTEGER)_SectionCountMax)
+THEN
+PROC_RoguelikeAdventure_IntegerPoolAddSectionConnections(_Region, _Section);
+
+PROC
+PROC_RoguelikeAdventure_GeneratePathRecursively((INTEGER)_Region, (INTEGER)_Section, (INTEGER)_SectionCountMax)
+AND
+DB_Singleton("RoguelikeAdventure_RegionPathGeneratorSectionCount", _SectionCount)
+AND
+_SectionCount == _SectionCountMax
+THEN
+PROC_RoguelikeAdventure_GenerateExit(_Region, _Section, 1);
+
+PROC
+PROC_RoguelikeAdventure_GeneratePathRecursively((INTEGER)_Region, (INTEGER)_Section, (INTEGER)_SectionCountMax)
+AND
+DB_Singleton("RoguelikeAdventure_RegionPathGeneratorSectionCount", _SectionCount)
+AND
+_SectionCount < _SectionCountMax
+AND
+NOT QRY_RoguelikeAdventure_AnyClosedSections(_Region)
+THEN
+PROC_RoguelikeAdventure_GenerateExit(_Region, _Section, 1);
+
+
+PROC
+PROC_RoguelikeAdventure_GeneratePathRecursively((INTEGER)_Region, (INTEGER)_Section, (INTEGER)_SectionCountMax)
+AND
+DB_RoguelikeAdventure_SectionConnections(_Region, _Section, _)
+AND
+IntegertoString(_Section, _SectionString)
+AND
+StringConcatenate("SectionConnectionPool", _SectionString, _Key)
+AND
+QRY_RoguelikeAdventure_IntegerPoolSelectAndRemoveRandom(_Key)
+AND
+DB_RoguelikeAdventure_IntegerPoolSelectedValue(_Key, _Connection)
+AND
+NOT QRY_RoguelikeAdventure_IsSectionOpen(_Region, _Connection)
+AND
+DB_RoguelikeAdventure_SectionConnectionStates(_Region, _Section, _Connection, 0)
+AND
+DB_RoguelikeAdventure_SectionConnectionStates(_Region, _Connection, _Section, 0)
+AND
+DB_Singleton("RoguelikeAdventure_RegionPathGeneratorSectionCount", _SectionCount)
+AND
+_SectionCount < _SectionCountMax
+AND
+IntegerSum(_SectionCount, 1, _SectionCountIncreased)
+THEN
+DB_Singleton("RoguelikeAdventure_RegionPathGeneratorSectionCount", _SectionCountIncreased);
+NOT DB_RoguelikeAdventure_SectionConnectionStates(_Region, _Section, _Connection, 0);
+DB_RoguelikeAdventure_SectionConnectionStates(_Region, _Section, _Connection, 1);
+NOT DB_RoguelikeAdventure_SectionConnectionStates(_Region, _Connection, _Section, 0);
+DB_RoguelikeAdventure_SectionConnectionStates(_Region, _Connection, _Section, 1);
+PROC_RoguelikeAdventure_GeneratePathRecursively(_Region, _Connection, _SectionCountMax);
+
+PROC
+PROC_RoguelikeAdventure_GenerateExit((INTEGER)_Region, (INTEGER)_Section, (INTEGER)_IsForward)
+THEN
+PROC_RoguelikeAdventure_GuidStringPoolAddSectionExits(_Region, _Section);
+
+PROC
+PROC_RoguelikeAdventure_GenerateExit((INTEGER)_Region, (INTEGER)_Section, (INTEGER)_IsForward)
+AND
+QRY_RoguelikeAdventure_GuidStringPoolSelectRandom("SectionExitPool")
+AND
+DB_RoguelikeAdventure_GuidStringPoolSelectedValue("SectionExitPool", _Trigger)
+THEN
+DB_RoguelikeAdventure_SectionExitStates(_Region, _Section, _Trigger, _IsForward);
+PROC_RoguelikeAdventure_StringPoolClear("SectionExitPool");
+
+PROC
+PROC_RoguelikeAdventure_ResetSectionConnectionStates((INTEGER)_Region)
+AND
+DB_RoguelikeAdventure_SectionConnectionStates(_Region, _Section, _Connection, _State)
+THEN
+NOT DB_RoguelikeAdventure_SectionConnectionStates(_Region, _Section, _Connection, _State);
+
+PROC
+PROC_RoguelikeAdventure_ResetSectionConnectionStates((INTEGER)_Region)
+AND
+DB_RoguelikeAdventure_SectionConnections(_Region, _Section, _Connection)
+THEN
+DB_RoguelikeAdventure_SectionConnectionStates(_Region, _Section, _Connection, 0);
+
+PROC
+PROC_RoguelikeAdventure_ResetSectionExitStates((INTEGER)_Region)
+AND
+DB_RoguelikeAdventure_SectionExitStates(_Region, _Section, _Trigger, _State)
+THEN
+NOT DB_RoguelikeAdventure_SectionExitStates(_Region, _Section, _Trigger, _State);
+
+PROC
+PROC_RoguelikeAdventure_DebugSectionConnectionStates((INTEGER)_Region)
+AND
+DB_RoguelikeAdventure_SectionConnectionStates(_Region, _Section, _Connection, _State)
+AND
+IntegertoString(_Region, _RegionString)
+AND
+IntegertoString(_Section, _SectionString)
+AND
+IntegertoString(_Connection, _ConnectionString)
+AND
+IntegertoString(_State, _StateString)
+AND
+StringConcatenate("Region", _RegionString, _RegionKeyValuePair)
+AND
+StringConcatenate("Section", _SectionString, _SectionKeyValuePair)
+AND
+StringConcatenate("Connection", _ConnectionString, _ConnectionKeyValuePair)
+AND
+StringConcatenate("State", _StateString, _StateKeyValuePair)
+AND
+StringConcatenate(_RegionKeyValuePair, _SectionKeyValuePair, _ResultPart1)
+AND
+StringConcatenate(_ConnectionKeyValuePair, _StateKeyValuePair, _ResultPart2)
+AND
+StringConcatenate(_ResultPart1, _ResultPart2, _Result)
+THEN
+DebugBreak(_Result);
+
+PROC
+PROC_RoguelikeAdventure_DebugSectionExitStates((INTEGER)_Region)
+AND
+DB_RoguelikeAdventure_SectionExitStates(_Region, _Section, _Exit, _State)
+AND
+IntegertoString(_Region, _RegionString)
+AND
+IntegertoString(_Section, _SectionString)
+AND
+String(_Exit, _ExitString)
+AND
+IntegertoString(_State, _StateString)
+AND
+StringConcatenate("Region", _RegionString, _RegionKeyValuePair)
+AND
+StringConcatenate("Section", _SectionString, _SectionKeyValuePair)
+AND
+StringConcatenate("Exit", _ExitString, _ExitKeyValuePair)
+AND
+StringConcatenate("State", _StateString, _StateKeyValuePair)
+AND
+StringConcatenate(_RegionKeyValuePair, _SectionKeyValuePair, _ResultPart1)
+AND
+StringConcatenate(_ExitKeyValuePair, _StateKeyValuePair, _ResultPart2)
+AND
+StringConcatenate(_ResultPart1, _ResultPart2, _Result)
+THEN
+DebugBreak(_Result);
+
+PROC
+PROC_RoguelikeAdventure_IntegerPoolAddSectionConnections((INTEGER)_Region, (INTEGER)_Section)
+AND
+IntegertoString(_Section, _SectionString)
+AND
+StringConcatenate("SectionConnectionPool", _SectionString, _Key)
+AND
+DB_RoguelikeAdventure_SectionConnections(_Region, _Section, _Connection)
+THEN
+PROC_RoguelikeAdventure_IntegerPoolAdd(_Key, _Connection);
+
+PROC
+PROC_RoguelikeAdventure_GuidStringPoolAddSectionExits((INTEGER)_Region, (INTEGER)_Section)
+AND
+DB_RoguelikeAdventure_SectionExits(_Region, _Section, _Trigger, _)
+AND
+NOT DB_RoguelikeAdventure_SectionExitStates(_Region, _Section, _Trigger, _)
+THEN
+PROC_RoguelikeAdventure_GuidStringPoolAdd("SectionExitPool", _Trigger);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeAdventure_Region"

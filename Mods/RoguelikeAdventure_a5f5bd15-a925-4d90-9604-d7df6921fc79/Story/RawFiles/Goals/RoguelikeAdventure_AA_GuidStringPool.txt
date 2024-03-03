@@ -1,0 +1,89 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+//REGION Run these from other goals
+// Adds the given guid string value to the pool with the help of the string pool.
+PROC
+PROC_RoguelikeAdventure_GuidStringPoolAdd((STRING)_Key, (GUIDSTRING)_Value)
+AND
+String(_Value, _StringValue)
+THEN
+PROC_RoguelikeAdventure_StringPoolAdd(_Key, _StringValue);
+DB_RoguelikeAdventure_GuidStringPool(_Key, _StringValue, _Value);
+
+// Removes the given guid string from the pool.
+PROC
+PROC_RoguelikeAdventure_GuidStringPoolRemove((STRING)_Key, (GUIDSTRING)_Value)
+AND
+String(_Value, _StringValue)
+THEN
+PROC_RoguelikeAdventure_StringPoolRemove(_Key, _StringValue);
+NOT DB_RoguelikeAdventure_GuidStringPool(_Key, _StringValue, _Value);
+
+// Forwards the call to the string pool.
+PROC
+PROC_RoguelikeAdventure_GuidStringPoolClear((STRING)_Key)
+THEN
+PROC_RoguelikeAdventure_StringPoolClear(_Key);
+
+// Clears the pool.
+PROC
+PROC_RoguelikeAdventure_GuidStringPoolClear((STRING)_Key)
+AND
+DB_RoguelikeAdventure_GuidStringPool(_Key, _StringValue, _Value)
+THEN
+NOT DB_RoguelikeAdventure_GuidStringPool(_Key, _StringValue, _Value);
+
+// Removes selected value.
+PROC
+PROC_RoguelikeAdventure_GuidStringPoolClear((STRING)_Key)
+AND
+DB_RoguelikeAdventure_GuidStringPoolSelectedValue(_Key, _Value)
+THEN
+NOT DB_RoguelikeAdventure_GuidStringPoolSelectedValue(_Key, _Value);
+
+// Selects a random guid string from the pool with the help of the string pool. The result will be put into DB_RoguelikeAdventure_GuidStringPoolSelectedValue((STRING)_Key, (GUIDSTRING)_Value).
+QRY
+QRY_RoguelikeAdventure_GuidStringPoolSelectRandom((STRING)_Key)
+THEN
+PROC_RoguelikeAdventure_GuidStringPoolSelectedValueClear(_Key);
+PROC_RoguelikeAdventure_GuidStringPoolSelectedValuePair(_Key);
+
+// Selects and removes a random guid string from the pool.
+QRY
+QRY_RoguelikeAdventure_GuidStringPoolSelectAndRemoveRandom((STRING)_Key)
+AND
+QRY_RoguelikeAdventure_GuidStringPoolSelectRandom(_Key)
+AND
+DB_RoguelikeAdventure_GuidStringPoolSelectedValue(_Key, _Value)
+THEN
+PROC_RoguelikeAdventure_GuidStringPoolRemove(_Key, _Value);
+//END_REGION
+
+//REGION Run these from inside this goal
+// Clears the selected value matching the given key.
+PROC
+PROC_RoguelikeAdventure_GuidStringPoolSelectedValueClear((STRING)_Key)
+AND
+DB_RoguelikeAdventure_GuidStringPoolSelectedValue(_Key, _Value)
+THEN
+NOT DB_RoguelikeAdventure_GuidStringPoolSelectedValue(_Key, _Value);
+
+// Pairs the selected string value with the guid string value.
+PROC
+PROC_RoguelikeAdventure_GuidStringPoolSelectedValuePair((STRING)_Key)
+AND
+QRY_RoguelikeAdventure_StringPoolSelectRandom(_Key)
+AND
+DB_RoguelikeAdventure_StringPoolSelectedValue(_Key, _StringValue)
+AND
+DB_RoguelikeAdventure_GuidStringPool(_Key, _StringValue, _Value)
+THEN
+DB_RoguelikeAdventure_GuidStringPoolSelectedValue(_Key, _Value);
+//END_REGION
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeAdventure"

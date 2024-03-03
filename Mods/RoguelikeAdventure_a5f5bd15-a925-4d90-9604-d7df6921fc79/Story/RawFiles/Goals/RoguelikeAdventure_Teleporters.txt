@@ -1,0 +1,155 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+// Registers a teleporter item to be linked to a trigger.
+PROC
+PROC_RoguelikeAdventure_RegisterTeleporterItem((ITEMGUID)_Item, (INTEGER)_Id)
+THEN
+DB_RoguelikeAdventure_RegisteredTeleporterItems(_Item, _Id);
+
+// Registers a teleporter trigger to be linked to an item.
+PROC
+PROC_RoguelikeAdventure_RegisterTeleporterTrigger((TRIGGERGUID)_Trigger, (INTEGER)_Id)
+THEN
+DB_RoguelikeAdventure_RegisteredTeleporterTriggers(_Trigger, _Id);
+
+// Unregisters a teleporter item.
+PROC
+PROC_RoguelikeAdventure_UnregisterTeleporterItem((ITEMGUID)_Item, (INTEGER)_Id)
+AND
+DB_RoguelikeAdventure_RegisteredTeleporterItems(_Item, _Id)
+THEN
+NOT DB_RoguelikeAdventure_RegisteredTeleporterItems(_Item, _Id);
+
+// Unregisters a teleporter item.
+PROC
+PROC_RoguelikeAdventure_UnregisterTeleporterItem((ITEMGUID)_Item, (INTEGER)_Id)
+AND
+DB_RoguelikeAdventure_Teleporters(_Item, _Trigger, _Id)
+THEN
+NOT DB_RoguelikeAdventure_Teleporters(_Item, _Trigger, _Id);
+
+// Unregisters a teleporter trigger.
+PROC
+PROC_RoguelikeAdventure_UnregisterTeleporterTrigger((TRIGGERGUID)_Trigger, (INTEGER)_Id)
+AND
+DB_RoguelikeAdventure_RegisteredTeleporterTriggers(_Trigger, _Id)
+THEN
+NOT DB_RoguelikeAdventure_RegisteredTeleporterTriggers(_Trigger, _Id);
+
+// Unregisters a teleporter trigger.
+PROC
+PROC_RoguelikeAdventure_UnregisterTeleporterTrigger((TRIGGERGUID)_Trigger, (INTEGER)_Id)
+AND
+DB_RoguelikeAdventure_Teleporters(_Item, _Trigger, _Id)
+THEN
+NOT DB_RoguelikeAdventure_Teleporters(_Item, _Trigger, _Id);
+
+// Links a teleporter to a trigger if both are registered.
+IF
+DB_RoguelikeAdventure_RegisteredTeleporterItems(_Item, _Id)
+AND
+DB_RoguelikeAdventure_RegisteredTeleporterTriggers(_Trigger, _Id)
+THEN
+DB_RoguelikeAdventure_Teleporters(_Item, _Trigger, _Id);
+
+// Links a trigger to a teleporter if both are registered.
+IF
+DB_RoguelikeAdventure_RegisteredTeleporterTriggers(_Trigger, _Id)
+AND
+DB_RoguelikeAdventure_RegisteredTeleporterItems(_Item, _Id)
+THEN
+DB_RoguelikeAdventure_Teleporters(_Item, _Trigger, _Id);
+
+// Unregisters teleporters if they are removed from the game.
+IF
+DB_RoguelikeAdventure_RemovedItems(_Item)
+AND
+DB_RoguelikeAdventure_Teleporters(_Item, _, _Id)
+THEN
+PROC_RoguelikeAdventure_UnregisterTeleporterItem(_Item, _Id);
+
+// Unregisters the old trigger if a new one is registered for the same item.
+IF
+DB_RoguelikeAdventure_Teleporters(_Item, _NewTrigger, _Id)
+AND
+DB_RoguelikeAdventure_Teleporters(_Item, _OldTrigger, _Id)
+AND
+_NewTrigger != _OldTrigger
+THEN
+PROC_RoguelikeAdventure_UnregisterTeleporterTrigger(_OldTrigger, _Id);
+
+// Requests a teleport that will be fullfilled as soon as the teleporter is linked.
+PROC
+PROC_RoguelikeAdventure_RequestTeleport((CHARACTERGUID)_Character, (ITEMGUID)_Teleporter)
+AND
+NOT DB_RoguelikeAdventure_TeleportRequests(_Character, _Teleporter)
+THEN
+DB_RoguelikeAdventure_TeleportRequests(_Character, _Teleporter);
+
+// Fullfills teleport request immediately if the teleporter is already linked.
+IF
+DB_RoguelikeAdventure_TeleportRequests(_Character, _Teleporter)
+AND
+DB_RoguelikeAdventure_Teleporters(_Teleporter, _Trigger, _)
+THEN
+PROC_RoguelikeAdventure_TeleportTo(_Character, _Trigger);
+
+// Fullfills pending teleport requests if the teleporter gets linked.
+IF
+DB_RoguelikeAdventure_Teleporters(_Teleporter, _Trigger, _)
+AND
+DB_RoguelikeAdventure_TeleportRequests(_Character, _Teleporter)
+THEN
+PROC_RoguelikeAdventure_TeleportTo(_Character, _Trigger);
+
+// Teleports the character to the trigger and removes related pending teleport requests.
+PROC
+PROC_RoguelikeAdventure_TeleportTo((CHARACTERGUID)_Character, (TRIGGERGUID)_Trigger)
+AND
+DB_RoguelikeAdventure_TeleportRequests(_Character, _Teleporter)
+THEN
+NOT DB_RoguelikeAdventure_TeleportRequests(_Character, _Teleporter);
+
+// Teleports the character to the trigger and removes related pending teleport requests.
+PROC
+PROC_RoguelikeAdventure_TeleportTo((CHARACTERGUID)_Character, (TRIGGERGUID)_Trigger)
+THEN
+TeleportTo(_Character, _Trigger, "", 1);
+
+// Prevents the use of teleporters in combat.
+PROC
+ProcBlockUseOfItem(_Player, _Item)
+AND
+DB_RoguelikeAdventure_Teleporters(_Item, _, _)
+AND
+DB_IsPlayer(_Player)
+AND
+DB_CombatCharacters(_Player, _)
+THEN
+DB_CustomUseItemResponse(_Player, _Item, 0);
+Proc_StartDialog(1, "GLO_AD_CannotUseNow", _Player);
+
+// Teleports characters when they use a linked teleporter.
+IF
+CharacterUsedItem(_Character, _Item)
+AND
+DB_RoguelikeAdventure_Teleporters(_Item, _Trigger, _)
+THEN
+PROC_RoguelikeAdventure_TeleportTo(_Character, _Trigger);
+
+// Makes a teleport request when characters use a registered teleporter that is not linked yet.
+IF
+CharacterUsedItem(_Character, _Item)
+AND
+NOT DB_RoguelikeAdventure_Teleporters(_Item, _, _)
+AND
+DB_RoguelikeAdventure_RegisteredTeleporterItems(_Item, _)
+THEN
+PROC_RoguelikeAdventure_RequestTeleport(_Character, _Item);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeAdventure"

@@ -1,0 +1,53 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_RoguelikeAdventure_MagicMirror((ITEMGUID)ITEMGUID_PUZ_CharCreationMirror_000_8ad4a6a6-e947-40d0-9ac0-2e37cdc614df);
+KBSECTION
+// Only one player can use the mirror at a time
+PROC
+ProcBlockUseOfItem(_Player, _Mirror)
+AND
+DB_RoguelikeAdventure_MagicMirror(_Mirror)
+AND
+DB_Illusionist(_, _Mirror)
+AND
+NOT DB_Illusionist(_Player, _Mirror)
+THEN
+DB_CustomUseItemResponse(_Player, _Mirror, 0);
+
+PROC
+ProcBlockUseOfItem(_Player, _Mirror)
+AND
+DB_RoguelikeAdventure_MagicMirror(_Mirror)
+AND
+NOT DB_Illusionist(_, _)
+AND
+DB_IsPlayer(_Player)
+AND
+NOT DB_CombatCharacters(_Player, _)
+THEN
+DB_Illusionist(_Player, _Mirror);
+
+IF
+TimerFinished("CharacterCreation")
+AND
+DB_RoguelikeAdventure_MagicMirror(_Mirror)
+THEN
+ItemSetCanInteract(_Mirror, 1);
+
+// Do not allow to use in combat
+PROC
+ProcBlockUseOfItem(_Player, _Mirror)
+AND
+DB_RoguelikeAdventure_MagicMirror(_Mirror)
+AND
+DB_IsPlayer(_Player)
+AND
+DB_CombatCharacters(_Player, _)
+THEN
+DB_CustomUseItemResponse(_Player, _Mirror, 0);
+Proc_StartDialog(1, "GLO_AD_CannotUseNow", _Player);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeAdventure_Lobby"

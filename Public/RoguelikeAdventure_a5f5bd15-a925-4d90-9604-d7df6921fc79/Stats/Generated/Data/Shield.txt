@@ -1,0 +1,12 @@
+new entry "_ARX_Paladin_Shield"
+type "Shield"
+using "_Shields"
+data "ItemGroup" "WPN_Shield_Paladin_01"
+data "Act part" "1"
+
+new entry "_ARX_Magister_Shield"
+type "Shield"
+using "_Shields"
+data "ItemGroup" "WPN_Shield_Magister_01"
+data "Act part" "1"
+

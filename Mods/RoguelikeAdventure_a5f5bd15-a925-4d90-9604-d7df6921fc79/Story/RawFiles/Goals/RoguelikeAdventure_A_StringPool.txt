@@ -1,0 +1,140 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+//REGION Run these from other goals
+// Initializes the index if there is no index yet.
+PROC
+PROC_RoguelikeAdventure_StringPoolAdd((STRING)_Key, (STRING)_Value)
+AND
+NOT DB_RoguelikeAdventure_StringPoolIndex(_Key, _)
+THEN
+DB_RoguelikeAdventure_StringPoolIndex(_Key, 0);
+
+// Adds the value with the given key to the pool and increases the index.
+PROC
+PROC_RoguelikeAdventure_StringPoolAdd((STRING)_Key, (STRING)_Value)
+AND
+DB_RoguelikeAdventure_StringPoolIndex(_Key, _Index)
+AND
+IntegerSum(_Index, 1, _IndexNew)
+THEN
+DB_RoguelikeAdventure_StringPool(_Key, _Index, _Value);
+NOT DB_RoguelikeAdventure_StringPoolIndex(_Key, _Index);
+DB_RoguelikeAdventure_StringPoolIndex(_Key, _IndexNew);
+
+// Decreases index of string pool elements that are behind the removed one.
+PROC
+PROC_RoguelikeAdventure_StringPoolRemove((STRING)_Key, (STRING)_Value)
+AND
+DB_RoguelikeAdventure_StringPool(_Key, _Index, _Value)
+AND
+DB_RoguelikeAdventure_StringPool(_Key, _IndexOther, _ValueOther)
+AND
+_IndexOther > _Index
+AND
+IntegerSubtract(_IndexOther, 1, _IndexOtherNew)
+THEN
+NOT DB_RoguelikeAdventure_StringPool(_Key, _IndexOther, _ValueOther);
+DB_RoguelikeAdventure_StringPool(_Key, _IndexOtherNew, _ValueOther);
+
+// Removes the given value from the string pool and decreases the insertion index.
+PROC
+PROC_RoguelikeAdventure_StringPoolRemove((STRING)_Key, (STRING)_Value)
+AND
+DB_RoguelikeAdventure_StringPool(_Key, _Index, _Value)
+AND
+DB_RoguelikeAdventure_StringPoolIndex(_Key, _IndexLast)
+AND
+IntegerSubtract(_IndexLast, 1, _IndexLastNew)
+THEN
+NOT DB_RoguelikeAdventure_StringPool(_Key, _Index, _Value);
+NOT DB_RoguelikeAdventure_StringPoolIndex(_Key, _IndexLast);
+DB_RoguelikeAdventure_StringPoolIndex(_Key, _IndexLastNew);
+
+// Removes values with the given key from the pool.
+PROC
+PROC_RoguelikeAdventure_StringPoolClear((STRING)_Key)
+AND
+DB_RoguelikeAdventure_StringPool(_Key, _Index, _Value)
+THEN
+NOT DB_RoguelikeAdventure_StringPool(_Key, _Index, _Value);
+
+// Removes the selected value with the given key.
+PROC
+PROC_RoguelikeAdventure_StringPoolClear((STRING)_Key)
+AND
+DB_RoguelikeAdventure_StringPoolSelectedValue(_Key, _Value)
+THEN
+NOT DB_RoguelikeAdventure_StringPoolSelectedValue(_Key, _Value);
+
+// Removes the current index with the given key.
+PROC
+PROC_RoguelikeAdventure_StringPoolClear((STRING)_Key)
+AND
+DB_RoguelikeAdventure_StringPoolIndex(_Key, _Index)
+THEN
+NOT DB_RoguelikeAdventure_StringPoolIndex(_Key, _Index);
+
+// Runs a query that selects a random value from the pool with the given key. The result will be put into DB_RoguelikeAdventure_StringPoolSelectedValue(_Key, _Value).
+QRY
+QRY_RoguelikeAdventure_StringPoolSelectRandom((STRING)_Key)
+THEN
+PROC_RoguelikeAdventure_StringPoolSelectionPoolClear();
+PROC_RoguelikeAdventure_StringPoolSelectionPoolAddAll(_Key);
+PROC_RoguelikeAdventure_StringPoolSelectedValueClear(_Key);
+PROC_RoguelikeAdventure_StringPoolSelectionPoolSelectRandom(_Key);
+
+// Runs a query that selects and removes a random element from the string pool that matches the given key.
+QRY
+QRY_RoguelikeAdventure_StringPoolSelectAndRemoveRandom((STRING)_Key)
+AND
+QRY_RoguelikeAdventure_StringPoolSelectRandom((STRING)_Key)
+AND
+DB_RoguelikeAdventure_StringPoolSelectedValue(_Key, _Value)
+THEN
+PROC_RoguelikeAdventure_StringPoolRemove(_Key, _Value);
+//END_REGION
+
+//REGION Run these from inside this goal
+// Removes everything from the selection pool.
+PROC
+PROC_RoguelikeAdventure_StringPoolSelectionPoolClear()
+AND
+DB_RoguelikeAdventure_StringPoolSelectionPool(_Index, _Value)
+THEN
+NOT DB_RoguelikeAdventure_StringPoolSelectionPool(_Index, _Value);
+
+// Stores a pool in a temporary DB called selection pool to be able to count its elements.
+PROC
+PROC_RoguelikeAdventure_StringPoolSelectionPoolAddAll((STRING)_Key)
+AND
+DB_RoguelikeAdventure_StringPool(_Key, _Index, _Value)
+THEN
+DB_RoguelikeAdventure_StringPoolSelectionPool(_Index, _Value);
+
+// Clears the selected value with the given key.
+PROC
+PROC_RoguelikeAdventure_StringPoolSelectedValueClear((STRING)_Key)
+AND
+DB_RoguelikeAdventure_StringPoolSelectedValue(_Key, _Value)
+THEN
+NOT DB_RoguelikeAdventure_StringPoolSelectedValue(_Key, _Value);
+
+// Selects a random element from the selection pool and stores it with the given key.
+PROC
+PROC_RoguelikeAdventure_StringPoolSelectionPoolSelectRandom((STRING)_Key)
+AND
+SysCount("DB_RoguelikeAdventure_StringPoolSelectionPool", 2, _Count)
+AND
+Random(_Count, _Index)
+AND
+DB_RoguelikeAdventure_StringPoolSelectionPool(_Index, _Value)
+THEN
+DB_RoguelikeAdventure_StringPoolSelectedValue(_Key, _Value);
+//END_REGION
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeAdventure"

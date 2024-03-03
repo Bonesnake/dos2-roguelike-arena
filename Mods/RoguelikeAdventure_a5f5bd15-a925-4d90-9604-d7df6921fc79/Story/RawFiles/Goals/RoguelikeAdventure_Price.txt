@@ -1,0 +1,22 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+// Generates a price to be used for ingame features and puts the result into the "RoguelikeAdventure_PriceResult" singleton.
+QRY
+QRY_RoguelikeAdventure_Price((INTEGER)_Level, (INTEGER)_Base, (INTEGER)_Modifier)
+AND
+IntegerProduct(_Base, _Level, _BaseModified)
+AND
+IntegerProduct(_Level, _Level, _LevelPow)
+AND
+IntegerProduct(_Modifier, _LevelPow, _ModifierModified)
+AND
+IntegerSum(_BaseModified, _ModifierModified, _Price)
+THEN
+DB_Singleton("RoguelikeAdventure_PriceResult", _Price);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeAdventure"

@@ -1,0 +1,21 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_GLO_FirstLevelAfterCharacterCreation("RoguelikeAdventure_Level");
+
+// level name, start point trigger, name of movie to play (if any)
+DB_CharacterCreationTransitionInfo("RoguelikeAdventure_Level",(TRIGGERGUID)TRIGGERGUID_StartPoint_005_760bfc5e-f481-405f-a2bb-d41c4fdd98db,"");
+KBSECTION
+PROC
+ProcRemoveOtherOrigins()
+AND
+DB_Origins((CHARACTERGUID)_Origin)
+AND
+IsTagged(_Origin,"AVATAR",0)
+THEN
+// For source collars
+DB_OriginNotSelected(_Origin);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "DOS2ModWrapper"

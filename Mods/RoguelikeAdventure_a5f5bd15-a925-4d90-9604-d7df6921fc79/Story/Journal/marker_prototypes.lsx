@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" />
+    <version major="3" minor="6" revision="6" build="0" />
+    <region id="Markers">
+        <node id="root">
+            <children>
+                <node id="Marker">
+                    <attribute id="DisplayText" value="Equipment Statue" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="MarkerBroadcast" value="Character" type="22" />
+                    <attribute id="MarkerID" value="RoguelikeAdventure_EquipmentStatue" type="22" />
+                    <attribute id="MarkerIcon" value="LocationMarker" type="22" />
+                    <attribute id="MarkerLevel" value="RoguelikeAdventure_Level" type="22" />
+                    <attribute id="MarkerTargetObjectType" value="Item" type="22" />
+                    <attribute id="MarkerTargetObjectUUID" value="f9b8cec1-a546-44b0-8002-749562fbad9c" type="22" />
+                </node>
+                <node id="Marker">
+                    <attribute id="DisplayText" value="Chest of Fortune" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="MarkerBroadcast" value="Character" type="22" />
+                    <attribute id="MarkerID" value="RoguelikeAdventure_ChestOfFortune" type="22" />
+                    <attribute id="MarkerIcon" value="LocationMarker" type="22" />
+                    <attribute id="MarkerLevel" value="RoguelikeAdventure_Level" type="22" />
+                    <attribute id="MarkerTargetObjectType" value="Item" type="22" />
+                    <attribute id="MarkerTargetObjectUUID" value="cad144cc-f8ad-4688-823c-ced82aeb3b18" type="22" />
+                </node>
+                <node id="Marker">
+                    <attribute id="DisplayText" value="Recruitment Board" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="MarkerBroadcast" value="Character" type="22" />
+                    <attribute id="MarkerID" value="RoguelikeAdventure_RecruitmentBoard" type="22" />
+                    <attribute id="MarkerIcon" value="LocationMarker" type="22" />
+                    <attribute id="MarkerLevel" value="RoguelikeAdventure_Level" type="22" />
+                    <attribute id="MarkerTargetObjectType" value="Item" type="22" />
+                    <attribute id="MarkerTargetObjectUUID" value="c275c83d-6afc-4d50-a6eb-c76f9dbd65d2" type="22" />
+                </node>
+            </children>
+        </node>
+    </region>
+</save>

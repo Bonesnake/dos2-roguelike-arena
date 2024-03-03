@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<stats stat_object_definition_id="ec8e5086-0ef6-4151-b3d4-a3bdbd25bbd6">
+  <stat_objects>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="_ARX_Paladin_Shield" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Shields" />
+        <field name="ItemGroup" type="StringStatObjectFieldDefinition" value="WPN_Shield_Paladin_01" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="ActPart" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="_ARX_Magister_Shield" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Shields" />
+        <field name="ItemGroup" type="StringStatObjectFieldDefinition" value="WPN_Shield_Magister_01" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="ActPart" />
+      </fields>
+    </stat_object>
+  </stat_objects>
+</stats>

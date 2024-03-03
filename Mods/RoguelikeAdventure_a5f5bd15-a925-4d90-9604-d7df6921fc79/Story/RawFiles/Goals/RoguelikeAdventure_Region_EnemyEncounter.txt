@@ -1,0 +1,283 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+//REGION Factions
+DB_RoguelikeAdventure_Factions("Magister");
+DB_RoguelikeAdventure_Factions("Paladin");
+DB_RoguelikeAdventure_Factions("Blackring");
+DB_RoguelikeAdventure_Factions("Undead");
+//DB_RoguelikeAdventure_Factions("Animal");
+
+//DB_RoguelikeAdventure_BossFactions("Griff");
+//END_REGION
+
+//REGION Enemies, enemy spawn triggers and enemy settings
+// Min, max, increase per difficulty.
+DB_RoguelikeAdventure_EnemyCountParameters(0, 1, 1);
+
+// Per level, per difficulty, cap, cap increase per level.
+DB_RoguelikeAdventure_EnemyRankIncreaseChanceParameters(10, 5, 50, 1);
+
+DB_RoguelikeAdventure_EnemyTemplates("Magister", 0, "Shadowblade", "", "RoguelikeAdventure_Magister_Grunt_b0e049b6-876b-493c-bd06-1285d5bc36e9");
+DB_RoguelikeAdventure_EnemyTemplates("Magister", 0, "Cleric", "", "RoguelikeAdventure_Magister_Priest_38ae6cd5-81f6-4ac4-a317-2f49734c6f4e");
+DB_RoguelikeAdventure_EnemyTemplates("Magister", 0, "Knight", "", "RoguelikeAdventure_Magister_SilentMonk1_d914ca7d-ca18-4485-a5f9-2c374450b532");
+DB_RoguelikeAdventure_EnemyTemplates("Magister", 0, "Knight", "", "RoguelikeAdventure_Magister_SilentMonk2_26746e9b-3e47-44df-a808-e0c2095962e5");
+DB_RoguelikeAdventure_EnemyTemplates("Magister", 0, "Knight", "", "RoguelikeAdventure_Magister_SilentMonk3_78ae7996-f264-4b77-b9ee-4cce9388ede5");
+DB_RoguelikeAdventure_EnemyTemplates("Magister", 0, "", "Sourcehound_Melee", "RoguelikeAdventure_Magister_Sourcehound_Melee_162236d7-c3e2-492e-8b07-c2e799b03508");
+
+DB_RoguelikeAdventure_EnemyTemplates("Magister", 1, "Rogue", "", "RoguelikeAdventure_Magister_Assassin_356a8210-cea7-4e87-b95c-bacf94af712f");
+DB_RoguelikeAdventure_EnemyTemplates("Magister", 1, "Fighter", "Houndmaster", "RoguelikeAdventure_Magister_Brute_89e2faf6-74d7-434c-b4e2-1a7c2dc49eb6");
+DB_RoguelikeAdventure_EnemyTemplates("Magister", 1, "Battlemage", "", "RoguelikeAdventure_Magister_Inquisitor_Female_c45dc447-32bb-4bad-b855-2f281d075897");
+DB_RoguelikeAdventure_EnemyTemplates("Magister", 1, "Battlemage", "", "RoguelikeAdventure_Magister_Inquisitor_Male_7e3577e0-ea0a-4a54-9cb1-47d95c991ec1");
+DB_RoguelikeAdventure_EnemyTemplates("Magister", 1, "Knight", "", "RoguelikeAdventure_Magister_Knight_9efc8cd1-497f-4c6c-baa8-da4efc5a52db");
+DB_RoguelikeAdventure_EnemyTemplates("Magister", 1, "Ranger", "", "RoguelikeAdventure_Magister_Ranger_Female_4effb2c6-15e6-4171-82d3-345826bc8e82");
+DB_RoguelikeAdventure_EnemyTemplates("Magister", 1, "Ranger", "", "RoguelikeAdventure_Magister_Ranger_Male_fc347676-22bc-4d3f-b919-e9b4a331a530");
+DB_RoguelikeAdventure_EnemyTemplates("Magister", 1, "Knight", "", "RoguelikeAdventure_Magister_SilentWatcher_6dddb1bc-3343-47fc-aa52-51c667ada91a");
+DB_RoguelikeAdventure_EnemyTemplates("Magister", 1, "", "Sourcehound_Ranger", "RoguelikeAdventure_Magister_Sourcehound_Ranger_d49b2008-1886-4c20-80d0-90aafdfae037");
+DB_RoguelikeAdventure_EnemyTemplates("Magister", 1, "Fighter", "", "RoguelikeAdventure_Magister_Swordsman_ed127aeb-d20f-41a2-a42a-ba65f3a94bb5");
+
+DB_RoguelikeAdventure_EnemyTemplates("Magister", 2, "Cleric", "", "RoguelikeAdventure_Magister_Bishop_112cb741-22b8-42e2-a653-f43289058d90");
+DB_RoguelikeAdventure_EnemyTemplates("Magister", 2, "", "Gheist", "RoguelikeAdventure_Magister_Gheist_5d87f15e-aa25-4413-8ab5-985d7d866406");
+DB_RoguelikeAdventure_EnemyTemplates("Magister", 2, "Knight", "Houndmaster", "RoguelikeAdventure_Magister_Houndmaster_ed9bb707-729a-4cfa-86dd-0c488e9bd8c6");
+DB_RoguelikeAdventure_EnemyTemplates("Magister", 2, "Metamorph", "", "RoguelikeAdventure_Magister_Metamorph_Female_2da5aaa6-81a6-4038-9395-62bf227b4acc");
+DB_RoguelikeAdventure_EnemyTemplates("Magister", 2, "Metamorph", "", "RoguelikeAdventure_Magister_Metamorph_Male_3a6924d5-92de-4ad6-be74-02679fe62047");
+
+DB_RoguelikeAdventure_EnemyTemplates("Paladin", 0, "Cleric", "Paladin", "RoguelikeAdventure_Paladin_Healer_Female_ec7312cb-620d-41f2-9a49-151366cf82a6");
+DB_RoguelikeAdventure_EnemyTemplates("Paladin", 0, "Cleric", "Paladin", "RoguelikeAdventure_Paladin_Healer_Male_9f099a89-7c74-4319-b1b2-39d2be6ccbdf");
+DB_RoguelikeAdventure_EnemyTemplates("Paladin", 0, "Knight", "Paladin", "RoguelikeAdventure_Paladin_Initiate_Female_3ef59816-8cbf-4eff-b71a-84c29efe696c");
+DB_RoguelikeAdventure_EnemyTemplates("Paladin", 0, "Knight", "Paladin", "RoguelikeAdventure_Paladin_Initiate_Male_e3628dd8-1dc2-43b7-8c5b-b2bad8087b51");
+
+DB_RoguelikeAdventure_EnemyTemplates("Paladin", 1, "Fighter", "Paladin", "RoguelikeAdventure_Paladin_Defender_Female_e153e767-e7b3-46e3-8c25-e17ca611f947");
+DB_RoguelikeAdventure_EnemyTemplates("Paladin", 1, "Fighter", "Paladin", "RoguelikeAdventure_Paladin_Defender_Male_b88343d3-658d-40bf-9b08-0bfd332e4710");
+DB_RoguelikeAdventure_EnemyTemplates("Paladin", 1, "Wizard", "Paladin", "RoguelikeAdventure_Paladin_Elementalist_Female_8c4ad12c-9dec-4c2a-8a85-fb7c2714eaaf");
+DB_RoguelikeAdventure_EnemyTemplates("Paladin", 1, "Wizard", "Paladin", "RoguelikeAdventure_Paladin_Elementalist_Male_623c4355-cee5-4581-a26f-b3fd2c9a186a");
+DB_RoguelikeAdventure_EnemyTemplates("Paladin", 1, "Ranger", "Paladin", "RoguelikeAdventure_Paladin_Marksman_Female_e66bbc54-b300-4766-a0e6-a505332b8876");
+DB_RoguelikeAdventure_EnemyTemplates("Paladin", 1, "Ranger", "Paladin", "RoguelikeAdventure_Paladin_Marksman_Male_b74ad5e3-73b2-467f-a0b3-3d45493f64d9");
+DB_RoguelikeAdventure_EnemyTemplates("Paladin", 1, "Knight", "Paladin", "RoguelikeAdventure_Paladin_Protector_Female_6459923e-0a66-4a6c-b4e9-ca209de60d80");
+DB_RoguelikeAdventure_EnemyTemplates("Paladin", 1, "Knight", "Paladin", "RoguelikeAdventure_Paladin_Protector_Male_ec9ed4ce-b6c8-4b6e-90af-62fa848bb4b5");
+
+DB_RoguelikeAdventure_EnemyTemplates("Paladin", 2, "Enchanter", "Paladin", "RoguelikeAdventure_Paladin_Archmage_Female_a0c5cb77-24ab-4e5c-9127-51f56e688815");
+DB_RoguelikeAdventure_EnemyTemplates("Paladin", 2, "Enchanter", "Paladin", "RoguelikeAdventure_Paladin_Archmage_Male_98e98e9e-e560-43ee-9161-86457fdffba6");
+DB_RoguelikeAdventure_EnemyTemplates("Paladin", 2, "Knight", "Paladin", "RoguelikeAdventure_Paladin_Champion_Female_c8ec593f-3095-4d6a-ae70-3c843e04ec41");
+DB_RoguelikeAdventure_EnemyTemplates("Paladin", 2, "Knight", "Paladin", "RoguelikeAdventure_Paladin_Champion_Male_9e9dd84b-02b6-487c-9ca9-728f1cbea1ea");
+DB_RoguelikeAdventure_EnemyTemplates("Paladin", 2, "Fighter", "Paladin", "RoguelikeAdventure_Paladin_General_Female_8d94564d-06f0-4a05-aa60-6eb05cb907e1");
+DB_RoguelikeAdventure_EnemyTemplates("Paladin", 2, "Fighter", "Paladin", "RoguelikeAdventure_Paladin_General_Male_17e67f4f-8622-4811-95c6-67df345cb7fc");
+
+DB_RoguelikeAdventure_EnemyTemplates("Blackring", 0, "Knight", "Blackring", "RoguelikeAdventure_Blackring_Reaver_Female_32a0a7e6-f188-4ae4-ae82-22735cd51341");
+DB_RoguelikeAdventure_EnemyTemplates("Blackring", 0, "Knight", "Blackring", "RoguelikeAdventure_Blackring_Reaver_Male_a662b708-64d0-404f-8a60-5bb04111f5e6");
+DB_RoguelikeAdventure_EnemyTemplates("Blackring", 0, "", "Wolf", "RoguelikeAdventure_Blackring_Warg_50c3efe8-3500-474d-8361-b4f330d7d1ad");
+
+DB_RoguelikeAdventure_EnemyTemplates("Blackring", 1, "Fighter", "Blackring", "RoguelikeAdventure_Blackring_Defiler_Fighter_23cac20d-fc7e-4405-bade-815c94662153");
+DB_RoguelikeAdventure_EnemyTemplates("Blackring", 1, "Rogue", "Blackring", "RoguelikeAdventure_Blackring_Defiler_Rogue_e4d9a96b-b7a9-4fef-b78b-5aa38af7d944");
+DB_RoguelikeAdventure_EnemyTemplates("Blackring", 1, "Wayfarer", "Blackring", "RoguelikeAdventure_Blackring_Defiler_Wayfarer_5c22dc4b-135d-4a8f-8751-d5553041dd14");
+DB_RoguelikeAdventure_EnemyTemplates("Blackring", 1, "Knight", "Blackring", "RoguelikeAdventure_Blackring_Destroyer_8d3c7746-2e9a-4d0e-bc0b-b7bb91505300");
+DB_RoguelikeAdventure_EnemyTemplates("Blackring", 1, "Witch", "Blackring", "RoguelikeAdventure_Blackring_Fearmaiden_62ee1fcb-8213-4007-ade3-24d31f677b3e");
+DB_RoguelikeAdventure_EnemyTemplates("Blackring", 1, "Inquisitor", "Blackring", "RoguelikeAdventure_Blackring_Painreaver_7a7f876f-901d-41da-94a3-9950cf9214a3");
+DB_RoguelikeAdventure_EnemyTemplates("Blackring", 1, "Wizard", "Blackring", "RoguelikeAdventure_Blackring_Painweaver_561e419a-c113-4dc0-83eb-9b167579f022");
+
+DB_RoguelikeAdventure_EnemyTemplates("Blackring", 2, "Wizard", "Blackring", "RoguelikeAdventure_Blackring_Alchemist_2c43e465-1c73-45b6-8afa-806edeb05644");
+DB_RoguelikeAdventure_EnemyTemplates("Blackring", 2, "Fighter", "Blackring", "RoguelikeAdventure_Blackring_Captain_ff1d54e6-1311-4d61-b19b-259464bc6465");
+DB_RoguelikeAdventure_EnemyTemplates("Blackring", 2, "Knight", "Blackring", "RoguelikeAdventure_Blackring_Ravager_f2f1a897-969c-43fc-93a9-f89cfefa59b5");
+
+DB_RoguelikeAdventure_EnemyTemplates("Undead", 0, "Knight", "", "RoguelikeAdventure_Undead_Adventurer_9f4ecbcb-8817-4072-87c2-5cb73e680ef0");
+DB_RoguelikeAdventure_EnemyTemplates("Undead", 0, "Ranger", "", "RoguelikeAdventure_Undead_Hunter_57e38ee4-c158-485a-b828-9ab6f5abeedb");
+DB_RoguelikeAdventure_EnemyTemplates("Undead", 0, "Knight", "", "RoguelikeAdventure_Undead_Lumberjack_d9262080-4aeb-4ee4-80a0-9bca5c839b4a");
+DB_RoguelikeAdventure_EnemyTemplates("Undead", 0, "Rogue", "", "RoguelikeAdventure_Undead_Thief_e06edcfb-d554-475d-861c-247fccff07fe");
+
+DB_RoguelikeAdventure_EnemyTemplates("Undead", 1, "Battlemage", "", "RoguelikeAdventure_Undead_Battlemage_573686a8-2fcf-47aa-8468-95cd4bf9d0e4");
+DB_RoguelikeAdventure_EnemyTemplates("Undead", 1, "Cleric", "", "RoguelikeAdventure_Undead_Cleric_6523cc67-99e9-42ea-b19b-6c27a73608dc");
+DB_RoguelikeAdventure_EnemyTemplates("Undead", 1, "Conjurer", "", "RoguelikeAdventure_Undead_Conjurer_4dc26928-ca5b-482d-a1fb-7272f6ff7f44");
+DB_RoguelikeAdventure_EnemyTemplates("Undead", 1, "Enchanter", "", "RoguelikeAdventure_Undead_Enchanter_dc792619-cde1-44c4-b3ee-be12d148367d");
+DB_RoguelikeAdventure_EnemyTemplates("Undead", 1, "Fighter", "", "RoguelikeAdventure_Undead_Fighter_37f3de75-f715-4c60-ba45-239d8dcbdfcb");
+DB_RoguelikeAdventure_EnemyTemplates("Undead", 1, "Inquisitor", "", "RoguelikeAdventure_Undead_Inquisitor_abfc0272-4570-4bf1-8c2a-bf414cb197b2");
+DB_RoguelikeAdventure_EnemyTemplates("Undead", 1, "Knight", "", "RoguelikeAdventure_Undead_Knight_492a5ea0-b2e3-4db4-b00c-36a004523379");
+DB_RoguelikeAdventure_EnemyTemplates("Undead", 1, "Metamorph", "", "RoguelikeAdventure_Undead_Metamoprh_023728b8-7801-4e3a-8a43-849fdfa5b0df");
+DB_RoguelikeAdventure_EnemyTemplates("Undead", 1, "Ranger", "", "RoguelikeAdventure_Undead_Ranger_1c49a687-796f-4ffa-bcc3-37dca05a4c08");
+DB_RoguelikeAdventure_EnemyTemplates("Undead", 1, "Rogue", "", "RoguelikeAdventure_Undead_Rogue_55667cb5-cd47-4cb5-bf7b-6ef8b05b4337");
+DB_RoguelikeAdventure_EnemyTemplates("Undead", 1, "Shadowblade", "", "RoguelikeAdventure_Undead_Shadowblade_79fc8344-944e-4151-8cf2-d2742253a308");
+DB_RoguelikeAdventure_EnemyTemplates("Undead", 1, "Wayfarer", "", "RoguelikeAdventure_Undead_Wayfarer_4af48da6-5071-491b-a188-55b1cf20ee93");
+DB_RoguelikeAdventure_EnemyTemplates("Undead", 1, "Witch", "", "RoguelikeAdventure_Undead_Witch_d47a4edf-2587-44d8-849c-68c997a18b0c");
+DB_RoguelikeAdventure_EnemyTemplates("Undead", 1, "Wizard", "", "RoguelikeAdventure_Undead_Wizard_47a20ef6-61b4-4504-a487-5681d2f45111");
+
+DB_RoguelikeAdventure_EnemyTemplates("Undead", 2, "Battlemage", "", "RoguelikeAdventure_Undead_Eternal_Female_acafe20d-5c8a-4762-a325-3012b35a98f0");
+DB_RoguelikeAdventure_EnemyTemplates("Undead", 2, "Battlemage", "", "RoguelikeAdventure_Undead_Eternal_Male_70f0f7d0-5073-40a1-91d5-c243341abc5c");
+DB_RoguelikeAdventure_EnemyTemplates("Undead", 2, "Wizard", "", "RoguelikeAdventure_Undead_Lich_d983e510-0963-4699-b6f4-c5d26e6841ae");
+DB_RoguelikeAdventure_EnemyTemplates("Undead", 2, "Inquisitor", "", "RoguelikeAdventure_Undead_Revenant_3b361cd7-30dd-4013-adbf-f0555e9ff896");
+
+//DB_RoguelikeAdventure_EnemyTemplates("Animal", 0, "GEOM", "CROC", "Animals_Crocodile_Sea_A_2cbfe981-ff06-4993-8198-e8af7a1b91fe");
+//DB_RoguelikeAdventure_EnemyTemplates("Animal", 0, "AERO", "TURT", "Animals_Turtle_A_c128f322-d738-49ef-9ee1-0dbb9e2ae9e2");
+//DB_RoguelikeAdventure_EnemyTemplates("Animal", 0, "PYRO", "SALA", "Animals_Salamander_A_15158da9-f1fb-41dd-8460-e31565a76764");
+//DB_RoguelikeAdventure_EnemyTemplates("Animal", 1, "PYRO", "SALA", "Animals_Salamander_A_Fire_c09c210e-f16b-4326-af8c-010f4b54f1d0");
+//DB_RoguelikeAdventure_EnemyTemplates("Animal", 0, "WARF", "BEAR", "Animals_Bear_A_db1772ac-3a79-4ea4-95eb-01c40ceb44ed");
+//DB_RoguelikeAdventure_EnemyTemplates("Animal", 1, "WARF", "WOLF", "Animals_Wolf_A_aa7235cd-e24f-4da9-b240-6eb0c5f08ae6");
+//DB_RoguelikeAdventure_EnemyTemplates("Animal", 1, "WARF", "WOLF", "Animals_Wolf_A_Black_1e024c1e-45be-4492-bcaf-39a47f20e682");
+//DB_RoguelikeAdventure_EnemyTemplates("Animal", 1, "WARF", "WOLF", "Animals_Wolf_A_White_25e30a78-c140-4c37-a560-51fc8847f25e");
+//DB_RoguelikeAdventure_EnemyTemplates("Animal", 1, "BEET", "NONE", "Animals_Beetle_A_White_ca996322-27cd-407e-aadc-4aa3d7cea32e");
+//DB_RoguelikeAdventure_EnemyTemplates("Animal", 0, "WARF", "NONE", "Animals_Boar_A_72046308-f1c9-44e9-93b4-d2bb88d1a0b2");
+//DB_RoguelikeAdventure_EnemyTemplates("Animal", 0, "WARF", "BULL", "Animals_Bull_A_51a41c5e-190c-44c5-9b16-320a749de4df");
+//DB_RoguelikeAdventure_EnemyTemplates("Animal", 0, "WARF", "BULL", "Animals_Bull_B_4c888ec0-2d1f-4b8c-83d2-f61946b707fe");
+
+//DB_RoguelikeAdventure_BossEnemyTemplates("Griff", 1, "SCOU", "NONE", "NONE", "RoguelikeAdventure_Griff_553e4f69-30d4-47ec-911b-a6ea26251de9");
+//DB_RoguelikeAdventure_BossEnemyTemplates("Griff", 0, "HYDR", "NONE", "NONE", "RoguelikeAdventure_Griff_Waltz_b79cb6a9-7100-4fae-8c0c-fb55775028e4");
+//DB_RoguelikeAdventure_BossEnemyTemplates("Griff", 0, "HUNT", "NONE", "NONE", "RoguelikeAdventure_Griff_Butter_c2b9db35-c408-4764-b531-aa0af5db62ea");
+//DB_RoguelikeAdventure_BossEnemyTemplates("Griff", 0, "SCOU", "NONE", "NONE", "RoguelikeAdventure_Griff_Noosey_761fd2a3-74f4-4022-b920-0d684970b843");
+//DB_RoguelikeAdventure_BossEnemyTemplates("Griff", 0, "HUNT", "NONE", "NONE", "RoguelikeAdventure_Griff_Hilde_930e5938-2ce8-40d0-8cbb-15342deab4e2");
+//DB_RoguelikeAdventure_BossEnemyTemplates("Griff", 0, "AERO", "HYDR", "NONE", "RoguelikeAdventure_Griff_Needle_03b43092-add5-4d15-901c-93cefa9c10fe");
+//END_REGION
+
+PROC_RoguelikeAdventure_StringPoolAddFactions();
+KBSECTION
+// Calculates the amount of enemies to be spawned and spawns that amount.
+PROC
+PROC_RoguelikeAdventure_SpawnEnemies((INTEGER)_Region, (INTEGER)_Section, (INTEGER)_Level, (INTEGER)_Difficulty)
+AND
+DB_RoguelikeAdventure_EnemyCountParameters(_EnemyCountMin, _EnemyCountMax, _EnemyCountIncreasePerDifficulty)
+AND
+IntegerProduct(_Difficulty, _EnemyCountIncreasePerDifficulty, _EnemyCountModifier)
+AND
+IntegerSum(_EnemyCountMin, _EnemyCountModifier, _EnemyCountMinModified)
+AND
+IntegerSum(_EnemyCountMax, _EnemyCountModifier, _EnemyCountMaxModified)
+AND
+QRY_RoguelikeAdventure_RandomInclusive(_EnemyCountMinModified, _EnemyCountMaxModified)
+AND
+DB_Singleton("RoguelikeAdventure_RandomResult", _EnemyCount)
+THEN
+PROC_RoguelikeAdventure_SpawnEnemies(_Region, _Section, _Level, _Difficulty, _EnemyCount);
+
+// Selects a random faction and adds enemies from it to the enemy pool.
+PROC
+PROC_RoguelikeAdventure_SpawnEnemies((INTEGER)_Region, (INTEGER)_Section, (INTEGER)_Level, (INTEGER)_Difficulty, (INTEGER)_Count)
+AND
+QRY_RoguelikeAdventure_StringPoolSelectRandom("FactionPool")
+AND
+DB_RoguelikeAdventure_StringPoolSelectedValue("FactionPool", _Faction)
+THEN
+PROC_RoguelikeAdventure_StringPoolClearEnemies();
+PROC_RoguelikeAdventure_StringPoolAddEnemies(_Faction);
+
+// Spawns the enemies.
+PROC
+PROC_RoguelikeAdventure_SpawnEnemies((INTEGER)_Region, (INTEGER)_Section, (INTEGER)_Level, (INTEGER)_Difficulty, (INTEGER)_Count)
+AND
+QRY_RoguelikeAdventure_CreateIndices(_Count)
+AND
+DB_RoguelikeAdventure_CreatedIndices(_)
+THEN
+PROC_RoguelikeAdventure_SpawnEnemy(_Region, _Section, _Level, _Difficulty);
+
+// Spawns a random enemy from the enemy pool.
+PROC
+PROC_RoguelikeAdventure_SpawnEnemy((INTEGER)_Region, (INTEGER)_Section, (INTEGER)_Level,  (INTEGER)_Difficulty)
+AND
+QRY_RoguelikeAdventure_SetCurrentEnemyRank(_Level, _Difficulty)
+AND
+DB_Singleton("RoguelikeAdventure_CurrentEnemyRank", _Rank)
+AND
+IntegertoString(_Rank, _RankString)
+AND
+StringConcatenate("EnemyPool", _RankString, _Key)
+AND
+QRY_RoguelikeAdventure_StringPoolSelectRandom(_Key)
+AND
+DB_RoguelikeAdventure_StringPoolSelectedValue(_Key, _EnemyTemplateId)
+AND
+DB_RoguelikeAdventure_EnemyTemplates(_Faction, _Rank, _Class, _Specialization, _EnemyTemplateId)
+AND
+DB_RoguelikeAdventure_Sections(_Region, _Section, _Trigger)
+AND
+GetRandomPositionInTrigger(_Trigger, _X, _Y, _Z)
+AND
+CharacterCreateAtPosition(_X, _Y, _Z, _EnemyTemplateId, 0, _Enemy)
+AND
+IntegertoString(_Region, _CombatGroupID)
+THEN
+SetCombatGroupID(_Enemy, _CombatGroupID);
+//SetFaction(_Enemy, "Evil NPC");
+CharacterLevelUpTo(_Enemy, _Level);
+PROC_RoguelikeAdventure_CharacterLevelUpEquipmentTo(_Enemy, _Level);
+PROC_RoguelikeAdventure_CharacterAddRandomSkills(_Enemy, _Level, _Rank, _Class, _Specialization);
+PROC_RoguelikeAdventure_CharacterSetSourcePoints(_Enemy, _Level, _Rank);
+PROC_RoguelikeAdventure_RegisterForCleanup(_Enemy, _Region);
+
+// Adds factions to the faction pool.
+PROC
+PROC_RoguelikeAdventure_StringPoolAddFactions()
+AND
+DB_RoguelikeAdventure_Factions(_Faction)
+THEN
+PROC_RoguelikeAdventure_StringPoolAdd("FactionPool", _Faction);
+
+// Adds enemies from a faction to the enemy pool.
+PROC
+PROC_RoguelikeAdventure_StringPoolAddEnemies((STRING)_Faction)
+AND
+DB_RoguelikeAdventure_EnemyTemplates(_Faction, _Rank, _, _, _TemplateId)
+AND
+IntegertoString(_Rank, _RankString)
+AND
+StringConcatenate("EnemyPool", _RankString, _Key)
+THEN
+PROC_RoguelikeAdventure_StringPoolAdd(_Key, _TemplateId);
+
+PROC
+PROC_RoguelikeAdventure_StringPoolClearEnemies()
+AND
+DB_RoguelikeAdventure_EnemyTemplates(_, _Rank, _, _, _)
+AND
+IntegertoString(_Rank, _RankString)
+AND
+StringConcatenate("EnemyPool", _RankString, _Key)
+THEN
+PROC_RoguelikeAdventure_StringPoolClear(_Key);
+
+// Sets enemy rank to 0.
+QRY
+QRY_RoguelikeAdventure_SetCurrentEnemyRank((INTEGER)_Level, (INTEGER)_Difficulty)
+THEN
+DB_Singleton("RoguelikeAdventure_CurrentEnemyRank", 0);
+
+// Tries to increase enemy rank by 1 for each available rank. The higher the rank, the lower the chance.
+QRY
+QRY_RoguelikeAdventure_SetCurrentEnemyRank((INTEGER)_Level, (INTEGER)_Difficulty)
+AND
+DB_RoguelikeAdventure_EnemyRankIncreaseChanceParameters(_IncreaseChancePerLevel, _IncreaseChancePerDifficulty, _Cap, _CapIncreasePerLevel)
+AND
+IntegerProduct(_Level, _IncreaseChancePerLevel, _ChanceForLevel)
+AND
+IntegerProduct(_Difficulty, _IncreaseChancePerDifficulty, _ChanceForDifficulty)
+AND
+IntegerSum(_ChanceForLevel, _ChanceForDifficulty, _ChanceIncreaseAmount)
+AND
+QRY_RoguelikeAdventure_CreateIndices(2)
+AND
+DB_RoguelikeAdventure_CreatedIndices(_Rank)
+AND
+IntegerProduct(_Rank, _Cap, _ChanceDecreaseAmount)
+AND
+IntegerSubtract(_ChanceIncreaseAmount, _ChanceDecreaseAmount, _Chance)
+AND
+IntegerProduct(_Level, _CapIncreasePerLevel, _CapIncreaseAmount)
+AND
+IntegerSum(_Cap, _CapIncreaseAmount, _CapIncreased)
+AND
+IntegerMin(_Chance, _CapIncreased, _ChanceCapped)
+AND
+Random(100, _Random)
+AND
+_Random < _ChanceCapped
+THEN
+PROC_RoguelikeAdventure_IncreaseCurrentEnemyRank();
+
+PROC
+PROC_RoguelikeAdventure_IncreaseCurrentEnemyRank()
+AND
+DB_Singleton("RoguelikeAdventure_CurrentEnemyRank", _EnemyRankCurrent)
+AND
+IntegerSum(_EnemyRankCurrent, 1, _EnemyRankNew)
+THEN
+DB_Singleton("RoguelikeAdventure_CurrentEnemyRank", _EnemyRankNew);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeAdventure_Region_Encounter"

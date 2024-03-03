@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="utf-8"?>
+<stats stat_object_definition_id="a8098c1a-f86e-11da-bd1a-00112444be1e">
+  <stat_objects>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_CharacterBase" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Base" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="9" enumeration_type_name="BigQualifier" />
+        <field name="Strength" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="PreciseQualifier" />
+        <field name="Finesse" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="PreciseQualifier" />
+        <field name="Intelligence" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="PreciseQualifier" />
+        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="PreciseQualifier" />
+        <field name="Memory" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="PreciseQualifier" />
+        <field name="Wits" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="PreciseQualifier" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Paladin_Archmage" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="ARX_Paladin_Caster_Strong" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Paladin_Champion" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="ARX_Paladin_Melee_Strong" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Paladin_Defender" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="ARX_Paladin_Melee_Defender" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Paladin_Elementalist" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="ARX_Paladin_Caster" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Paladin_General" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="ARX_Paladin_Melee_Defender_Strong" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Paladin_Healer" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="ARX_Paladin_Caster_Cryo" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Paladin_Initiate" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="ARX_Paladin_Melee" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Paladin_Marksman" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="ARX_Paladin_Ranger" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Paladin_Protector" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="ARX_Paladin_Melee" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Magister_Assassin" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="ARX_Magister_Rogue" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Magister_Bishop" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="ARX_Magister_Caster_Strong" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Magister_Brute" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="ARX_Magister_Melee_Defender" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Magister_Gheist" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="GEN_Gheist" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Magister_Grunt" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="ARX_Magister_Melee" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Magister_Houndmaster" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="ARX_Magister_Melee_Strong" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Magister_Inquisitor" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="ARX_Magister_Caster" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Magister_Knight" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="ARX_Magister_Melee" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Magister_Metamorph" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="FTJ_Magister_Caster_Strong_Poly" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Magister_Priest" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="ARX_Magister_Caster" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Magister_Ranger" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="ARX_Magister_Ranger" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Magister_Swordsman" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="ARX_Magister_Melee_Defender" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Magister_SilentMonk_Lizard" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="GEN_SilentMonk_Lizard" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Magister_SilentMonk_Elf" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="GEN_SilentMonk_Elf" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Magister_SilentMonk_Dwarf" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="GEN_SilentMonk_Dwarf" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Magister_SilentWatcher" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="GEN_SilentWatcher_Human" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Magister_Sourcehound_Melee" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Animals_SourceHound_A" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Magister_Sourcehound_Ranger" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Animals_SourceHound_A_Ranger" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Blackring_Alchemist" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="ARX_BlackRing_Caster_Strong" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Blackring_Captain" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="ARX_BlackRing_Melee_Strong" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Blackring_Defiler_Fighter" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="ARX_BlackRing_Melee_Defender" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Blackring_Defiler_Rogue" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="ARX_BlackRing_Rogue" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Blackring_Defiler_Wayfarer" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="ARX_BlackRing_Ranger" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Blackring_Destroyer" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="ARX_BlackRing_Melee_Strong" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Blackring_Fearmaiden" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="ARX_BlackRing_Caster_Strong" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Blackring_Painweaver" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="ARX_BlackRing_Caster" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Blackring_Ravager" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="ARX_BlackRing_Melee_Destroyer" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Blackring_Reaver" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="ARX_BlackRing_Melee" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Blackring_Painreaver" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="ARX_BlackRing_Melee" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Blackring_Warg" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="CoS_BlackRingWarg" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Undead_Battlemage" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Undead_Skeleton_Melee_Dual" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Undead_Cleric" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Undead_Skeleton_Caster_Water" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Undead_Conjurer" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Undead_Skeleton_Caster_Earth" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Undead_Enchanter" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Undead_FireSkeleton_Mage" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Undead_Eternal" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Undead_FireSkeleton_Mage" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+        <field name="FireResistance" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="WaterResistance" type="IntegerStatObjectFieldDefinition" value="0" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Undead_Fighter" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Undead_Skeleton_Melee_1H" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Undead_Hunter" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Undead_Skeleton_Ranger" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Undead_Inquisitor" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Undead_Skeleton_Melee_2H" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Undead_Knight" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Undead_Skeleton_Melee_2H" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Undead_Lich" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Undead_FireSkeleton_Mage" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+        <field name="FireResistance" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="WaterResistance" type="IntegerStatObjectFieldDefinition" value="0" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Undead_Lumberjack" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Undead_Skeleton_Melee_2H" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Undead_Metamoprh" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Undead_Skeleton_Melee_2H" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Undead_Ranger" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Undead_Skeleton_Ranger" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Undead_Revenant" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Undead_FireSkeleton_2HAxe" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Undead_Rogue" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Undead_Skeleton_Rogue_Dual" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Undead_Shadowblade" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Undead_Skeleton_Rogue_Dual" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Undead_Thief" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Undead_Skeleton_Rogue_1H" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Undead_Adventurer" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Undead_Skeleton_Melee_1H" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Undead_Wayfarer" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Undead_Skeleton_Ranger" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Undead_Witch" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Undead_Skeleton_Caster_Air" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeAdventure_Undead_Wizard" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Undead_Skeleton_Caster_Fire" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
+  </stat_objects>
+</stats>

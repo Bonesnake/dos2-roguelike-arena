@@ -1,0 +1,15 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+// Gives random treasure if the corresponding flag is set.
+IF
+ObjectFlagSet("RoguelikeAdventure_ChestOfFortune_WasUsed", _Player, _)
+THEN
+CharacterGiveReward((CHARACTERGUID)_Player, "RoguelikeAdventure_ChestOfFortune", 1);
+//PlayEffect(ITEMGUID_CONT_Humans_Citz_Chest_Rich_A_000_cad144cc-f8ad-4688-823c-ced82aeb3b18, "RS3_FX_GP_Status_LevelUp_01");
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeAdventure_Lobby"

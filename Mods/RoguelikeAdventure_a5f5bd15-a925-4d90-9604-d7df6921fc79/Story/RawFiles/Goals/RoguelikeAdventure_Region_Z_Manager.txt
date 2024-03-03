@@ -1,0 +1,57 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+// DB_RoguelikeAdventure_Regions(1, (TRIGGERGUID)TRIGGERGUID_R01_Region_5d9a77ab-fada-4521-bb2d-e93cab5c0949);
+// DB_RoguelikeAdventure_Regions(2, TRIGGERGUID_R02_Region_f1994d03-47e8-4774-962b-b35a43c6a356);
+// DB_RoguelikeAdventure_Regions(3, TRIGGERGUID_R03_Region_e44becc9-c8af-4f45-8796-653f7e2fd519);
+// DB_RoguelikeAdventure_Regions(4, TRIGGERGUID_R04_Region_df7c5340-1f96-4efb-9040-faff5ab67f24);
+// DB_RoguelikeAdventure_Regions(5, TRIGGERGUID_R05_Region_b48ab977-c24b-86ac-64fa-bf902fe658cd);
+DB_RoguelikeAdventure_Regions(6, (TRIGGERGUID)TRIGGERGUID_RegionTrigger_000__000_1d1acebf-fd98-880d-29dc-a13cce4a17c1);
+DB_RoguelikeAdventure_Regions(7, TRIGGERGUID_RegionTrigger_000__000_663a7321-c77d-c609-df13-7e01c9142552);
+DB_RoguelikeAdventure_Regions(8, TRIGGERGUID_R00_Region__000_d639bf73-8c7d-81a1-325a-dd33cd61b501);
+DB_RoguelikeAdventure_Regions(9, TRIGGERGUID_Region__000_2eddf783-ec01-805c-3fea-fc2ef9f023d7);
+DB_RoguelikeAdventure_Regions(10, TRIGGERGUID_Region__000_8a7e30a4-ad2a-86ae-3d05-4718a9e939da);
+KBSECTION
+// Cleans regions, locks waypoints and removes regions from the active regions list.
+PROC
+PROC_RoguelikeAdventure_ResetRegions()
+AND
+DB_RoguelikeAdventure_ActiveRegions(_Region, _Level, _Index)
+THEN
+NOT DB_RoguelikeAdventure_ActiveRegions(_Region, _Level, _Index);
+
+// Resets region pool and musics, and saves teleporter pyramids.
+PROC
+PROC_RoguelikeAdventure_ResetRegions()
+THEN
+PROC_RoguelikeAdventure_IntegerPoolClear("RegionPool");
+PROC_RoguelikeAdventure_IntegerPoolAddRegions();
+PROC_RoguelikeAdventure_SaveTeleporterPyramids();
+
+// Selects a new region and prepares it for population.
+PROC
+PROC_RoguelikeAdventure_StartNewRegion((INTEGER)_Level)
+AND
+QRY_RoguelikeAdventure_IntegerPoolSelectAndRemoveRandom("RegionPool")
+AND
+DB_RoguelikeAdventure_IntegerPoolSelectedValue("RegionPool", _Region)
+AND
+SysCount("DB_RoguelikeAdventure_ActiveRegions", 3, _CurrentIndex)
+AND
+IntegerSum(_CurrentIndex, 1, _NextIndex)
+THEN
+PROC_RoguelikeAdventure_GeneratePath(_Region, 4);
+DB_RoguelikeAdventure_ActiveRegions(_Region, _Level, _NextIndex);
+PROC_RoguelikeAdventure_GenerateEncounters(_Region);
+
+// Adds available regions to the region pool.
+PROC
+PROC_RoguelikeAdventure_IntegerPoolAddRegions()
+AND
+DB_RoguelikeAdventure_Regions(_Region, _)
+THEN
+PROC_RoguelikeAdventure_IntegerPoolAdd("RegionPool", _Region);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeAdventure_Region"

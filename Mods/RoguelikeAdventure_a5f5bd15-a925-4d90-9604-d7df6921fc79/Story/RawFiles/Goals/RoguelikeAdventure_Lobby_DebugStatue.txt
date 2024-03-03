@@ -1,0 +1,70 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_RoguelikeAdventure_DebugStatueBuffs("HASTED");
+DB_RoguelikeAdventure_DebugStatueBuffs("CLEAR_MINDED");
+DB_RoguelikeAdventure_DebugStatueBuffs("ENCOURAGED");
+//DB_RoguelikeAdventure_DebugStatueBuffs("DEATH_RESIST");
+DB_RoguelikeAdventure_DebugStatueBuffs("FARSIGHT");
+DB_RoguelikeAdventure_DebugStatueBuffs("FIRE_BRAND");
+DB_RoguelikeAdventure_DebugStatueBuffs("VAMPIRISM");
+DB_RoguelikeAdventure_DebugStatueBuffs("APOTHEOSIS");
+//DB_RoguelikeAdventure_DebugStatueBuffs("EXTRA_TURN");
+
+DB_RoguelikeAdventure_DebugStatuePresets("Battlemage");
+DB_RoguelikeAdventure_DebugStatuePresets("Cleric");
+DB_RoguelikeAdventure_DebugStatuePresets("Conjurer");
+DB_RoguelikeAdventure_DebugStatuePresets("Enchanter");
+DB_RoguelikeAdventure_DebugStatuePresets("Fighter");
+DB_RoguelikeAdventure_DebugStatuePresets("Inquisitor");
+DB_RoguelikeAdventure_DebugStatuePresets("Knight");
+DB_RoguelikeAdventure_DebugStatuePresets("Metamorph");
+DB_RoguelikeAdventure_DebugStatuePresets("Ranger");
+DB_RoguelikeAdventure_DebugStatuePresets("Rogue");
+DB_RoguelikeAdventure_DebugStatuePresets("Shadowblade");
+DB_RoguelikeAdventure_DebugStatuePresets("Wayfarer");
+DB_RoguelikeAdventure_DebugStatuePresets("Witch");
+DB_RoguelikeAdventure_DebugStatuePresets("Wizard");
+KBSECTION
+// Levels up the character.
+IF
+ObjectFlagSet("RoguelikeAdventure_DebugStatue_WasUsed", _Character, _)
+AND
+ObjectGetFlag(_Character, "RoguelikeAdventure_DebugStatue_LevelUp", 1)
+THEN
+CharacterLevelUp((CHARACTERGUID)_Character);
+
+// Adds gold to the character.
+IF
+ObjectFlagSet("RoguelikeAdventure_DebugStatue_WasUsed", _Character, _)
+AND
+ObjectGetFlag(_Character, "RoguelikeAdventure_DebugStatue_AddGold", 1)
+THEN
+CharacterAddGold((CHARACTERGUID)_Character, 99999);
+
+// Applies buffs to the character.
+IF
+ObjectFlagSet("RoguelikeAdventure_DebugStatue_WasUsed", _Character, _)
+AND
+ObjectGetFlag(_Character, "RoguelikeAdventure_DebugStatue_ApplyBuffs", 1)
+AND
+DB_RoguelikeAdventure_DebugStatueBuffs(_Status)
+THEN
+RemoveStatus(_Character, _Status);
+ApplyStatus(_Character, _Status, -1.0, 1, NULL_00000000-0000-0000-0000-000000000000);
+
+// Changes the preset of the character.
+IF
+ObjectFlagSet("RoguelikeAdventure_DebugStatue_WasUsed", _Character, _)
+AND
+DB_RoguelikeAdventure_DebugStatuePresets(_Preset)
+AND
+StringConcatenate("RoguelikeAdventure_DebugStatue_", _Preset, _PresetFlag)
+AND
+ObjectGetFlag(_Character, _PresetFlag, 1)
+THEN
+CharacterApplyHenchmanPreset((CHARACTERGUID)_Character, _Preset);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeAdventure_Lobby"

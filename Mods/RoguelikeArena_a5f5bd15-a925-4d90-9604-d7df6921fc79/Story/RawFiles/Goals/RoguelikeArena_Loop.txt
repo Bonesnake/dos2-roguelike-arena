@@ -1,0 +1,32 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+QRY
+QRY_RoguelikeArena_CreateIndices((INTEGER)_Count)
+AND
+IntegerSubtract(_Count, 1, _To)
+THEN
+SysClear("DB_RoguelikeArena_CreatedIndices", 1);
+PROC_RoguelikeArena_CreateIndicesRecursively(0, _To);
+
+QRY
+QRY_RoguelikeArena_CreateIndices((INTEGER)_From, (INTEGER)_To)
+THEN
+SysClear("DB_RoguelikeArena_CreatedIndices", 1);
+PROC_RoguelikeArena_CreateIndicesRecursively(_From, _To);
+
+PROC
+PROC_RoguelikeArena_CreateIndicesRecursively((INTEGER)_From, (INTEGER)_To)
+AND
+_From <= _To
+AND
+IntegerSum(_From, 1, _NextFrom)
+THEN
+DB_RoguelikeArena_CreatedIndices(_From);
+PROC_RoguelikeArena_CreateIndicesRecursively(_NextFrom, _To);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena"

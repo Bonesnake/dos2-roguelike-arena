@@ -1,0 +1,121 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_RoguelikeArena_AvailableCompanions((CHARACTERGUID)CHARACTERGUID_RoguelikeArena_Companion_000_c4a2faca-e1e2-4fc9-90dd-a05c8e8fc113);
+DB_RoguelikeArena_AvailableCompanions(CHARACTERGUID_RoguelikeArena_Companion_001_c6c954d3-b839-4c88-ba44-bee1c469fc5d);
+DB_RoguelikeArena_AvailableCompanions(CHARACTERGUID_RoguelikeArena_Companion_002_d380599f-33b5-4dad-af96-338fe7226453);
+DB_RoguelikeArena_AvailableCompanions(CHARACTERGUID_RoguelikeArena_Companion_003_95657b67-79f5-4c2c-a6f0-5b209c35d8c1);
+DB_RoguelikeArena_AvailableCompanions(CHARACTERGUID_RoguelikeArena_Companion_004_8a8ef927-f365-4fa4-b017-d9aa94c44e15);
+DB_RoguelikeArena_AvailableCompanions(CHARACTERGUID_RoguelikeArena_Companion_005_411b2516-c451-4949-adc1-118360318101);
+DB_RoguelikeArena_AvailableCompanions(CHARACTERGUID_RoguelikeArena_Companion_006_d4549dd7-2430-4e45-a8e7-ec2bcea34562);
+DB_RoguelikeArena_AvailableCompanions(CHARACTERGUID_RoguelikeArena_Companion_007_03792e23-d55c-4904-9a7f-80b5607d4e18);
+DB_RoguelikeArena_AvailableCompanions(CHARACTERGUID_RoguelikeArena_Companion_008_9613a61a-362d-48b9-a115-ac732e399343);
+DB_RoguelikeArena_AvailableCompanions(CHARACTERGUID_RoguelikeArena_Companion_009_1fdc64f4-3e2b-48b4-b284-48bef4170cc9);
+DB_RoguelikeArena_AvailableCompanions(CHARACTERGUID_RoguelikeArena_Companion_010_0229457f-e140-4492-ba0e-6766e962da16);
+DB_RoguelikeArena_AvailableCompanions(CHARACTERGUID_RoguelikeArena_Companion_011_9f2c9779-820c-4257-9005-a37096bdf498);
+DB_RoguelikeArena_AvailableCompanions(CHARACTERGUID_RoguelikeArena_Companion_012_d4b2d14d-c5ee-4384-b844-11a0de8302db);
+DB_RoguelikeArena_AvailableCompanions(CHARACTERGUID_RoguelikeArena_Companion_013_31af7ded-5c50-4c5b-a4cf-b93e06bdfd37);
+DB_RoguelikeArena_AvailableCompanions(CHARACTERGUID_RoguelikeArena_Companion_014_0d17c35d-1937-4738-bc95-4c7b9a370e43);
+
+DB_RoguelikeArena_CompanionTemplates("HumanMale", "Humans_Hero_Male_25611432-e5e4-482a-8f5d-196c9e90001e");
+DB_RoguelikeArena_CompanionTemplates("HumanFemale", "Humans_Hero_Female_de8ea39b-6989-4b93-b34a-81e549c540f2");
+DB_RoguelikeArena_CompanionTemplates("ElfMale", "Elves_Hero_Male_19913083-924e-45ec-8b5b-119d5913722f");
+DB_RoguelikeArena_CompanionTemplates("ElfFemale", "Elves_Hero_Female_7ef846f5-34dc-450c-815e-a58dfc190a7b");
+DB_RoguelikeArena_CompanionTemplates("DwarfMale", "Dwarves_Hero_Male_024d1763-b2aa-46ec-b705-6338059838be");
+DB_RoguelikeArena_CompanionTemplates("DwarfFemale", "Dwarves_Hero_Female_c1c58707-b06e-499e-9c43-91a90be602b0");
+DB_RoguelikeArena_CompanionTemplates("LizardMale", "Lizards_Hero_Male_fa12e21f-0a10-47dd-af46-ab2c9a53cf6d");
+DB_RoguelikeArena_CompanionTemplates("LizardFemale", "Lizards_Hero_Female_e4a6bcfa-ecd6-4e56-8592-cd16b85a1c50");
+DB_RoguelikeArena_CompanionTemplates("UndeadHumanMale", "Humans_Hero_Male_Undead_5ab5d036-4606-4265-962e-c2e4d2d2408b");
+DB_RoguelikeArena_CompanionTemplates("UndeadHumanFemale", "Humans_Hero_Female_Undead_3bd0693d-0b0a-4f6d-93e2-aea9be654bee");
+DB_RoguelikeArena_CompanionTemplates("UndeadElfMale", "Elves_Hero_Male_Undead_9eeaaafd-c47d-4650-9200-b00430d61e83");
+DB_RoguelikeArena_CompanionTemplates("UndeadElfFemale", "Elves_Hero_Female_Undead_7f366172-9fd1-45df-8719-a6d14cb534b3");
+DB_RoguelikeArena_CompanionTemplates("UndeadDwarfMale", "Dwarves_Hero_Male_Undead_726442a5-6856-4b0d-91ed-5d2f003b8a0c");
+DB_RoguelikeArena_CompanionTemplates("UndeadDwarfFemale", "Dwarves_Hero_Female_Undead_373a1966-a54d-4a3e-be70-e779a654c914");
+DB_RoguelikeArena_CompanionTemplates("UndeadLizardMale", "Lizards_Hero_Male_Undead_57b70554-36bf-4b86-b9aa-8f7cc3944153");
+DB_RoguelikeArena_CompanionTemplates("UndeadLizardFemale", "Lizards_Hero_Female_Undead_725f9a47-a3d4-41d2-92cf-017d18c2b212");
+
+DB_RoguelikeArena_CompanionPresets("Battlemage");
+DB_RoguelikeArena_CompanionPresets("Cleric");
+DB_RoguelikeArena_CompanionPresets("Conjurer");
+DB_RoguelikeArena_CompanionPresets("Enchanter");
+DB_RoguelikeArena_CompanionPresets("Fighter");
+DB_RoguelikeArena_CompanionPresets("Inquisitor");
+DB_RoguelikeArena_CompanionPresets("Knight");
+DB_RoguelikeArena_CompanionPresets("Metamorph");
+DB_RoguelikeArena_CompanionPresets("Ranger");
+DB_RoguelikeArena_CompanionPresets("Rogue");
+DB_RoguelikeArena_CompanionPresets("Shadowblade");
+DB_RoguelikeArena_CompanionPresets("Wayfarer");
+DB_RoguelikeArena_CompanionPresets("Witch");
+DB_RoguelikeArena_CompanionPresets("Wizard");
+
+PROC_RoguelikeArena_InitCompanionCharacters();
+PROC_RoguelikeArena_GuidStringPoolAddAvailableCompanions();
+KBSECTION
+PROC
+PROC_RoguelikeArena_InitCompanionCharacters()
+AND
+DB_RoguelikeArena_AvailableCompanions(_Companion)
+THEN
+SetOnStage(_Companion, 0);
+
+IF
+DB_RoguelikeArena_CompanionsHelper(_Companion, _Recruiter)
+AND
+NOT DB_RoguelikeArena_Companions(_Companion, _Recruiter)
+THEN
+PROC_RoguelikeArena_GuidStringPoolAdd("AvailableCompanionPool", _Companion);
+
+// Recruits a companion character with the help of flags set by the recruitment board.
+IF
+ObjectFlagSet("RoguelikeArena_RecruitmentBoard_WasUsed", _Player, _)
+AND
+QRY_RoguelikeArena_GuidStringPoolSelectAndRemoveRandom("AvailableCompanionPool")
+AND
+DB_RoguelikeArena_GuidStringPoolSelectedValue("AvailableCompanionPool", _Companion)
+AND
+DB_RoguelikeArena_CompanionTemplates(_Identity, _Template)
+AND
+StringConcatenate("RoguelikeArena_RecruitmentBoard_", _Identity, _IdentityFlag)
+AND
+ObjectGetFlag(_Player, _IdentityFlag, 1)
+AND
+DB_RoguelikeArena_CompanionPresets(_Preset)
+AND
+StringConcatenate("RoguelikeArena_RecruitmentBoard_", _Preset, _PresetFlag)
+AND
+ObjectGetFlag(_Player, _PresetFlag, 1)
+THEN
+SetOnStage(_Companion, 1);
+PROC_RoguelikeArena_MakeCompanion((CHARACTERGUID)_Companion, _Template, _Preset, (CHARACTERGUID)_Player);
+
+// Sets a flag when no companions can be recruited.
+IF
+DB_RoguelikeArena_Companions(_, _)
+AND
+SysCount("DB_RoguelikeArena_Companions", 2, _CompanionsCount)
+AND
+SysCount("DB_RoguelikeArena_AvailableCompanions", 1, _AvailableCompanionsCount)
+AND
+_CompanionsCount >= _AvailableCompanionsCount
+THEN
+GlobalSetFlag("RoguelikeArena_RecruitmentBoard_NoCompanionAvailable");
+
+// Clears a flag when at least one companion can be recruited.
+IF
+StoryEvent(_, "RoguelikeArena_Companion_Dismissed")
+AND
+GlobalGetFlag("RoguelikeArena_RecruitmentBoard_NoCompanionAvailable", 1)
+THEN
+GlobalClearFlag("RoguelikeArena_RecruitmentBoard_NoCompanionAvailable");
+
+PROC
+PROC_RoguelikeArena_GuidStringPoolAddAvailableCompanions()
+AND
+DB_RoguelikeArena_AvailableCompanions(_Companion)
+THEN
+PROC_RoguelikeArena_GuidStringPoolAdd("AvailableCompanionPool", _Companion);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena_Lobby"

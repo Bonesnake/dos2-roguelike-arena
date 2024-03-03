@@ -1,0 +1,918 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_RoguelikeArena_EquipmentSlots("Helmet");
+DB_RoguelikeArena_EquipmentSlots("Amulet");
+DB_RoguelikeArena_EquipmentSlots("Breast");
+DB_RoguelikeArena_EquipmentSlots("Belt");
+DB_RoguelikeArena_EquipmentSlots("Gloves");
+DB_RoguelikeArena_EquipmentSlots("Leggings");
+DB_RoguelikeArena_EquipmentSlots("Boots");
+DB_RoguelikeArena_EquipmentSlots("Weapon");
+DB_RoguelikeArena_EquipmentSlots("Shield");
+DB_RoguelikeArena_EquipmentSlots("Ring");
+DB_RoguelikeArena_EquipmentSlots("Ring2");
+
+////REGION Attributes
+//DB_RoguelikeArena_Attributes("STR", "Strength");
+//DB_RoguelikeArena_Attributes("FIN", "Finesse");
+//DB_RoguelikeArena_Attributes("INT", "Intelligence");
+//DB_RoguelikeArena_Attributes("CON", "Constitution");
+//DB_RoguelikeArena_Attributes("MEM", "Memory");
+//DB_RoguelikeArena_Attributes("WIT", "Wits");
+//
+//DB_Singleton("RoguelikeArena_AttributeIncreaseInterval", 4); // attributes increase every x levels, where x is this amount
+//DB_Singleton("RoguelikeArena_AttributeIncreaseAmount", 1); // each attribute increases by this amount per interval
+//DB_Singleton("RoguelikeArena_AttributeBonusInterval", 4); // attributes can have up to x bonus points, where x is character level devided by this amount
+//DB_Singleton("RoguelikeArena_AttributeIncreaseModifierPrimary", 3); // primary attribute modifier
+//DB_Singleton("RoguelikeArena_AttributeIncreaseModifierSecondary", 3); // secondary attribute modifier
+//DB_Singleton("RoguelikeArena_AttributeIncreaseModifierTertiary", 3); // tertiary attribute modifier
+//DB_Singleton("RoguelikeArena_AttributeIncreaseModifierRandomModulo", 3); // other, non-important attribute modifier random modulo
+////END_REGION
+
+////REGION Abilities
+//DB_Singleton("RoguelikeArena_AbilityIncreaseInterval", 2);
+//DB_Singleton("RoguelikeArena_AbilityBonusInterval", 2);
+//DB_Singleton("RoguelikeArena_AbilityUnnecessaryModulo", 5); // a random ability will increase if random == 0; this value is its modulo
+//DB_Singleton("RoguelikeArena_AbilityUnnecessaryModifier", 2); // if a random ability is selected, it will be weaker than the others by times this amount
+//DB_Singleton("RoguelikeArena_AbilityBaseModifier", 1);
+//
+//DB_RoguelikeArena_Abilities("DW", "DualWielding");
+//DB_RoguelikeArena_Abilities("RA", "Ranged");
+//DB_RoguelikeArena_Abilities("1H", "SingleHanded");
+//DB_RoguelikeArena_Abilities("2H", "TwoHanded");
+//
+//DB_RoguelikeArena_Abilities("AERO", "AirSpecialist");
+//DB_RoguelikeArena_Abilities("GEOM", "EarthSpecialist");
+//DB_RoguelikeArena_Abilities("HUNT", "RangerLore");
+//DB_RoguelikeArena_Abilities("HYDR", "WaterSpecialist");
+//DB_RoguelikeArena_Abilities("NECR", "Necromancy");
+//DB_RoguelikeArena_Abilities("POLY", "Polymorph");
+//DB_RoguelikeArena_Abilities("PYRO", "FireSpecialist");
+//DB_RoguelikeArena_Abilities("SCOU", "RogueLore");
+//DB_RoguelikeArena_Abilities("SUMM", "Summoning");
+//DB_RoguelikeArena_Abilities("WARF", "WarriorLore");
+////END_REGION
+
+////REGION Equipment
+//// Warrior weapons
+//DB_RoguelikeArena_Weapons(0, "2H", "SWO", "WPN_Common_Sword_2H_A1_a59ac111-dfe9-4dcc-8ede-9ebd757b1bfc");
+//DB_RoguelikeArena_Weapons(0, "1H", "SWO", "WPN_Common_Sword_1H_A1_3dd01bc4-65e7-4468-9854-b19bc980b3f8");
+//DB_RoguelikeArena_Weapons(0, "2H", "SPE", "WPN_Common_Spear_2H_A_15b17f97-4354-4f6e-98e9-818f87fe95f7");
+//DB_RoguelikeArena_Weapons(0, "1H", "MAC", "WPN_Common_Mace_1H_A_1272c2d0-1cdb-4ecf-b27a-8923a0f545f3");
+//DB_RoguelikeArena_Weapons(0, "2H", "MAC", "WPN_Common_Mace_2H_A_a3778f4f-abd4-44aa-8e4f-7f444e3c795a");
+//
+//// Rogue weapons
+//DB_RoguelikeArena_Weapons(0, "DW", "DAG", "WPN_Common_Dagger_1H_A_f1e0f3fc-c94b-48b6-a843-7d8072f87e9e");
+//DB_RoguelikeArena_Weapons(0, "RA", "BOW", "WPN_Common_Bow_2H_A_628f31a6-1250-42dc-a09d-567726e0937b");
+//
+//// Mage weapons
+//DB_RoguelikeArena_Weapons(0, "2H", "STA", "WPN_Common_Staff_2H_A_f9395532-5efe-4561-bef1-3f603b32c082");
+//DB_RoguelikeArena_Weapons(0, "DW", "WAN", "WPN_Common_Wand_1H_A_0edf88b5-f09f-473c-bae1-a992af4dba69");
+//
+//// Shields
+//DB_RoguelikeArena_Weapons(0, "1H", "SHI", "WPN_Common_Shield_1H_A_c2bbfbd1-6361-4f2e-bad9-a6b46880f501");
+//
+//DB_RoguelikeArena_Armors(0, "Helmet", "EQ_Clothing_Civilian_Helmet_A_e8d53fab-bbd8-4929-8dbe-658baf168555");
+//DB_RoguelikeArena_Armors(0, "Breast", "EQ_Clothing_Civilian_Upperbody_A_3ec8a86d-1df6-4923-9e7a-ce81800e9438");
+//DB_RoguelikeArena_Armors(0, "Gloves", "");
+//DB_RoguelikeArena_Armors(0, "Belt", "");
+//DB_RoguelikeArena_Armors(0, "Boots", "EQ_Clothing_Civilian_Legs_A_043055d0-f5fc-400c-ae2e-29fb3a20902c");
+//DB_RoguelikeArena_Armors(0, "Amulet", "LOOT_Amulet_B_Gold_8691db32-e103-4cc5-8470-c18a6df98650");
+//DB_RoguelikeArena_Armors(0, "Ring1", "LOOT_Copper_Ring_A_2df11137-ad29-414a-85b9-1a6eb952b488");
+//DB_RoguelikeArena_Armors(0, "Ring2", "LOOT_Copper_Ring_A_2df11137-ad29-414a-85b9-1a6eb952b488");
+//DB_RoguelikeArena_Armors(0, "Leggings", "EQ_Clothing_Civilian_Lowerbody_A_98b2a268-6bc4-4357-8cb6-c33bdf6aaa63");
+////END_REGION
+
+//REGION Skills
+// Min, max, increase interval.
+DB_RoguelikeArena_SkillCountParameters(0, 1, 5);
+
+// Increase per level, decrease per index.
+DB_RoguelikeArena_SourceSkillChanceParameters(3, 50);
+
+//REGION Classes
+//REGION Battlemage
+DB_RoguelikeArena_Skills("Battlemage", 1, 0, 0, "Shout_EnemyBlindingRadiance");
+DB_RoguelikeArena_Skills("Battlemage", 1, 0, 0, "Shout_EnemyFavourableWind");
+DB_RoguelikeArena_Skills("Battlemage", 1, 0, 0, "Target_EnemyShockingTouch");
+DB_RoguelikeArena_Skills("Battlemage", 4, 0, 0, "Target_EnemyEvasiveManeuver");
+DB_RoguelikeArena_Skills("Battlemage", 9, 0, 0, "Teleportation_EnemyNetherswap");
+DB_RoguelikeArena_Skills("Battlemage", 13, 1, 0, "Shout_EnemyElectricFence");
+DB_RoguelikeArena_Skills("Battlemage", 16, 1, 0, "Projectile_EnemySuperconductor");
+
+DB_RoguelikeArena_Skills("Battlemage", 1, 0, 0, "Shout_EnemyContamination");
+DB_RoguelikeArena_Skills("Battlemage", 4, 0, 0, "Shout_EnemyMendMetal");
+DB_RoguelikeArena_Skills("Battlemage", 9, 0, 0, "Shout_EnemyPoisonWave");
+DB_RoguelikeArena_Skills("Battlemage", 16, 1, 0, "Shout_EnemySiphonPoison");
+
+DB_RoguelikeArena_Skills("Battlemage", 4, 0, 0, "Shout_EnemyFrostAura");
+
+DB_RoguelikeArena_Skills("Battlemage", 1, 0, 0, "Target_EnemyHaste");
+DB_RoguelikeArena_Skills("Battlemage", 4, 0, 0, "Shout_EnemySupernova");
+DB_RoguelikeArena_Skills("Battlemage", 16, 1, 0, "Shout_EnemyFireBrand");
+
+DB_RoguelikeArena_Skills("Battlemage", 1, 0, 0, "Rush_EnemyBatteringRam");
+DB_RoguelikeArena_Skills("Battlemage", 1, 0, 0, "Cone_EnemyGroundSmash");
+DB_RoguelikeArena_Skills("Battlemage", 1, 0, 0, "Target_EnemyCripplingBlow");
+DB_RoguelikeArena_Skills("Battlemage", 4, 0, 0, "Target_EnemyEnrage");
+DB_RoguelikeArena_Skills("Battlemage", 4, 0, 0, "Shout_EnemyWhirlwind");
+DB_RoguelikeArena_Skills("Battlemage", 9, 0, 0, "MultiStrike_EnemyBlinkStrike");
+DB_RoguelikeArena_Skills("Battlemage", 9, 0, 0, "Jump_EnemyPhoenixDive");
+DB_RoguelikeArena_Skills("Battlemage", 9, 0, 1, "Target_EnemyFlurry");
+DB_RoguelikeArena_Skills("Battlemage", 13, 1, 1, "Shout_EnemyThickOfTheFight");
+DB_RoguelikeArena_Skills("Battlemage", 16, 1, 0, "Target_EnemyChallenge");
+DB_RoguelikeArena_Skills("Battlemage", 16, 1, 1, "Target_EnemyOverpower");
+
+DB_RoguelikeArena_Skills("Battlemage", 13, 2, 1, "Shout_EnemyEvasiveAura");
+DB_RoguelikeArena_Skills("Battlemage", 5, 1, 0, "Target_EnemyVacuumTouch");
+DB_RoguelikeArena_Skills("Battlemage", 13, 2, 1, "Shout_EnemyVacuumAura");
+DB_RoguelikeArena_Skills("Battlemage", 5, 1, 0, "Shout_EnemyBreathingBubble");
+DB_RoguelikeArena_Skills("Battlemage", 13, 2, 1, "Shout_EnemyMassBreathingBubbles");
+
+DB_RoguelikeArena_Skills("Battlemage", 5, 1, 0, "Target_EnemyCorrosiveTouch");
+DB_RoguelikeArena_Skills("Battlemage", 13, 2, 1, "Cone_EnemyCorrosiveSpray");
+DB_RoguelikeArena_Skills("Battlemage", 5, 1, 0, "Shout_EnemyVenomCoating");
+DB_RoguelikeArena_Skills("Battlemage", 13, 2, 1, "Shout_EnemyVenomousAura");
+
+DB_RoguelikeArena_Skills("Battlemage", 5, 1, 0, "Shout_EnemySparkingSwings");
+DB_RoguelikeArena_Skills("Battlemage", 13, 2, 1, "Target_EnemyMasterOfSparks");
+//END_REGION
+
+//REGION Cleric
+DB_RoguelikeArena_Skills("Cleric", 1, 0, 0, "Target_EnemyFrostyShell");
+DB_RoguelikeArena_Skills("Cleric", 1, 0, 0, "Target_EnemyRestoration");
+DB_RoguelikeArena_Skills("Cleric", 1, 0, 0, "ProjectileStrike_EnemyHailStrike");
+DB_RoguelikeArena_Skills("Cleric", 1, 0, 0, "Rain_EnemyWater");
+DB_RoguelikeArena_Skills("Cleric", 4, 0, 0, "Target_EnemyWinterBlast");
+DB_RoguelikeArena_Skills("Cleric", 4, 0, 0, "Shout_EnemyFrostAura");
+DB_RoguelikeArena_Skills("Cleric", 4, 0, 0, "Projectile_EnemyIceFan");
+DB_RoguelikeArena_Skills("Cleric", 9, 0, 0, "Shout_EnemyGlobalCooling");
+DB_RoguelikeArena_Skills("Cleric", 9, 0, 0, "Projectile_EnemyChainHeal");
+DB_RoguelikeArena_Skills("Cleric", 9, 0, 0, "Target_EnemyCryogenicStasis");
+DB_RoguelikeArena_Skills("Cleric", 9, 0, 1, "Target_EnemyArcaneStitch");
+DB_RoguelikeArena_Skills("Cleric", 13, 1, 1, "Cone_EnemySteamLance");
+DB_RoguelikeArena_Skills("Cleric", 16, 1, 0, "Cone_EnemyShatter");
+DB_RoguelikeArena_Skills("Cleric", 16, 1, 0, "Shout_EnemyIcebreaker");
+DB_RoguelikeArena_Skills("Cleric", 16, 1, 1, "ProjectileStrike_EnemyHailAttack");
+
+DB_RoguelikeArena_Skills("Cleric", 4, 0, 0, "Target_EnemyHarmony");
+DB_RoguelikeArena_Skills("Cleric", 9, 0, 0, "Target_EnemySoulMate");
+DB_RoguelikeArena_Skills("Cleric", 9, 0, 0, "Target_EnemyCharm");
+
+DB_RoguelikeArena_Skills("Cleric", 4, 1, 1, "Target_EnemyBless");
+
+DB_RoguelikeArena_Skills("Cleric", 5, 1, 0, "Shout_EnemyCryotherapy");
+DB_RoguelikeArena_Skills("Cleric", 13, 2, 1, "Shout_EnemyMassCryotherapy");
+DB_RoguelikeArena_Skills("Cleric", 5, 1, 0, "Shout_EnemyHealingTears");
+DB_RoguelikeArena_Skills("Cleric", 13, 2, 1, "Shout_EnemyIceSkin");
+DB_RoguelikeArena_Skills("Cleric", 5, 1, 0, "Target_EnemyCleanseWounds");
+DB_RoguelikeArena_Skills("Cleric", 13, 2, 1, "Shout_EnemyMassCleanseWounds");
+//END_REGION
+
+//REGION Conjurer
+DB_RoguelikeArena_Skills("Conjurer", 9, 0, 1, "Summon_EnemyArtilleryPlant");
+
+DB_RoguelikeArena_Skills("Conjurer", 4, 0, 0, "Target_EnemyShacklesOfPain");
+DB_RoguelikeArena_Skills("Conjurer", 9, 0, 0, "Summon_EnemyBonePile");
+DB_RoguelikeArena_Skills("Conjurer", 9, 0, 0, "Target_EnemyDeathsDoor");
+
+DB_RoguelikeArena_Skills("Conjurer", 9, 0, 0, "Projectile_EnemyLaunchOilBlob");
+
+DB_RoguelikeArena_Skills("Conjurer", 1, 0, 0, "Summon_EnemyTotemFromSurface");
+DB_RoguelikeArena_Skills("Conjurer", 4, 0, 0, "Target_EnemyHarmony");
+DB_RoguelikeArena_Skills("Conjurer", 4, 0, 0, "Target_EnemySupercharge");
+DB_RoguelikeArena_Skills("Conjurer", 9, 0, 0, "Target_EnemySoulMate");
+DB_RoguelikeArena_Skills("Conjurer", 9, 0, 0, "Target_EnemyCharm");
+DB_RoguelikeArena_Skills("Conjurer", 9, 0, 1, "Shout_EnemyCloseTheDoor");
+DB_RoguelikeArena_Skills("Conjurer", 16, 1, 0, "Target_EnemyCannibalize");
+
+DB_RoguelikeArena_Skills("Conjurer", 13, 2, 1, "Shout_EnemyEvasiveAura");
+
+DB_RoguelikeArena_Skills("Conjurer", 13, 2, 1, "Shout_EnemyVenomousAura");
+
+DB_RoguelikeArena_Skills("Conjurer", 13, 2, 1, "Shout_EnemyVampiricHungerAura");
+
+DB_RoguelikeArena_Skills("Conjurer", 13, 2, 1, "Target_EnemyMasterOfSparks");
+//END_REGION
+
+//REGION Enchanter
+DB_RoguelikeArena_Skills("Enchanter", 1, 0, 0, "Projectile_EnemyLightningBolt");
+DB_RoguelikeArena_Skills("Enchanter", 4, 0, 0, "Teleportation_EnemyFreeFall");
+DB_RoguelikeArena_Skills("Enchanter", 4, 0, 0, "ProjectileStrike_EnemyDazingBolt");
+DB_RoguelikeArena_Skills("Enchanter", 9, 0, 0, "Target_EnemyPressureSpike");
+DB_RoguelikeArena_Skills("Enchanter", 9, 0, 1, "Projectile_EnemyChainLightning");
+DB_RoguelikeArena_Skills("Enchanter", 16, 1, 0, "Tornado_EnemyAir");
+DB_RoguelikeArena_Skills("Enchanter", 16, 1, 1, "Storm_EnemyLightning");
+
+DB_RoguelikeArena_Skills("Enchanter", 1, 0, 0, "ProjectileStrike_EnemyHailStrike");
+DB_RoguelikeArena_Skills("Enchanter", 1, 0, 0, "Rain_EnemyWater");
+DB_RoguelikeArena_Skills("Enchanter", 4, 0, 0, "Target_EnemyWinterBlast");
+DB_RoguelikeArena_Skills("Enchanter", 4, 0, 0, "Projectile_EnemyIceFan");
+DB_RoguelikeArena_Skills("Enchanter", 9, 0, 0, "Shout_EnemyGlobalCooling");
+DB_RoguelikeArena_Skills("Enchanter", 13, 1, 1, "Cone_EnemySteamLance");
+DB_RoguelikeArena_Skills("Enchanter", 16, 1, 0, "Cone_EnemyShatter");
+DB_RoguelikeArena_Skills("Enchanter", 16, 1, 0, "Shout_EnemyIcebreaker");
+DB_RoguelikeArena_Skills("Enchanter", 16, 1, 1, "ProjectileStrike_EnemyHailAttack");
+
+DB_RoguelikeArena_Skills("Enchanter", 5, 1, 0, "Target_EnemyVaporize");
+//END_REGION
+
+//REGION Fighter
+DB_RoguelikeArena_Skills("Fighter", 1, 0, 0, "Target_EnemyFortify");
+DB_RoguelikeArena_Skills("Fighter", 4, 0, 0, "Shout_EnemyMendMetal");
+DB_RoguelikeArena_Skills("Fighter", 9, 0, 0, "Shout_EnemyReactiveArmor");
+
+DB_RoguelikeArena_Skills("Fighter", 4, 0, 0, "Shout_EnemySteelSkin");
+DB_RoguelikeArena_Skills("Fighter", 9, 0, 1, "Shout_EnemyShedSkin");
+
+DB_RoguelikeArena_Skills("Fighter", 1, 0, 0, "Rush_EnemyBatteringRam");
+DB_RoguelikeArena_Skills("Fighter", 1, 0, 0, "Cone_EnemyGroundSmash");
+DB_RoguelikeArena_Skills("Fighter", 1, 0, 0, "Target_EnemyCripplingBlow");
+DB_RoguelikeArena_Skills("Fighter", 1, 0, 0, "Projectile_EnemyBouncingShield");
+DB_RoguelikeArena_Skills("Fighter", 4, 0, 0, "Shout_EnemyTaunt");
+DB_RoguelikeArena_Skills("Fighter", 9, 0, 0, "Shout_EnemyDeflectiveBarrier");
+DB_RoguelikeArena_Skills("Fighter", 13, 1, 1, "Shout_EnemyThickOfTheFight");
+DB_RoguelikeArena_Skills("Fighter", 16, 1, 0, "Shout_EnemyGuardianAngel");
+//END_REGION
+
+//REGION Inquisitor
+DB_RoguelikeArena_Skills("Inquisitor", 1, 0, 0, "Target_EnemyBloodBubble");
+DB_RoguelikeArena_Skills("Inquisitor", 1, 0, 0, "Target_EnemyDecayingTouch");
+DB_RoguelikeArena_Skills("Inquisitor", 1, 0, 0, "Target_EnemyMosquitoSwarm");
+DB_RoguelikeArena_Skills("Inquisitor", 4, 0, 0, "Target_EnemyShacklesOfPain");
+DB_RoguelikeArena_Skills("Inquisitor", 4, 0, 0, "Target_EnemyDeathWish");
+DB_RoguelikeArena_Skills("Inquisitor", 9, 0, 0, "Shout_EnemyBoneCage");
+DB_RoguelikeArena_Skills("Inquisitor", 9, 0, 0, "Target_EnemyDeathsDoor");
+
+DB_RoguelikeArena_Skills("Inquisitor", 1, 0, 0, "Rush_EnemyBatteringRam");
+DB_RoguelikeArena_Skills("Inquisitor", 1, 0, 0, "Cone_EnemyGroundSmash");
+DB_RoguelikeArena_Skills("Inquisitor", 1, 0, 0, "Target_EnemyCripplingBlow");
+DB_RoguelikeArena_Skills("Inquisitor", 4, 0, 0, "Target_EnemyEnrage");
+DB_RoguelikeArena_Skills("Inquisitor", 4, 0, 0, "Shout_EnemyWhirlwind");
+DB_RoguelikeArena_Skills("Inquisitor", 9, 0, 0, "MultiStrike_EnemyBlinkStrike");
+DB_RoguelikeArena_Skills("Inquisitor", 9, 0, 0, "Jump_EnemyPhoenixDive");
+DB_RoguelikeArena_Skills("Inquisitor", 9, 0, 1, "Target_EnemyFlurry");
+DB_RoguelikeArena_Skills("Inquisitor", 13, 1, 1, "Shout_EnemyThickOfTheFight");
+DB_RoguelikeArena_Skills("Inquisitor", 16, 1, 0, "Target_EnemyChallenge");
+DB_RoguelikeArena_Skills("Inquisitor", 16, 1, 1, "Target_EnemyOverpower");
+
+DB_RoguelikeArena_Skills("Inquisitor", 5, 1, 0, "Target_EnemyVampiricHunger");
+DB_RoguelikeArena_Skills("Inquisitor", 13, 2, 1, "Shout_EnemyVampiricHungerAura");
+//END_REGION
+
+//REGION Knight
+DB_RoguelikeArena_Skills("Knight", 4, 0, 0, "Shout_EnemySteelSkin");
+DB_RoguelikeArena_Skills("Knight", 9, 0, 1, "Shout_EnemyShedSkin");
+
+DB_RoguelikeArena_Skills("Knight", 1, 0, 0, "Target_EnemyHaste");
+
+DB_RoguelikeArena_Skills("Knight", 1, 0, 0, "Rush_EnemyBatteringRam");
+DB_RoguelikeArena_Skills("Knight", 1, 0, 0, "Cone_EnemyGroundSmash");
+DB_RoguelikeArena_Skills("Knight", 1, 0, 0, "Target_EnemyCripplingBlow");
+DB_RoguelikeArena_Skills("Knight", 4, 0, 0, "Target_EnemyEnrage");
+DB_RoguelikeArena_Skills("Knight", 4, 0, 0, "Shout_EnemyWhirlwind");
+DB_RoguelikeArena_Skills("Knight", 9, 0, 0, "MultiStrike_EnemyBlinkStrike");
+DB_RoguelikeArena_Skills("Knight", 9, 0, 0, "Jump_EnemyPhoenixDive");
+DB_RoguelikeArena_Skills("Knight", 9, 0, 1, "Target_EnemyFlurry");
+DB_RoguelikeArena_Skills("Knight", 13, 1, 1, "Shout_EnemyThickOfTheFight");
+DB_RoguelikeArena_Skills("Knight", 16, 1, 0, "Target_EnemyChallenge");
+DB_RoguelikeArena_Skills("Knight", 16, 1, 1, "Target_EnemyOverpower");
+//END_REGION
+
+//REGION Metamorph
+DB_RoguelikeArena_Skills("Metamorph", 1, 0, 0, "Target_EnemyTentacleLash");
+DB_RoguelikeArena_Skills("Metamorph", 1, 0, 0, "Target_EnemyChickenTouch");
+DB_RoguelikeArena_Skills("Metamorph", 1, 0, 0, "Shout_EnemyBullHorns");
+DB_RoguelikeArena_Skills("Metamorph", 1, 0, 0, "Shout_EnemyChameleonSkin");
+DB_RoguelikeArena_Skills("Metamorph", 4, 0, 0, "Shout_EnemySteelSkin");
+DB_RoguelikeArena_Skills("Metamorph", 4, 0, 0, "Shout_EnemyWings");
+DB_RoguelikeArena_Skills("Metamorph", 4, 0, 0, "Shout_EnemyMedusaHead");
+DB_RoguelikeArena_Skills("Metamorph", 9, 0, 0, "Projectile_EnemyLaunchOilBlob");
+DB_RoguelikeArena_Skills("Metamorph", 9, 0, 0, "Shout_EnemySpiderLegs");
+DB_RoguelikeArena_Skills("Metamorph", 9, 0, 1, "Shout_EnemyShedSkin");
+DB_RoguelikeArena_Skills("Metamorph", 13, 1, 1, "Target_EnemyDemonicBargain");
+DB_RoguelikeArena_Skills("Metamorph", 16, 1, 0, "Target_EnemyStripResistance");
+
+DB_RoguelikeArena_Skills("Metamorph", 13, 2, 1, "Shout_EnemyJellyfishSkin");
+
+DB_RoguelikeArena_Skills("Metamorph", 13, 2, 1, "Shout_EnemyPoisonousSkin");
+
+DB_RoguelikeArena_Skills("Metamorph", 13, 2, 1, "Shout_EnemyIceSkin");
+
+DB_RoguelikeArena_Skills("Metamorph", 13, 2, 1, "Shout_EnemyFlamingSkin");
+//END_REGION
+
+//REGION Ranger
+DB_RoguelikeArena_Skills("Ranger", 1, 0, 0, "Target_FirstAidEnemy");
+DB_RoguelikeArena_Skills("Ranger", 1, 0, 0, "Projectile_EnemyRicochet");
+DB_RoguelikeArena_Skills("Ranger", 1, 0, 0, "Projectile_EnemyPinDown");
+DB_RoguelikeArena_Skills("Ranger", 4, 0, 0, "Jump_EnemyTacticalRetreat");
+DB_RoguelikeArena_Skills("Ranger", 4, 0, 0, "Projectile_EnemyMultishot");
+DB_RoguelikeArena_Skills("Ranger", 4, 0, 0, "Projectile_EnemySkyShot");
+DB_RoguelikeArena_Skills("Ranger", 9, 0, 0, "Projectile_EnemyPiercingShot");
+DB_RoguelikeArena_Skills("Ranger", 9, 0, 0, "Target_EnemyReactionShot");
+DB_RoguelikeArena_Skills("Ranger", 9, 0, 0, "Projectile_EnemyBallisticShot");
+DB_RoguelikeArena_Skills("Ranger", 9, 0, 1, "Projectile_EnemyArrowSpray");
+DB_RoguelikeArena_Skills("Ranger", 13, 1, 1, "Target_EnemyFarsight");
+DB_RoguelikeArena_Skills("Ranger", 16, 1, 0, "Projectile_EnemySnipe");
+DB_RoguelikeArena_Skills("Ranger", 16, 1, 0, "Projectile_EnemyMark");
+DB_RoguelikeArena_Skills("Ranger", 16, 1, 1, "ProjectileStrike_EnemyRainOfArrows");
+
+DB_RoguelikeArena_Skills("Ranger", 1, 0, 0, "Target_EnemyBurnMyEyes");
+DB_RoguelikeArena_Skills("Ranger", 1, 0, 0, "Target_EnemyHaste");
+
+DB_RoguelikeArena_Skills("Ranger", 5, 1, 0, "Target_EnemyWindWalker");
+//END_REGION
+
+//REGION Rogue
+DB_RoguelikeArena_Skills("Rogue", 1, 0, 0, "Shout_EnemyChameleonSkin");
+
+DB_RoguelikeArena_Skills("Rogue", 1, 0, 0, "Shout_EnemyAdrenaline");
+DB_RoguelikeArena_Skills("Rogue", 1, 0, 0, "MultiStrike_EnemyVault");
+DB_RoguelikeArena_Skills("Rogue", 1, 0, 0, "Projectile_EnemyThrowingKnife");
+DB_RoguelikeArena_Skills("Rogue", 4, 0, 0, "Target_EnemySerratedEdge");
+DB_RoguelikeArena_Skills("Rogue", 4, 0, 0, "Target_EnemyKneeBreaker");
+DB_RoguelikeArena_Skills("Rogue", 4, 0, 0, "Jump_EnemyCloakAndDagger");
+DB_RoguelikeArena_Skills("Rogue", 9, 0, 0, "Target_EnemySleepingArms");
+DB_RoguelikeArena_Skills("Rogue", 9, 0, 0, "Target_EnemyCorruptedBlade");
+DB_RoguelikeArena_Skills("Rogue", 9, 0, 1, "Projectile_EnemyFanOfKnives");
+DB_RoguelikeArena_Skills("Rogue", 13, 1, 1, "Target_EnemyDaggersDrawn");
+DB_RoguelikeArena_Skills("Rogue", 16, 1, 0, "Target_EnemyTerrifyingCruelty");
+DB_RoguelikeArena_Skills("Rogue", 16, 1, 1, "Target_EnemyFatality");
+
+DB_RoguelikeArena_Skills("Rogue", 1, 0, 0, "Rush_EnemyBatteringRam");
+DB_RoguelikeArena_Skills("Rogue", 1, 0, 0, "Cone_EnemyGroundSmash");
+DB_RoguelikeArena_Skills("Rogue", 1, 0, 0, "Target_EnemyCripplingBlow");
+DB_RoguelikeArena_Skills("Rogue", 4, 0, 0, "Shout_EnemyWhirlwind");
+DB_RoguelikeArena_Skills("Rogue", 9, 0, 1, "Target_EnemyFlurry");
+DB_RoguelikeArena_Skills("Rogue", 16, 1, 0, "Target_EnemyChallenge");
+DB_RoguelikeArena_Skills("Rogue", 16, 1, 1, "Target_EnemyOverpower");
+//END_REGION
+
+//REGION Shadowblade
+DB_RoguelikeArena_Skills("Shadowblade", 1, 0, 0, "Target_EnemyChickenTouch");
+DB_RoguelikeArena_Skills("Shadowblade", 1, 0, 0, "Shout_EnemyChameleonSkin");
+
+DB_RoguelikeArena_Skills("Shadowblade", 1, 0, 0, "Shout_EnemyAdrenaline");
+DB_RoguelikeArena_Skills("Shadowblade", 1, 0, 0, "MultiStrike_EnemyVault");
+DB_RoguelikeArena_Skills("Shadowblade", 1, 0, 0, "Projectile_EnemyChloroform");
+DB_RoguelikeArena_Skills("Shadowblade", 1, 0, 0, "Projectile_EnemyThrowingKnife");
+DB_RoguelikeArena_Skills("Shadowblade", 4, 0, 0, "Target_EnemySerratedEdge");
+DB_RoguelikeArena_Skills("Shadowblade", 4, 0, 0, "Target_EnemyKneeBreaker");
+DB_RoguelikeArena_Skills("Shadowblade", 4, 0, 0, "Jump_EnemyCloakAndDagger");
+DB_RoguelikeArena_Skills("Shadowblade", 9, 0, 0, "Target_EnemySleepingArms");
+DB_RoguelikeArena_Skills("Shadowblade", 9, 0, 0, "Target_EnemyCorruptedBlade");
+DB_RoguelikeArena_Skills("Shadowblade", 9, 0, 0, "Target_EnemyGagOrder");
+DB_RoguelikeArena_Skills("Shadowblade", 9, 0, 1, "Projectile_EnemyFanOfKnives");
+DB_RoguelikeArena_Skills("Shadowblade", 13, 1, 1, "Target_EnemyDaggersDrawn");
+DB_RoguelikeArena_Skills("Shadowblade", 16, 1, 0, "Target_EnemyTerrifyingCruelty");
+DB_RoguelikeArena_Skills("Shadowblade", 16, 1, 0, "Projectile_EnemyLaunchBomber");
+DB_RoguelikeArena_Skills("Shadowblade", 16, 1, 1, "Target_EnemyFatality");
+
+DB_RoguelikeArena_Skills("Shadowblade", 5, 1, 0, "Shout_EnemySmokeCover");
+DB_RoguelikeArena_Skills("Shadowblade", 13, 2, 1, "Target_EnemyBlessedSmokeCloud");
+
+DB_RoguelikeArena_Skills("Shadowblade", 5, 1, 0, "Shout_EnemyVenomCoating");
+DB_RoguelikeArena_Skills("Shadowblade", 13, 2, 1, "Shout_EnemyVenomousAura");
+
+DB_RoguelikeArena_Skills("Shadowblade", 5, 1, 0, "Target_EnemySabotage");
+DB_RoguelikeArena_Skills("Shadowblade", 13, 2, 1, "Target_EnemyMassSabotage");
+//END_REGION
+
+//REGION Wayfarer
+DB_RoguelikeArena_Skills("Wayfarer", 1, 0, 0, "Projectile_EnemyPyroclasticRock");
+DB_RoguelikeArena_Skills("Wayfarer", 4, 0, 0, "Target_EnemyRockSpikes");
+DB_RoguelikeArena_Skills("Wayfarer", 4, 0, 0, "Target_EnemyWormTremor");
+DB_RoguelikeArena_Skills("Wayfarer", 9, 0, 0, "Quake_EnemyEarthquake");
+DB_RoguelikeArena_Skills("Wayfarer", 9, 0, 1, "Summon_EnemyArtilleryPlant");
+
+DB_RoguelikeArena_Skills("Wayfarer", 1, 0, 0, "Target_FirstAidEnemy");
+DB_RoguelikeArena_Skills("Wayfarer", 1, 0, 0, "Projectile_EnemyRicochet");
+DB_RoguelikeArena_Skills("Wayfarer", 1, 0, 0, "Target_EnemyElementalArrowheads");
+DB_RoguelikeArena_Skills("Wayfarer", 1, 0, 0, "Projectile_EnemyPinDown");
+DB_RoguelikeArena_Skills("Wayfarer", 4, 0, 0, "Jump_EnemyTacticalRetreat");
+DB_RoguelikeArena_Skills("Wayfarer", 4, 0, 0, "Projectile_EnemyMultishot");
+DB_RoguelikeArena_Skills("Wayfarer", 4, 0, 0, "Projectile_EnemySkyShot");
+DB_RoguelikeArena_Skills("Wayfarer", 9, 0, 0, "Projectile_EnemyPiercingShot");
+DB_RoguelikeArena_Skills("Wayfarer", 9, 0, 0, "Target_EnemyReactionShot");
+DB_RoguelikeArena_Skills("Wayfarer", 9, 0, 0, "Projectile_EnemyBallisticShot");
+DB_RoguelikeArena_Skills("Wayfarer", 9, 0, 1, "Projectile_EnemyArrowSpray");
+DB_RoguelikeArena_Skills("Wayfarer", 13, 1, 1, "Target_EnemyFarsight");
+DB_RoguelikeArena_Skills("Wayfarer", 16, 1, 0, "Projectile_EnemySnipe");
+DB_RoguelikeArena_Skills("Wayfarer", 16, 1, 0, "Projectile_EnemyMark");
+DB_RoguelikeArena_Skills("Wayfarer", 16, 1, 1, "ProjectileStrike_EnemyRainOfArrows");
+
+DB_RoguelikeArena_Skills("Wayfarer", 5, 1, 0, "Projectile_EnemyThrowDust");
+DB_RoguelikeArena_Skills("Wayfarer", 13, 2, 1, "Projectile_EnemyDustBlast");
+DB_RoguelikeArena_Skills("Wayfarer", 5, 1, 0, "Target_EnemyCondense");
+DB_RoguelikeArena_Skills("Wayfarer", 5, 1, 0, "Shout_EnemyOilyCarapace");
+DB_RoguelikeArena_Skills("Wayfarer", 13, 2, 1, "Shout_EnemyMassOilyCarapace");
+
+DB_RoguelikeArena_Skills("Wayfarer", 5, 1, 0, "Projectile_EnemyLaunchExplosiveTrap");
+DB_RoguelikeArena_Skills("Wayfarer", 13, 2, 1, "Projectile_EnemyDeployMassTraps");
+//END_REGION
+
+//REGION Witch
+DB_RoguelikeArena_Skills("Witch", 1, 0, 0, "Target_EnemyBloodBubble");
+DB_RoguelikeArena_Skills("Witch", 1, 0, 0, "Target_EnemyDecayingTouch");
+DB_RoguelikeArena_Skills("Witch", 1, 0, 0, "Target_EnemyMosquitoSwarm");
+DB_RoguelikeArena_Skills("Witch", 1, 0, 0, "Target_EnemyBloatedCorpse");
+DB_RoguelikeArena_Skills("Witch", 4, 0, 0, "Target_EnemyShacklesOfPain");
+DB_RoguelikeArena_Skills("Witch", 4, 0, 0, "Target_EnemyInfect");
+DB_RoguelikeArena_Skills("Witch", 4, 0, 0, "Target_EnemyDeathWish");
+DB_RoguelikeArena_Skills("Witch", 9, 0, 0, "Shout_EnemyBoneCage");
+DB_RoguelikeArena_Skills("Witch", 9, 0, 0, "Summon_EnemyBonePile");
+DB_RoguelikeArena_Skills("Witch", 9, 0, 0, "Target_EnemyDeathsDoor");
+DB_RoguelikeArena_Skills("Witch", 9, 0, 1, "Target_EnemyBlackShroud");
+DB_RoguelikeArena_Skills("Witch", 13, 0, 1, "Target_EnemyGraspOfTheStarved");
+DB_RoguelikeArena_Skills("Witch", 16, 1, 0, "Cone_EnemySilencingStare");
+DB_RoguelikeArena_Skills("Witch", 16, 1, 1, "Shout_EnemyNecromancerTotems");
+
+DB_RoguelikeArena_Skills("Witch", 9, 0, 0, "Target_EnemyCharm");
+
+DB_RoguelikeArena_Skills("Witch", 5, 1, 0, "Rain_EnemyBlood");
+DB_RoguelikeArena_Skills("Witch", 13, 2, 1, "Storm_EnemyBlood");
+
+DB_RoguelikeArena_Skills("Witch", 5, 1, 0, "Target_EnemyCorpseExplosion");
+DB_RoguelikeArena_Skills("Witch", 13, 2, 1, "Shout_EnemyMassCorpseExplosion");
+
+DB_RoguelikeArena_Skills("Witch", 13, 1, 0, "Shout_EnemyFear");
+//END_REGION
+
+//REGION Wizard
+DB_RoguelikeArena_Skills("Wizard", 1, 0, 0, "Shout_EnemyContamination");
+DB_RoguelikeArena_Skills("Wizard", 1, 0, 0, "Target_EnemyFortify");
+DB_RoguelikeArena_Skills("Wizard", 1, 0, 0, "Projectile_EnemyPyroclasticRock");
+DB_RoguelikeArena_Skills("Wizard", 1, 0, 0, "Projectile_EnemyPoisonDart");
+DB_RoguelikeArena_Skills("Wizard", 4, 0, 0, "Target_EnemyRockSpikes");
+DB_RoguelikeArena_Skills("Wizard", 4, 0, 0, "Target_EnemyWormTremor");
+DB_RoguelikeArena_Skills("Wizard", 9, 0, 0, "Shout_EnemyPoisonWave");
+DB_RoguelikeArena_Skills("Wizard", 13, 1, 1, "Projectile_EnemyAcidSpores");
+DB_RoguelikeArena_Skills("Wizard", 16, 1, 0, "Shout_EnemySiphonPoison");
+DB_RoguelikeArena_Skills("Wizard", 16, 1, 1, "Projectile_EnemyPyroclasticEruption");
+
+DB_RoguelikeArena_Skills("Wizard", 1, 0, 0, "Target_EnemyBurnMyEyes");
+DB_RoguelikeArena_Skills("Wizard", 1, 0, 0, "Target_EnemyHaste");
+DB_RoguelikeArena_Skills("Wizard", 1, 0, 0, "Shout_EnemyIgnition");
+DB_RoguelikeArena_Skills("Wizard", 1, 0, 0, "Projectile_EnemyFlamingDaggers");
+DB_RoguelikeArena_Skills("Wizard", 4, 0, 0, "Target_EnemySpontCombustion");
+DB_RoguelikeArena_Skills("Wizard", 4, 0, 0, "Projectile_EnemyFireball");
+DB_RoguelikeArena_Skills("Wizard", 9, 0, 0, "Zone_EnemyLaserRay");
+DB_RoguelikeArena_Skills("Wizard", 9, 0, 0, "Shout_EnemyFlamingTongues");
+DB_RoguelikeArena_Skills("Wizard", 9, 0, 0, "Target_EnemyFireWhip");
+DB_RoguelikeArena_Skills("Wizard", 13, 1, 1, "Projectile_EnemyInfectiousFlame");
+DB_RoguelikeArena_Skills("Wizard", 16, 1, 0, "Target_EnemyFlamingCrescendo");
+DB_RoguelikeArena_Skills("Wizard", 16, 1, 1, "ProjectileStrike_EnemyMeteorShower");
+
+DB_RoguelikeArena_Skills("Wizard", 5, 1, 0, "Target_EnemyFireblood");
+//END_REGION
+//END_REGION
+
+//REGION Specializations
+//REGION Paladin
+DB_RoguelikeArena_Skills("Paladin", 1, 0, 0, "Target_FirstAidEnemy");
+
+DB_RoguelikeArena_Skills("Paladin", 1, 0, 0, "Target_EnemyRestoration");
+DB_RoguelikeArena_Skills("Paladin", 9, 0, 0, "Projectile_EnemyChainHeal");
+DB_RoguelikeArena_Skills("Paladin", 13, 1, 1, "Cone_EnemySteamLance");
+
+DB_RoguelikeArena_Skills("Paladin", 5, 1, 0, "Shout_EnemyHealingTears");
+DB_RoguelikeArena_Skills("Paladin", 5, 1, 0, "Target_EnemyCleanseWounds");
+DB_RoguelikeArena_Skills("Paladin", 13, 2, 1, "Shout_EnemyMassCleanseWounds");
+//END_REGION
+
+//REGION Blackring
+DB_RoguelikeArena_Skills("Blackring", 4, 1, 0, "Target_EnemyCurse");
+
+DB_RoguelikeArena_Skills("Blackring", 13, 1, 0, "Projectile_EnemyFireball_Cursed");
+DB_RoguelikeArena_Skills("Blackring", 13, 1, 0, "Summon_EnemyBoneTroll_Mini");
+
+DB_RoguelikeArena_Skills("Blackring", 1, 1, 0, "Target_EnemySourceDisruption");
+//END_REGION
+
+DB_RoguelikeArena_Skills("Houndmaster", 4, 1, 0, "Summon_EnemySourceHound");
+DB_RoguelikeArena_Skills("Houndmaster", 1, 0, 0, "Shout_EnemyInspire");
+
+//REGION Gheist
+DB_RoguelikeArena_Skills("Gheist", 1, 0, 0, "Shout_EnemyChameleonSkin");
+
+DB_RoguelikeArena_Skills("Gheist", 1, 0, 0, "Shout_EnemyAdrenaline");
+DB_RoguelikeArena_Skills("Gheist", 1, 0, 0, "MultiStrike_EnemyVault");
+DB_RoguelikeArena_Skills("Gheist", 1, 0, 0, "Projectile_EnemyThrowingKnife");
+DB_RoguelikeArena_Skills("Gheist", 4, 0, 0, "Target_EnemySerratedEdge");
+DB_RoguelikeArena_Skills("Gheist", 4, 0, 0, "Target_EnemyKneeBreaker");
+DB_RoguelikeArena_Skills("Gheist", 4, 0, 0, "Jump_EnemyCloakAndDagger");
+DB_RoguelikeArena_Skills("Gheist", 4, 0, 0, "Target_EnemySleepingArms");
+
+DB_RoguelikeArena_Skills("Gheist", 4, 2, 0, "Target_EnemyCorruptedBlade_Gheist");
+DB_RoguelikeArena_Skills("Gheist", 4, 2, 0, "Target_EnemyGagOrder_Gheist");
+DB_RoguelikeArena_Skills("Gheist", 9, 2, 0, "Target_EnemyTerrifyingCruelty_Gheist");
+//END_REGION
+
+//REGION Wolf
+DB_RoguelikeArena_Skills("Wolf", 4, 0, 0, "Cone_EnemySilencingStare_Wolf");
+DB_RoguelikeArena_Skills("Wolf", 9, 0, 0, "Shout_EnemyFear_Wolf");
+
+DB_RoguelikeArena_Skills("Wolf", 4, 0, 0, "Projectile_EnemyFlight_Wolf");
+
+DB_RoguelikeArena_Skills("Wolf", 1, 0, 0, "Target_EnemyHaste_Wolf");
+
+DB_RoguelikeArena_Skills("Wolf", 1, 0, 0, "Target_EnemyCripplingBlow_Wolf");
+DB_RoguelikeArena_Skills("Wolf", 4, 0, 0, "Target_EnemyEnrage_Wolf");
+//END_REGION
+
+//REGION Sourcehound
+DB_RoguelikeArena_Skills("Sourcehound_Melee", 1, 0, 0, "Target_EnemyCripplingBlow");
+DB_RoguelikeArena_Skills("Sourcehound_Melee", 4, 0, 0, "Target_EnemyEnrage");
+DB_RoguelikeArena_Skills("Sourcehound_Melee", 16, 0, 0, "Target_EnemyChallenge");
+
+DB_RoguelikeArena_Skills("Sourcehound_Ranger", 4, 0, 0, "Projectile_EnemyHoundDart");
+DB_RoguelikeArena_Skills("Sourcehound_Ranger", 4, 0, 0, "Projectile_EnemyHoundDart_Fire");
+//END_REGION
+//END_REGION
+
+//DB_RoguelikeArena_Skills(1, 0, "CROC", "Target_EnemyFortify");
+//DB_RoguelikeArena_Skills(1, 0, "CROC", "Projectile_EnemyPyroclasticRock");
+//DB_RoguelikeArena_Skills(1, 0, "CROC", "Target_EnemySerratedEdge");
+//DB_RoguelikeArena_Skills(1, 0, "CROC", "Jump_EnemyCrocodileJump");
+//
+//DB_RoguelikeArena_Skills(1, 0, "TURT", "Projectile_EnemyTurtleBubbles");
+//DB_RoguelikeArena_Skills(1, 0, "TURT", "Rush_EnemyTurtleBatteringRam");
+//DB_RoguelikeArena_Skills(1, 0, "TURT", "Target_EnemyTurtleRockSpikes");
+//
+//DB_RoguelikeArena_Skills(1, 0, "SALA", "Cone_EnemyFlamebreath_Salamander");
+//
+//DB_RoguelikeArena_Skills(1, 0, "BEAR", "Quake_EnemyEarthquake_Bear");
+//
+//DB_RoguelikeArena_Skills(1, 0, "BEET", "Cone_EnemyCorrosiveSpray_Beetle");
+//DB_RoguelikeArena_Skills(1, 0, "BEET", "Jump_EnemyBeetleJump");
+//DB_RoguelikeArena_Skills(1, 0, "BEET", "Projectile_EnemyBeetleDart");
+//DB_RoguelikeArena_Skills(1, 0, "BEET", "Projectile_EnemyBeetleDart_Poison");
+//DB_RoguelikeArena_Skills(1, 0, "BEET", "Projectile_EnemyFlare_Beetle");
+//
+//DB_RoguelikeArena_Skills(1, 0, "BULL", "Rush_EnemyBullRush");
+//END_REGION
+KBSECTION
+// Sets equipment level of the character to the specified level.
+PROC
+PROC_RoguelikeArena_CharacterLevelUpEquipmentTo((CHARACTERGUID)_Character, (INTEGER)_Level)
+AND
+DB_RoguelikeArena_EquipmentSlots(_Slot)
+AND
+CharacterGetEquippedItem(_Character, _Slot, _Item)
+THEN
+ItemLevelUpTo((ITEMGUID)_Item, _Level);
+CharacterUnequipItem(_Character, (ITEMGUID)_Item);
+CharacterEquipItem(_Character, (ITEMGUID)_Item);
+
+// Prevents a bug.
+// PROC
+// PROC_RoguelikeArena_CharacterLevelUpEquipmentTo((CHARACTERGUID)_Character, (INTEGER)_Level)
+// THEN
+// CharacterSetHitpointsPercentage(_Character, 100.0);
+// CharacterSetArmorPercentage(_Character, 100.0);
+// CharacterSetMagicArmorPercentage(_Character, 100.0);
+//Proc_CharacterFullRestore(_Character);
+
+////REGION Adding attributes
+//// Adds attributes to the character that are not set as primary, secondary or tertiary.
+//PROC
+//PROC_RoguelikeArena_CharacterAddRandomAttributes((CHARACTERGUID)_Character, (INTEGER)_Level, (STRING)_Primary, (STRING)_Secondary, (STRING)_Tertiary)
+//AND
+//DB_RoguelikeArena_Attributes(_Id, _Attribute)
+//AND
+//_Id != _Primary
+//AND
+//_Id != _Secondary
+//AND
+//_Id != _Tertiary
+//AND
+//DB_Singleton("RoguelikeArena_AttributeIncreaseModifierRandomModulo", _Modulo)
+//AND
+//Random(_Modulo, _Modifier)
+//THEN
+//PROC_RoguelikeArena_CharacterAddRandomAttribute(_Character, _Level, _Attribute, _Modifier);
+//
+//// Adds primary attribute to the character.
+//PROC
+//PROC_RoguelikeArena_CharacterAddRandomAttributes((CHARACTERGUID)_Character, (INTEGER)_Level, (STRING)_Primary, (STRING)_Secondary, (STRING)_Tertiary)
+//AND
+//DB_RoguelikeArena_Attributes(_Id, _Attribute)
+//AND
+//_Id == _Primary
+//AND
+//DB_Singleton("RoguelikeArena_AttributeIncreaseModifierPrimary", _Modifier)
+//THEN
+//PROC_RoguelikeArena_CharacterAddRandomAttribute(_Character, _Level, _Attribute, _Modifier);
+//
+//// Adds secondary attribute to the character.
+//PROC
+//PROC_RoguelikeArena_CharacterAddRandomAttributes((CHARACTERGUID)_Character, (INTEGER)_Level, (STRING)_Primary, (STRING)_Secondary, (STRING)_Tertiary)
+//AND
+//DB_RoguelikeArena_Attributes(_Id, _Attribute)
+//AND
+//_Id == _Secondary
+//AND
+//DB_Singleton("RoguelikeArena_AttributeIncreaseModifierSecondary", _Modifier)
+//THEN
+//PROC_RoguelikeArena_CharacterAddRandomAttribute(_Character, _Level, _Attribute, _Modifier);
+//
+//// Adds tertiary attribute to the character.
+//PROC
+//PROC_RoguelikeArena_CharacterAddRandomAttributes((CHARACTERGUID)_Character, (INTEGER)_Level, (STRING)_Primary, (STRING)_Secondary, (STRING)_Tertiary)
+//AND
+//DB_RoguelikeArena_Attributes(_Id, _Attribute)
+//AND
+//_Id == _Tertiary
+//AND
+//DB_Singleton("RoguelikeArena_AttributeIncreaseModifierTertiary", _Modifier)
+//THEN
+//PROC_RoguelikeArena_CharacterAddRandomAttribute(_Character, _Level, _Attribute, _Modifier);
+//
+//// Adds a random value of the given attribute to the character. The higher the modifier, the more the points given.
+//PROC
+//PROC_RoguelikeArena_CharacterAddRandomAttribute((CHARACTERGUID)_Character, (INTEGER)_Level, (STRING)_Attribute, (INTEGER)_Modifier)
+//AND
+//DB_Singleton("RoguelikeArena_AttributeIncreaseInterval", _IncreaseInterval)
+//AND
+//DB_Singleton("RoguelikeArena_AttributeIncreaseAmount", _IncreaseAmount)
+//AND
+//IntegerSubtract(_IncreaseInterval, _Modifier, _ModifiedIncreaseInterval)
+//AND
+//IntegerDivide(_Level, _ModifiedIncreaseInterval, _IncreaseCount)
+//AND
+//IntegerProduct(_IncreaseCount, _IncreaseAmount, _Points)
+//AND
+//DB_Singleton("RoguelikeArena_AttributeBonusInterval", _BonusInterval)
+//AND
+//IntegerSubtract(_BonusInterval, _Modifier, _BonusIntervalModified)
+//AND
+//IntegerDivide(_Level, _BonusIntervalModified, _BonusModulo)
+//AND
+//Random(_BonusModulo, _Bonus)
+//AND
+//IntegerSum(_Points, _Bonus, _FinalPoints)
+//THEN
+//CharacterAddAttribute(_Character, _Attribute, _FinalPoints);
+////END_REGION
+//
+////REGION Adding abilities
+//PROC
+//PROC_RoguelikeArena_CharacterAddRandomAbilities((CHARACTERGUID)_Character, (INTEGER)_Level, (STRING)_WeaponSkillId, (STRING)_Specialization1Id, (STRING)_Specialization2Id, (STRING)_Specialization3Id)
+//AND
+//DB_Singleton("RoguelikeArena_AbilityBaseModifier", _Modifier)
+//THEN
+//PROC_RoguelikeArena_CharacterAddRandomAbility(_Character, _Level, _WeaponSkillId, _Modifier);
+//PROC_RoguelikeArena_CharacterAddRandomAbility(_Character, _Level, _Specialization1Id, _Modifier);
+//PROC_RoguelikeArena_CharacterAddRandomAbility(_Character, _Level, _Specialization2Id, _Modifier);
+//PROC_RoguelikeArena_CharacterAddRandomAbility(_Character, _Level, _Specialization3Id, _Modifier);
+//
+//PROC
+//PROC_RoguelikeArena_CharacterAddRandomAbilities((CHARACTERGUID)_Character, (INTEGER)_Level, (STRING)_WeaponSkillId, (STRING)_Specialization1Id, (STRING)_Specialization2Id, (STRING)_Specialization3Id)
+//AND
+//DB_RoguelikeArena_Abilities(_Id, _)
+//AND
+//_Id != _WeaponSkillId
+//AND
+//_Id != _Specialization1Id
+//AND
+//_Id != _Specialization2Id
+//AND
+//_Id != _Specialization3Id
+//AND
+//DB_Singleton("RoguelikeArena_AbilityUnnecessaryModulo", _Modulo)
+//AND
+//Random(_Modulo, 0)
+//AND
+//DB_Singleton("RoguelikeArena_AbilityUnnecessaryModifier", _Modifier)
+//THEN
+//PROC_RoguelikeArena_CharacterAddRandomAbility(_Character, _Level, _Id, _Modifier);
+//
+//PROC
+//PROC_RoguelikeArena_CharacterAddRandomAbility((CHARACTERGUID)_Character, (INTEGER)_Level, (STRING)_AbilityId, (INTEGER)_Modifier)
+//AND
+//DB_RoguelikeArena_Abilities(_AbilityId, _AbilityName)
+//AND
+//DB_Singleton("RoguelikeArena_AbilityIncreaseInterval", _IncreaseInterval)
+//AND
+//IntegerProduct(_IncreaseInterval, _Modifier, _IncreaseIntervalModified)
+//AND
+//IntegerDivide(_Level, _IncreaseIntervalModified, _Points)
+//AND
+//IntegerSum(_Points, 1, _PointsIncreased)
+//AND
+//DB_Singleton("RoguelikeArena_AbilityBonusInterval", _BonusInterval)
+//AND
+//IntegerProduct(_BonusInterval, _Modifier, _BonusIntervalModified)
+//AND
+//IntegerDivide(_Level, _BonusIntervalModified, _Bonus)
+//AND
+//IntegerSum(_Bonus, 1, _BonusIncreased)
+//AND
+//Random(_BonusIncreased, _BonusPoints)
+//AND
+//IntegerSum(_PointsIncreased, _BonusPoints, _PointsAdded)
+//AND
+//IntegerMin(_PointsAdded, 10, _PointsFinal)
+//THEN
+//CharacterAddAbility(_Character, _AbilityName, _PointsFinal);
+////END_REGION
+
+//REGION Skills
+PROC
+PROC_RoguelikeArena_CharacterAddRandomSkills((CHARACTERGUID)_Character, (INTEGER)_Level, (INTEGER)_Rank, (STRING)_Class, (STRING)_Specialization)
+AND
+QRY_RoguelikeArena_SetCurrentCharacterSkillCount(_Level, _Rank)
+AND
+DB_Singleton("RoguelikeArena_CurrentCharacterSkillCount", _SkillCount)
+AND
+QRY_RoguelikeArena_SetCurrentCharacterSourceSkillCount(_Level, _Rank)
+AND
+DB_Singleton("RoguelikeArena_CurrentCharacterSourceSkillCount", _SourceSkillCount)
+THEN
+PROC_RoguelikeArena_CharacterAddRandomSkills(_Character, _Level, _Rank, _Class, _Specialization, 0, _SkillCount);
+PROC_RoguelikeArena_CharacterAddRandomSkills(_Character, _Level, _Rank, _Class, _Specialization, 1, _SourceSkillCount);
+
+// Adds skills to the pool.
+PROC
+PROC_RoguelikeArena_CharacterAddRandomSkills((CHARACTERGUID)_Character, (INTEGER)_Level, (INTEGER)_Rank, (STRING)_Class, (STRING)_Specialization, (INTEGER)_Source, (INTEGER)_Count)
+THEN
+PROC_RoguelikeArena_StringPoolClear("SkillPool");
+PROC_RoguelikeArena_StringPoolAddSkills(_Class, _Level, _Rank, _Source);
+PROC_RoguelikeArena_StringPoolAddSkills(_Specialization, _Level, _Rank, _Source);
+
+// Creates "loop" for adding the skills.
+PROC
+PROC_RoguelikeArena_CharacterAddRandomSkills((CHARACTERGUID)_Character, (INTEGER)_Level, (INTEGER)_Rank, (STRING)_Class, (STRING)_Specialization, (INTEGER)_Source, (INTEGER)_Count)
+AND
+QRY_RoguelikeArena_CreateIndices(_Count)
+AND
+DB_RoguelikeArena_CreatedIndices(_)
+THEN
+PROC_RoguelikeArena_CharacterAddRandomSkill(_Character);
+
+// Selects a random skill from the pool and adds it to the character.
+PROC
+PROC_RoguelikeArena_CharacterAddRandomSkill((CHARACTERGUID)_Character)
+AND
+QRY_RoguelikeArena_StringPoolSelectAndRemoveRandom("SkillPool")
+AND
+DB_RoguelikeArena_StringPoolSelectedValue("SkillPool", _Skill)
+THEN
+CharacterAddSkill(_Character, _Skill, 0);
+
+// Adds skills to the pool.
+PROC
+PROC_RoguelikeArena_StringPoolAddSkills((STRING)_Category, (INTEGER)_LevelLimit, (INTEGER)_RankLimit, (INTEGER)_Source)
+AND
+DB_RoguelikeArena_Skills(_Category, _Level, _Rank, _Source, _Skill)
+AND
+_Level <= _LevelLimit
+AND
+_Rank <= _RankLimit
+THEN
+PROC_RoguelikeArena_StringPoolAdd("SkillPool", _Skill);
+
+// Resets skill count.
+QRY
+QRY_RoguelikeArena_SetCurrentCharacterSkillCount((INTEGER)_Level, (INTEGER)_Rank)
+THEN
+DB_Singleton("RoguelikeArena_CurrentCharacterSkillCount", 0);
+
+// Sets skill count. The formula is: Random(Min, Max) + (Level - 1) / (Interval - Rank) + Rank
+QRY
+QRY_RoguelikeArena_SetCurrentCharacterSkillCount((INTEGER)_Level, (INTEGER)_Rank)
+AND
+DB_RoguelikeArena_SkillCountParameters(_SkillCountMin, _SkillCountMax, _Interval)
+AND
+QRY_RoguelikeArena_RandomInclusive(_SkillCountMin, _SkillCountMax)
+AND
+DB_Singleton("RoguelikeArena_RandomResult", _RandomResult)
+AND
+IntegerSubtract(_Level, 1, _LevelCorrected)
+AND
+IntegerSubtract(_Interval, _Rank, _IntervalCorrected)
+AND
+IntegerDivide(_LevelCorrected, _IntervalCorrected, _Modifier)
+AND
+IntegerSum(_Modifier, _Rank, _ModifierCorrected)
+AND
+IntegerSum(_RandomResult, _ModifierCorrected, _SkillCount)
+THEN
+DB_Singleton("RoguelikeArena_CurrentCharacterSkillCount", _SkillCount);
+
+// Resets source skill count.
+QRY
+QRY_RoguelikeArena_SetCurrentCharacterSourceSkillCount((INTEGER)_Level, (INTEGER)_Rank)
+THEN
+DB_Singleton("RoguelikeArena_CurrentCharacterSourceSkillCount", 0);
+
+// Sets source skill count. Formula is: Enemy Level * (Chance Increase Per Level + Enemy Rank) - Chance Decrease Per Index * Skill Index
+QRY
+QRY_RoguelikeArena_SetCurrentCharacterSourceSkillCount((INTEGER)_Level, (INTEGER)_Rank)
+AND
+DB_RoguelikeArena_SourceSkillChanceParameters(_ChanceIncreasePerLevel, _ChanceDecreasePerIndex)
+AND
+IntegerSum(_ChanceIncreasePerLevel, _Rank, _ChanceIncreasePerLevelRankCorrected)
+AND
+IntegerProduct(_Level, _ChanceIncreasePerLevelRankCorrected, _ChanceIncrease)
+AND
+IntegerSum(_Rank, 1, _SourceSkillMaxCount)
+AND
+QRY_RoguelikeArena_CreateIndices(_SourceSkillMaxCount)
+AND
+DB_RoguelikeArena_CreatedIndices(_SkillIndex)
+AND
+IntegerProduct(_ChanceDecreasePerIndex, _SkillIndex, _ChanceDecrease)
+AND
+IntegerSubtract(_ChanceIncrease, _ChanceDecrease, _Chance)
+AND
+IntegerMin(_Chance, 90, _ChanceCapped)
+AND
+Random(100, _Random)
+AND
+_Random < _ChanceCapped
+THEN
+PROC_RoguelikeArena_IncreaseCurrentCharacterSourceSkillCount();
+
+PROC
+PROC_RoguelikeArena_IncreaseCurrentCharacterSourceSkillCount()
+AND
+DB_Singleton("RoguelikeArena_CurrentCharacterSourceSkillCount", _SkillCountCurrent)
+AND
+IntegerSum(_SkillCountCurrent, 1, _SkillCountNew)
+THEN
+DB_Singleton("RoguelikeArena_CurrentCharacterSourceSkillCount", _SkillCountNew);
+//END_REGION
+
+//REGION Source
+//Sets source points for character. Formula is: Random(Min, Level / (36 / (Rank * Rank + Modifier)))
+PROC
+PROC_RoguelikeArena_CharacterSetSourcePoints((CHARACTERGUID)_Character, (INTEGER)_Level, (INTEGER)_Rank)
+AND
+IntegerProduct(_Rank, _Rank, _RankPow)
+AND
+IntegerSum(_RankPow, 2, _Max)
+AND
+IntegerDivide(36, _Max, _MaxDistribution)
+AND
+IntegerDivide(_Level, _MaxDistribution, _MaxDistributed)
+AND
+QRY_RoguelikeArena_RandomInclusive(0, _MaxDistributed)
+AND
+DB_Singleton("RoguelikeArena_RandomResult", _Points)
+THEN
+CharacterOverrideMaxSourcePoints(_Character, _Max);
+CharacterAddSourcePoints(_Character, _Points);
+//END_REGION
+
+////REGION Adding equipment
+//PROC
+//PROC_RoguelikeArena_CharacterAddRandomEquipment((CHARACTERGUID)_Character, (INTEGER)_Level, (STRING)_WeaponSkill, (STRING)_Weapon1Type, (STRING)_Weapon2Type)
+//THEN
+//PROC_RoguelikeArena_CharacterArmorCreateAndEquip(_Character, _Level);
+//PROC_RoguelikeArena_CharacterWeaponCreateAndEquip(_Character, _Level, _WeaponSkill, _Weapon2Type); // in case of a shield, it has to be equipped first
+//PROC_RoguelikeArena_CharacterWeaponCreateAndEquip(_Character, _Level, _WeaponSkill, _Weapon1Type);
+//
+//PROC
+//PROC_RoguelikeArena_CharacterArmorCreateAndEquip((CHARACTERGUID)_Character, (INTEGER)_Level)
+//AND
+//DB_RoguelikeArena_Armors(_ArmorIndex, _ArmorSlot, _ArmorTemplateId)
+//AND
+//Random(2, 1)
+//THEN
+//PROC_RoguelikeArena_CharacterItemCreateAndEquip(_Character, _Level, _ArmorTemplateId);
+//
+//PROC
+//PROC_RoguelikeArena_CharacterWeaponCreateAndEquip((CHARACTERGUID)_Character, (INTEGER)_Level, (STRING)_WeaponSkill, (STRING)_WeaponType)
+//AND
+//DB_RoguelikeArena_Weapons(_WeaponIndex, _WeaponSkill, _WeaponType, _WeaponTemplateId)
+//THEN
+//PROC_RoguelikeArena_CharacterItemCreateAndEquip(_Character, _Level, _WeaponTemplateId);
+//
+//PROC
+//PROC_RoguelikeArena_CharacterItemCreateAndEquip((CHARACTERGUID)_Character, (INTEGER)_Level, (STRING)_ItemTemplateId)
+//AND
+//CreateItemTemplateAtPosition(_ItemTemplateId, 0.0, 0.0, 0.0, _Item)
+//THEN
+//ItemLevelUpTo(_Item, _Level);
+//CharacterEquipItem(_Character, _Item);
+////END_REGION
+
+// Removes a character from the game.
+PROC
+PROC_RoguelikeArena_CharacterRemove((CHARACTERGUID)_Character)
+THEN
+CharacterDieImmediate(_Character, 0, "None");
+SetOnStage(_Character, 0);
+DB_RoguelikeArena_RemovedCharacters(_Character);
+
+IF
+DB_RoguelikeArena_RemovedCharacters(_Character)
+THEN
+DB_NOOP(1);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena"

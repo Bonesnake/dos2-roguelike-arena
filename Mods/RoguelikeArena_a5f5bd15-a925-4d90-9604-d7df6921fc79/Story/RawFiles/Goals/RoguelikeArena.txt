@@ -1,0 +1,13 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+PROC_RoguelikeArena_InitStory();
+KBSECTION
+PROC
+PROC_RoguelikeArena_InitStory()
+THEN
+GoalCompleted;
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "Start"

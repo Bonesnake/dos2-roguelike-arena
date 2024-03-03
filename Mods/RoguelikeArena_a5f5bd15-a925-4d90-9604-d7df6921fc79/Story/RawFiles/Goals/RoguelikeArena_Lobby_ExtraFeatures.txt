@@ -1,0 +1,126 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_Singleton("RoguelikeArena_RecruitmentBoard_UseCount", 0);
+
+DB_RoguelikeArena_LobbyExtraFeatures("RoguelikeArena_DebugStatue", 0, 0, 0, ITEMGUID_BLD_Humans_Statue_Knight_A_Dynamic_000_8c7be027-4442-4084-8a4b-c477154d1231);
+DB_RoguelikeArena_LobbyExtraFeatures("RoguelikeArena_EquipmentStatue", 2, 100, 25, (ITEMGUID)ITEMGUID_RoguelikeArena_Tavern_EquipmentStatue_f9b8cec1-a546-44b0-8002-749562fbad9c);
+DB_RoguelikeArena_LobbyExtraFeatures("RoguelikeArena_ChestOfFortune", 4, 20, 5, ITEMGUID_CONT_Humans_Citz_Chest_Rich_A_000_cad144cc-f8ad-4688-823c-ced82aeb3b18);
+DB_RoguelikeArena_LobbyExtraFeatures("RoguelikeArena_RecruitmentBoard", 1, 0, 0, ITEMGUID_TOOL_SignWall_A_Wood_000_c275c83d-6afc-4d50-a6eb-c76f9dbd65d2);
+
+PROC_RoguelikeArena_InitLobbyExtraFeatures();
+KBSECTION
+// Creates quest states.
+PROC
+PROC_RoguelikeArena_InitLobbyExtraFeatures()
+AND
+DB_RoguelikeArena_LobbyExtraFeatures(_FeatureName, _, _, _, _)
+THEN
+DB_QuestDef_State(_FeatureName, "FeatureAvailable", 1);
+
+// Adds initial extra feature journal entries.
+PROC
+PROC_RoguelikeArena_InitLobbyExtraFeatures()
+AND
+DB_IsPlayer(_Player)
+THEN
+PROC_RoguelikeArena_UpdateExtraFeaturesJournal(_Player);
+
+// Initiates dialog.
+IF
+CharacterUsedItem(_Character, _Item)
+AND
+DB_RoguelikeArena_LobbyExtraFeatures(_FeatureName, _LevelMin, _PriceBase, _PriceModifier, _Item)
+AND
+CharacterGetLevel(_Character, _Level)
+AND
+_Level >= _LevelMin
+AND
+QRY_RoguelikeArena_Price(_Level, _PriceBase, _PriceModifier)
+AND
+DB_Singleton("RoguelikeArena_PriceResult", _Price)
+THEN
+Proc_StartDialog(0, _FeatureName, _Item, _Character);
+DB_DialogMoneyTransfer(1, _FeatureName, _Price);
+
+// Tells level requirement if level is not high enough.
+IF
+CharacterUsedItem(_Character, _Item)
+AND
+DB_RoguelikeArena_LobbyExtraFeatures(_, _LevelMin, _, _, _Item)
+AND
+CharacterGetLevel(_Character, _Level)
+AND
+_Level < _LevelMin
+THEN
+Proc_StartDialog(0, "RoguelikeArena_HigherLevelRequired", _Item, _Character);
+DialogSetVariableInt("RoguelikeArena_HigherLevelRequired", "RoguelikeArena_LevelRequirement_ac29c66c-8679-41d2-944d-c4bcbff5fbfb", _LevelMin);
+
+// Clears used flag after a feature was used.
+IF
+ObjectFlagSet(_Flag, _Speaker, _)
+AND
+DB_RoguelikeArena_LobbyExtraFeatures(_FeatureName, _, _, _, _)
+AND
+StringConcatenate(_FeatureName, "_WasUsed", _FlagExpected)
+AND
+_Flag == _FlagExpected
+THEN
+ObjectClearFlag(_Speaker, _Flag);
+PROC_RoguelikeArena_UpdateExtraFeatureUseCount(_FeatureName);
+PROC_RoguelikeArena_ValidateExtraFeaturePrice(_FeatureName);
+
+// Updates extra feature journal entries upon level up.
+IF
+CharacterLeveledUp(_Character)
+THEN
+PROC_RoguelikeArena_UpdateExtraFeaturesJournal(_Character);
+
+// Updates extra feature journal entries.
+PROC
+PROC_RoguelikeArena_UpdateExtraFeaturesJournal((CHARACTERGUID)_Player)
+AND
+DB_RoguelikeArena_LobbyExtraFeatures(_FeatureName, _LevelMin, _, _, _)
+AND
+StringConcatenate("QuestUpdate_", _FeatureName, _FlagPart)
+AND
+StringConcatenate(_FlagPart, "_FeatureAvailable", _Flag)
+AND
+PartyGetFlag(_Player, _Flag, 0)
+AND
+CharacterGetLevel(_Player, _Level)
+AND
+_Level >= _LevelMin
+THEN
+PartySetFlag(_Player, _Flag);
+
+// Increases recruitment board use count.
+PROC
+PROC_RoguelikeArena_UpdateExtraFeatureUseCount((STRING)_FeatureName)
+AND
+_FeatureName == "RoguelikeArena_RecruitmentBoard"
+AND
+DB_Singleton("RoguelikeArena_RecruitmentBoard_UseCount", _PreviousUseCount)
+AND
+IntegerSum(_PreviousUseCount, 1, _UseCount)
+THEN
+DB_Singleton("RoguelikeArena_RecruitmentBoard_UseCount", _UseCount);
+
+// Updates recruitment board price after reaching the free limit.
+PROC
+PROC_RoguelikeArena_ValidateExtraFeaturePrice((STRING)_FeatureName)
+AND
+_FeatureName == "RoguelikeArena_RecruitmentBoard"
+AND
+DB_Singleton("RoguelikeArena_RecruitmentBoard_UseCount", _UseCount)
+AND
+_UseCount == 3
+AND
+DB_RoguelikeArena_LobbyExtraFeatures(_FeatureName, _LevelMin, _PriceBase, _PriceModifier, _Item)
+THEN
+NOT DB_RoguelikeArena_LobbyExtraFeatures(_FeatureName, _LevelMin, _PriceBase, _PriceModifier, _Item);
+DB_RoguelikeArena_LobbyExtraFeatures(_FeatureName, _LevelMin, 275, 25, _Item);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena_Lobby"

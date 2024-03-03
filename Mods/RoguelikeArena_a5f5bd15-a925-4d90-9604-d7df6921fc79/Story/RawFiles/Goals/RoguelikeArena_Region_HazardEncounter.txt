@@ -1,0 +1,44 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_RoguelikeArena_HazardTemplates("RoguelikeArena_Hazard_OilBarrel_ef163eb6-74dc-4d5a-9f42-784bdbda0cc1");
+DB_RoguelikeArena_HazardTemplates("RoguelikeArena_Hazard_OozeBarrel_064fe822-b646-4c5d-8906-c474b953ad64");
+DB_RoguelikeArena_HazardTemplates("RoguelikeArena_Hazard_ExplodingPumpkin_22bb2d0d-cf33-4ad3-ba71-c5b184fd5b6a");
+
+PROC_RoguelikeArena_StringPoolAddHazards();
+KBSECTION
+PROC
+PROC_RoguelikeArena_SpawnHazards((INTEGER)_Region, (INTEGER)_Section, (INTEGER)_Level)
+AND
+Random(4, _Random)
+AND
+QRY_RoguelikeArena_CreateIndices(_Random)
+AND
+DB_RoguelikeArena_CreatedIndices(_)
+AND
+QRY_RoguelikeArena_StringPoolSelectRandom("HazardPool")
+AND
+DB_RoguelikeArena_StringPoolSelectedValue("HazardPool", _Template)
+AND
+DB_RoguelikeArena_Sections(_Region, _Section, _Trigger)
+AND
+GetRandomPositionInTrigger(_Trigger, _X, _Y, _Z)
+AND
+CreateItemTemplateAtPosition(_Template, _X, _Y, _Z, _Hazard)
+THEN
+PROC_RoguelikeArena_ItemRandomRotate(_Hazard);
+PROC_RoguelikeArena_ItemTeleportToValidPosition(_Hazard);
+PROC_RoguelikeArena_ItemSnapToGround(_Hazard);
+ItemLevelUpTo(_Hazard, _Level);
+PROC_RoguelikeArena_RegisterForCleanup(_Hazard, _Region);
+
+PROC
+PROC_RoguelikeArena_StringPoolAddHazards()
+AND
+DB_RoguelikeArena_HazardTemplates(_Template)
+THEN
+PROC_RoguelikeArena_StringPoolAdd("HazardPool", _Template);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena_Region_Encounter"

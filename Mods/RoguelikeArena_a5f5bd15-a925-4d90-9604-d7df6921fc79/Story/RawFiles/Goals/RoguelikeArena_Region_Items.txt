@@ -1,0 +1,111 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_RoguelikeArena_RegionItems(1, (ITEMGUID)ITEMGUID_FUR_Humans_Camping_Sleepingbag_A_000_c88638d9-be1e-4ada-8d3d-87277304891b);
+DB_RoguelikeArena_RegionItems(1, ITEMGUID_LTS_Campfire_C_000_7a35dd16-9515-4ff7-84cb-92e7eeda3a6a);
+
+DB_RoguelikeArena_RegionItems(2, ITEMGUID_FUR_Bucket_A_000_d6770b45-88c1-45fe-9359-d65cfab99856);
+
+DB_RoguelikeArena_RegionItems(3, ITEMGUID_CONT_Humans_Tomb_D_000_b53bb4c4-3b9c-464a-9a64-e13cef867bd6);
+DB_RoguelikeArena_RegionItems(3, ITEMGUID_FUR_Poor_Bar_Stool_B_000_3e982fc7-cb7e-4571-be8b-432a90f057d8);
+DB_RoguelikeArena_RegionItems(3, ITEMGUID_LTS_Candle_B_001_ad407bdc-1e98-4426-9d18-679eeb819d4e);
+DB_RoguelikeArena_RegionItems(3, ITEMGUID_LTS_Torch_Standing_A_000_2fbf9370-e82c-47cc-90b5-bff450194a18);
+DB_RoguelikeArena_RegionItems(3, ITEMGUID_LTS_Torch_Standing_A_001_0e456303-cee6-422c-9cb0-4c2d9a344938);
+
+DB_RoguelikeArena_RegionItems(4, ITEMGUID_CS_Humans_Farm_WaterWell_A_000_b1af26f3-37e2-49f3-ab58-48d498a74ad7);
+DB_RoguelikeArena_RegionItems(4, ITEMGUID_LTS_Humans_Dungeon_Torch_Small_F_000_ffeaff42-a76a-4811-83b3-d1a744fd4563);
+DB_RoguelikeArena_RegionItems(4, ITEMGUID_LTS_Humans_Dungeon_Torch_Small_F_001_d35d1a7f-4362-4c5e-b782-b25e2bcaaf88);
+
+DB_RoguelikeArena_RegionItems(5, ITEMGUID_FUR_Humans_Camping_Sleepingbag_A_000_d3988b8c-922a-41a9-bd95-09f7500efc83);
+DB_RoguelikeArena_RegionItems(5, ITEMGUID_FUR_Humans_Camping_Sleepingbag_A_001_49708fcc-a032-4c7d-bf35-3f087055ec3c);
+
+DB_RoguelikeArena_RegionItems(6, ITEMGUID_CONT_Arena_Humans_Citz_Barrel_A_000__000_aeaa7bb2-fc64-8a07-2a72-01b89997f26e);
+DB_RoguelikeArena_RegionItems(6, ITEMGUID_CONT_Arena_Humans_Citz_Crate_A_000__000_16ab3dbb-968b-8678-26a5-9d119fcf7c39);
+DB_RoguelikeArena_RegionItems(6, ITEMGUID_CONT_Arena_Humans_Citz_Crate_A_001__000_cd3341ab-0354-8231-251e-26085ea07c32);
+DB_RoguelikeArena_RegionItems(6, ITEMGUID_FUR_Humans_FishCrate_A_000__000_6a1b5b16-22b8-832b-37e6-d12e4e9b30b6);
+DB_RoguelikeArena_RegionItems(6, ITEMGUID_FUR_Humans_FishFactory_Bucket_C_000__000_17d2702b-f864-8c9a-3030-c6faabcb63b0);
+DB_RoguelikeArena_RegionItems(6, ITEMGUID_HAR_Pier_Rope_C_000__000_d75efdfc-95e1-8334-2d18-ea1b1d23c103);
+
+DB_RoguelikeArena_RegionItems(7, ITEMGUID_CONT_Humans_Citz_Barrel_A_000__000_038f11e0-ed84-8952-6e43-07097cc4a1dd);
+DB_RoguelikeArena_RegionItems(7, ITEMGUID_FUR_Humans_FishCrate_A_000__000_46353a00-d3e6-85ec-4961-0c5d871a653c);
+DB_RoguelikeArena_RegionItems(7, ITEMGUID_FUR_Humans_FishCrate_A_001__000_e326123c-ebac-8d6a-61f5-ac43ebd8e044);
+DB_RoguelikeArena_RegionItems(7, ITEMGUID_FUR_Humans_FishCrate_A_002__000_7fac7fe7-c31e-8acd-33d5-feb99fccbd4a);
+DB_RoguelikeArena_RegionItems(7, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_F1_000_0d0e0e93-6587-4be9-8900-21a3ba90616f);
+
+DB_RoguelikeArena_RegionItems(9, ITEMGUID_BLD_Humans_Tomb_WoodenCross_A_002_947f1476-d74e-45ce-adfd-a5f9bf489302);
+DB_RoguelikeArena_RegionItems(9, ITEMGUID_BLD_Humans_Tomb_WoodenCross_A_006_afa077ab-bd09-499a-bea5-f2341a8433e1);
+DB_RoguelikeArena_RegionItems(9, ITEMGUID_BLD_Humans_Tomb_WoodenCross_A_007_b82214fa-cec8-45d7-95b3-81eec9a76fc5);
+DB_RoguelikeArena_RegionItems(9, ITEMGUID_BLD_Humans_Tomb_WoodenCross_A_008_bd844dde-4f02-4588-8e4f-26ba43ac53f8);
+DB_RoguelikeArena_RegionItems(9, ITEMGUID_BLD_Humans_Tomb_WoodenCross_A_009_42398988-6578-4e57-86f1-9dc4d9d67eda);
+DB_RoguelikeArena_RegionItems(9, ITEMGUID_BLD_Humans_Tomb_WoodenCross_A_010_6b63c27f-7618-4796-876e-4b222f8e3d70);
+DB_RoguelikeArena_RegionItems(9, ITEMGUID_BLD_Humans_Tomb_WoodenCross_A_011_03723e49-2460-41b2-8e02-f63bb754833f);
+DB_RoguelikeArena_RegionItems(9, ITEMGUID_BLD_Humans_Tomb_WoodenCross_A_012_f4e0f845-82ee-4987-b5aa-a89ec92430ba);
+DB_RoguelikeArena_RegionItems(9, ITEMGUID_BLD_Humans_Tomb_WoodenCross_A_014_6e17bd92-3b13-489f-b5d3-3cd101ad0e9c);
+DB_RoguelikeArena_RegionItems(9, ITEMGUID_BLD_Humans_Tomb_WoodenCross_A_015_dcbbbf34-7d97-4a86-88ea-7db2fcb1b6db);
+DB_RoguelikeArena_RegionItems(9, ITEMGUID_BLD_Humans_Tomb_WoodenCross_A_018_cb73d736-2f8d-49cc-a5f0-9e15417bef07);
+DB_RoguelikeArena_RegionItems(9, ITEMGUID_BLD_Humans_Tomb_WoodenCross_A_019_feed79f1-a233-4a2e-9914-dccb909a621c);
+DB_RoguelikeArena_RegionItems(9, ITEMGUID_CS_Humans_Farm_WaterWell_A_000_f079ffb1-ff22-4fad-a186-a0e98ce53735);
+DB_RoguelikeArena_RegionItems(9, ITEMGUID_FUR_Bucket_A_000_9afb01c7-989d-4117-bea9-8ca62b6cc001);
+DB_RoguelikeArena_RegionItems(9, ITEMGUID_FUR_Humans_Camping_Sleepingbag_A_000_87085c79-1c63-43ae-966e-4720fc7f71a1);
+DB_RoguelikeArena_RegionItems(9, ITEMGUID_FUR_Humans_Camping_Sleepingbag_A_001_07d4c030-93a1-4110-9888-73f4aa155a87);
+DB_RoguelikeArena_RegionItems(9, ITEMGUID_FUR_Humans_Camping_Sleepingbag_B_000_f5a97304-581d-43ac-9a7c-8f2329d2965c);
+DB_RoguelikeArena_RegionItems(9, ITEMGUID_FUR_Humans_Camping_Sleepingbag_B_001_bbb22cf1-5ddc-498d-833f-0c7c0b26b1b3);
+DB_RoguelikeArena_RegionItems(9, ITEMGUID_LTS_Campfire_A_000_cfff5a02-43bc-4e93-81cf-8534234a3843);
+DB_RoguelikeArena_RegionItems(9, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_F2_000_1d98f158-2d7f-4e3e-b69a-9461b6d36b14);
+DB_RoguelikeArena_RegionItems(9, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_F2_001_7beaf34c-5355-480a-af3f-b5b34da595ff);
+DB_RoguelikeArena_RegionItems(9, ITEMGUID_RoguelikeArena_RegionItem_KingTomb_000_c5d2ebc2-f0e4-4ca1-9ffd-a90ab1004b91);
+DB_RoguelikeArena_RegionItems(9, ITEMGUID_RoguelikeArena_RegionItem_PriestStatue_000_4e457d91-77de-40d0-8f84-a26805de02d9);
+
+DB_RoguelikeArena_RegionItems(10, ITEMGUID_FUR_Poor_Bar_Stool_B_000_cf1bc22f-753c-4d7f-be72-495e6af0ce19);
+DB_RoguelikeArena_RegionItems(10, ITEMGUID_FUR_Poor_Bar_Stool_B_001_808dd5e4-c027-4470-aa28-7fc3e0971b34);
+DB_RoguelikeArena_RegionItems(10, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_B_000_ff1f5fe9-1f94-426e-9568-94bb9262d87c);
+DB_RoguelikeArena_RegionItems(10, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_E_000_d6d98ba9-1839-44ea-818d-32eab3210333);
+DB_RoguelikeArena_RegionItems(10, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_F1_000_0ee72846-a107-49ec-a002-6a9ce449c534);
+DB_RoguelikeArena_RegionItems(10, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_F1_001_eeb2a30d-c63b-4ea7-95ed-45be226f2748);
+DB_RoguelikeArena_RegionItems(10, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_F1_002_8ef5f6cb-875d-4c41-a27b-2c19dd337a0c);
+DB_RoguelikeArena_RegionItems(10, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_F1_003_46730852-5fd5-4a55-bd5c-9b0e476ade03);
+DB_RoguelikeArena_RegionItems(10, ITEMGUID_RoguelikeArena_RegionItem_SacrificialSkeleton_000_ec91e962-4b37-4d9d-bb36-f4a9e43daaea);
+DB_RoguelikeArena_RegionItems(10, ITEMGUID_RoguelikeArena_RegionItem_SourceScarecrow_000_a95c06d2-3273-4b00-95ad-beb28a354d4f);
+DB_RoguelikeArena_RegionItems(10, ITEMGUID_RoguelikeArena_RegionItem_SourceScarecrow_001_c7b625e4-dbce-47ba-b52c-85f4970dfbeb);
+
+PROC_RoguelikeArena_InitRegionItems();
+KBSECTION
+PROC
+PROC_RoguelikeArena_InitRegionItems()
+AND
+DB_RoguelikeArena_RegionItems(_Region, _Item)
+AND
+GetTemplate(_Item, _Template)
+AND
+GetPosition(_Item, _XPos, _YPos, _ZPos)
+AND
+GetRotation(_Item, _XRot, _YRot, _ZRot)
+AND
+RealProduct(_XRot, 0.0174533, _XRotRad)
+AND
+RealProduct(_YRot, 0.0174533, _YRotRad)
+AND
+RealProduct(_ZRot, 0.0174533, _ZRotRad)
+THEN
+DB_RoguelikeArena_RegionItemTemplates(_Region, _Template, _XPos, _YPos, _ZPos, _XRotRad, _YRotRad, _ZRotRad);
+PROC_RoguelikeArena_RegisterForCleanup(_Item, _Region);
+NOT DB_RoguelikeArena_RegionItems(_Region, _Item);
+
+IF
+DB_RoguelikeArena_ActiveRegions(_Region, _, _)
+THEN
+PROC_RoguelikeArena_SpawnRegionItems(_Region);
+
+PROC
+PROC_RoguelikeArena_SpawnRegionItems((INTEGER)_Region)
+AND
+DB_RoguelikeArena_RegionItemTemplates(_Region, _Template, _XPos, _YPos, _ZPos, _XRotRad, _YRotRad, _ZRotRad)
+AND
+CreateItemTemplateAtPosition(_Template, _XPos, _YPos, _ZPos, _Item)
+THEN
+ItemToTransform(_Item, _XPos, _YPos, _ZPos, _XRotRad, _YRotRad, _ZRotRad, 1, NULL_00000000-0000-0000-0000-000000000000);
+PROC_RoguelikeArena_RegisterForCleanup(_Item, _Region);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena_Region"

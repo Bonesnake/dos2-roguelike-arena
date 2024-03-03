@@ -1,0 +1,10 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_SourceFountains(ITEMGUID_QUEST_SourceFountain_A_000_aacafbbf-04ac-4b5b-a363-29344a9de7b9, TRIGGERGUID_S_RoguelikeArena_SourceFountainTrigger_1d584fc6-9d13-4bf0-b619-f36761a37469);
+KBSECTION
+
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena_Lobby"

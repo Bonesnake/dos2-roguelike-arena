@@ -1,0 +1,35 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_TeleporterPyramid((ITEMGUID)ITEMGUID_UNI_Teleport_Pyramid_A_000_dc215a3c-8b00-48af-a36f-209de1c99043);
+DB_TeleporterPyramid(ITEMGUID_UNI_Teleport_Pyramid_B_000_6f2fb7d6-fab0-40f0-b8e6-044f7e02e5b1);
+DB_TeleporterPyramid(ITEMGUID_UNI_Teleport_Pyramid_C_000_a9bbbc7a-fbe1-4db9-a657-3aacd27a13b2);
+DB_TeleporterPyramid(ITEMGUID_UNI_Teleport_Pyramid_D_000_29fe996c-02d8-46aa-843d-3922875db503);
+
+DB_RoguelikeArena_TeleporterPyramidSafeZones((TRIGGERGUID)TRIGGERGUID_RegionTrigger_000_c58ca4e3-71e1-432d-b8b6-78a658fce71a);
+KBSECTION
+// Teleports teleporter pyramids back to their owners if they are outside of the safe zone.
+PROC
+PROC_RoguelikeArena_SaveTeleporterPyramids()
+AND
+DB_TeleporterPyramid(_Pyramid)
+AND
+NOT QRY_RoguelikeArena_IsTeleporterPyramidInSafeZone(_Pyramid)
+AND
+ItemGetOriginalOwner(_Pyramid, _Owner)
+THEN
+ItemToInventory(_Pyramid, _Owner, -1);
+
+// Returns whether or not the given teleporter pyramid is inside a safe zone.
+QRY
+QRY_RoguelikeArena_IsTeleporterPyramidInSafeZone((ITEMGUID)_Pyramid)
+AND
+DB_RoguelikeArena_TeleporterPyramidSafeZones(_SafeZone)
+AND
+ObjectIsInTrigger(_Pyramid, _SafeZone, 1)
+THEN
+DB_NOOP(1);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena"

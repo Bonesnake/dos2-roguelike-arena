@@ -1,0 +1,13 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+PROC
+PROC_RoguelikeArena_InitLobbyStory()
+THEN
+GoalCompleted;
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena"

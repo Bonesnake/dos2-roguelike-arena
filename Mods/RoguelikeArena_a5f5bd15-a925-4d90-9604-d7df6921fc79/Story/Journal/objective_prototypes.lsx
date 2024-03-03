@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" />
+    <version major="3" minor="6" revision="6" build="0" />
+    <region id="Objectives">
+        <node id="root">
+            <children>
+                <node id="Objective">
+                    <attribute id="Description" value="Feature is available." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="ObjectiveID" value="RoguelikeArena_EquipmentStatue_FeatureAvailable" type="22" />
+                    <attribute id="Priority" value="0" type="4" />
+                    <children>
+                        <node id="Markers">
+                            <attribute id="Markers" value="RoguelikeArena_EquipmentStatue" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Objective">
+                    <attribute id="Description" value="Feature is available." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="ObjectiveID" value="RoguelikeArena_ChestOfFortune_FeatureAvailable" type="22" />
+                    <attribute id="Priority" value="0" type="4" />
+                    <children>
+                        <node id="Markers">
+                            <attribute id="Markers" value="RoguelikeArena_ChestOfFortune" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Objective">
+                    <attribute id="Description" value="Feature is available." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="ObjectiveID" value="RoguelikeArena_RecruitmentBoard_FeatureAvailable" type="22" />
+                    <attribute id="Priority" value="0" type="4" />
+                    <children>
+                        <node id="Markers">
+                            <attribute id="Markers" value="RoguelikeArena_RecruitmentBoard" type="22" />
+                        </node>
+                    </children>
+                </node>
+            </children>
+        </node>
+    </region>
+</save>

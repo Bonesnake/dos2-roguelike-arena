@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" />
+    <version major="3" minor="6" revision="6" build="0" />
+    <region id="Quests">
+        <node id="root">
+            <children>
+                <node id="Quest">
+                    <attribute id="CategoryID" value="RoguelikeArena_Features" type="22" />
+                    <attribute id="MainQuest" value="0" type="19" />
+                    <attribute id="QuestBroadcastLevel" value="2" type="1" />
+                    <attribute id="QuestID" value="RoguelikeArena_EquipmentStatue" type="22" />
+                    <attribute id="QuestTitle" value="Equipment Statue" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="Shareable" value="1" type="19" />
+                    <attribute id="SortingPriority" value="0" type="4" />
+                    <children>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="The Equipment Statue is now available in the Tavern. You can use it to level up your equipment." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="DevComment" value="" type="22" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Mystery" value="" type="22" />
+                            <attribute id="MysteryAction" value="0" type="1" />
+                            <attribute id="MysteryDescription" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Objective" value="RoguelikeArena_EquipmentStatue_FeatureAvailable" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="StatTriggerGUID" value="" type="22" />
+                            <attribute id="Status" value="FeatureAvailable" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Quest">
+                    <attribute id="CategoryID" value="RoguelikeArena_Features" type="22" />
+                    <attribute id="MainQuest" value="0" type="19" />
+                    <attribute id="QuestBroadcastLevel" value="2" type="1" />
+                    <attribute id="QuestID" value="RoguelikeArena_ChestOfFortune" type="22" />
+                    <attribute id="QuestTitle" value="Chest of Fortune" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="Shareable" value="1" type="19" />
+                    <attribute id="SortingPriority" value="0" type="4" />
+                    <children>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="The Chest of Fortune is now available in the Tavern. You can use it to get completely random items." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="DevComment" value="" type="22" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Mystery" value="" type="22" />
+                            <attribute id="MysteryAction" value="0" type="1" />
+                            <attribute id="MysteryDescription" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Objective" value="RoguelikeArena_ChestOfFortune_FeatureAvailable" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="StatTriggerGUID" value="" type="22" />
+                            <attribute id="Status" value="FeatureAvailable" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Quest">
+                    <attribute id="CategoryID" value="RoguelikeArena_Features" type="22" />
+                    <attribute id="MainQuest" value="0" type="19" />
+                    <attribute id="QuestBroadcastLevel" value="2" type="1" />
+                    <attribute id="QuestID" value="RoguelikeArena_RecruitmentBoard" type="22" />
+                    <attribute id="QuestTitle" value="Recruitment Board" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="Shareable" value="1" type="19" />
+                    <attribute id="SortingPriority" value="0" type="4" />
+                    <children>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="The Recruitment Board is now available in the Tavern.  You can use it to acquire new companions. The first 3 companions are free." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="DevComment" value="" type="22" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Mystery" value="" type="22" />
+                            <attribute id="MysteryAction" value="0" type="1" />
+                            <attribute id="MysteryDescription" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Objective" value="RoguelikeArena_RecruitmentBoard_FeatureAvailable" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="StatTriggerGUID" value="" type="22" />
+                            <attribute id="Status" value="FeatureAvailable" type="22" />
+                        </node>
+                    </children>
+                </node>
+            </children>
+        </node>
+    </region>
+</save>

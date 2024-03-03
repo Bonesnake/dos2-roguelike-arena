@@ -1,0 +1,38 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_RoguelikeArena_LobbyEnterTrigger((TRIGGERGUID)TRIGGERGUID_RoguelikeArena_Tavern_Enter_d38fe29b-49f0-485a-8045-d5a9e1648109);
+DB_RoguelikeArena_LobbyExitItem((ITEMGUID)ITEMGUID_RoguelikeArena_Tavern_Exit_8b50f18d-d5f2-486c-9813-5bf79bceeff6);
+
+PROC_RoguelikeArena_RegisterLobbyTeleporters();
+KBSECTION
+// Registers lobby teleporter item and trigger.
+PROC
+PROC_RoguelikeArena_RegisterLobbyTeleporters()
+AND
+DB_RoguelikeArena_LobbyExitItem(_Item)
+AND
+DB_RoguelikeArena_LobbyEnterTrigger(_Trigger)
+THEN
+PROC_RoguelikeArena_RegisterTeleporterItem(_Item, 1);
+PROC_RoguelikeArena_RegisterTeleporterTrigger(_Trigger, 0);
+
+// Resets regions, starts a new one and makes a teleport request.
+IF
+CharacterUsedItem(_Character, _UsedItem)
+AND
+DB_RoguelikeArena_LobbyExitItem(_UsedItem)
+AND
+DB_RoguelikeArena_Singleton_CurrentLevel(_CurrentLevel)
+AND
+IntegerSum(_CurrentLevel, 1, _NextLevel)
+AND
+IntegerMin(_NextLevel, 35, _NextLevelCorrected)
+THEN
+DB_RoguelikeArena_Singleton_CurrentLevel(_NextLevelCorrected);
+PROC_RoguelikeArena_ResetRegions();
+PROC_RoguelikeArena_StartNewRegion(_NextLevelCorrected);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena_Lobby"

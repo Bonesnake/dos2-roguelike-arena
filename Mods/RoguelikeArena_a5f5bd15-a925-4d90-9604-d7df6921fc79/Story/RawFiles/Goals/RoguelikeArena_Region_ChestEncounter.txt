@@ -1,0 +1,31 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_RoguelikeArena_ChestTemplates(1, "RoguelikeArena_Chest_Rank1_12120a7d-76dd-4dc7-9b5d-fd91c60686f1", "RoguelikeArena_Chest_Rank1");
+DB_RoguelikeArena_ChestTemplates(2, "RoguelikeArena_Chest_Rank2_e023f315-696b-492c-958d-cd00694f8f4a", "RoguelikeArena_Chest_Rank2");
+DB_RoguelikeArena_ChestTemplates(3, "RoguelikeArena_Chest_Rank3_b36982b7-5e5b-4e3d-831c-bf594b29a8c9", "RoguelikeArena_Chest_Rank3");
+DB_RoguelikeArena_ChestTemplates(4, "RoguelikeArena_Chest_Rank4_8ef15111-6318-4b78-a154-58f35fa744a5", "RoguelikeArena_Chest_Rank4");
+DB_RoguelikeArena_ChestTemplates(5, "RoguelikeArena_Chest_Rank5_539587db-c187-430b-9d3c-c8e166193559", "RoguelikeArena_Chest_Rank5");
+KBSECTION
+PROC
+PROC_RoguelikeArena_SpawnChest((INTEGER)_Region, (INTEGER)_Section, (INTEGER)_Level, (INTEGER)_Difficulty)
+AND
+DB_RoguelikeArena_ChestTemplates(_Difficulty, _Template, _Treasure)
+AND
+DB_RoguelikeArena_Sections(_Region, _Section, _Trigger)
+AND
+GetPosition(_Trigger, _X, _Y, _Z)
+AND
+CreateItemTemplateAtPosition(_Template, _X, _Y, _Z, _Chest)
+AND
+GetRotation(_Trigger, _, _RotY, _)
+THEN
+ItemLevelUpTo(_Chest, _Level);
+GenerateTreasure(_Chest, _Treasure, _Level, NULL_00000000-0000-0000-0000-000000000000);
+ItemRotateToAngleY(_Chest, _RotY, 10000.0);
+PROC_RoguelikeArena_ItemSnapToGround(_Chest);
+PROC_RoguelikeArena_RegisterForCleanup(_Chest, _Region);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena_Region_Encounter"

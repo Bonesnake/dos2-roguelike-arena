@@ -1,0 +1,143 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_RoguelikeArena_CleanupSources(1, (TRIGGERGUID)TRIGGERGUID_R01_Region_5d9a77ab-fada-4521-bb2d-e93cab5c0949);
+DB_RoguelikeArena_CleanupSources(2, TRIGGERGUID_R02_Region_f1994d03-47e8-4774-962b-b35a43c6a356);
+DB_RoguelikeArena_CleanupSources(3, TRIGGERGUID_R03_Region_e44becc9-c8af-4f45-8796-653f7e2fd519);
+DB_RoguelikeArena_CleanupSources(4, TRIGGERGUID_R04_Region_df7c5340-1f96-4efb-9040-faff5ab67f24);
+DB_RoguelikeArena_CleanupSources(5, TRIGGERGUID_R05_Region_b48ab977-c24b-86ac-64fa-bf902fe658cd);
+DB_RoguelikeArena_CleanupSources(6, TRIGGERGUID_RegionTrigger_000__000_1d1acebf-fd98-880d-29dc-a13cce4a17c1);
+DB_RoguelikeArena_CleanupSources(7, TRIGGERGUID_RegionTrigger_000__000_663a7321-c77d-c609-df13-7e01c9142552);
+
+// Radius, from, to, offset.
+DB_RoguelikeArena_SurfaceCleanupParameters(64.0, -8, 8, 4.0);
+KBSECTION
+IF
+DB_RoguelikeArena_ActiveRegionsHelper(_Region, _Level, _Index)
+AND
+NOT DB_RoguelikeArena_ActiveRegions(_Region, _Level, _Index)
+THEN
+PROC_RoguelikeArena_CleanUp(_Region);
+
+// Cleans up the given region.
+PROC
+PROC_RoguelikeArena_CleanUp((INTEGER)_Region)
+THEN
+PROC_RoguelikeArena_CleanUpCharacters(_Region);
+PROC_RoguelikeArena_CleanUpItems(_Region);
+PROC_RoguelikeArena_CleanUpSurfaces(_Region);
+
+//REGION Clean up characters
+// Kills and hides characters, then unregisters them from cleanup.
+PROC
+PROC_RoguelikeArena_CleanUpCharacters((INTEGER)_Region)
+AND
+DB_RoguelikeArena_CleanupRegisteredObjects(_Character, _Region)
+AND
+ObjectExists(_Character, 1)
+AND
+ObjectIsCharacter(_Character, 1)
+THEN
+PROC_RoguelikeArena_CharacterRemove((CHARACTERGUID)_Character);
+
+// Kills and hides characters, then unregisters them from cleanup.
+PROC
+PROC_RoguelikeArena_CleanUpCharacters((INTEGER)_Region)
+AND
+DB_RoguelikeArena_CleanupRegisteredObjects(_Character, _Region)
+AND
+ObjectIsCharacter(_Character, 1)
+THEN
+PROC_RoguelikeArena_UnregisterFromCleanup(_Character);
+//END_REGION
+
+//REGION Clean up items
+// Removes items from the game and unregisters them from cleanup.
+PROC
+PROC_RoguelikeArena_CleanUpItems((INTEGER)_Region)
+AND
+DB_RoguelikeArena_CleanupRegisteredObjects(_Item, _Region)
+AND
+ObjectExists(_Item, 1)
+AND
+ObjectIsItem(_Item, 1)
+THEN
+PROC_RoguelikeArena_ItemRemove((ITEMGUID)_Item);
+
+// Removes items from the game and unregisters them from cleanup.
+PROC
+PROC_RoguelikeArena_CleanUpItems((INTEGER)_Region)
+AND
+DB_RoguelikeArena_CleanupRegisteredObjects(_Item, _Region)
+AND
+ObjectIsItem(_Item, 1)
+THEN
+PROC_RoguelikeArena_UnregisterFromCleanup(_Item);
+//END_REGION
+
+//REGION Clean up surfaces
+// Cleans up surfaces. Surface cleanup has a very limited height, hence this proc runs the cleanup process on multiple y positions.
+PROC
+PROC_RoguelikeArena_CleanUpSurfaces((INTEGER)_Region)
+AND
+DB_RoguelikeArena_CleanupSources(_Region, _Source)
+AND
+GetPosition(_Source, _SourceX, _SourceY, _SourceZ)
+AND
+DB_RoguelikeArena_SurfaceCleanupParameters(_Radius, _From, _To, _Offset)
+AND
+QRY_RoguelikeArena_CreateIndices(_From, _To)
+AND
+DB_RoguelikeArena_CreatedIndices(_Index)
+AND
+Real(_Index, _IndexReal)
+AND
+RealProduct(_Offset, _IndexReal, _OffsetY)
+AND
+RealSum(_SourceY, _OffsetY, _Y)
+THEN
+RemoveSurfaceLayerAtPosition(_SourceX, _Y, _SourceZ, 0, _Radius);
+RemoveSurfaceLayerAtPosition(_SourceX, _Y, _SourceZ, 1, _Radius);
+//END_REGION
+
+//REGION Manual cleanup registration
+// Registers object for cleanup.
+PROC
+PROC_RoguelikeArena_RegisterForCleanup((GUIDSTRING)_Object, (INTEGER)_Region)
+AND
+IsTagged(_Object, "IGNORE_CLEANUP", 0)
+THEN
+DB_RoguelikeArena_CleanupRegisteredObjects(_Object, _Region);
+
+// Unregisters object from cleanup.
+PROC
+PROC_RoguelikeArena_UnregisterFromCleanup((GUIDSTRING)_Object)
+AND
+IsTagged(_Object, "IGNORE_CLEANUP", 0)
+AND
+DB_RoguelikeArena_CleanupRegisteredObjects(_Object, _Region)
+THEN
+NOT DB_RoguelikeArena_CleanupRegisteredObjects(_Object, _Region);
+//END_REGION
+
+//REGION Automatic cleanup registration
+// Registers dropped items for cleanup.
+IF
+ItemDropped(_Item)
+AND
+DB_RoguelikeArena_CleanupSources(_Region, _Trigger)
+AND
+ObjectIsInTrigger(_Item, _Trigger, 1)
+THEN
+PROC_RoguelikeArena_RegisterForCleanup(_Item, _Region);
+
+// Unregisters dropped items from cleanup if they are picked up.
+IF
+ItemAddedToCharacter(_Item, _)
+THEN
+PROC_RoguelikeArena_UnregisterFromCleanup(_Item);
+//END_REGION
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena_Region"

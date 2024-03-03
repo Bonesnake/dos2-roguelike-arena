@@ -1,0 +1,70 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_RoguelikeArena_DebugStatueBuffs("HASTED");
+DB_RoguelikeArena_DebugStatueBuffs("CLEAR_MINDED");
+DB_RoguelikeArena_DebugStatueBuffs("ENCOURAGED");
+//DB_RoguelikeArena_DebugStatueBuffs("DEATH_RESIST");
+DB_RoguelikeArena_DebugStatueBuffs("FARSIGHT");
+DB_RoguelikeArena_DebugStatueBuffs("FIRE_BRAND");
+DB_RoguelikeArena_DebugStatueBuffs("VAMPIRISM");
+DB_RoguelikeArena_DebugStatueBuffs("APOTHEOSIS");
+//DB_RoguelikeArena_DebugStatueBuffs("EXTRA_TURN");
+
+DB_RoguelikeArena_DebugStatuePresets("Battlemage");
+DB_RoguelikeArena_DebugStatuePresets("Cleric");
+DB_RoguelikeArena_DebugStatuePresets("Conjurer");
+DB_RoguelikeArena_DebugStatuePresets("Enchanter");
+DB_RoguelikeArena_DebugStatuePresets("Fighter");
+DB_RoguelikeArena_DebugStatuePresets("Inquisitor");
+DB_RoguelikeArena_DebugStatuePresets("Knight");
+DB_RoguelikeArena_DebugStatuePresets("Metamorph");
+DB_RoguelikeArena_DebugStatuePresets("Ranger");
+DB_RoguelikeArena_DebugStatuePresets("Rogue");
+DB_RoguelikeArena_DebugStatuePresets("Shadowblade");
+DB_RoguelikeArena_DebugStatuePresets("Wayfarer");
+DB_RoguelikeArena_DebugStatuePresets("Witch");
+DB_RoguelikeArena_DebugStatuePresets("Wizard");
+KBSECTION
+// Levels up the character.
+IF
+ObjectFlagSet("RoguelikeArena_DebugStatue_WasUsed", _Character, _)
+AND
+ObjectGetFlag(_Character, "RoguelikeArena_DebugStatue_LevelUp", 1)
+THEN
+CharacterLevelUp((CHARACTERGUID)_Character);
+
+// Adds gold to the character.
+IF
+ObjectFlagSet("RoguelikeArena_DebugStatue_WasUsed", _Character, _)
+AND
+ObjectGetFlag(_Character, "RoguelikeArena_DebugStatue_AddGold", 1)
+THEN
+CharacterAddGold((CHARACTERGUID)_Character, 99999);
+
+// Applies buffs to the character.
+IF
+ObjectFlagSet("RoguelikeArena_DebugStatue_WasUsed", _Character, _)
+AND
+ObjectGetFlag(_Character, "RoguelikeArena_DebugStatue_ApplyBuffs", 1)
+AND
+DB_RoguelikeArena_DebugStatueBuffs(_Status)
+THEN
+RemoveStatus(_Character, _Status);
+ApplyStatus(_Character, _Status, -1.0, 1, NULL_00000000-0000-0000-0000-000000000000);
+
+// Changes the preset of the character.
+IF
+ObjectFlagSet("RoguelikeArena_DebugStatue_WasUsed", _Character, _)
+AND
+DB_RoguelikeArena_DebugStatuePresets(_Preset)
+AND
+StringConcatenate("RoguelikeArena_DebugStatue_", _Preset, _PresetFlag)
+AND
+ObjectGetFlag(_Character, _PresetFlag, 1)
+THEN
+CharacterApplyHenchmanPreset((CHARACTERGUID)_Character, _Preset);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena_Lobby"

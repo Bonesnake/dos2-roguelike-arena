@@ -2,24 +2,35 @@ Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
 DB_RoguelikeArena_DebugItemTemplate("FUR_Dwarves_Citz_Chair_A_99e1cf50-64e5-4970-a58a-353b2b1992ed");
-
-DB_RoguelikeArena_DebugSurfaceCleanupSources((TRIGGERGUID)TRIGGERGUID_PointTrigger_001_26723216-bc03-4a90-b669-94ee2ceca3ca);
-DB_RoguelikeArena_DebugSurfaceCleanupSources(TRIGGERGUID_PointTrigger_002_471c0b3b-9e0b-4342-b8c6-e12e4ea2731c);
-DB_RoguelikeArena_DebugSurfaceCleanupSources(TRIGGERGUID_PointTrigger_003_1fe29b9a-336b-4d16-a32b-297a3f8bf151);
-DB_RoguelikeArena_DebugSurfaceCleanupSources(TRIGGERGUID_PointTrigger_004_8f6c39c5-1545-4897-9596-bc5f23608952);
-
 KBSECTION
 IF
-CharacterUsedItem(_Char, ITEMGUID_FUR_Dwarves_Citz_Chair_A_000_0e37dffc-8be7-4751-9027-6d783c2db1d8)
+CharacterUsedItem(_Char, ITEMGUID_BLD_Dwarves_Statue_Duna_A_Dynamic_001_6a330329-043f-44e6-a510-f447ce0b04db)
 AND
-DB_RoguelikeArena_DebugSurfaceCleanupSources(_Source)
-AND
-GetPosition(_Source, _X, _Y, _Z)
+DB_RoguelikeArena_CleanupSources(1, _Source)
 THEN
-DebugBreak("SHOULD DO SOME CLEANING NOW");
 RemoveSurfaceLayer(_Source, 0, 64.0);
 RemoveSurfaceLayer(_Source, 1, 64.0);
-CreateSurface(_Source, "SurfaceBlood", 64.0, -1.0);
+DebugBreak("Cleaned up debug surface");
+
+IF
+CharacterUsedItem(_Char, ITEMGUID_BLD_Dwarves_Statue_Duna_A_Dynamic_000_5fb875fb-cf41-4971-98f4-d639d966e23b)
+THEN
+SetFaction(CHARACTERGUID_RoguelikeArena_MeteorShower_000_a9e3de93-75fd-4812-ae2f-53124e52de9a, "Evil NPC");
+SetInArena(CHARACTERGUID_RoguelikeArena_MeteorShower_000_a9e3de93-75fd-4812-ae2f-53124e52de9a, 1);
+SetInArena(_Char, 1);
+// SetStoryEvent(CHARACTERGUID_QUEST_CoS_AotO_CaveInLocation_000_5572c5ef-327d-4c8b-a496-32b7326e1c06, "TryEnterCombat");
+
+IF
+CharacterUsedItem(_Char, ITEMGUID_BLD_Dwarves_Statue_Duna_A_Dynamic_001_311ad374-f424-4d60-a648-6ade0bf5c6c3)
+THEN
+SetFaction(CHARACTERGUID_RoguelikeArena_MeteorShower_000_a9e3de93-75fd-4812-ae2f-53124e52de9a, "Neutral NPC");
+SetInArena(CHARACTERGUID_RoguelikeArena_MeteorShower_000_a9e3de93-75fd-4812-ae2f-53124e52de9a, 0);
+SetInArena(_Char, 0);
+
+IF
+CharacterUsedItem(_Char, ITEMGUID_BLD_Dwarves_Statue_Duna_A_Dynamic_002_d5568301-f7dc-43eb-bb0e-3ce0ed88ec1a)
+THEN
+CharacterUseSkill(NULL_00000000-0000-0000-0000-000000000000, "Projectile_EnemyFireball", ITEMGUID_BLD_Dwarves_Statue_Duna_A_Dynamic_003_1ad49782-8f2e-423a-9562-4fa7bf60edbc, 1, 1);
 
 PROC
 PROC_RoguelikeArena_DebugBreakInteger((INTEGER)_Message)

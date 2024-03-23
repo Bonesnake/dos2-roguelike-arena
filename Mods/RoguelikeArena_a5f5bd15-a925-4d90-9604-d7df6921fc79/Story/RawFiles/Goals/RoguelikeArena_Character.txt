@@ -900,6 +900,22 @@ CharacterAddSourcePoints(_Character, _Points);
 //CharacterEquipItem(_Character, _Item);
 ////END_REGION
 
+PROC
+PROC_RoguelikeArena_CharacterFullRestore((CHARACTERGUID)_Character)
+AND
+CharacterGetMaxSourcePoints(_Character, _MaxSourcePoints)
+AND
+CharacterGetSourcePoints(_Character, _SourcePoints)
+AND
+IntegerSubtract(_MaxSourcePoints, _SourcePoints, _SourcePointsToRestore)
+THEN
+CharacterResurrect(_Character);
+CharacterSetHitpointsPercentage(_Character, 100.0);
+CharacterSetArmorPercentage(_Character, 100.0);
+CharacterSetMagicArmorPercentage(_Character, 100.0);
+CharacterResetCooldowns(_Character);
+CharacterAddSourcePoints(_Character, _SourcePointsToRestore);
+
 // Removes a character from the game.
 PROC
 PROC_RoguelikeArena_CharacterRemove((CHARACTERGUID)_Character)

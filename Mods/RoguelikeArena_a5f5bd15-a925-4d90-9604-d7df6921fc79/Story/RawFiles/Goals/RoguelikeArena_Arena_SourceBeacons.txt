@@ -1,0 +1,48 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_RoguelikeArena_SourceBeaconTemplate("RoguelikeArena_SourceBeacon_e5a92070-79ab-4ac6-b521-f8837bc16b46");
+KBSECTION
+PROC
+PROC_RoguelikeArena_SpawnSourceBeacons((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty)
+AND
+IntegerDivide(_Difficulty, 4, _DifficultyDivided)
+AND
+IntegerSum(_DifficultyDivided, 1, _MaxSourceBeacons)
+AND
+QRY_RoguelikeArena_RandomInclusive(1, _MaxSourceBeacons)
+AND
+DB_Singleton("RoguelikeArena_RandomResult", _SourceBeaconCount)
+THEN
+PROC_RoguelikeArena_SpawnSourceBeacons(_Arena, _Level, _Difficulty, _SourceBeaconCount);
+
+PROC
+PROC_RoguelikeArena_SpawnSourceBeacons((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty, (INTEGER)_Count)
+AND
+QRY_RoguelikeArena_CreateIndices(_Count)
+AND
+DB_RoguelikeArena_CreatedIndices(_)
+THEN
+PROC_RoguelikeArena_SpawnSourceBeacon(_Arena, _Level, _Difficulty);
+
+PROC
+PROC_RoguelikeArena_SpawnSourceBeacon((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty)
+AND
+DB_RoguelikeArena_SourceBeaconTemplate(_Template)
+AND
+DB_RoguelikeArena_ArenaInnerTriggers(_Arena, _Trigger)
+AND
+GetRandomPositionInTrigger(_Trigger, _X, _Y, _Z)
+AND
+CreateItemTemplateAtPosition(_Template, _X, _Y, _Z, _SourceBeacon)
+THEN
+PROC_RoguelikeArena_ItemRandomRotate(_SourceBeacon);
+PROC_RoguelikeArena_ItemTeleportToValidPosition(_SourceBeacon);
+PROC_RoguelikeArena_ItemSnapToGround(_SourceBeacon);
+ItemLevelUpTo(_SourceBeacon, _Level);
+PROC_RoguelikeArena_RegisterForCleanup(_SourceBeacon, _Arena);
+SetInArena(_SourceBeacon, 1);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena_Arena_Event"

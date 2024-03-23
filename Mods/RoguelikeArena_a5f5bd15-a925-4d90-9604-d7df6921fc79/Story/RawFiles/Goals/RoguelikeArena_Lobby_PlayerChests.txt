@@ -1,0 +1,15 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_GLO_LVHub_PlayerChests_Chest((ITEMGUID)ITEMGUID_FUR_Rich_Chest_A_Steel_PlayerChest_007_51a6a984-3eee-4c03-9913-8e23ae40ac4c);
+DB_GLO_LVHub_PlayerChests_Chest(ITEMGUID_FUR_Rich_Chest_A_Steel_PlayerChest_008_ba3dd70f-d656-4db3-8fb5-9770abf09773);
+DB_GLO_LVHub_PlayerChests_Chest(ITEMGUID_FUR_Rich_Chest_A_Steel_PlayerChest_009_dc9a8cc6-6033-4de6-a7ac-7a55795af4b3);
+DB_GLO_LVHub_PlayerChests_Chest(ITEMGUID_FUR_Rich_Chest_A_Steel_PlayerChest_010_fda07118-e14f-48b0-b968-cbdb951c0fd1);
+
+PROC_GLO_LVHub_PlayerChests_InitOnce();
+KBSECTION
+
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena_Lobby"

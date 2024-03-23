@@ -1,7 +1,7 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
-DB_WaypointInfo(ITEMGUID_RoguelikeArena_Tavern_WaypointShrine_345c44ed-755b-4896-93da-412cf31da5ae, TRIGGERGUID_RoguelikeArena_Tavern_WaypointTrigger_3fe39734-2021-413a-a5ac-1fa2d66d4c2f, "Tavern");
+DB_WaypointInfo(ITEMGUID_BLD_Raanaar_Waypointshrine_A_000_085364b8-f9e0-46ab-a697-abc39ebc1696, TRIGGERGUID_TeleportTrigger_049_d2a2b748-1ed3-4146-b371-ef1021f24e78, "Lobby");
 KBSECTION
 
 EXITSECTION

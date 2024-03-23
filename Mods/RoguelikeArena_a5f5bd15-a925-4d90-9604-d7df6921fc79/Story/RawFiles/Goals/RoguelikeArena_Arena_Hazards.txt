@@ -1,0 +1,74 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+// Min, max, min increase per difficulty, max increase per difficulty.
+DB_RoguelikeArena_HazardCountParameters(0, 2, 0, 1);
+
+DB_RoguelikeArena_HazardTemplates("RoguelikeArena_Hazard_OilBarrel_ef163eb6-74dc-4d5a-9f42-784bdbda0cc1");
+DB_RoguelikeArena_HazardTemplates("RoguelikeArena_Hazard_OozeBarrel_064fe822-b646-4c5d-8906-c474b953ad64");
+DB_RoguelikeArena_HazardTemplates("RoguelikeArena_Hazard_ExplodingPumpkin_22bb2d0d-cf33-4ad3-ba71-c5b184fd5b6a");
+DB_RoguelikeArena_HazardTemplates("RoguelikeArena_Hazard_ExplodingPlant_687dcae8-b0be-4cb2-bcf2-2b3d913dfe3f");
+// DB_RoguelikeArena_HazardTemplates("RoguelikeArena_Hazard_ExplosiveMine_fc93c9a5-922b-47b9-baea-1dc18b7d2874");
+// DB_RoguelikeArena_HazardTemplates("RoguelikeArena_Hazard_AcidMine_19d4821c-0b04-4b88-bc41-ba899a1384b0");
+
+PROC_RoguelikeArena_StringPoolAddHazards();
+KBSECTION
+PROC
+PROC_RoguelikeArena_SpawnHazards((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty)
+AND
+Random(4, _Random)
+AND
+DB_RoguelikeArena_HazardCountParameters(_HazardCountMin, _HazardCountMax, _HazardCountMinIncreasePerDifficulty, _HazardCountMaxIncreasePerDifficulty)
+AND
+IntegerProduct(_Difficulty, _HazardCountMinIncreasePerDifficulty, _HazardCountMinModifier)
+AND
+IntegerProduct(_Difficulty, _HazardCountMaxIncreasePerDifficulty, _HazardCountMaxModifier)
+AND
+IntegerSum(_HazardCountMin, _HazardCountMinModifier, _HazardCountMinModified)
+AND
+IntegerSum(_HazardCountMax, _HazardCountMaxModifier, _HazardCountMaxModified)
+AND
+QRY_RoguelikeArena_RandomInclusive(_HazardCountMinModified, _HazardCountMaxModified)
+AND
+DB_Singleton("RoguelikeArena_RandomResult", _HazardCount)
+THEN
+PROC_RoguelikeArena_SpawnHazards(_Arena, _Level, _Difficulty, _HazardCount);
+
+PROC
+PROC_RoguelikeArena_SpawnHazards((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty, (INTEGER)_Count)
+AND
+QRY_RoguelikeArena_CreateIndices(_Count)
+AND
+DB_RoguelikeArena_CreatedIndices(_)
+THEN
+PROC_RoguelikeArena_SpawnHazard(_Arena, _Level, _Difficulty);
+
+PROC
+PROC_RoguelikeArena_SpawnHazard((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty)
+AND
+QRY_RoguelikeArena_StringPoolSelectRandom("HazardPool")
+AND
+DB_RoguelikeArena_StringPoolSelectedValue("HazardPool", _Template)
+AND
+DB_RoguelikeArena_ArenaInnerTriggers(_Arena, _Trigger)
+AND
+GetRandomPositionInTrigger(_Trigger, _X, _Y, _Z)
+AND
+CreateItemTemplateAtPosition(_Template, _X, _Y, _Z, _Hazard)
+THEN
+PROC_RoguelikeArena_ItemRandomRotate(_Hazard);
+PROC_RoguelikeArena_ItemTeleportToValidPosition(_Hazard);
+PROC_RoguelikeArena_ItemSnapToGround(_Hazard);
+ItemLevelUpTo(_Hazard, _Level);
+PROC_RoguelikeArena_RegisterForCleanup(_Hazard, _Arena);
+
+PROC
+PROC_RoguelikeArena_StringPoolAddHazards()
+AND
+DB_RoguelikeArena_HazardTemplates(_Template)
+THEN
+PROC_RoguelikeArena_StringPoolAdd("HazardPool", _Template);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena_Arena_Event"

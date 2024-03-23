@@ -1,7 +1,7 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
-DB_SourceFountains(ITEMGUID_QUEST_SourceFountain_A_000_aacafbbf-04ac-4b5b-a363-29344a9de7b9, TRIGGERGUID_S_RoguelikeArena_SourceFountainTrigger_1d584fc6-9d13-4bf0-b619-f36761a37469);
+DB_SourceFountains(ITEMGUID_QUEST_SourceFountain_A_001_24ed4b4d-832d-4f58-b39b-8d71b80bbc9f, TRIGGERGUID_S_RoguelikeArena_SourceFountainTrigger_000_93a2cc02-4b87-4905-b8e3-73ebf0875639);
 KBSECTION
 
 EXITSECTION

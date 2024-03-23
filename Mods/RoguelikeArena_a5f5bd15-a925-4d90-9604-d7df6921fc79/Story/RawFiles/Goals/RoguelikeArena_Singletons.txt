@@ -1,8 +1,9 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
-DB_RoguelikeArena_Singleton_CurrentLevel(0);
-DB_RoguelikeArena_Singleton_RegionsPerLevel(5);
+DB_RoguelikeArena_Singleton_CurrentLevel(1);
+DB_RoguelikeArena_Singleton_CurrentDifficulty(0);
+DB_RoguelikeArena_Singleton_MaxDifficulty(5);
 KBSECTION
 IF
 DB_RoguelikeArena_Singleton_CurrentLevel((INTEGER)_NewLevel)
@@ -14,13 +15,22 @@ THEN
 NOT DB_RoguelikeArena_Singleton_CurrentLevel(_OldLevel);
 
 IF
-DB_RoguelikeArena_Singleton_RegionsPerLevel((INTEGER)_NewValue)
+DB_RoguelikeArena_Singleton_CurrentDifficulty((INTEGER)_NewDifficulty)
 AND
-DB_RoguelikeArena_Singleton_RegionsPerLevel(_OldValue)
+DB_RoguelikeArena_Singleton_CurrentDifficulty(_OldDifficulty)
 AND
-_NewValue != _OldValue
+_NewDifficulty != _OldDifficulty
 THEN
-NOT DB_RoguelikeArena_Singleton_RegionsPerLevel(_OldValue);
+NOT DB_RoguelikeArena_Singleton_CurrentDifficulty(_OldDifficulty);
+
+IF
+DB_RoguelikeArena_Singleton_MaxDifficulty((INTEGER)_NewDifficulty)
+AND
+DB_RoguelikeArena_Singleton_MaxDifficulty(_OldDifficulty)
+AND
+_NewDifficulty != _OldDifficulty
+THEN
+NOT DB_RoguelikeArena_Singleton_MaxDifficulty(_OldDifficulty);
 EXITSECTION
 
 ENDEXITSECTION

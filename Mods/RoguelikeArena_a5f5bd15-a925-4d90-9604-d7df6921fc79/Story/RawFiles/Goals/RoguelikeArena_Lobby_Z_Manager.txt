@@ -1,37 +1,64 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
-DB_RoguelikeArena_LobbyEnterTrigger((TRIGGERGUID)TRIGGERGUID_RoguelikeArena_Tavern_Enter_d38fe29b-49f0-485a-8045-d5a9e1648109);
-DB_RoguelikeArena_LobbyExitItem((ITEMGUID)ITEMGUID_RoguelikeArena_Tavern_Exit_8b50f18d-d5f2-486c-9813-5bf79bceeff6);
+DB_RoguelikeArena_RegionTeleportTriggers(0, TRIGGERGUID_TeleportTrigger_050_e3dbd68b-b7e0-4903-bc11-5717f65ff068);
 
-PROC_RoguelikeArena_RegisterLobbyTeleporters();
+DB_RoguelikeArena_LobbyTeleporterItem((ITEMGUID)ITEMGUID_RoguelikeArena_Portal_000_ff11d147-61e9-44bc-a5f8-c106996b875d);
 KBSECTION
-// Registers lobby teleporter item and trigger.
-PROC
-PROC_RoguelikeArena_RegisterLobbyTeleporters()
-AND
-DB_RoguelikeArena_LobbyExitItem(_Item)
-AND
-DB_RoguelikeArena_LobbyEnterTrigger(_Trigger)
-THEN
-PROC_RoguelikeArena_RegisterTeleporterItem(_Item, 1);
-PROC_RoguelikeArena_RegisterTeleporterTrigger(_Trigger, 0);
-
-// Resets regions, starts a new one and makes a teleport request.
 IF
 CharacterUsedItem(_Character, _UsedItem)
 AND
-DB_RoguelikeArena_LobbyExitItem(_UsedItem)
+DB_RoguelikeArena_LobbyTeleporterItem(_UsedItem)
+THEN
+PROC_RoguelikeArena_UseLobbyTeleporter(_Character);
+
+// Progresses the arena.
+PROC
+PROC_RoguelikeArena_UseLobbyTeleporter((CHARACTERGUID)_Character)
+AND
+QRY_RoguelikeArena_IsCurrentChallengeComplete()
+AND
+QRY_RoguelikeArena_IsCurrentArenaClear()
+THEN
+PROC_RoguelikeArena_ProgressArena();
+
+// Resets the active arena and generates a new one.
+PROC
+PROC_RoguelikeArena_UseLobbyTeleporter(_Character)
+AND
+QRY_RoguelikeArena_IsCurrentChallengeComplete()
+AND
+QRY_RoguelikeArena_IsCurrentArenaClear()
 AND
 DB_RoguelikeArena_Singleton_CurrentLevel(_CurrentLevel)
 AND
-IntegerSum(_CurrentLevel, 1, _NextLevel)
-AND
-IntegerMin(_NextLevel, 35, _NextLevelCorrected)
+DB_RoguelikeArena_Singleton_CurrentDifficulty(_CurrentDifficulty)
 THEN
-DB_RoguelikeArena_Singleton_CurrentLevel(_NextLevelCorrected);
-PROC_RoguelikeArena_ResetRegions();
-PROC_RoguelikeArena_StartNewRegion(_NextLevelCorrected);
+PROC_RoguelikeArena_ResetActiveArena();
+PROC_RoguelikeArena_StartNewArena(_CurrentLevel, _CurrentDifficulty);
+
+PROC
+PROC_RoguelikeArena_UseLobbyTeleporter(_Character)
+AND
+DB_RoguelikeArena_ActiveArena(_Arena, _, _)
+AND
+DB_RoguelikeArena_RegionTeleportTriggers(_Arena, _Trigger)
+THEN
+TeleportTo(_Character, _Trigger, "", 1);
+
+
+// Prevents the use of the teleporter in combat.
+PROC
+ProcBlockUseOfItem(_Player, _Item)
+AND
+DB_RoguelikeArena_LobbyTeleporterItem(_Item)
+AND
+DB_IsPlayer(_Player)
+AND
+DB_CombatCharacters(_Player, _)
+THEN
+DB_CustomUseItemResponse(_Player, _Item, 0);
+Proc_StartDialog(1, "GLO_AD_CannotUseNow", _Player);
 EXITSECTION
 
 ENDEXITSECTION

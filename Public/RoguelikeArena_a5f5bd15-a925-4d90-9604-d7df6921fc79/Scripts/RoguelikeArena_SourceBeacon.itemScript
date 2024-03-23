@@ -1,0 +1,74 @@
+INIT
+	ITEM:__Me
+	EXTERN FLOAT:%Range = 4.0
+	EXTERN FLOAT:%GoodPulseChance = 66.6
+	EXTERN STRING:%PulseEffect = "RoguelikeArena_SourceBeacon_Pulse"
+	EXTERN STRING:%CoreChargingEffect = "RS3_FX_LTS_Raanaar_Lamp_C_On_01"
+	EXTERN STRING:%CoreGoodEffect = "RoguelikeArena_SourceBeacon_Core_On_Green"
+	EXTERN STRING:%CoreBadEffect = "RoguelikeArena_SourceBeacon_Core_On_Red"
+	EXTERN STRING:%CoreChargedSound = "SE_RC_BeyondTheGate_PuzzlePillars_Activate_Impact"
+	INT64:%CoreFx = null
+	STATUS:%Status
+
+EVENTS
+EVENT SourceBeacon_OnInit
+ON
+	OnInit()
+ACTIONS
+	ItemPlayLoopEffect(%CoreFx,__Me,%CoreChargingEffect)
+
+EVENT SourceBeacon_OnPulse
+VARS
+	CHARACTER:_Char
+ON
+	OnIterateCharacter(_Char,"RoguelikeArena_SourceBeacon_Pulse")
+ACTIONS
+	CharacterApplyStatus(_Char,%Status,2,1)
+	
+BEHAVIOUR
+REACTION SourceBeacon_Charging, 1000
+VARS
+	INT:_Rand
+USAGE COMBAT
+ACTIONS
+	IF "c1"
+		IsInActiveTurn(__Me)
+	THEN
+		Sleep(0.5)
+		StopLoopEffect(%CoreFx)
+		GetRandomBetween(_Rand,1,100)
+		IF "c1|c2"
+			IsLessThen(_Rand,%GoodPulseChance)
+			IsEqual(_Rand,%GoodPulseChance)
+		THEN
+			ItemPlayLoopEffect(%CoreFx,__Me,%CoreGoodEffect)
+			GetRandom(%Status,"BLESSED","CLEAR_MINDED","DEATH_RESIST","DEFLECTING","EXTRA_TURN","FORTIFIED","GROUNDED","HASTED","HEALING","HOLY_FIRE","INNER_DEMON","INVISIBLE","INVULNERABLE","MAGIC_SHELL","REGENERATION","SPIDER_LEGS","THICK_OF_THE_FIGHT","WIND_WALKER","WINGS")
+		ELSE
+			ItemPlayLoopEffect(%CoreFx,__Me,%CoreBadEffect)
+			GetRandom(%Status,"ACID","BLEEDING","BLIND","BURNING","CHICKEN","CHILLED","CRIPPLED","CURSED","DAMAGE_ON_MOVE","DEAF","DECAYING_TOUCH","DISARMED","DISEASED","DRUNK","ENRAGED","FEAR","FROZEN","KNOCKED_DOWN","MADNESS","MUTED","NECROFIRE","PETRIFIED","SHOCKED","SLOWED","SOURCE_MUTED","STUNNED","UNCONSCIOUS","UNHEALABLE","WARM","WET")
+		ENDIF
+		PlaySound(__Me,%CoreChargedSound)
+		Sleep(2.0)
+		EndTurn(__Me)
+		SetPriority("SourceBeacon_Pulsing",1000)
+		SetPriority("SourceBeacon_Charging",0)
+	ENDIF
+
+REACTION SourceBeacon_Pulsing, 0
+USAGE COMBAT
+ACTIONS
+	IF "c1"
+		IsInActiveTurn(__Me)
+	THEN
+		Sleep(0.5)
+		ItemPlayEffect(__Me,%PulseEffect)
+		IterateCharactersNear(__Me,%Range,"RoguelikeArena_SourceBeacon_Pulse")
+		Sleep(0.5)
+		StopLoopEffect(%CoreFx)
+		ItemPlayLoopEffect(%CoreFx,__Me,%CoreChargingEffect)
+		Sleep(2.0)
+		EndTurn(__Me)
+		SetPriority("SourceBeacon_Charging",1000)
+		SetPriority("SourceBeacon_Pulsing",0)
+	ENDIF
+	

@@ -6,7 +6,7 @@
         <node id="root">
             <attribute id="Description" value="" type="23" />
             <attribute id="IsTemplate" value="0" type="19" />
-            <attribute id="Path" value="" type="23" />
+            <attribute id="Path" value="RoguelikeArena/Regions/" type="23" />
         </node>
     </region>
 </save>

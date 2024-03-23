@@ -21,6 +21,6 @@ THEN
 GoalCompleted;
 EXITSECTION
 PROC_RoguelikeArena_InitLobbyStory();
-PROC_RoguelikeArena_InitRegionStory();
+PROC_RoguelikeArena_InitArenaStory();
 ENDEXITSECTION
 ParentTargetEdge "RoguelikeArena"

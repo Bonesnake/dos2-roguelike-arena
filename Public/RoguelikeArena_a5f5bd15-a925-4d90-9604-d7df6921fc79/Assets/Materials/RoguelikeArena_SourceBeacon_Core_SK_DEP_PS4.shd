@@ -1,0 +1,272 @@
+[Vertex shader]
+
+
+#include "Shaders/PS4/srt_struct.h"
+#include "Shaders/PS4/CommonHelpers.shdh"
+
+struct VertexOutput
+{
+	float4 ProjectedPosition : S_Position;
+	float4 WorldPosition : TEXCOORD0;
+	float3 WorldNormal : TEXCOORD1;
+	float3 ObjectWorldPosition : TEXCOORD2;
+	float2 TexCoords0 : TEXCOORD3;
+	float3 WorldBinormal : TEXCOORD4;
+	float3 WorldTangent : TEXCOORD5;
+	float3 WorldView : TEXCOORD6;
+};
+
+@uniform row_major float4x4 WorldMatrix;
+VertexOutput main(uint id : S_VERTEX_ID,
+	SrtVsData srtData : S_SRT_DATA)
+{
+	// Retrieve SRT data:
+	@uniform(global_View);
+	@uniform(global_ViewProjection);
+	@uniform(global_ViewPos);
+	@uniform(WorldMatrix);
+
+	VertexOutput Out;
+
+	row_major float3x4 boneMatrix1 = SRT_VS_BONES_BONE(SRT_VS_BONES_INDICIES(id).x);
+	row_major float3x4 boneMatrix2 = SRT_VS_BONES_BONE(SRT_VS_BONES_INDICIES(id).y);
+	row_major float3x4 boneMatrix3 = SRT_VS_BONES_BONE(SRT_VS_BONES_INDICIES(id).z);
+	row_major float3x4 boneMatrix4 = SRT_VS_BONES_BONE(SRT_VS_BONES_INDICIES(id).w);
+	//World space position
+	float4 worldPosition = float4(0.0f, 0.0f, 0.0f, 1.0f);
+	float4 tempPosSkinned = float4(SRT_VS_BUFFER_POSITION(id).xyz, 1.0f);
+	worldPosition.xyz = (worldPosition.xyz + (SRT_VS_BONES_WEIGHTS(id).x * mul(boneMatrix1, tempPosSkinned)));
+	worldPosition.xyz = (worldPosition.xyz + (SRT_VS_BONES_WEIGHTS(id).y * mul(boneMatrix2, tempPosSkinned)));
+	worldPosition.xyz = (worldPosition.xyz + (SRT_VS_BONES_WEIGHTS(id).z * mul(boneMatrix3, tempPosSkinned)));
+	worldPosition.xyz = (worldPosition.xyz + (SRT_VS_BONES_WEIGHTS(id).w * mul(boneMatrix4, tempPosSkinned)));
+	worldPosition = mul(WorldMatrix, worldPosition);
+
+	//Projected position
+	float4 projectedPosition = mul(global_ViewProjection, worldPosition);
+
+	//Pass projected position to pixel shader
+	Out.ProjectedPosition = projectedPosition;
+
+	//Pass world position to pixel shader
+	Out.WorldPosition = worldPosition;
+
+	//Compute local tangent frame
+	row_major float3x3 LocalTangentFrame = GetTangentFrame(SRT_VS_BUFFER_QTANGENT(id));
+
+	float3 LocalNormal = LocalTangentFrame[2];
+
+	//Normalize Local Normal
+	float3 localNormalNormalized = normalize(LocalNormal);
+
+	//World space Normal
+	float3 worldNormal = float3(0.0f, 0.0f, 0.0f);
+	worldNormal = (worldNormal + (SRT_VS_BONES_WEIGHTS(id).x * mul(boneMatrix1, float4(localNormalNormalized, 0.0f))));
+	worldNormal = (worldNormal + (SRT_VS_BONES_WEIGHTS(id).y * mul(boneMatrix2, float4(localNormalNormalized, 0.0f))));
+	worldNormal = (worldNormal + (SRT_VS_BONES_WEIGHTS(id).z * mul(boneMatrix3, float4(localNormalNormalized, 0.0f))));
+	worldNormal = (worldNormal + (SRT_VS_BONES_WEIGHTS(id).w * mul(boneMatrix4, float4(localNormalNormalized, 0.0f))));
+	worldNormal = mul(WorldMatrix, float4(worldNormal, 0.0f)).xyz;
+
+	//Normalize World Normal
+	float3 worldNormalNormalized = normalize(worldNormal);
+
+	Out.WorldNormal = worldNormalNormalized;
+
+	//Object World Position
+	float3 objectWorldPosition = float3(WorldMatrix[0].w, WorldMatrix[1].w, WorldMatrix[2].w);
+
+	//Pass object world position to pixel shader
+	Out.ObjectWorldPosition = objectWorldPosition;
+
+	Out.TexCoords0 = SRT_VS_BUFFER_TEXCOORD0(id);
+	float3 LocalBinormal = LocalTangentFrame[1];
+
+	//Normalize Local Binormal
+	float3 localBinormalNormalized = normalize(LocalBinormal);
+
+	//World space Binormal
+	float3 worldBinormal = float3(0.0f, 0.0f, 0.0f);
+	worldBinormal = (worldBinormal + (SRT_VS_BONES_WEIGHTS(id).x * mul(boneMatrix1, float4(localBinormalNormalized, 0.0f))));
+	worldBinormal = (worldBinormal + (SRT_VS_BONES_WEIGHTS(id).y * mul(boneMatrix2, float4(localBinormalNormalized, 0.0f))));
+	worldBinormal = (worldBinormal + (SRT_VS_BONES_WEIGHTS(id).z * mul(boneMatrix3, float4(localBinormalNormalized, 0.0f))));
+	worldBinormal = (worldBinormal + (SRT_VS_BONES_WEIGHTS(id).w * mul(boneMatrix4, float4(localBinormalNormalized, 0.0f))));
+	worldBinormal = mul(WorldMatrix, float4(worldBinormal, 0.0f)).xyz;
+
+	//Normalize World Binormal
+	float3 worldBinormalNormalized = normalize(worldBinormal);
+
+	Out.WorldBinormal = worldBinormalNormalized;
+
+	float3 LocalTangent = LocalTangentFrame[0];
+
+	//Normalize Local Tangent
+	float3 localTangentNormalized = normalize(LocalTangent);
+
+	//World space Tangent
+	float3 worldTangent = float3(0.0f, 0.0f, 0.0f);
+	worldTangent = (worldTangent + (SRT_VS_BONES_WEIGHTS(id).x * mul(boneMatrix1, float4(localTangentNormalized, 0.0f))));
+	worldTangent = (worldTangent + (SRT_VS_BONES_WEIGHTS(id).y * mul(boneMatrix2, float4(localTangentNormalized, 0.0f))));
+	worldTangent = (worldTangent + (SRT_VS_BONES_WEIGHTS(id).z * mul(boneMatrix3, float4(localTangentNormalized, 0.0f))));
+	worldTangent = (worldTangent + (SRT_VS_BONES_WEIGHTS(id).w * mul(boneMatrix4, float4(localTangentNormalized, 0.0f))));
+	worldTangent = mul(WorldMatrix, float4(worldTangent, 0.0f)).xyz;
+
+	//Normalize World Tangent
+	float3 worldTangentNormalized = normalize(worldTangent);
+
+	Out.WorldTangent = worldTangentNormalized;
+
+	//World space view vector
+	float3 worldView = (global_ViewPos.xyz - worldPosition.xyz);
+
+	Out.WorldView = worldView;
+
+
+	return Out;
+}
+
+
+[Fragment shader]
+
+
+#include "Shaders/PS4/srt_struct.h"
+#include "Shaders/PS4/CommonHelpers.shdh"
+
+struct PixelInput
+{
+	float4 ProjectedPosition : S_Position;
+	float4 WorldPosition : TEXCOORD0;
+	float3 WorldNormal : TEXCOORD1;
+	float3 ObjectWorldPosition : TEXCOORD2;
+	float2 TexCoords0 : TEXCOORD3;
+	float3 WorldBinormal : TEXCOORD4;
+	float3 WorldTangent : TEXCOORD5;
+	float3 WorldView : TEXCOORD6;
+};
+
+struct PixelOutput
+{
+};
+
+@uniform float FloatParameter_GlowRadius;
+@uniform float3 Vector3Parameter_DistanceGlowColor;
+@uniform SamplerState _DefaultWrapSampler;
+@uniform Texture2D Texture2DParameter_6cacb6396fe94aef83ac4f17e82f5b83_DefaultWrapSampler;
+@uniform Texture2D Texture2DParameter_aa6a0d9586aa46d38f31ebadaffef4d1_DefaultWrapSampler;
+@uniform float FloatParameter_DistanceGlowStrength;
+@uniform Texture2D Texture2DParameter_NM_DefaultWrapSampler;
+void CalculateMatOpacity(SrtPsData srtData : S_SRT_DATA,
+	float4 in_0,
+	float3 in_1,
+	float3 in_2,
+	float3 in_3,
+	float2 in_4,
+	float3 in_5,
+	out float out_0)
+{
+	// Retrieve SRT data:
+	@uniform(global_Data);
+	@uniform(global_PlayerPosition0);
+	@uniform(global_PlayerPosition1);
+	@uniform(global_PlayerPosition2);
+	@uniform(global_PlayerPosition3);
+	@uniform(FloatParameter_GlowRadius);
+	@uniform(Vector3Parameter_DistanceGlowColor);
+	@uniform(_DefaultWrapSampler);
+	@uniform(Texture2DParameter_6cacb6396fe94aef83ac4f17e82f5b83_DefaultWrapSampler);
+	@uniform(Texture2DParameter_aa6a0d9586aa46d38f31ebadaffef4d1_DefaultWrapSampler);
+	@uniform(FloatParameter_DistanceGlowStrength);
+	@uniform(Texture2DParameter_NM_DefaultWrapSampler);
+
+	//Custom Material Lighting
+	float Local0 = (1.0f / FloatParameter_GlowRadius);
+	float3 Local2 = (global_PlayerPosition0.xyz - in_0.xyz);
+	float Local3 = length(Local2);
+	float Local1 = ((saturate((1.0f - (Local3 * Local0))) * abs(dot(in_1, (Local2 * (1.0f / (Local3 + 1E-23f)))))) * global_PlayerPosition0.w);
+	float3 Local5 = (global_PlayerPosition1.xyz - in_0.xyz);
+	float Local6 = length(Local5);
+	float Local4 = ((saturate((1.0f - (Local6 * Local0))) * abs(dot(in_1, (Local5 * (1.0f / (Local6 + 1E-23f)))))) * global_PlayerPosition1.w);
+	float3 Local8 = (global_PlayerPosition2.xyz - in_0.xyz);
+	float Local9 = length(Local8);
+	float Local7 = ((saturate((1.0f - (Local9 * Local0))) * abs(dot(in_1, (Local8 * (1.0f / (Local9 + 1E-23f)))))) * global_PlayerPosition2.w);
+	float3 Local11 = (global_PlayerPosition3.xyz - in_0.xyz);
+	float Local12 = length(Local11);
+	float Local10 = ((saturate((1.0f - (Local12 * Local0))) * abs(dot(in_1, (Local11 * (1.0f / (Local12 + 1E-23f)))))) * global_PlayerPosition3.w);
+	float Local13 = max(max(max(Local1, Local4), Local7), Local10);
+	float3 Local14 = (in_2 - in_3);
+	float2 Local15 = Local14.xy;
+	float2 Local16 = Local14.zy;
+	float Local17 = in_1.z;
+	float Local18 = abs(Local17);
+	float Local19 = in_1.x;
+	float Local20 = abs(Local19);
+	float Local21 = step(Local18, Local20);
+	float2 Local22 = lerp(Local15, Local16, float2(Local21, Local21));
+	float2 Local23 = Local14.xz;
+	float Local24 = lerp(Local18, Local20, Local21);
+	float Local25 = in_1.y;
+	float Local26 = abs(Local25);
+	float Local27 = step(Local24, Local26);
+	float2 Local28 = lerp(Local22, Local23, float2(Local27, Local27));
+	float2 Local29 = (2.0f * Local28);
+	float Local30 = (global_Data.x * 4.0f);
+	float4 Local31 = Texture2DParameter_6cacb6396fe94aef83ac4f17e82f5b83_DefaultWrapSampler.Sample(_DefaultWrapSampler, (Local28 + (float2(0.1f, 0.1f) * global_Data.x)));
+	//[Local31] Get needed components
+	float3 Local32 = Local31.xyz;
+	float3 Local33 = (Local32 * 2.0f);
+	float Local34 = Local33.x;
+	float2 Local35 = ((Local29 + (float2(0.0f, 0.175f) * Local30)) + Local34);
+	float4 Local36 = Texture2DParameter_aa6a0d9586aa46d38f31ebadaffef4d1_DefaultWrapSampler.Sample(_DefaultWrapSampler, Local35);
+	//[Local36] Get needed components
+	float Local37 = Local36.x;
+	float Local38 = Local33.z;
+	float2 Local39 = ((Local29 + (float2(0.0f, -0.15f) * Local30)) + Local38);
+	float4 Local40 = Texture2DParameter_aa6a0d9586aa46d38f31ebadaffef4d1_DefaultWrapSampler.Sample(_DefaultWrapSampler, Local39);
+	//[Local40] Get needed components
+	float Local41 = Local40.x;
+	float Local42 = (Local37 + Local41);
+	float Local43 = pow(Local42, 3.0f);
+	float3 Local44 = (Vector3Parameter_DistanceGlowColor * Local43);
+	float3 Local45 = (Local13 * Local44);
+	float3 Local46 = (Local45 * FloatParameter_DistanceGlowStrength);
+	float4 Local47 = Texture2DParameter_NM_DefaultWrapSampler.Sample(_DefaultWrapSampler, in_4);
+	//[Local47] Convert normalmaps to tangent space vectors
+	Local47.xyzw = Local47.wzyx;
+	Local47.xyz = ((Local47.xyz * 2.0f) - 1.0f);
+	Local47.z = -(Local47.z);
+	Local47.xyz = normalize(Local47.xyz);
+	//[Local47] Get needed components
+	float3 Local48 = Local47.xyz;
+	float Local49 = pow((1.0f - saturate(dot(Local48, in_5))), 1.0f);
+	float3 Local50 = (Local46 + Local49);
+	float3 Local51 = clamp(Local50, 0.75f, 1.0f);
+	out_0 = Local51.x;
+}
+
+PixelOutput main(PixelInput In,
+	SrtPsData srtData : S_SRT_DATA)
+{
+	PixelOutput Out;
+
+	float matOpacity;
+	//Normalize World Normal
+	float3 worldNormalNormalized = normalize(In.WorldNormal);
+
+	//Normalize World Binormal
+	float3 worldBinormalNormalized = normalize(In.WorldBinormal);
+
+	//Normalize World Tangent
+	float3 worldTangentNormalized = normalize(In.WorldTangent);
+
+	row_major float3x3 NBT = row_major float3x3(worldTangentNormalized, worldNormalNormalized, worldBinormalNormalized);
+
+	//Normalized world space view vector
+	float3 worldViewNormalized = normalize(In.WorldView);
+
+	//Calculate tangent space view vector
+	float3 tangentView = mul(NBT, worldViewNormalized);
+
+	CalculateMatOpacity(srtData, In.WorldPosition, worldNormalNormalized, In.WorldPosition.xyz, In.ObjectWorldPosition, In.TexCoords0, tangentView, matOpacity);
+	clip((matOpacity - 0.5f));
+
+
+	return Out;
+}

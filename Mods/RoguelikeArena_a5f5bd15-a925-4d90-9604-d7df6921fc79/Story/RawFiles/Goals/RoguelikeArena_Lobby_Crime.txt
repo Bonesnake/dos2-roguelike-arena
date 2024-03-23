@@ -1,0 +1,18 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_ItemOwnerShipTriggers("RoguelikeArena_Level", TRIGGERGUID_TavernArea_d5ac0223-7266-45ba-90e7-e76bb4b94d02, CHARACTERGUID_S_RoguelikeArena_Bartender_50b21ab5-8779-4c82-a6c0-bd2e27cbbc93);
+DB_ItemOwnerShipTriggers("RoguelikeArena_Level", TRIGGERGUID_MerchantArea_d2e3cff2-3936-4931-9b13-330598590763, CHARACTERGUID_S_RoguelikeArena_Guardian_11eebea1-a79f-47b7-b92b-b3cec4cd35b1);
+DB_ItemOwnerShipTriggers("RoguelikeArena_Level", TRIGGERGUID_BoxTrigger_000_61cc5bdc-7d26-46a1-9646-c8bcd2c5f776, CHARACTERGUID_S_RoguelikeArena_WeaponAndShieldTrader_1a115a4d-0c01-4da6-95a6-d9137df04f03);
+DB_ItemOwnerShipTriggers("RoguelikeArena_Level", TRIGGERGUID_BoxTrigger_001_5623c440-c1e9-452e-8146-a656721b01be, CHARACTERGUID_S_RoguelikeArena_ArmorAndJewelryTrader_b0c1897b-221d-4894-b678-96de4a173c72);
+DB_ItemOwnerShipTriggers("RoguelikeArena_Level", TRIGGERGUID_BoxTrigger_002_819919ca-2de3-4aa9-b6e5-a1eb98277ee3, CHARACTERGUID_S_RoguelikeArena_SkillbookTrader_210a3108-6e05-4807-bac5-bc8146ae3b13);
+DB_ItemOwnerShipTriggers("RoguelikeArena_Level", TRIGGERGUID_BoxTrigger_003_f56374ad-2ab4-4a22-9317-85799905ec48, CHARACTERGUID_S_RoguelikeArena_GeneralTrader_a7943bfa-bb3f-4eff-bc42-d8d293fd6afd);
+DB_ItemOwnerShipTriggers("RoguelikeArena_Level", TRIGGERGUID_Hallway_7a1c2bfc-cb44-4f59-b679-27cc7fe3f3bc, CHARACTERGUID_S_RoguelikeArena_Guardian_11eebea1-a79f-47b7-b92b-b3cec4cd35b1);
+// DB_ItemOwnerShipTriggers("RoguelikeArena_Level", TRIGGERGUID_TrainingArea_f7cdc6f3-c0e2-41fb-809c-151a0e9cd0dc, CHARACTERGUID_S_RoguelikeArena_Guardian_11eebea1-a79f-47b7-b92b-b3cec4cd35b1);
+// DB_ItemOwnerShipTriggers("RoguelikeArena_Level", TRIGGERGUID_RestingArea_4249981f-a56a-45c5-97a4-40f778d38ccf, CHARACTERGUID_S_RoguelikeArena_Guardian_11eebea1-a79f-47b7-b92b-b3cec4cd35b1);
+KBSECTION
+
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena_Lobby"

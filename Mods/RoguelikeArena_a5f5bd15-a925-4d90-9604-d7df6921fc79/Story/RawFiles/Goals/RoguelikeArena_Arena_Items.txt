@@ -1,0 +1,92 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_RoguelikeArena_ArenaItems(1, (ITEMGUID)ITEMGUID_FUR_Pris_Ballchain_A_000_b17f985c-9df7-48f3-8879-c958916594d9);
+DB_RoguelikeArena_ArenaItems(1, ITEMGUID_LTS_Humans_Dungeon_Coalbasket_A_000_6928b13c-07f9-42e7-bf4b-1f1c3295272d);
+DB_RoguelikeArena_ArenaItems(1, ITEMGUID_LTS_Humans_Dungeon_Coalbasket_A_001_cdd7d4c6-739e-40b0-98c8-d7e75b8a81d7);
+DB_RoguelikeArena_ArenaItems(1, ITEMGUID_LTS_Humans_Dungeon_Coalbasket_A_002_85a87b8f-d2a6-4b05-b0bf-1c08fae8b746);
+DB_RoguelikeArena_ArenaItems(1, ITEMGUID_LTS_Humans_Dungeon_Coalbasket_A_003_4dfe660f-7686-40e5-b089-236dbe0bc6a7);
+DB_RoguelikeArena_ArenaItems(1, ITEMGUID_LTS_Humans_Dungeon_Torch_Small_F_000_bdcc612e-3972-407d-aaa6-b030585435f0);
+DB_RoguelikeArena_ArenaItems(1, ITEMGUID_LTS_Humans_Dungeon_Torch_Small_F_001_186eff9b-c3ec-4af9-a92c-f74729ce5f49);
+DB_RoguelikeArena_ArenaItems(1, ITEMGUID_LTS_Humans_Dungeon_Torch_Small_F_002_79c37cd1-8690-42f7-8504-d9bef2f7c479);
+DB_RoguelikeArena_ArenaItems(1, ITEMGUID_LTS_Humans_Dungeon_Torch_Small_F_003_83e61937-b327-49ee-b337-6a4f1833e161);
+DB_RoguelikeArena_ArenaItems(1, ITEMGUID_LTS_Humans_Dungeon_Torch_Small_F_004_425e3e85-42e1-4999-ab44-75e2ddc77d26);
+DB_RoguelikeArena_ArenaItems(1, ITEMGUID_LTS_Humans_Dungeon_Torch_Small_F_005_232f31a0-4265-49b9-a96d-a5e441e368eb);
+DB_RoguelikeArena_ArenaItems(1, ITEMGUID_LTS_Humans_Dungeon_Torch_Small_F_006_0059e3f5-c25b-4903-af4d-f11295abcae9);
+DB_RoguelikeArena_ArenaItems(1, ITEMGUID_LTS_Humans_Dungeon_Torch_Small_F_007_8fe36711-0cb7-41b4-876b-904867d3871f);
+DB_RoguelikeArena_ArenaItems(1, ITEMGUID_LTS_Humans_Dungeon_Torch_Small_F_008_85652b82-5d33-492f-9398-f7210744de72);
+DB_RoguelikeArena_ArenaItems(1, ITEMGUID_LTS_Humans_Dungeon_Torch_Small_F_009_c3eb797f-7ae8-4611-8c92-5d6e6052bf5c);
+DB_RoguelikeArena_ArenaItems(1, ITEMGUID_LTS_Humans_Dungeon_Torch_Small_F_010_becdff54-a762-4b2d-bb75-ad29df572e4d);
+DB_RoguelikeArena_ArenaItems(1, ITEMGUID_LTS_Humans_Dungeon_Torch_Small_F_011_5d784a32-c50c-4499-bf0d-329c3c7f3f16);
+DB_RoguelikeArena_ArenaItems(1, ITEMGUID_LTS_Humans_Dungeon_Torch_Small_F_014_826abc2d-3ca0-46e2-bbe5-cc84e5cf0bfb);
+DB_RoguelikeArena_ArenaItems(1, ITEMGUID_LTS_Humans_Dungeon_Torch_Small_F_015_248dcfa2-bc94-4f6e-b9a1-e2cf553ccd5c);
+DB_RoguelikeArena_ArenaItems(1, ITEMGUID_SKEL_Humans_B_000_bdb95879-b024-4164-a365-40318b27afb5);
+DB_RoguelikeArena_ArenaItems(1, ITEMGUID_SKEL_Humans_D_000_e16a161c-8046-4c7f-b411-154a2992fb50);
+DB_RoguelikeArena_ArenaItems(1, ITEMGUID_SKEL_Humans_I_000_ef1274f4-1035-4985-a91c-bb30269d6f9b);
+
+DB_RoguelikeArena_ArenaItems(2, ITEMGUID_FUR_Poor_Bar_Stool_B_012_141f5673-2971-4093-8e75-aa8ab4c7680c);
+DB_RoguelikeArena_ArenaItems(2, ITEMGUID_LTS_Humans_Dungeon_Torch_Small_E_000_0f87edee-903b-4673-a6b5-cb792ddd64e9);
+DB_RoguelikeArena_ArenaItems(2, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_F1_001_0c377e9f-ce2b-4e13-982e-fa776ef95cad);
+DB_RoguelikeArena_ArenaItems(2, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_F1_002_bc43e938-0071-40e0-86cc-364606e51c85);
+DB_RoguelikeArena_ArenaItems(2, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_F2_000_d74ff370-793a-4088-9507-4b5ccf872631);
+DB_RoguelikeArena_ArenaItems(2, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_F2_001_911b4e78-0dae-48e1-ba64-6eededca8eaf);
+DB_RoguelikeArena_ArenaItems(2, ITEMGUID_LTS_Ship_Exterior_Lantern_000_d2f0fe12-17e0-43ae-b829-b5baa7a1c35a);
+DB_RoguelikeArena_ArenaItems(2, ITEMGUID_LTS_Ship_Exterior_Lantern_001_a11aea0c-c7fd-4d3f-86f8-4378afa25825);
+DB_RoguelikeArena_ArenaItems(2, ITEMGUID_LTS_Ship_Exterior_Lantern_002_8cef2587-440c-414a-b7d5-2d68b09be259);
+DB_RoguelikeArena_ArenaItems(2, ITEMGUID_LTS_Ship_Exterior_Lantern_003_51e44cf9-2ddd-468d-804a-3b017160dab9);
+
+DB_RoguelikeArena_ArenaItems(3, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_E_000_c5509b69-e355-4857-afcf-05943682b8ab);
+DB_RoguelikeArena_ArenaItems(3, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_E_001_c64db9ac-ab25-47ee-a725-c9a5c8817ae8);
+DB_RoguelikeArena_ArenaItems(3, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_E_002_aabd393f-10b4-4b79-9957-0f1684129dc8);
+DB_RoguelikeArena_ArenaItems(3, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_E_003_eeb8e0fd-9908-484c-8fa3-407268809e7f);
+DB_RoguelikeArena_ArenaItems(3, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_E_004_422ae7af-1c8a-4e49-bdcd-b1d31908e5ba);
+DB_RoguelikeArena_ArenaItems(3, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_E_005_fb67d01e-341d-4fed-ad94-b8130d21ffce);
+DB_RoguelikeArena_ArenaItems(3, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_E_006_fde4bafe-b7e7-40e7-8317-895b7038998e);
+DB_RoguelikeArena_ArenaItems(3, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_E_007_dcb34f37-679b-47a0-b4aa-de82266005fd);
+DB_RoguelikeArena_ArenaItems(3, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_E_008_086ef15a-dbf8-4960-8cd2-b4867879f637);
+DB_RoguelikeArena_ArenaItems(3, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_E_009_f854c9fe-6afe-4c2e-97d5-a3234c0cab56);
+DB_RoguelikeArena_ArenaItems(3, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_E_010_e4101463-0fb2-475d-932c-d2a82f3bfc6c);
+DB_RoguelikeArena_ArenaItems(3, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_E_011_09bc4d0d-c923-420d-bd75-2ac99453e41b);
+DB_RoguelikeArena_ArenaItems(3, ITEMGUID_FUR_Bucket_A_000_b743083b-83f1-482d-a191-bcf6b7613b13);
+
+PROC_RoguelikeArena_InitArenaItems();
+KBSECTION
+PROC
+PROC_RoguelikeArena_InitArenaItems()
+AND
+DB_RoguelikeArena_ArenaItems(_Arena, _Item)
+AND
+GetTemplate(_Item, _Template)
+AND
+GetPosition(_Item, _XPos, _YPos, _ZPos)
+AND
+GetRotation(_Item, _XRot, _YRot, _ZRot)
+AND
+RealProduct(_XRot, 0.0174533, _XRotRad)
+AND
+RealProduct(_YRot, 0.0174533, _YRotRad)
+AND
+RealProduct(_ZRot, 0.0174533, _ZRotRad)
+THEN
+DB_RoguelikeArena_ArenaItemTemplates(_Arena, _Template, _XPos, _YPos, _ZPos, _XRotRad, _YRotRad, _ZRotRad);
+PROC_RoguelikeArena_ItemRemove(_Item);
+NOT DB_RoguelikeArena_ArenaItems(_Arena, _Item);
+
+IF
+DB_RoguelikeArena_ActiveArena(_Arena, _, _)
+THEN
+PROC_RoguelikeArena_SpawnArenaItems(_Arena);
+
+PROC
+PROC_RoguelikeArena_SpawnArenaItems((INTEGER)_Arena)
+AND
+DB_RoguelikeArena_ArenaItemTemplates(_Arena, _Template, _XPos, _YPos, _ZPos, _XRotRad, _YRotRad, _ZRotRad)
+AND
+CreateItemTemplateAtPosition(_Template, _XPos, _YPos, _ZPos, _Item)
+THEN
+ItemToTransform(_Item, _XPos, _YPos, _ZPos, _XRotRad, _YRotRad, _ZRotRad, 1, NULL_00000000-0000-0000-0000-000000000000);
+PROC_RoguelikeArena_RegisterForCleanup(_Item, _Arena);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena_Arena"

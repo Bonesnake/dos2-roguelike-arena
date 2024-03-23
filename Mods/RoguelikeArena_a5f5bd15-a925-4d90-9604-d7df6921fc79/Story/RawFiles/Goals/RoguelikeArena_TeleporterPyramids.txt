@@ -1,12 +1,12 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
-DB_TeleporterPyramid((ITEMGUID)ITEMGUID_UNI_Teleport_Pyramid_A_000_dc215a3c-8b00-48af-a36f-209de1c99043);
-DB_TeleporterPyramid(ITEMGUID_UNI_Teleport_Pyramid_B_000_6f2fb7d6-fab0-40f0-b8e6-044f7e02e5b1);
-DB_TeleporterPyramid(ITEMGUID_UNI_Teleport_Pyramid_C_000_a9bbbc7a-fbe1-4db9-a657-3aacd27a13b2);
-DB_TeleporterPyramid(ITEMGUID_UNI_Teleport_Pyramid_D_000_29fe996c-02d8-46aa-843d-3922875db503);
+DB_TeleporterPyramid((ITEMGUID)ITEMGUID_UNI_Teleport_Pyramid_A_001_b97bfe57-74c8-4675-b8db-afc6ded2aa02);
+DB_TeleporterPyramid(ITEMGUID_UNI_Teleport_Pyramid_B_001_17ced270-988c-461c-85ad-072668b920dc);
+DB_TeleporterPyramid(ITEMGUID_UNI_Teleport_Pyramid_C_001_fb46e766-6a35-4d8a-ae7c-cf27dd355f40);
+DB_TeleporterPyramid(ITEMGUID_UNI_Teleport_Pyramid_D_001_1ba9562f-44fa-4378-80dc-0258fc044786);
 
-DB_RoguelikeArena_TeleporterPyramidSafeZones((TRIGGERGUID)TRIGGERGUID_RegionTrigger_000_c58ca4e3-71e1-432d-b8b6-78a658fce71a);
+DB_RoguelikeArena_TeleporterPyramidSafeZones((TRIGGERGUID)TRIGGERGUID_RegionTrigger_002_090b4773-d36b-497e-88c6-70b7a349155c);
 KBSECTION
 // Teleports teleporter pyramids back to their owners if they are outside of the safe zone.
 PROC

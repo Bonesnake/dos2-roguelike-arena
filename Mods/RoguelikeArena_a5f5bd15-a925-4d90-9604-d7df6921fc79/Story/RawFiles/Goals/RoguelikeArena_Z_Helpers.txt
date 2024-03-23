@@ -16,16 +16,16 @@ THEN
 NOT DB_RoguelikeArena_CompanionsHelper(_Companion, _Recruiter);
 
 IF
-DB_RoguelikeArena_ActiveRegions(_Region, _Level, _Index)
+DB_RoguelikeArena_ActiveArena(_Arena, _Level, _Difficulty)
 THEN
-DB_RoguelikeArena_ActiveRegionsHelper(_Region, _Level, _Index);
+DB_RoguelikeArena_ActiveArenaHelper(_Arena, _Level, _Difficulty);
 
 IF
-DB_RoguelikeArena_ActiveRegionsHelper(_Region, _Level, _Index)
+DB_RoguelikeArena_ActiveArenaHelper(_Arena, _Level, _Difficulty)
 AND
-NOT DB_RoguelikeArena_ActiveRegions(_Region, _Level, _Index)
+NOT DB_RoguelikeArena_ActiveArena(_Arena, _Level, _Difficulty)
 THEN
-NOT DB_RoguelikeArena_ActiveRegionsHelper(_Region, _Level, _Index);
+NOT DB_RoguelikeArena_ActiveArenaHelper(_Arena, _Level, _Difficulty);
 EXITSECTION
 
 ENDEXITSECTION

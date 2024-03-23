@@ -11,7 +11,7 @@ CharacterGetLevel((CHARACTERGUID)_Player, _Level)
 THEN
 PROC_RoguelikeArena_CharacterLevelUpEquipmentTo(_Player, _Level);
 PlayEffect(_Player, "RS3_FX_GP_Status_LevelUp_01");
-CharacterPlayHUDSound(_Player,"UI_Game_LevelUp");
+CharacterPlayHUDSound(_Player, "UI_Game_LevelUp");
 //PlaySound(_Character, "UI_Game_LevelUp");
 EXITSECTION
 

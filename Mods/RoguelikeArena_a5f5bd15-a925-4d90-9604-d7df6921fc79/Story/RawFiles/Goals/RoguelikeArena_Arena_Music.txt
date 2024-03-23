@@ -1,0 +1,148 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_RoguelikeArena_GlobalMusicHelperOutside(ITEMGUID_MusicHelper_Outside_9b049514-edc0-4c94-8544-ed4d6c1fe42c);
+
+DB_RoguelikeArena_MusicTriggers("HighTension", TRIGGERGUID_MusicVolumeTrigger_BattleForDivinity_c068ebcc-4fa2-49e5-b57c-f66560fdda3a);
+DB_RoguelikeArena_MusicTriggers("LowTension", TRIGGERGUID_MusicVolumeTrigger_CombatMusic1_edf644e9-ccbb-45ae-bf2e-030d1e3b0f8c);
+DB_RoguelikeArena_MusicTriggers("LowTension", TRIGGERGUID_MusicVolumeTrigger_CombatMusic2_992ac2db-0ef4-46e3-b95a-40cc935be2d0);
+DB_RoguelikeArena_MusicTriggers("MediumTension", TRIGGERGUID_MusicVolumeTrigger_CombatMusic3_37153d9b-7697-46eb-8125-c7f561797f9c);
+DB_RoguelikeArena_MusicTriggers("MediumTension", TRIGGERGUID_MusicVolumeTrigger_DancingWithTheSource_3e009c68-8cfc-4c07-b016-2324ce591b8c);
+DB_RoguelikeArena_MusicTriggers("HighTension", TRIGGERGUID_MusicVolumeTrigger_DancingWithTheWicked_e26f6263-a4d3-49d6-9c2c-0b9d0fbf2244);
+// DB_RoguelikeArena_MusicTriggers("MediumTension", TRIGGERGUID_MusicVolumeTrigger_QuirkyBones_ab9bc35c-fcdc-470f-b76a-150c6f99e31a);
+DB_RoguelikeArena_MusicTriggers("HighTension", TRIGGERGUID_MusicVolumeTrigger_ShadowPrinceTheme_58190241-8aae-4746-9f83-c738111e7204);
+// DB_RoguelikeArena_MusicTriggers("MediumTension", TRIGGERGUID_MusicVolumeTrigger_SymphonyOfTheVoid_23dacc8e-c274-49df-898e-2618737ef2dc);
+// DB_RoguelikeArena_MusicTriggers("MediumTension", TRIGGERGUID_MusicVolumeTrigger_TavernFightMusic_824fd5cd-ed63-48f9-afe4-3383f1fd48bc);
+
+PROC_RoguelikeArena_GuidStringAddMusicTriggers();
+KBSECTION
+// Restores music triggers after loading a save. This is necessary, because music triggers' position is not saved.
+IF
+SavegameLoaded(_, _, _, _)
+AND
+DB_RoguelikeArena_ActiveMusicTrigger(_Arena, _Trigger)
+THEN
+PROC_RoguelikeArena_MoveInMusicTrigger(_Arena, _Trigger);
+
+IF
+DB_RoguelikeArena_ActiveArena(_Arena, _, _Difficulty)
+THEN
+PROC_RoguelikeArena_PlayRandomMusic(_Arena, _Difficulty);
+
+IF
+DB_RoguelikeArena_ActiveArenaHelper(_Arena, _Level, _Difficulty)
+AND
+NOT DB_RoguelikeArena_ActiveArena(_Arena, _Level, _Difficulty)
+THEN
+PROC_RoguelikeArena_StopMusic(_Arena);
+
+// Plays a random low tension music.
+PROC
+PROC_RoguelikeArena_PlayRandomMusic((INTEGER)_Arena, (INTEGER)_Difficulty)
+AND
+DB_RoguelikeArena_Singleton_MaxDifficulty(_MaxDifficulty)
+AND
+IntegerSubtract(_MaxDifficulty, 1, _TargetDifficulty)
+AND
+_Difficulty < _TargetDifficulty
+AND
+QRY_RoguelikeArena_GuidStringPoolSelectRandom("MusicTriggerPool_LowTension")
+AND
+DB_RoguelikeArena_GuidStringPoolSelectedValue("MusicTriggerPool_LowTension", _Trigger)
+THEN
+PROC_RoguelikeArena_MoveInMusicTrigger(_Arena, _Trigger);
+
+// Plays a random medium tension music.
+PROC
+PROC_RoguelikeArena_PlayRandomMusic((INTEGER)_Arena, (INTEGER)_Difficulty)
+AND
+DB_RoguelikeArena_Singleton_MaxDifficulty(_MaxDifficulty)
+AND
+IntegerSubtract(_MaxDifficulty, 1, _TargetDifficulty)
+AND
+_Difficulty == _TargetDifficulty
+AND
+QRY_RoguelikeArena_GuidStringPoolSelectRandom("MusicTriggerPool_MediumTension")
+AND
+DB_RoguelikeArena_GuidStringPoolSelectedValue("MusicTriggerPool_MediumTension", _Trigger)
+THEN
+PROC_RoguelikeArena_MoveInMusicTrigger(_Arena, _Trigger);
+
+// Plays a random high tension music.
+PROC
+PROC_RoguelikeArena_PlayRandomMusic(_Arena, _Difficulty)
+AND
+DB_RoguelikeArena_Singleton_MaxDifficulty(_MaxDifficulty)
+AND
+_Difficulty >= _MaxDifficulty
+AND
+QRY_RoguelikeArena_GuidStringPoolSelectRandom("MusicTriggerPool_HighTension")
+AND
+DB_RoguelikeArena_GuidStringPoolSelectedValue("MusicTriggerPool_HighTension", _Trigger)
+THEN
+PROC_RoguelikeArena_MoveInMusicTrigger(_Arena, _Trigger);
+
+// Removes music trigger from the arena.
+PROC
+PROC_RoguelikeArena_StopMusic((INTEGER)_Arena)
+AND
+DB_RoguelikeArena_ActiveMusicTrigger(_Arena, _Trigger)
+THEN
+PROC_RoguelikeArena_MoveOutMusicTrigger(_Trigger);
+
+// Moves in a music trigger to the given arena and stores it in a DB.
+PROC
+PROC_RoguelikeArena_MoveInMusicTrigger((INTEGER)_Arena, (GUIDSTRING)_Trigger)
+AND
+DB_RoguelikeArena_ArenaRegionTriggers(_Arena, _Target)
+THEN
+TeleportTo(_Trigger, _Target, "", 0);
+
+// Moves in a music trigger to the given arena and stores it in a DB.
+PROC
+PROC_RoguelikeArena_MoveInMusicTrigger(_Arena, _Trigger)
+AND
+NOT DB_RoguelikeArena_ActiveMusicTrigger(_Arena, _Trigger)
+THEN
+DB_RoguelikeArena_ActiveMusicTrigger(_Arena, _Trigger);
+
+// Moves out a music trigger and removes it from the DB.
+PROC
+PROC_RoguelikeArena_MoveOutMusicTrigger((GUIDSTRING)_Trigger)
+AND
+DB_RoguelikeArena_GlobalMusicHelperOutside(_Target)
+THEN
+TeleportTo(_Trigger, _Target, "", 0);
+
+// Moves out a music trigger and removes it from the DB.
+PROC
+PROC_RoguelikeArena_MoveOutMusicTrigger(_Trigger)
+AND
+DB_RoguelikeArena_ActiveMusicTrigger(_Arena, _Trigger)
+THEN
+NOT DB_RoguelikeArena_ActiveMusicTrigger(_Arena, _Trigger);
+
+PROC
+PROC_RoguelikeArena_GuidStringAddMusicTriggers()
+AND
+DB_RoguelikeArena_MusicTriggers("LowTension", _Trigger)
+THEN
+PROC_RoguelikeArena_GuidStringPoolAdd("MusicTriggerPool_LowTension", _Trigger);
+
+PROC
+PROC_RoguelikeArena_GuidStringAddMusicTriggers()
+AND
+DB_RoguelikeArena_MusicTriggers("MediumTension", _Trigger)
+THEN
+PROC_RoguelikeArena_GuidStringPoolAdd("MusicTriggerPool_MediumTension", _Trigger);
+
+PROC
+PROC_RoguelikeArena_GuidStringAddMusicTriggers()
+AND
+DB_RoguelikeArena_MusicTriggers("HighTension", _Trigger)
+THEN
+PROC_RoguelikeArena_GuidStringPoolAdd("MusicTriggerPool_HighTension", _Trigger);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena_Arena"

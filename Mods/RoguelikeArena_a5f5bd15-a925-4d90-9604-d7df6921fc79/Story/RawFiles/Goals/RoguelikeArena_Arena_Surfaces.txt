@@ -1,0 +1,71 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+// Min, max, min increase per difficulty, max increase per difficulty.
+DB_RoguelikeArena_SurfaceCountParameters(1, 1, 0, 1);
+
+DB_RoguelikeArena_SurfaceTypes("SurfaceBlood");
+DB_RoguelikeArena_SurfaceTypes("SurfaceBloodElectrified");
+DB_RoguelikeArena_SurfaceTypes("SurfaceBloodFrozen");
+DB_RoguelikeArena_SurfaceTypes("SurfaceFire");
+DB_RoguelikeArena_SurfaceTypes("SurfaceOil");
+DB_RoguelikeArena_SurfaceTypes("SurfacePoison");
+DB_RoguelikeArena_SurfaceTypes("SurfaceSource");
+DB_RoguelikeArena_SurfaceTypes("SurfaceWater");
+DB_RoguelikeArena_SurfaceTypes("SurfaceWaterElectrified");
+DB_RoguelikeArena_SurfaceTypes("SurfaceWaterFrozen");
+DB_RoguelikeArena_SurfaceTypes("SurfaceWeb");
+
+PROC_RoguelikeArena_StringPoolAddSurfaceTypes();
+KBSECTION
+PROC
+PROC_RoguelikeArena_CreateSurfaces((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty)
+AND
+DB_RoguelikeArena_SurfaceCountParameters(_SurfaceCountMin, _SurfaceCountMax, _SurfaceCountMinIncreasePerDifficulty, _SurfaceCountMaxIncreasePerDifficulty)
+AND
+IntegerProduct(_Difficulty, _SurfaceCountMinIncreasePerDifficulty, _SurfaceCountMinModifier)
+AND
+IntegerProduct(_Difficulty, _SurfaceCountMaxIncreasePerDifficulty, _SurfaceCountMaxModifier)
+AND
+IntegerSum(_SurfaceCountMin, _SurfaceCountMinModifier, _SurfaceCountMinModified)
+AND
+IntegerSum(_SurfaceCountMax, _SurfaceCountMaxModifier, _SurfaceCountMaxModified)
+AND
+QRY_RoguelikeArena_RandomInclusive(_SurfaceCountMinModified, _SurfaceCountMaxModified)
+AND
+DB_Singleton("RoguelikeArena_RandomResult", _SurfaceCount)
+THEN
+PROC_RoguelikeArena_CreateSurfaces(_Arena, _Level, _Difficulty, _SurfaceCount);
+
+PROC
+PROC_RoguelikeArena_CreateSurfaces((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty, (INTEGER)_Count)
+AND
+QRY_RoguelikeArena_CreateIndices(_Count)
+AND
+DB_RoguelikeArena_CreatedIndices(_)
+THEN
+PROC_RoguelikeArena_CreateSurface(_Arena, _Level, _Difficulty);
+
+PROC
+PROC_RoguelikeArena_CreateSurface((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty)
+AND
+QRY_RoguelikeArena_StringPoolSelectRandom("SurfaceTypePool")
+AND
+DB_RoguelikeArena_StringPoolSelectedValue("SurfaceTypePool", _SurfaceType)
+AND
+DB_RoguelikeArena_ArenaInnerTriggers(_Arena, _Trigger)
+AND
+GetRandomPositionInTrigger(_Trigger, _X, _Y, _Z)
+THEN
+CreateSurfaceAtPosition(_X, _Y, _Z, _SurfaceType, 2.0, -1.0);
+
+PROC
+PROC_RoguelikeArena_StringPoolAddSurfaceTypes()
+AND
+DB_RoguelikeArena_SurfaceTypes(_SurfaceType)
+THEN
+PROC_RoguelikeArena_StringPoolAdd("SurfaceTypePool", _SurfaceType);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena_Arena_Event"

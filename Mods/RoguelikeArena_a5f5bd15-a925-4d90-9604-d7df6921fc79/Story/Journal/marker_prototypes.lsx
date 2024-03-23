@@ -12,7 +12,7 @@
                     <attribute id="MarkerIcon" value="LocationMarker" type="22" />
                     <attribute id="MarkerLevel" value="RoguelikeArena_Level" type="22" />
                     <attribute id="MarkerTargetObjectType" value="Item" type="22" />
-                    <attribute id="MarkerTargetObjectUUID" value="f9b8cec1-a546-44b0-8002-749562fbad9c" type="22" />
+                    <attribute id="MarkerTargetObjectUUID" value="f0b00fdf-5679-4b32-af98-32f84af287f2" type="22" />
                 </node>
                 <node id="Marker">
                     <attribute id="DisplayText" value="Chest of Fortune" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
@@ -21,7 +21,7 @@
                     <attribute id="MarkerIcon" value="LocationMarker" type="22" />
                     <attribute id="MarkerLevel" value="RoguelikeArena_Level" type="22" />
                     <attribute id="MarkerTargetObjectType" value="Item" type="22" />
-                    <attribute id="MarkerTargetObjectUUID" value="cad144cc-f8ad-4688-823c-ced82aeb3b18" type="22" />
+                    <attribute id="MarkerTargetObjectUUID" value="b253200a-1651-43fd-9027-44a7834b7958" type="22" />
                 </node>
                 <node id="Marker">
                     <attribute id="DisplayText" value="Recruitment Board" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
@@ -30,7 +30,7 @@
                     <attribute id="MarkerIcon" value="LocationMarker" type="22" />
                     <attribute id="MarkerLevel" value="RoguelikeArena_Level" type="22" />
                     <attribute id="MarkerTargetObjectType" value="Item" type="22" />
-                    <attribute id="MarkerTargetObjectUUID" value="c275c83d-6afc-4d50-a6eb-c76f9dbd65d2" type="22" />
+                    <attribute id="MarkerTargetObjectUUID" value="ae04ac4e-72d8-4247-b82c-5bd82e98262f" type="22" />
                 </node>
             </children>
         </node>

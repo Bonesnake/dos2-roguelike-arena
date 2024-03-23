@@ -1,0 +1,55 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+// Min, max, min increase per difficulty, max increase per difficulty.
+DB_RoguelikeArena_SourceScarecrowCountParameters(1, 1, 0, 1);
+
+DB_RoguelikeArena_SourceScarecrowTemplate("RoguelikeArena_SourceScarecrow_1270cddf-2b0d-4b5d-8156-6461675068b3");
+KBSECTION
+PROC
+PROC_RoguelikeArena_SpawnSourceScarecrows((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty)
+AND
+DB_RoguelikeArena_SourceScarecrowCountParameters(_SourceScarecrowCountMin, _SourceScarecrowCountMax, _SourceScarecrowCountMinIncreasePerDifficulty, _SourceScarecrowCountMaxIncreasePerDifficulty)
+AND
+IntegerProduct(_Difficulty, _SourceScarecrowCountMinIncreasePerDifficulty, _SourceScarecrowCountMinModifier)
+AND
+IntegerProduct(_Difficulty, _SourceScarecrowCountMaxIncreasePerDifficulty, _SourceScarecrowCountMaxModifier)
+AND
+IntegerSum(_SourceScarecrowCountMin, _SourceScarecrowCountMinModifier, _SourceScarecrowCountMinModified)
+AND
+IntegerSum(_SourceScarecrowCountMax, _SourceScarecrowCountMaxModifier, _SourceScarecrowCountMaxModified)
+AND
+QRY_RoguelikeArena_RandomInclusive(_SourceScarecrowCountMinModified, _SourceScarecrowCountMaxModified)
+AND
+DB_Singleton("RoguelikeArena_RandomResult", _SourceScarecrowCount)
+THEN
+PROC_RoguelikeArena_SpawnSourceScarecrows(_Arena, _Level, _Difficulty, _SourceScarecrowCount);
+
+PROC
+PROC_RoguelikeArena_SpawnSourceScarecrows((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty, (INTEGER)_Count)
+AND
+QRY_RoguelikeArena_CreateIndices(_Count)
+AND
+DB_RoguelikeArena_CreatedIndices(_)
+THEN
+PROC_RoguelikeArena_SpawnSourceScarecrow(_Arena, _Level, _Difficulty);
+
+PROC
+PROC_RoguelikeArena_SpawnSourceScarecrow((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty)
+AND
+DB_RoguelikeArena_SourceScarecrowTemplate(_Template)
+AND
+DB_RoguelikeArena_ArenaInnerTriggers(_Arena, _Trigger)
+AND
+GetRandomPositionInTrigger(_Trigger, _X, _Y, _Z)
+AND
+CreateItemTemplateAtPosition(_Template, _X, _Y, _Z, _SourceScarecrow)
+THEN
+PROC_RoguelikeArena_ItemRandomRotate(_SourceScarecrow);
+PROC_RoguelikeArena_ItemTeleportToValidPosition(_SourceScarecrow);
+PROC_RoguelikeArena_ItemSnapToGround(_SourceScarecrow);
+PROC_RoguelikeArena_RegisterForCleanup(_SourceScarecrow, _Arena);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena_Arena_Event"

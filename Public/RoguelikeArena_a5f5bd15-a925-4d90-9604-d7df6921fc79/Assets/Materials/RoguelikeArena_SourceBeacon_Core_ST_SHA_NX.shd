@@ -1,0 +1,238 @@
+[Vertex shader]
+
+#version 450
+#extension GL_NV_gpu_shader5 : enable
+#include "Shaders/NX/CommonHelpers.shdh"
+#include "Shaders/GlobalConstants_NX.shdh"
+
+layout(location = 0) in vec3 inPosition0;
+layout(location = 1) in vec4 inNormal0;
+layout(location = 4) in vec2 inTexCoord0;
+
+layout(location = 0) out gl_PerVertex
+{
+	vec4 gl_Position;
+};
+layout(location = 1) out vec4 Position0;
+layout(location = 2) out vec4 TexCoord0;
+layout(location = 3) out vec3 TexCoord1;
+layout(location = 4) out vec3 TexCoord2;
+layout(location = 5) out vec2 TexCoord3;
+layout(location = 6) out vec3 WorldBinormal;
+layout(location = 7) out vec3 WorldTangent;
+layout(location = 8) out vec3 WorldView;
+layout(location = 9) out float ShadowDepth;
+
+layout(binding = 0, std140) uniform PGlobals
+{
+	layout(row_major) mat4x4 WorldMatrix;
+};
+
+void main()
+{
+	//World space position
+	vec4 worldPosition = (WorldMatrix * vec4(inPosition0, 1.0f));
+
+	//Projected position
+	vec4 projectedPosition = (global_ViewProjection * worldPosition);
+
+	//Pass projected position to pixel shader
+	Position0 = projectedPosition;
+
+	//Pass world position to pixel shader
+	TexCoord0 = worldPosition;
+
+	//Compute local tangent frame
+	mat3x3 LocalTangentFrame = GetTangentFrame(inNormal0);
+
+	vec3 localNormal = LocalTangentFrame[2];
+
+	//Normalize Local Normal
+	vec3 localNormalNormalized = normalize(localNormal);
+
+	//World space Normal
+	vec3 worldNormal = (mat3x3(WorldMatrix[0].xyz, WorldMatrix[1].xyz, WorldMatrix[2].xyz) * localNormalNormalized);
+
+	//Normalize World Normal
+	vec3 worldNormalNormalized = normalize(worldNormal);
+
+	TexCoord1 = worldNormalNormalized;
+
+	//Object World Position
+	vec3 objectWorldPosition = vec3(WorldMatrix[3].x, WorldMatrix[3].y, WorldMatrix[3].z);
+
+	//Pass object world position to pixel shader
+	TexCoord2 = objectWorldPosition;
+
+	TexCoord3 = inTexCoord0;
+	vec3 LocalBinormal = LocalTangentFrame[1];
+
+	//Normalize Local Binormal
+	vec3 localBinormalNormalized = normalize(LocalBinormal);
+
+	//World space Binormal
+	vec3 worldBinormal = (mat3x3(WorldMatrix[0].xyz, WorldMatrix[1].xyz, WorldMatrix[2].xyz) * localBinormalNormalized);
+
+	//Normalize World Binormal
+	vec3 worldBinormalNormalized = normalize(worldBinormal);
+
+	WorldBinormal = worldBinormalNormalized;
+
+	vec3 LocalTangent = LocalTangentFrame[0];
+
+	//Normalize Local Tangent
+	vec3 localTangentNormalized = normalize(LocalTangent);
+
+	//World space Tangent
+	vec3 worldTangent = (mat3x3(WorldMatrix[0].xyz, WorldMatrix[1].xyz, WorldMatrix[2].xyz) * localTangentNormalized);
+
+	//Normalize World Tangent
+	vec3 worldTangentNormalized = normalize(worldTangent);
+
+	WorldTangent = worldTangentNormalized;
+
+	//World space view vector
+	vec3 worldView = (global_ViewPos.xyz - worldPosition.xyz);
+
+	WorldView = worldView;
+
+	float vertexDepth;
+	vertexDepth = distance(worldPosition.xyz, global_ViewPos.xyz);
+	//Pass depth to pixel shader
+	ShadowDepth = vertexDepth;
+
+	gl_Position = Position0;
+}
+
+
+[Fragment shader]
+
+#version 450
+#extension GL_NV_gpu_shader5 : enable
+#include "Shaders/NX/CommonHelpers.shdh"
+#include "Shaders/GlobalConstants_PS_NX.shdh"
+
+layout(location = 1) in vec4 Position0;
+layout(location = 2) in vec4 TexCoord0;
+layout(location = 3) in vec3 TexCoord1;
+layout(location = 4) in vec3 TexCoord2;
+layout(location = 5) in vec2 TexCoord3;
+layout(location = 6) in vec3 WorldBinormal;
+layout(location = 7) in vec3 WorldTangent;
+layout(location = 8) in vec3 WorldView;
+layout(location = 9) in float ShadowDepth;
+
+layout(location = 0) out vec4 outColor0;
+
+layout(binding = 0) uniform sampler2D Texture2DParameter_6cacb6396fe94aef83ac4f17e82f5b83_DefaultWrapSampler;
+layout(binding = 1) uniform sampler2D Texture2DParameter_aa6a0d9586aa46d38f31ebadaffef4d1_DefaultWrapSampler;
+layout(binding = 2) uniform sampler2D Texture2DParameter_NM_DefaultWrapSampler;
+layout(binding = 0, std140) uniform PGlobals
+{
+	float FloatParameter_GlowRadius;
+	vec3 Vector3Parameter_DistanceGlowColor;
+	float FloatParameter_DistanceGlowStrength;
+};
+
+void CalculateMatOpacity(vec4 in_0,
+	vec3 in_1,
+	vec3 in_2,
+	vec3 in_3,
+	vec2 in_4,
+	vec3 in_5,
+	out float out_0)
+{
+	//Custom Material Lighting
+	float Local0 = (1.0f / FloatParameter_GlowRadius);
+	vec3 Local2 = (global_PlayerPosition0.xyz - in_0.xyz);
+	float Local3 = length(Local2);
+	float Local1 = ((clamp((1.0f - (Local3 * Local0)), 0, 1) * abs(dot(in_1, (Local2 * (1.0f / (Local3 + 1E-23f)))))) * global_PlayerPosition0.w);
+	vec3 Local5 = (global_PlayerPosition1.xyz - in_0.xyz);
+	float Local6 = length(Local5);
+	float Local4 = ((clamp((1.0f - (Local6 * Local0)), 0, 1) * abs(dot(in_1, (Local5 * (1.0f / (Local6 + 1E-23f)))))) * global_PlayerPosition1.w);
+	vec3 Local8 = (global_PlayerPosition2.xyz - in_0.xyz);
+	float Local9 = length(Local8);
+	float Local7 = ((clamp((1.0f - (Local9 * Local0)), 0, 1) * abs(dot(in_1, (Local8 * (1.0f / (Local9 + 1E-23f)))))) * global_PlayerPosition2.w);
+	vec3 Local11 = (global_PlayerPosition3.xyz - in_0.xyz);
+	float Local12 = length(Local11);
+	float Local10 = ((clamp((1.0f - (Local12 * Local0)), 0, 1) * abs(dot(in_1, (Local11 * (1.0f / (Local12 + 1E-23f)))))) * global_PlayerPosition3.w);
+	float Local13 = max(max(max(Local1, Local4), Local7), Local10);
+	vec3 Local14 = (in_2 - in_3);
+	vec2 Local15 = Local14.xy;
+	vec2 Local16 = Local14.zy;
+	float Local17 = in_1.z;
+	float Local18 = abs(Local17);
+	float Local19 = in_1.x;
+	float Local20 = abs(Local19);
+	float Local21 = step(Local18, Local20);
+	vec2 Local22 = mix(Local15, Local16, vec2(Local21, Local21));
+	vec2 Local23 = Local14.xz;
+	float Local24 = mix(Local18, Local20, Local21);
+	float Local25 = in_1.y;
+	float Local26 = abs(Local25);
+	float Local27 = step(Local24, Local26);
+	vec2 Local28 = mix(Local22, Local23, vec2(Local27, Local27));
+	vec2 Local29 = (2.0f * Local28);
+	float Local30 = (global_Data.x * 4.0f);
+	vec4 Local31 = texture(Texture2DParameter_6cacb6396fe94aef83ac4f17e82f5b83_DefaultWrapSampler, (Local28 + (vec2(0.1f, 0.1f) * global_Data.x)));
+	//[Local31] Get needed components
+	vec3 Local32 = Local31.xyz;
+	vec3 Local33 = (Local32 * 2.0f);
+	float Local34 = Local33.x;
+	vec2 Local35 = ((Local29 + (vec2(0.0f, 0.175f) * Local30)) + vec2(Local34));
+	vec4 Local36 = texture(Texture2DParameter_aa6a0d9586aa46d38f31ebadaffef4d1_DefaultWrapSampler, Local35);
+	//[Local36] Get needed components
+	float Local37 = Local36.x;
+	float Local38 = Local33.z;
+	vec2 Local39 = ((Local29 + (vec2(0.0f, -0.15f) * Local30)) + vec2(Local38));
+	vec4 Local40 = texture(Texture2DParameter_aa6a0d9586aa46d38f31ebadaffef4d1_DefaultWrapSampler, Local39);
+	//[Local40] Get needed components
+	float Local41 = Local40.x;
+	float Local42 = (Local37 + Local41);
+	float Local43 = pow(Local42, 3.0f);
+	vec3 Local44 = (Vector3Parameter_DistanceGlowColor * Local43);
+	vec3 Local45 = (Local13 * Local44);
+	vec3 Local46 = (Local45 * FloatParameter_DistanceGlowStrength);
+	vec4 Local47 = texture(Texture2DParameter_NM_DefaultWrapSampler, in_4);
+	//[Local47] Convert normalmaps to tangent space vectors
+	Local47.xyzw = Local47.wzyx;
+	Local47.xyz = ((Local47.xyz * 2.0f) - vec3(1.0f));
+	Local47.z = -(Local47.z);
+	Local47.xyz = normalize(Local47.xyz);
+	//[Local47] Get needed components
+	vec3 Local48 = Local47.xyz;
+	float Local49 = pow((1.0f - clamp(dot(Local48, in_5), 0, 1)), 1.0f);
+	vec3 Local50 = (Local46 + vec3(Local49));
+	vec3 Local51 = clamp(Local50, 0.75f, 1.0f);
+	out_0 = Local51.x;
+}
+
+void main()
+{
+	float matOpacity;
+	//Normalize World Normal
+	vec3 worldNormalNormalized = normalize(TexCoord1);
+
+	//Normalize World Binormal
+	vec3 worldBinormalNormalized = normalize(WorldBinormal);
+
+	//Normalize World Tangent
+	vec3 worldTangentNormalized = normalize(WorldTangent);
+
+	mat3x3 NBT = mat3x3(vec3(worldTangentNormalized.x, worldNormalNormalized.x, worldBinormalNormalized.x), vec3(worldTangentNormalized.y, worldNormalNormalized.y, worldBinormalNormalized.y), vec3(worldTangentNormalized.z, worldNormalNormalized.z, worldBinormalNormalized.z));
+
+	//Normalized world space view vector
+	vec3 worldViewNormalized = normalize(WorldView);
+
+	//Calculate tangent space view vector
+	vec3 tangentView = (NBT * worldViewNormalized);
+
+	CalculateMatOpacity(TexCoord0, worldNormalNormalized, TexCoord0.xyz, TexCoord2, TexCoord3, tangentView, matOpacity);
+	if(clip((matOpacity - 0.5f))) discard;
+
+	float Local0 = dFdx(ShadowDepth);
+	float Local1 = dFdy(ShadowDepth);
+	outColor0 = vec4(0.0f, 0.0f, 0.0f, 0.0f);
+	outColor0.x = ShadowDepth;
+	outColor0.y = ((ShadowDepth * ShadowDepth) + (((Local0 * Local0) + (Local1 * Local1)) * 0.25f));
+}

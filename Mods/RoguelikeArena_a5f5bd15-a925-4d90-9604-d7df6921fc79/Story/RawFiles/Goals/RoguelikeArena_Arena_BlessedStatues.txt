@@ -1,0 +1,89 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_RoguelikeArena_BlessedStatueTemplate("RoguelikeArena_BlessedStatue_5cd13db1-fb4b-4843-8aa3-5ba7da5a2d6c");
+
+DB_RoguelikeArena_BlessedStatueSurfaceTypes("SurfaceFireBlessed");
+DB_RoguelikeArena_BlessedStatueSurfaceTypes("SurfaceOilBlessed");
+DB_RoguelikeArena_BlessedStatueSurfaceTypes("SurfacePoisonBlessed");
+DB_RoguelikeArena_BlessedStatueSurfaceTypes("SurfaceWaterBlessed");
+DB_RoguelikeArena_BlessedStatueSurfaceTypes("SurfaceWaterElectrifiedBlessed");
+DB_RoguelikeArena_BlessedStatueSurfaceTypes("SurfaceWaterFrozenBlessed");
+DB_RoguelikeArena_BlessedStatueSurfaceTypes("SurfaceWebBlessed");
+
+PROC_RoguelikeArena_StringPoolAddBlessedStatueSurfaceTypes();
+KBSECTION
+PROC
+PROC_RoguelikeArena_SpawnBlessedStatues((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty)
+AND
+IntegerDivide(_Difficulty, 4, _DifficultyHalved)
+AND
+IntegerSum(_DifficultyHalved, 1, _MaxBlessedStatues)
+AND
+QRY_RoguelikeArena_RandomInclusive(1, _MaxBlessedStatues)
+AND
+DB_Singleton("RoguelikeArena_RandomResult", _BlessedStatueCount)
+THEN
+PROC_RoguelikeArena_SpawnBlessedStatues(_Arena, _Level, _Difficulty, _BlessedStatueCount);
+
+PROC
+PROC_RoguelikeArena_SpawnBlessedStatues((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty, (INTEGER)_Count)
+AND
+QRY_RoguelikeArena_CreateIndices(_Count)
+AND
+DB_RoguelikeArena_CreatedIndices(_)
+THEN
+PROC_RoguelikeArena_SpawnBlessedStatue(_Arena, _Level, _Difficulty);
+
+PROC
+PROC_RoguelikeArena_SpawnBlessedStatue((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty)
+AND
+DB_RoguelikeArena_BlessedStatueTemplate(_BlessedStatueTemplate)
+AND
+DB_RoguelikeArena_ArenaInnerTriggers(_Arena, _Trigger)
+AND
+GetRandomPositionInTrigger(_Trigger, _X, _Y, _Z)
+AND
+CreateItemTemplateAtPosition(_BlessedStatueTemplate, _X, _Y, _Z, _BlessedStatue)
+AND
+QRY_RoguelikeArena_StringPoolSelectRandom("BlessedStatueSurfaceTypePool")
+AND
+DB_RoguelikeArena_StringPoolSelectedValue("BlessedStatueSurfaceTypePool", _SurfaceType)
+THEN
+PROC_RoguelikeArena_ItemRandomRotate(_BlessedStatue);
+PROC_RoguelikeArena_ItemTeleportToValidPosition(_BlessedStatue);
+PROC_RoguelikeArena_ItemSnapToGround(_BlessedStatue);
+PROC_RoguelikeArena_RegisterForCleanup(_BlessedStatue, _Arena);
+DB_RoguelikeArena_BlessedStatues(_BlessedStatue, _SurfaceType);
+
+IF
+CharacterUsedItemTemplate(_Character, _Template, _Item)
+AND
+DB_RoguelikeArena_BlessedStatueTemplate(_BlessedStatueTemplate)
+AND
+_Template == _BlessedStatueTemplate
+AND
+GetPosition(_Item, _X, _Y, _Z)
+AND
+DB_RoguelikeArena_BlessedStatues(_Item, _SurfaceType)
+THEN
+CreateSurfaceAtPosition(_X, _Y, _Z, _SurfaceType, 3.0, 12.0);
+ApplyStatus(_Character, "BLESSED", 12.0);
+
+IF
+DB_RoguelikeArena_RemovedItems(_Item)
+AND
+DB_RoguelikeArena_BlessedStatues(_Item, _SurfaceType)
+THEN
+NOT DB_RoguelikeArena_BlessedStatues(_Item, _SurfaceType);
+
+PROC
+PROC_RoguelikeArena_StringPoolAddBlessedStatueSurfaceTypes()
+AND
+DB_RoguelikeArena_BlessedStatueSurfaceTypes(_SurfaceType)
+THEN
+PROC_RoguelikeArena_StringPoolAdd("BlessedStatueSurfaceTypePool", _SurfaceType);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena_Arena_Event"

@@ -1,7 +1,7 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
-DB_RoguelikeArena_MagicMirror((ITEMGUID)ITEMGUID_PUZ_CharCreationMirror_000_8ad4a6a6-e947-40d0-9ac0-2e37cdc614df);
+DB_RoguelikeArena_MagicMirror((ITEMGUID)ITEMGUID_PUZ_CharCreationMirror_001_2c6a4d8f-9b0d-4721-bbf4-46fa20badf1a);
 KBSECTION
 // Only one player can use the mirror at a time
 PROC

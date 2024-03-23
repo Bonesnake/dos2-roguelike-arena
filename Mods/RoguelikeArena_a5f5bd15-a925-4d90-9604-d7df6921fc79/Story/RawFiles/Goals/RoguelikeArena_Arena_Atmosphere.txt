@@ -1,0 +1,57 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_RoguelikeArena_AtmosphereTriggers(1, (TRIGGERGUID)TRIGGERGUID_AtmosphereTrigger_000_76228a1a-d6ce-4e33-889f-097c65cbb4bf);
+DB_RoguelikeArena_AtmosphereTriggers(2, TRIGGERGUID_AtmosphereTrigger_000__000_7aee728b-d4d5-806b-39c3-1d9348eda667);
+DB_RoguelikeArena_AtmosphereTriggers(3, TRIGGERGUID_AtmosphereTrigger_000__000_accc0b5a-57e0-89b2-3883-50d495aef017);
+
+DB_RoguelikeArena_Atmospheres(1, "746dd96b-09e1-4b82-b81a-5e46935c372a");
+DB_RoguelikeArena_Atmospheres(1, "08c6e64b-ca3a-4df2-a466-740e07a26539");
+DB_RoguelikeArena_Atmospheres(1, "5ce1ed32-25fd-4e12-8570-892d92b6ef25");
+DB_RoguelikeArena_Atmospheres(1, "160f358d-f266-4f8e-9e90-17ac6b108359");
+DB_RoguelikeArena_Atmospheres(1, "e97b0703-3a70-4c03-afbc-f5174227f91b");
+DB_RoguelikeArena_Atmospheres(1, "c29f63ae-ea3b-42ff-a886-4aa958a2ca6e");
+DB_RoguelikeArena_Atmospheres(1, "c8bf7b1b-ed3e-4640-99ce-36ed24dabdb7");
+DB_RoguelikeArena_Atmospheres(1, "a2ae3602-fa8d-4968-a95e-7a814cda40b3");
+DB_RoguelikeArena_Atmospheres(1, "d1daeeb4-11ac-42eb-8792-bf0058bd0a7c");
+DB_RoguelikeArena_Atmospheres(1, "efa0f93a-aa4d-4eaa-8369-40b4d7df4279");
+
+DB_RoguelikeArena_Atmospheres(2, "df37a804-ec9d-4cc0-959c-dd639211c58d");
+DB_RoguelikeArena_Atmospheres(2, "2960242d-be91-4599-a3a0-8ea4f53c29b7");
+
+DB_RoguelikeArena_Atmospheres(3, "12f866ca-a2e9-4da2-831c-d7d031638160");
+DB_RoguelikeArena_Atmospheres(3, "2052f790-d2d7-4cf7-95f0-4de478e98d28");
+DB_RoguelikeArena_Atmospheres(3, "48f8c648-2bcc-45ad-9083-a2e3863f6908");
+DB_RoguelikeArena_Atmospheres(3, "8589e64c-386f-4f6c-a648-3ee882c50aee");
+DB_RoguelikeArena_Atmospheres(3, "e8440c56-f9d0-4633-b794-a215bb287f0e");
+DB_RoguelikeArena_Atmospheres(3, "d3667861-de0f-44c0-af86-ed3a7bf879e5");
+DB_RoguelikeArena_Atmospheres(3, "1c66b79a-7722-4bef-9216-6366d85bb280");
+KBSECTION
+IF
+DB_RoguelikeArena_ActiveArena(_Arena, _, _)
+THEN
+PROC_RoguelikeArena_StringPoolClear("AtmospherePool");
+PROC_RoguelikeArena_StringPoolAddAtmospheres(_Arena);
+PROC_RoguelikeArena_SetRandomAtmosphere(_Arena);
+
+PROC
+PROC_RoguelikeArena_SetRandomAtmosphere((INTEGER)_Arena)
+AND
+DB_RoguelikeArena_AtmosphereTriggers(_Arena, _Trigger)
+AND
+QRY_RoguelikeArena_StringPoolSelectRandom("AtmospherePool")
+AND
+DB_RoguelikeArena_StringPoolSelectedValue("AtmospherePool", _Atmosphere)
+THEN
+TriggerSetAtmosphere(_Trigger, _Atmosphere);
+
+PROC
+PROC_RoguelikeArena_StringPoolAddAtmospheres((INTEGER)_Arena)
+AND
+DB_RoguelikeArena_Atmospheres(_Arena, _Atmosphere)
+THEN
+PROC_RoguelikeArena_StringPoolAdd("AtmospherePool", _Atmosphere);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena_Arena"

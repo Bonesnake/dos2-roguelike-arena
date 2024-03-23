@@ -1,0 +1,148 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_RoguelikeArena_Arenas(1);
+DB_RoguelikeArena_Arenas(2);
+DB_RoguelikeArena_Arenas(3);
+
+DB_RoguelikeArena_RegionTeleportTriggers(1, TRIGGERGUID_TeleportTrigger_050_0b7e3d3b-f4dd-4224-ba90-e1c70155d1b2);
+DB_RoguelikeArena_RegionTeleportTriggers(2, TRIGGERGUID_TeleportTrigger_050__000_0d9c127b-19e5-8146-3ce9-5d92b2eab955);
+DB_RoguelikeArena_RegionTeleportTriggers(3, TRIGGERGUID_TeleportTrigger_050__000_3f7aab4a-9cf0-8a9d-3ba9-90d30fab0305);
+
+DB_RoguelikeArena_ArenaTeleporterItems((ITEMGUID)ITEMGUID_RoguelikeArena_Portal_000_25d2e6a5-4449-457e-bc76-ed41995c1a72);
+DB_RoguelikeArena_ArenaTeleporterItems(ITEMGUID_RoguelikeArena_Portal_000__000_7e26861b-822a-8a89-3a43-1853b4f24006);
+DB_RoguelikeArena_ArenaTeleporterItems(ITEMGUID_RoguelikeArena_Portal_000__000_a0041fea-0535-83d0-3903-5b9401b39ab6);
+
+DB_RoguelikeArena_ArenaRegionTriggers(1, (TRIGGERGUID)TRIGGERGUID_RegionTrigger_000_b7176a84-3adc-4f91-aae4-ee629488c837);
+DB_RoguelikeArena_ArenaRegionTriggers(2, TRIGGERGUID_RegionTrigger_000_4363c24f-9315-4402-81d3-cd23ed89bb9b);
+DB_RoguelikeArena_ArenaRegionTriggers(3, TRIGGERGUID_RegionTrigger_000__000_f8557e3f-1b5f-8176-3850-3c9ae5e4f076);
+
+DB_RoguelikeArena_ArenaInnerTriggers(1, (TRIGGERGUID)TRIGGERGUID_BoxTrigger_001_f33ee0e6-508f-4407-9e6e-41ddabc12334);
+DB_RoguelikeArena_ArenaInnerTriggers(2, TRIGGERGUID_BoxTrigger_001__000_6152944e-0b5d-8326-0d42-6aac2846961a);
+DB_RoguelikeArena_ArenaInnerTriggers(3, TRIGGERGUID_BoxTrigger_001__000_93302d1d-8e68-8c7d-0c02-aded7507e0ca);
+
+DB_RoguelikeArena_ArenaSpawnerTriggers(1, (TRIGGERGUID)TRIGGERGUID_BoxTrigger_000_0d0127a8-7fe6-4ea3-ae95-4640090fb203);
+DB_RoguelikeArena_ArenaSpawnerTriggers(2, TRIGGERGUID_BoxTrigger_000__000_256224ec-f744-8b70-2ffc-050042fad83c);
+DB_RoguelikeArena_ArenaSpawnerTriggers(3, TRIGGERGUID_BoxTrigger_000__000_5740bdbb-7a5f-84c7-2ebc-48419fbb22ec);
+
+DB_RoguelikeArena_ArenaEventTriggers(1, (TRIGGERGUID)TRIGGERGUID_EventTrigger_000_c5d2c42e-28d9-4c92-87e9-fb0c9ecc4e11);
+DB_RoguelikeArena_ArenaEventTriggers(2, TRIGGERGUID_EventTrigger_000__000_c1326444-366d-85f5-2534-2937d02c3bd9);
+DB_RoguelikeArena_ArenaEventTriggers(3, TRIGGERGUID_EventTrigger_000__000_f310fd13-b978-8e4c-24f4-6c782ded8589);
+KBSECTION
+IF
+CharacterUsedItem(_Character, _UsedItem)
+AND
+DB_RoguelikeArena_ArenaTeleporterItems(_UsedItem)
+AND
+DB_RoguelikeArena_RegionTeleportTriggers(0, _Trigger)
+THEN
+TeleportTo(_Character, _Trigger, "", 1);
+
+// Removes the active arena from the DB.
+PROC
+PROC_RoguelikeArena_ResetActiveArena()
+AND
+DB_RoguelikeArena_ActiveArena(_Arena, _Level, _Difficulty)
+THEN
+NOT DB_RoguelikeArena_ActiveArena(_Arena, _Level, _Difficulty);
+
+// Resets arena pool and music, and saves teleporter pyramids.
+PROC
+PROC_RoguelikeArena_ResetActiveArena()
+THEN
+PROC_RoguelikeArena_IntegerPoolClear("ArenaPool");
+PROC_RoguelikeArena_IntegerPoolAddArenas();
+PROC_RoguelikeArena_SaveTeleporterPyramids();
+
+// Selects a new arena and prepares it for population.
+PROC
+PROC_RoguelikeArena_StartNewArena((INTEGER)_Level, (INTEGER)_Difficulty)
+AND
+QRY_RoguelikeArena_IntegerPoolSelectAndRemoveRandom("ArenaPool")
+AND
+DB_RoguelikeArena_IntegerPoolSelectedValue("ArenaPool", _Arena)
+THEN
+DB_RoguelikeArena_ActiveArena(_Arena, _Level, _Difficulty);
+
+// Adds available arenas to the arena pool.
+PROC
+PROC_RoguelikeArena_IntegerPoolAddArenas()
+AND
+DB_RoguelikeArena_Arenas(_Arena)
+THEN
+PROC_RoguelikeArena_IntegerPoolAdd("ArenaPool", _Arena);
+
+// Prevents the use of teleporters in combat.
+PROC
+ProcBlockUseOfItem(_Player, _Item)
+AND
+DB_RoguelikeArena_ArenaTeleporterItems(_Item)
+AND
+DB_IsPlayer(_Player)
+AND
+DB_CombatCharacters(_Player, _)
+THEN
+DB_CustomUseItemResponse(_Player, _Item, 0);
+Proc_StartDialog(1, "GLO_AD_CannotUseNow", _Player);
+
+QRY
+QRY_RoguelikeArena_IsCurrentChallengeComplete()
+AND
+NOT DB_RoguelikeArena_ActiveArena(_, _, _)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RoguelikeArena_IsCurrentChallengeComplete()
+AND
+DB_RoguelikeArena_ActiveArena(_Arena, _, _)
+AND
+NOT QRY_RoguelikeArena_AnyArenaEnemiesAlive(_Arena)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RoguelikeArena_IsCurrentArenaClear()
+AND
+NOT DB_RoguelikeArena_ActiveArena(_, _, _)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RoguelikeArena_IsCurrentArenaClear()
+AND
+DB_RoguelikeArena_ActiveArena(_Arena, _, _)
+AND
+NOT QRY_RoguelikeArena_AnyCharactersInsideArena(_Arena)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RoguelikeArena_AnyArenaEnemiesAlive((INTEGER)_Arena)
+AND
+DB_RoguelikeArena_ArenaEventTriggers(_Arena, _Trigger)
+AND
+DB_InRegion(_Character, _Trigger)
+AND
+GetFaction(_Character, "Evil NPC")
+AND
+IsTagged(_Character, "AI_IGNORED_TARGET", 0)
+AND
+CharacterIsDead(_Character, 0)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RoguelikeArena_AnyCharactersInsideArena((INTEGER)_Arena)
+AND
+DB_RoguelikeArena_ArenaEventTriggers(_Arena, _Trigger)
+AND
+DB_InRegion(_Character, _Trigger)
+AND
+IsTagged(_Character, "AI_IGNORED_TARGET", 0)
+THEN
+DB_NOOP(1);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena_Arena"

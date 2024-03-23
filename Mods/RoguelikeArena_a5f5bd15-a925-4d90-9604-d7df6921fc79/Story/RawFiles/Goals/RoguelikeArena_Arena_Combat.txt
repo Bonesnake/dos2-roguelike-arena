@@ -1,0 +1,64 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+IF
+CharacterEnteredTrigger(_Character, _Trigger)
+AND
+DB_RoguelikeArena_ArenaEventTriggers(_, _Trigger)
+THEN
+SetInArena(_Character, 1);
+
+IF
+CharacterLeftTrigger(_Character, _Trigger)
+AND
+CharacterIsDead(_Character, 0)
+AND
+CharacterIsPolymorphInteractionDisabled(_Character, 0)
+AND
+DB_RoguelikeArena_ArenaEventTriggers(_Arena, _Trigger)
+THEN
+SetInArena(_Character, 0);
+PROC_RoguelikeArena_HandleEndCombat(_Arena);
+
+IF
+CharacterDied(_Character)
+AND
+DB_RoguelikeArena_ArenaEventTriggers(_Arena, _)
+THEN
+PROC_RoguelikeArena_HandleEndCombat(_Arena);
+
+PROC
+PROC_RoguelikeArena_HandleEndCombat((INTEGER)_Arena)
+AND
+NOT QRY_RoguelikeArena_AnyArenaEnemiesAlive(_Arena)
+AND
+DB_RoguelikeArena_ActiveArena(_Arena, _Level, _Difficulty)
+THEN
+PROC_RoguelikeArena_ArenaCombatEnded(_Arena, _Level, _Difficulty);
+
+PROC
+PROC_RoguelikeArena_ArenaCombatEnded((INTEGER)_Arena, (INTEGER)_, (INTEGER)_)
+AND
+DB_RoguelikeArena_ArenaEventTriggers(_Arena, _Trigger)
+AND
+DB_InRegion(_Character, _Trigger)
+AND
+IsTagged(_Character, "AI_IGNORED_TARGET", 1)
+THEN
+SetOnStage(_Character, 0);
+
+PROC
+PROC_RoguelikeArena_ArenaCombatEnded(_Arena, _, _)
+AND
+DB_RoguelikeArena_ArenaEventTriggers(_Arena, _Trigger)
+AND
+DB_InRegion(_Character, _Trigger)
+THEN
+SetInArena(_Character, 0);
+PROC_RoguelikeArena_CharacterFullRestore(_Character);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena_Arena"

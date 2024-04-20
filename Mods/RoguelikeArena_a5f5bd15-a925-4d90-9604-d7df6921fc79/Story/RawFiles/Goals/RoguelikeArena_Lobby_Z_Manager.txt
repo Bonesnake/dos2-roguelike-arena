@@ -6,29 +6,21 @@ DB_RoguelikeArena_RegionTeleportTriggers(0, TRIGGERGUID_TeleportTrigger_050_e3db
 DB_RoguelikeArena_LobbyTeleporterItem((ITEMGUID)ITEMGUID_RoguelikeArena_Portal_000_ff11d147-61e9-44bc-a5f8-c106996b875d);
 KBSECTION
 IF
-CharacterUsedItem(_Character, _UsedItem)
-AND
-DB_RoguelikeArena_LobbyTeleporterItem(_UsedItem)
+ObjectFlagSet("RoguelikeArena_LobbyPortal_WasUsed", (CHARACTERGUID)_Character, _)
 THEN
 PROC_RoguelikeArena_UseLobbyTeleporter(_Character);
 
-// Progresses the arena.
 PROC
 PROC_RoguelikeArena_UseLobbyTeleporter((CHARACTERGUID)_Character)
 AND
-QRY_RoguelikeArena_IsCurrentChallengeComplete()
-AND
-QRY_RoguelikeArena_IsCurrentArenaClear()
+ObjectGetFlag(_Character, "RoguelikeArena_LobbyPortal_NextChallenge", 1)
 THEN
 PROC_RoguelikeArena_ProgressArena();
 
-// Resets the active arena and generates a new one.
 PROC
 PROC_RoguelikeArena_UseLobbyTeleporter(_Character)
 AND
-QRY_RoguelikeArena_IsCurrentChallengeComplete()
-AND
-QRY_RoguelikeArena_IsCurrentArenaClear()
+ObjectGetFlag(_Character, "RoguelikeArena_LobbyPortal_NextChallenge", 1)
 AND
 DB_RoguelikeArena_Singleton_CurrentLevel(_CurrentLevel)
 AND
@@ -40,12 +32,27 @@ PROC_RoguelikeArena_StartNewArena(_CurrentLevel, _CurrentDifficulty);
 PROC
 PROC_RoguelikeArena_UseLobbyTeleporter(_Character)
 AND
-DB_RoguelikeArena_ActiveArena(_Arena, _, _)
+ObjectGetFlag(_Character, "RoguelikeArena_LobbyPortal_TeleportMultiple", 1)
+THEN
+TriggerLaunchIterator(TRIGGERGUID_PortalHub_324e91f9-20ce-42c4-bd2f-b86624ba53df, "RoguelikeArena_CharacterTeleportedToArena");
+
+PROC
+PROC_RoguelikeArena_UseLobbyTeleporter(_Character)
+AND
+ObjectGetFlag(_Character, "RoguelikeArena_LobbyPortal_TeleportSingle", 1)
+THEN
+SetStoryEvent(_Character, "RoguelikeArena_CharacterTeleportedToArena");
+
+IF
+StoryEvent((CHARACTERGUID)_Character, "RoguelikeArena_CharacterTeleportedToArena")
+AND
+CharacterIsPlayer(_Character, 1)
+AND
+DB_RoguelikeArena_ActiveArena(_Arena, _, _, _)
 AND
 DB_RoguelikeArena_RegionTeleportTriggers(_Arena, _Trigger)
 THEN
 TeleportTo(_Character, _Trigger, "", 1);
-
 
 // Prevents the use of the teleporter in combat.
 PROC

@@ -22,7 +22,7 @@
     </stat_object>
     <stat_object is_substat="false">
       <fields>
-        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_SourceScarecrow" />
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_Object_Weak" />
         <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Generics" />
         <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="ActPart" />
         <field name="UseAPCost" type="IntegerStatObjectFieldDefinition" value="1" />
@@ -37,13 +37,6 @@
         <field name="WaterResistance" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="AirResistance" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="PoisonResistance" type="IntegerStatObjectFieldDefinition" value="0" />
-      </fields>
-    </stat_object>
-    <stat_object is_substat="false">
-      <fields>
-        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_BlessedStatue" />
-        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_Object_Indestructible" />
-        <field name="UseAPCost" type="IntegerStatObjectFieldDefinition" value="2" />
       </fields>
     </stat_object>
   </stat_objects>

@@ -12,13 +12,19 @@ DB_RoguelikeArena_CleanupSources(2, TRIGGERGUID_RoguelikeArena_SurfaceCleanupTri
 DB_RoguelikeArena_CleanupSources(3, TRIGGERGUID_RoguelikeArena_SurfaceCleanupTrigger_000_49203919-4035-4dd9-a987-b315f31d9f1b);
 DB_RoguelikeArena_CleanupSources(3, TRIGGERGUID_RoguelikeArena_SurfaceCleanupTrigger_001_e8da05b3-56b3-49ec-8477-61ab184fb85b);
 
+DB_RoguelikeArena_CleanupSources(4, TRIGGERGUID_RoguelikeArena_SurfaceCleanupTrigger_002_e819bceb-a043-4671-9e55-4de35ba473f5);
+DB_RoguelikeArena_CleanupSources(4, TRIGGERGUID_RoguelikeArena_SurfaceCleanupTrigger_003_05aa94ac-6568-4450-9632-9718cb9ade01);
+
+DB_RoguelikeArena_CleanupSources(5, TRIGGERGUID_RoguelikeArena_SurfaceCleanupTrigger_001_1171de7a-024a-48af-a676-54a905a6a2eb);
+DB_RoguelikeArena_CleanupSources(5, TRIGGERGUID_RoguelikeArena_SurfaceCleanupTrigger_000_6fb4f292-b646-4463-bf0b-37b1a3aae30d);
+
 // Radius, from, to, offset.
 // DB_RoguelikeArena_SurfaceCleanupParameters(64.0, -8, 8, 4.0);
 KBSECTION
 IF
-DB_RoguelikeArena_ActiveArenaHelper(_Arena, _Level, _Difficulty)
+DB_RoguelikeArena_ActiveArenaHelper(_Arena, _Level, _Difficulty, _Players)
 AND
-NOT DB_RoguelikeArena_ActiveArena(_Arena, _Level, _Difficulty)
+NOT DB_RoguelikeArena_ActiveArena(_Arena, _Level, _Difficulty, _Players)
 THEN
 PROC_RoguelikeArena_CleanUp(_Arena);
 
@@ -149,7 +155,7 @@ NOT DB_RoguelikeArena_CleanupRegisteredObjects(_Object, _Arena);
 IF
 ItemDropped(_Item)
 AND
-DB_RoguelikeArena_CleanupSources(_Arena, _Trigger)
+DB_RoguelikeArena_ArenaRegionTriggers(_Arena, _Trigger)
 AND
 ObjectIsInTrigger(_Item, _Trigger, 1)
 THEN

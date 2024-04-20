@@ -9,20 +9,16 @@ DB_RoguelikeArena_Events("SourceScarecrowEvent");
 DB_RoguelikeArena_Events("SurfaceEvent");
 KBSECTION
 IF
-DB_RoguelikeArena_ActiveArena(_Arena, _Level, _Difficulty)
+DB_RoguelikeArena_ActiveArena(_Arena, _Level, _Difficulty, _)
 THEN
 PROC_RoguelikeArena_StartRandomEvents(_Arena, _Level, _Difficulty);
 
 PROC
 PROC_RoguelikeArena_StartRandomEvents((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty)
 AND
-IntegerDivide(_Difficulty, 4, _DifficultyDivided)
+QRY_RoguelikeArena_RandomCount(_Difficulty, 1, 4, 1)
 AND
-IntegerSum(_DifficultyDivided, 1, _MaxEvents)
-AND
-QRY_RoguelikeArena_RandomInclusive(1, _MaxEvents)
-AND
-DB_Singleton("RoguelikeArena_RandomResult", _EventCount)
+DB_RoguelikeArena_RandomResult(_EventCount)
 THEN
 PROC_RoguelikeArena_StartRandomEvents(_Arena, _Level, _Difficulty, _EventCount);
 

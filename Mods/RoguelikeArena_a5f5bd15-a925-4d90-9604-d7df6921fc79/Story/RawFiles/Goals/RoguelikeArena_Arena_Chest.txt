@@ -8,12 +8,12 @@ DB_RoguelikeArena_ChestTemplates(4, "RoguelikeArena_Chest_Rank4_8ef15111-6318-4b
 DB_RoguelikeArena_ChestTemplates(5, "RoguelikeArena_Chest_Rank5_539587db-c187-430b-9d3c-c8e166193559", "RoguelikeArena_Chest_Rank5");
 KBSECTION
 IF
-DB_RoguelikeArena_ActiveArena(_Arena, _Level, _Difficulty)
+DB_RoguelikeArena_ActiveArena(_Arena, _Level, _Difficulty, _Players)
 THEN
-PROC_RoguelikeArena_SpawnChest(_Arena, _Level, _Difficulty);
+PROC_RoguelikeArena_SpawnChest(_Arena, _Level, _Difficulty, _Players);
 
 PROC
-PROC_RoguelikeArena_SpawnChest((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty)
+PROC_RoguelikeArena_SpawnChest((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty, (INTEGER)_Players)
 AND
 DB_RoguelikeArena_ChestTemplates(_Difficulty, _Template, _Treasure)
 AND
@@ -26,7 +26,8 @@ AND
 GetRotation(_Trigger, _, _RotY, _)
 THEN
 ItemLevelUpTo(_Chest, _Level);
-GenerateTreasure(_Chest, _Treasure, _Level, NULL_00000000-0000-0000-0000-000000000000);
+// GenerateTreasure(_Chest, _Treasure, _Level, NULL_00000000-0000-0000-0000-000000000000);
+PROC_RoguelikeArena_ItemGenerateTreasure(_Chest, _Treasure, _Level, _Players);
 ItemRotateToAngleY(_Chest, _RotY, 10000.0);
 PROC_RoguelikeArena_ItemSnapToGround(_Chest);
 PROC_RoguelikeArena_RegisterForCleanup(_Chest, _Arena);

@@ -25,14 +25,14 @@ THEN
 PROC_RoguelikeArena_MoveInMusicTrigger(_Arena, _Trigger);
 
 IF
-DB_RoguelikeArena_ActiveArena(_Arena, _, _Difficulty)
+DB_RoguelikeArena_ActiveArena(_Arena, _, _Difficulty, _)
 THEN
 PROC_RoguelikeArena_PlayRandomMusic(_Arena, _Difficulty);
 
 IF
-DB_RoguelikeArena_ActiveArenaHelper(_Arena, _Level, _Difficulty)
+DB_RoguelikeArena_ActiveArenaHelper(_Arena, _Level, _Difficulty, _Players)
 AND
-NOT DB_RoguelikeArena_ActiveArena(_Arena, _Level, _Difficulty)
+NOT DB_RoguelikeArena_ActiveArena(_Arena, _Level, _Difficulty, _Players)
 THEN
 PROC_RoguelikeArena_StopMusic(_Arena);
 

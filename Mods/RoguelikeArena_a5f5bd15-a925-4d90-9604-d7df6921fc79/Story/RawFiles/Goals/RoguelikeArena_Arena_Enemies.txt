@@ -12,9 +12,6 @@ DB_RoguelikeArena_Factions("Undead");
 //END_REGION
 
 //REGION Enemies, enemy spawn triggers and enemy settings
-// Min, max, increase per difficulty.
-DB_RoguelikeArena_EnemyCountParameters(0, 1, 1);
-
 // Per level, per difficulty, cap, cap increase per level.
 DB_RoguelikeArena_EnemyRankIncreaseChanceParameters(10, 5, 50, 1);
 
@@ -128,31 +125,29 @@ DB_RoguelikeArena_EnemyTemplates("Undead", 2, "Inquisitor", "", "RoguelikeArena_
 PROC_RoguelikeArena_StringPoolAddFactions();
 KBSECTION
 IF
-DB_RoguelikeArena_ActiveArena(_Arena, _Level, _Difficulty)
+DB_RoguelikeArena_ActiveArena(_Arena, _Level, _Difficulty, _Players)
 THEN
-PROC_RoguelikeArena_SpawnEnemies(_Arena, _Level, _Difficulty);
+PROC_RoguelikeArena_SpawnEnemies(_Arena, _Level, _Difficulty, _Players);
 
 // Calculates the amount of enemies to be spawned and spawns that amount.
 PROC
-PROC_RoguelikeArena_SpawnEnemies((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty)
+PROC_RoguelikeArena_SpawnEnemies((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty, (INTEGER)_Players)
 AND
-DB_RoguelikeArena_EnemyCountParameters(_EnemyCountMin, _EnemyCountMax, _EnemyCountIncreasePerDifficulty)
+QRY_RoguelikeArena_RandomCount(_Difficulty, 1, 1, 1)
 AND
-IntegerProduct(_Difficulty, _EnemyCountIncreasePerDifficulty, _EnemyCountModifier)
+DB_RoguelikeArena_RandomResult(_EnemyCount)
 AND
-IntegerSum(_EnemyCountMin, _EnemyCountModifier, _EnemyCountMinModified)
+IntegerProduct(_EnemyCount, _Players, _EnemyCountMultiplied)
 AND
-IntegerSum(_EnemyCountMax, _EnemyCountModifier, _EnemyCountMaxModified)
+IntegerDivide(_EnemyCountMultiplied, 4, _EnemyCountAdjusted)
 AND
-QRY_RoguelikeArena_RandomInclusive(_EnemyCountMinModified, _EnemyCountMaxModified)
-AND
-DB_Singleton("RoguelikeArena_RandomResult", _EnemyCount)
+IntegerMax(_EnemyCountAdjusted, 1, _EnemyCountCorrected)
 THEN
-PROC_RoguelikeArena_SpawnEnemies(_Arena, _Level, _Difficulty, _EnemyCount);
+PROC_RoguelikeArena_SpawnEnemies(_Arena, _Level, _Difficulty, _Players, _EnemyCountCorrected);
 
 // Selects a random faction and adds enemies from it to the enemy pool.
 PROC
-PROC_RoguelikeArena_SpawnEnemies((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty, (INTEGER)_Count)
+PROC_RoguelikeArena_SpawnEnemies((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty, (INTEGER)_Players, (INTEGER)_Count)
 AND
 QRY_RoguelikeArena_StringPoolSelectRandom("FactionPool")
 AND
@@ -163,7 +158,7 @@ PROC_RoguelikeArena_StringPoolAddEnemies(_Faction);
 
 // Spawns the enemies.
 PROC
-PROC_RoguelikeArena_SpawnEnemies((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty, (INTEGER)_Count)
+PROC_RoguelikeArena_SpawnEnemies(_Arena, _Level, _Difficulty, _Players, _Count)
 AND
 QRY_RoguelikeArena_CreateIndices(_Count)
 AND
@@ -200,7 +195,7 @@ THEN
 SetCombatGroupID(_Enemy, _CombatGroupID);
 //SetFaction(_Enemy, "Evil NPC");
 CharacterLevelUpTo(_Enemy, _Level);
-PROC_RoguelikeArena_CharacterLevelUpEquipmentTo(_Enemy, _Level);
+// PROC_RoguelikeArena_CharacterLevelUpEquipmentTo(_Enemy, _Level);
 PROC_RoguelikeArena_CharacterAddRandomSkills(_Enemy, _Level, _Rank, _Class, _Specialization);
 PROC_RoguelikeArena_CharacterSetSourcePoints(_Enemy, _Level, _Rank);
 PROC_RoguelikeArena_RegisterForCleanup(_Enemy, _Arena);
@@ -244,7 +239,7 @@ DB_Singleton("RoguelikeArena_CurrentEnemyRank", 0);
 
 // Tries to increase enemy rank by 1 for each available rank. The higher the rank, the lower the chance.
 QRY
-QRY_RoguelikeArena_SetCurrentEnemyRank((INTEGER)_Level, (INTEGER)_Difficulty)
+QRY_RoguelikeArena_SetCurrentEnemyRank(_Level, _Difficulty)
 AND
 DB_RoguelikeArena_EnemyRankIncreaseChanceParameters(_IncreaseChancePerLevel, _IncreaseChancePerDifficulty, _Cap, _CapIncreasePerLevel)
 AND

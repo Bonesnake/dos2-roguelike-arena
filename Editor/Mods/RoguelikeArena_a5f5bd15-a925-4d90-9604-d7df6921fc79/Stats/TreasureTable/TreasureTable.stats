@@ -2475,14 +2475,23 @@
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_Chest_Rank1" />
         <field name="DropCount" type="StringStatObjectFieldDefinition" value="1,1" />
-        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_RewardTiny" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="NeoGoldReward_Tiny" />
         <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
       </fields>
     </stat_object>
     <stat_object is_substat="true">
       <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_Chest_Rank1_substat" />
+        <field name="DropCount" type="StringStatObjectFieldDefinition" value="0,1;1,1" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_RewardTiny" />
+        <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_Chest_Rank1" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="true">
+      <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_Chest_Rank1_substat_0" />
-        <field name="DropCount" type="StringStatObjectFieldDefinition" value="1,1" />
+        <field name="DropCount" type="StringStatObjectFieldDefinition" value="0,1;1,1" />
         <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_RewardSmall" />
         <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_Chest_Rank1" />
@@ -2499,7 +2508,7 @@
     <stat_object is_substat="true">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_Chest_Rank2_substat_0" />
-        <field name="DropCount" type="StringStatObjectFieldDefinition" value="1,1" />
+        <field name="DropCount" type="StringStatObjectFieldDefinition" value="0,1;1,1" />
         <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_RewardMedium" />
         <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_Chest_Rank2" />
@@ -2508,7 +2517,7 @@
     <stat_object is_substat="true">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_Chest_Rank2_substat_1" />
-        <field name="DropCount" type="StringStatObjectFieldDefinition" value="0,2;1,2" />
+        <field name="DropCount" type="StringStatObjectFieldDefinition" value="0,3;1,1" />
         <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="I_SCROLL_Resurrect" />
         <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_Chest_Rank2" />
@@ -2525,7 +2534,7 @@
     <stat_object is_substat="true">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_Chest_Rank3_substat_0" />
-        <field name="DropCount" type="StringStatObjectFieldDefinition" value="1,1" />
+        <field name="DropCount" type="StringStatObjectFieldDefinition" value="0,1;1,1" />
         <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_RewardCombat" />
         <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_Chest_Rank3" />
@@ -2534,7 +2543,7 @@
     <stat_object is_substat="true">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_Chest_Rank3_substat_1" />
-        <field name="DropCount" type="StringStatObjectFieldDefinition" value="1,1" />
+        <field name="DropCount" type="StringStatObjectFieldDefinition" value="0,1;1,1" />
         <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_RoguelikeArena_ScrollSpecial" />
         <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_Chest_Rank3" />
@@ -2551,7 +2560,7 @@
     <stat_object is_substat="true">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_Chest_Rank4_substat_0" />
-        <field name="DropCount" type="StringStatObjectFieldDefinition" value="1,1" />
+        <field name="DropCount" type="StringStatObjectFieldDefinition" value="0,1;1,1" />
         <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_RewardBig" />
         <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_Chest_Rank4" />
@@ -2560,7 +2569,7 @@
     <stat_object is_substat="true">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_Chest_Rank4_substat_1" />
-        <field name="DropCount" type="StringStatObjectFieldDefinition" value="1,1" />
+        <field name="DropCount" type="StringStatObjectFieldDefinition" value="0,1;1,1" />
         <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_RoguelikeArena_SkillbookCrafted" />
         <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_Chest_Rank4" />
@@ -2577,7 +2586,7 @@
     <stat_object is_substat="true">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_Chest_Rank5_substat_0" />
-        <field name="DropCount" type="StringStatObjectFieldDefinition" value="1,1" />
+        <field name="DropCount" type="StringStatObjectFieldDefinition" value="0,1;1,1" />
         <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_TinyBoss" />
         <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_Chest_Rank5" />
@@ -2586,7 +2595,7 @@
     <stat_object is_substat="true">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_Chest_Rank5_substat_1" />
-        <field name="DropCount" type="StringStatObjectFieldDefinition" value="1,1" />
+        <field name="DropCount" type="StringStatObjectFieldDefinition" value="0,1;1,1" />
         <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_MiniBoss" />
         <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_Chest_Rank5" />
@@ -2595,7 +2604,7 @@
     <stat_object is_substat="true">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_Chest_Rank5_substat_2" />
-        <field name="DropCount" type="StringStatObjectFieldDefinition" value="1,1" />
+        <field name="DropCount" type="StringStatObjectFieldDefinition" value="0,1;1,1" />
         <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_MegaBoss" />
         <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_Chest_Rank5" />
@@ -2604,7 +2613,7 @@
     <stat_object is_substat="true">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_Chest_Rank5_substat_3" />
-        <field name="DropCount" type="StringStatObjectFieldDefinition" value="1,1" />
+        <field name="DropCount" type="StringStatObjectFieldDefinition" value="0,1;1,1" />
         <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_RoguelikeArena_Uniques" />
         <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_Chest_Rank5" />

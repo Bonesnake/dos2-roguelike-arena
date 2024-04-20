@@ -10,6 +10,7 @@ DB_ItemOwnerShipTriggers("RoguelikeArena_Level", TRIGGERGUID_BoxTrigger_003_f563
 DB_ItemOwnerShipTriggers("RoguelikeArena_Level", TRIGGERGUID_Hallway_7a1c2bfc-cb44-4f59-b679-27cc7fe3f3bc, CHARACTERGUID_S_RoguelikeArena_Guardian_11eebea1-a79f-47b7-b92b-b3cec4cd35b1);
 // DB_ItemOwnerShipTriggers("RoguelikeArena_Level", TRIGGERGUID_TrainingArea_f7cdc6f3-c0e2-41fb-809c-151a0e9cd0dc, CHARACTERGUID_S_RoguelikeArena_Guardian_11eebea1-a79f-47b7-b92b-b3cec4cd35b1);
 // DB_ItemOwnerShipTriggers("RoguelikeArena_Level", TRIGGERGUID_RestingArea_4249981f-a56a-45c5-97a4-40f778d38ccf, CHARACTERGUID_S_RoguelikeArena_Guardian_11eebea1-a79f-47b7-b92b-b3cec4cd35b1);
+DB_ItemOwnerShipTriggers("RoguelikeArena_Level", TRIGGERGUID_PortalHub_324e91f9-20ce-42c4-bd2f-b86624ba53df, CHARACTERGUID_S_RoguelikeArena_Guardian_11eebea1-a79f-47b7-b92b-b3cec4cd35b1);
 KBSECTION
 
 EXITSECTION

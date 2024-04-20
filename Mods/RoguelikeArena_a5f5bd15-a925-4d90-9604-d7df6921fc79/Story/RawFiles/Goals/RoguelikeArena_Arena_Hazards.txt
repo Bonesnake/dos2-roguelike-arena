@@ -1,9 +1,6 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
-// Min, max, min increase per difficulty, max increase per difficulty.
-DB_RoguelikeArena_HazardCountParameters(0, 2, 0, 1);
-
 DB_RoguelikeArena_HazardTemplates("RoguelikeArena_Hazard_OilBarrel_ef163eb6-74dc-4d5a-9f42-784bdbda0cc1");
 DB_RoguelikeArena_HazardTemplates("RoguelikeArena_Hazard_OozeBarrel_064fe822-b646-4c5d-8906-c474b953ad64");
 DB_RoguelikeArena_HazardTemplates("RoguelikeArena_Hazard_ExplodingPumpkin_22bb2d0d-cf33-4ad3-ba71-c5b184fd5b6a");
@@ -16,21 +13,9 @@ KBSECTION
 PROC
 PROC_RoguelikeArena_SpawnHazards((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty)
 AND
-Random(4, _Random)
+QRY_RoguelikeArena_RandomCount(_Difficulty, 1, 1, 2)
 AND
-DB_RoguelikeArena_HazardCountParameters(_HazardCountMin, _HazardCountMax, _HazardCountMinIncreasePerDifficulty, _HazardCountMaxIncreasePerDifficulty)
-AND
-IntegerProduct(_Difficulty, _HazardCountMinIncreasePerDifficulty, _HazardCountMinModifier)
-AND
-IntegerProduct(_Difficulty, _HazardCountMaxIncreasePerDifficulty, _HazardCountMaxModifier)
-AND
-IntegerSum(_HazardCountMin, _HazardCountMinModifier, _HazardCountMinModified)
-AND
-IntegerSum(_HazardCountMax, _HazardCountMaxModifier, _HazardCountMaxModified)
-AND
-QRY_RoguelikeArena_RandomInclusive(_HazardCountMinModified, _HazardCountMaxModified)
-AND
-DB_Singleton("RoguelikeArena_RandomResult", _HazardCount)
+DB_RoguelikeArena_RandomResult(_HazardCount)
 THEN
 PROC_RoguelikeArena_SpawnHazards(_Arena, _Level, _Difficulty, _HazardCount);
 

@@ -7,6 +7,8 @@ DB_RoguelikeArena_LobbyExtraFeatures("RoguelikeArena_DebugStatue", 0, 0, 0, ITEM
 DB_RoguelikeArena_LobbyExtraFeatures("RoguelikeArena_EquipmentStatue", 2, 100, 25, (ITEMGUID)ITEMGUID_RoguelikeArena_Lobby_EquipmentStatue_000_f0b00fdf-5679-4b32-af98-32f84af287f2);
 DB_RoguelikeArena_LobbyExtraFeatures("RoguelikeArena_ChestOfFortune", 4, 20, 5, ITEMGUID_CONT_Humans_Citz_Chest_Rich_A_001_b253200a-1651-43fd-9027-44a7834b7958);
 DB_RoguelikeArena_LobbyExtraFeatures("RoguelikeArena_RecruitmentBoard", 1, 0, 0, ITEMGUID_TOOL_SignWall_A_Wood_001_ae04ac4e-72d8-4247-b82c-5bd82e98262f);
+DB_RoguelikeArena_LobbyExtraFeatures("RoguelikeArena_LobbyPortal", 1, 0, 0, ITEMGUID_RoguelikeArena_Portal_000_ff11d147-61e9-44bc-a5f8-c106996b875d);
+DB_RoguelikeArena_LobbyExtraFeatures("RoguelikeArena_Scoreboard", 1, 0, 0, ITEMGUID_TOOL_SignRoad_A_000_c3bb4701-393c-4b2e-8140-10f9ea791752);
 
 PROC_RoguelikeArena_InitLobbyExtraFeatures();
 KBSECTION

@@ -56,7 +56,7 @@ IntegerSum(_ContainerCountMax, _ContainerCountMaxModifier, _ContainerCountMaxMod
 AND
 QRY_RoguelikeArena_RandomInclusive(_ContainerCountMinModified, _ContainerCountMaxModified)
 AND
-DB_Singleton("RoguelikeArena_RandomResult", _ContainerCount)
+DB_RoguelikeArena_RandomResult(_ContainerCount)
 THEN
 PROC_RoguelikeArena_SpawnContainers(_Arena, _Level, _Difficulty, _ContainerCount);
 

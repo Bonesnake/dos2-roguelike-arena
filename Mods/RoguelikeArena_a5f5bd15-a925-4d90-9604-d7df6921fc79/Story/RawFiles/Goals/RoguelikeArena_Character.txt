@@ -788,7 +788,7 @@ DB_RoguelikeArena_SkillCountParameters(_SkillCountMin, _SkillCountMax, _Interval
 AND
 QRY_RoguelikeArena_RandomInclusive(_SkillCountMin, _SkillCountMax)
 AND
-DB_Singleton("RoguelikeArena_RandomResult", _RandomResult)
+DB_RoguelikeArena_RandomResult(_RandomResult)
 AND
 IntegerSubtract(_Level, 1, _LevelCorrected)
 AND
@@ -861,7 +861,7 @@ IntegerDivide(_Level, _MaxDistribution, _MaxDistributed)
 AND
 QRY_RoguelikeArena_RandomInclusive(0, _MaxDistributed)
 AND
-DB_Singleton("RoguelikeArena_RandomResult", _Points)
+DB_RoguelikeArena_RandomResult(_Points)
 THEN
 CharacterOverrideMaxSourcePoints(_Character, _Max);
 CharacterAddSourcePoints(_Character, _Points);

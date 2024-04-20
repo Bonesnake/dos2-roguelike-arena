@@ -6,10 +6,59 @@
         <node id="root">
             <children>
                 <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="0" type="23" />
+                    <attribute id="Description" value="Number of arenas cleared" type="23" />
+                    <attribute id="UUID" value="2a969352-3e5e-4163-b584-77c11a7bd3fa" type="31" />
+                    <attribute id="name" value="RoguelikeArena_ArenasCleared" type="22" />
+                    <attribute id="type" value="Int" type="23" />
+                </node>
+                <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="0" type="23" />
+                    <attribute id="Description" value="Number of times the Chest of Fortune was used" type="23" />
+                    <attribute id="UUID" value="3734d842-43b4-4401-90cb-f37b8d980196" type="31" />
+                    <attribute id="name" value="RoguelikeArena_ChestOfFortuneUsages" type="22" />
+                    <attribute id="type" value="Int" type="23" />
+                </node>
+                <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="0" type="23" />
+                    <attribute id="Description" value="Number of enemies killed" type="23" />
+                    <attribute id="UUID" value="494edaf9-b5be-4109-9188-8582f5d317f2" type="31" />
+                    <attribute id="name" value="RoguelikeArena_EnemiesKilled" type="22" />
+                    <attribute id="type" value="Int" type="23" />
+                </node>
+                <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="0" type="23" />
+                    <attribute id="Description" value="Number of times the Equipment Statue was used" type="23" />
+                    <attribute id="UUID" value="0f374e3f-7143-4f2b-bd9c-77404d9f7e66" type="31" />
+                    <attribute id="name" value="RoguelikeArena_EquipmentStatueUsages" type="22" />
+                    <attribute id="type" value="Int" type="23" />
+                </node>
+                <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="1" type="23" />
+                    <attribute id="Description" value="The highest level the party reached" type="23" />
+                    <attribute id="UUID" value="e677cdd9-69db-4726-9bae-735f5c63b0e1" type="31" />
+                    <attribute id="name" value="RoguelikeArena_HighestLevelReached" type="22" />
+                    <attribute id="type" value="Int" type="23" />
+                </node>
+                <node id="DialogVariable">
                     <attribute id="DefaultValue" value="1" type="23" />
                     <attribute id="Description" value="Required level to use a specific feature" type="23" />
                     <attribute id="UUID" value="ac29c66c-8679-41d2-944d-c4bcbff5fbfb" type="31" />
                     <attribute id="name" value="RoguelikeArena_LevelRequirement" type="22" />
+                    <attribute id="type" value="Int" type="23" />
+                </node>
+                <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="0" type="23" />
+                    <attribute id="Description" value="Number of objects destroyed" type="23" />
+                    <attribute id="UUID" value="28fa702a-20ad-44e8-8e03-fed52c03fc40" type="31" />
+                    <attribute id="name" value="RoguelikeArena_ObjectsDestroyed" type="22" />
+                    <attribute id="type" value="Int" type="23" />
+                </node>
+                <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="0" type="23" />
+                    <attribute id="Description" value="Number of times a player died" type="23" />
+                    <attribute id="UUID" value="7d35e25e-4a7a-469f-a49b-8070ad65b8fe" type="31" />
+                    <attribute id="name" value="RoguelikeArena_PlayerDeaths" type="22" />
                     <attribute id="type" value="Int" type="23" />
                 </node>
             </children>

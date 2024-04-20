@@ -48,7 +48,7 @@ ACTIONS
 			GetRandom(%Status,"ACID","BLEEDING","BLIND","BURNING","CHICKEN","CHILLED","CRIPPLED","CURSED","DAMAGE_ON_MOVE","DEAF","DECAYING_TOUCH","DISARMED","DISEASED","DRUNK","ENRAGED","FEAR","FROZEN","KNOCKED_DOWN","MADNESS","MUTED","NECROFIRE","PETRIFIED","SHOCKED","SLOWED","SOURCE_MUTED","STUNNED","UNCONSCIOUS","UNHEALABLE","WARM","WET")
 		ENDIF
 		PlaySound(__Me,%CoreChargedSound)
-		Sleep(2.0)
+		Sleep(1.0)
 		EndTurn(__Me)
 		SetPriority("SourceBeacon_Pulsing",1000)
 		SetPriority("SourceBeacon_Charging",0)
@@ -66,9 +66,8 @@ ACTIONS
 		Sleep(0.5)
 		StopLoopEffect(%CoreFx)
 		ItemPlayLoopEffect(%CoreFx,__Me,%CoreChargingEffect)
-		Sleep(2.0)
+		Sleep(1.0)
 		EndTurn(__Me)
 		SetPriority("SourceBeacon_Charging",1000)
 		SetPriority("SourceBeacon_Pulsing",0)
 	ENDIF
-	

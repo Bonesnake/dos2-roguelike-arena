@@ -6,13 +6,9 @@ KBSECTION
 PROC
 PROC_RoguelikeArena_SpawnMeteorShowers((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty)
 AND
-IntegerDivide(_Difficulty, 2, _DifficultyHalved)
+QRY_RoguelikeArena_RandomCount(_Difficulty, 1, 2, 1)
 AND
-IntegerSum(_DifficultyHalved, 1, _MaxMeteorShowers)
-AND
-QRY_RoguelikeArena_RandomInclusive(1, _MaxMeteorShowers)
-AND
-DB_Singleton("RoguelikeArena_RandomResult", _MeteorShowerCount)
+DB_RoguelikeArena_RandomResult(_MeteorShowerCount)
 THEN
 PROC_RoguelikeArena_SpawnMeteorShowers(_Arena, _Level, _Difficulty, _MeteorShowerCount);
 

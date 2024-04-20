@@ -20,26 +20,37 @@ AND
 DB_RoguelikeArena_ArenaEventTriggers(_Arena, _Trigger)
 THEN
 SetInArena(_Character, 0);
-PROC_RoguelikeArena_HandleEndCombat(_Arena);
 
 IF
 CharacterDied(_Character)
 AND
-DB_RoguelikeArena_ArenaEventTriggers(_Arena, _)
-THEN
-PROC_RoguelikeArena_HandleEndCombat(_Arena);
-
-PROC
-PROC_RoguelikeArena_HandleEndCombat((INTEGER)_Arena)
+GetFaction(_Character, "Evil NPC")
+AND
+DB_RoguelikeArena_ActiveArena(_Arena, _Level, _Difficulty, _Players)
+AND
+DB_RoguelikeArena_ArenaEventTriggers(_Arena, _Trigger)
+AND
+ObjectIsInTrigger(_Character, _Trigger, 1)
 AND
 NOT QRY_RoguelikeArena_AnyArenaEnemiesAlive(_Arena)
 AND
-DB_RoguelikeArena_ActiveArena(_Arena, _Level, _Difficulty)
+QRY_RoguelikeArena_AnyoneInCombat(_Arena)
 THEN
-PROC_RoguelikeArena_ArenaCombatEnded(_Arena, _Level, _Difficulty);
+PROC_RoguelikeArena_ArenaCombatEnded(_Arena, _Level, _Difficulty, _Players);
 
 PROC
-PROC_RoguelikeArena_ArenaCombatEnded((INTEGER)_Arena, (INTEGER)_, (INTEGER)_)
+PROC_RoguelikeArena_ArenaCombatEnded((INTEGER)_Arena, (INTEGER)_, (INTEGER)_, (INTEGER)_)
+AND
+DB_RoguelikeArena_ArenaEventTriggers(_Arena, _Trigger)
+AND
+DB_InRegion(_Character, _Trigger)
+THEN
+SetInArena(_Character, 0);
+LeaveCombat(_Character);
+PROC_RoguelikeArena_CharacterFullRestore(_Character);
+
+PROC
+PROC_RoguelikeArena_ArenaCombatEnded(_Arena, _, _, _)
 AND
 DB_RoguelikeArena_ArenaEventTriggers(_Arena, _Trigger)
 AND
@@ -49,15 +60,27 @@ IsTagged(_Character, "AI_IGNORED_TARGET", 1)
 THEN
 SetOnStage(_Character, 0);
 
-PROC
-PROC_RoguelikeArena_ArenaCombatEnded(_Arena, _, _)
+QRY
+QRY_RoguelikeArena_AnyArenaEnemiesAlive((INTEGER)_Arena)
 AND
 DB_RoguelikeArena_ArenaEventTriggers(_Arena, _Trigger)
 AND
 DB_InRegion(_Character, _Trigger)
+AND
+GetFaction(_Character, "Evil NPC")
+AND
+CharacterIsDead(_Character, 0)
 THEN
-SetInArena(_Character, 0);
-PROC_RoguelikeArena_CharacterFullRestore(_Character);
+DB_NOOP(1);
+
+QRY
+QRY_RoguelikeArena_AnyoneInCombat((INTEGER)_Arena)
+AND
+DB_InRegion(_Character, _Trigger)
+AND
+CharacterIsInCombat(_Character, 1)
+THEN
+DB_NOOP(1);
 EXITSECTION
 
 ENDEXITSECTION

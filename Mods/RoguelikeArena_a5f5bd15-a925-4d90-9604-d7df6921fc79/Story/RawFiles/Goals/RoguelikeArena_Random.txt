@@ -3,7 +3,7 @@ SubGoalCombiner SGC_AND
 INITSECTION
 
 KBSECTION
-// Generates a random number between min and max (inclusive) and puts the result into "RoguelikeArena_RandomResult" singleton.
+// Generates a random number between min and max (inclusive) and puts the result into "DB_RoguelikeArena_RandomResult" singleton.
 QRY
 QRY_RoguelikeArena_RandomInclusive((INTEGER)_Min, (INTEGER)_Max)
 AND
@@ -15,7 +15,33 @@ Random(_MaxOffsettedIncremented, _ResultOffsetted)
 AND
 IntegerSum(_ResultOffsetted, _Min, _Result)
 THEN
-DB_Singleton("RoguelikeArena_RandomResult", _Result);
+DB_RoguelikeArena_RandomResult(_Result);
+
+IF
+DB_RoguelikeArena_RandomResult(_Result)
+AND
+DB_RoguelikeArena_RandomResult(_ResultOther)
+AND
+_Result != _ResultOther
+THEN
+NOT DB_RoguelikeArena_RandomResult(_ResultOther);
+
+QRY
+QRY_RoguelikeArena_RandomCount((INTEGER)_Base, (INTEGER)_Modifier, (INTEGER)_Interval, (INTEGER)_Variance)
+AND
+IntegerProduct(_Base, _Modifier, _Product)
+AND
+IntegerSubtract(_Product, 1, _Dividend)
+AND
+IntegerDivide(_Dividend, _Interval, _Quotient)
+AND
+IntegerSum(_Quotient, 1, _Min)
+AND
+IntegerSum(_Min, _Variance, _Max)
+AND
+QRY_RoguelikeArena_RandomInclusive(_Min, _Max)
+THEN
+DB_NOOP(1);
 EXITSECTION
 
 ENDEXITSECTION

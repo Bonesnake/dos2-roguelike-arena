@@ -1,9 +1,6 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
-// Min, max, min increase per difficulty, max increase per difficulty.
-DB_RoguelikeArena_SurfaceCountParameters(1, 1, 0, 1);
-
 DB_RoguelikeArena_SurfaceTypes("SurfaceBlood");
 DB_RoguelikeArena_SurfaceTypes("SurfaceBloodElectrified");
 DB_RoguelikeArena_SurfaceTypes("SurfaceBloodFrozen");
@@ -21,19 +18,9 @@ KBSECTION
 PROC
 PROC_RoguelikeArena_CreateSurfaces((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty)
 AND
-DB_RoguelikeArena_SurfaceCountParameters(_SurfaceCountMin, _SurfaceCountMax, _SurfaceCountMinIncreasePerDifficulty, _SurfaceCountMaxIncreasePerDifficulty)
+QRY_RoguelikeArena_RandomCount(_Difficulty, 1, 1, 1)
 AND
-IntegerProduct(_Difficulty, _SurfaceCountMinIncreasePerDifficulty, _SurfaceCountMinModifier)
-AND
-IntegerProduct(_Difficulty, _SurfaceCountMaxIncreasePerDifficulty, _SurfaceCountMaxModifier)
-AND
-IntegerSum(_SurfaceCountMin, _SurfaceCountMinModifier, _SurfaceCountMinModified)
-AND
-IntegerSum(_SurfaceCountMax, _SurfaceCountMaxModifier, _SurfaceCountMaxModified)
-AND
-QRY_RoguelikeArena_RandomInclusive(_SurfaceCountMinModified, _SurfaceCountMaxModified)
-AND
-DB_Singleton("RoguelikeArena_RandomResult", _SurfaceCount)
+DB_RoguelikeArena_RandomResult(_SurfaceCount)
 THEN
 PROC_RoguelikeArena_CreateSurfaces(_Arena, _Level, _Difficulty, _SurfaceCount);
 

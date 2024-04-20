@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" />
+    <version major="3" minor="6" revision="6" build="0" />
+    <region id="AlignmentManager">
+        <node id="root">
+            <children>
+                <node id="Alignments">
+                    <children>
+                        <node id="Alignment">
+                            <attribute id="Object" value="RoguelikeArena_Environment" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Entities" />
+                <node id="Relations">
+                    <children>
+                        <node id="Relation">
+                            <attribute id="Source" value="RoguelikeArena_Environment" type="22" />
+                            <attribute id="Target" value="Evil" type="22" />
+                            <attribute id="Value" value="0" type="4" />
+                        </node>
+                        <node id="Relation">
+                            <attribute id="Source" value="RoguelikeArena_Environment" type="22" />
+                            <attribute id="Target" value="Good" type="22" />
+                            <attribute id="Value" value="50" type="4" />
+                        </node>
+                        <node id="Relation">
+                            <attribute id="Source" value="RoguelikeArena_Environment" type="22" />
+                            <attribute id="Target" value="Hero" type="22" />
+                            <attribute id="Value" value="50" type="4" />
+                        </node>
+                    </children>
+                </node>
+            </children>
+        </node>
+    </region>
+</save>

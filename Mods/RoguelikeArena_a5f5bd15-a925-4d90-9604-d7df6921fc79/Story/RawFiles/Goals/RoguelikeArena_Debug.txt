@@ -4,9 +4,17 @@ INITSECTION
 DB_RoguelikeArena_DebugItemTemplate("FUR_Dwarves_Citz_Chair_A_99e1cf50-64e5-4970-a58a-353b2b1992ed");
 KBSECTION
 IF
-CharacterUsedItem(_Char, ITEMGUID_BLD_Dwarves_Statue_Duna_A_Dynamic_001_6a330329-043f-44e6-a510-f447ce0b04db)
+CharacterUsedItem(_Char, ITEMGUID_BLD_Dwarves_Statue_Duna_A_Dynamic_000_7f73c946-0b06-495a-9173-76562955e3b3)
 AND
-DB_RoguelikeArena_CleanupSources(1, _Source)
+DB_RoguelikeArena_CleanupSources(4, _Source)
+THEN
+CreateSurface(_Source, "SurfaceBlood", 64.0, -1.0);
+DebugBreak("Created debug surface");
+
+IF
+CharacterUsedItem(_Char, ITEMGUID_BLD_Dwarves_Statue_Duna_A_Dynamic_001_a369ec0f-f7ec-4f93-abaa-f79ab60c2d5e)
+AND
+DB_RoguelikeArena_CleanupSources(4, _Source)
 THEN
 RemoveSurfaceLayer(_Source, 0, 64.0);
 RemoveSurfaceLayer(_Source, 1, 64.0);
@@ -26,11 +34,6 @@ THEN
 SetFaction(CHARACTERGUID_RoguelikeArena_MeteorShower_000_a9e3de93-75fd-4812-ae2f-53124e52de9a, "Neutral NPC");
 SetInArena(CHARACTERGUID_RoguelikeArena_MeteorShower_000_a9e3de93-75fd-4812-ae2f-53124e52de9a, 0);
 SetInArena(_Char, 0);
-
-IF
-CharacterUsedItem(_Char, ITEMGUID_BLD_Dwarves_Statue_Duna_A_Dynamic_002_d5568301-f7dc-43eb-bb0e-3ce0ed88ec1a)
-THEN
-CharacterUseSkill(NULL_00000000-0000-0000-0000-000000000000, "Projectile_EnemyFireball", ITEMGUID_BLD_Dwarves_Statue_Duna_A_Dynamic_003_1ad49782-8f2e-423a-9562-4fa7bf60edbc, 1, 1);
 
 PROC
 PROC_RoguelikeArena_DebugBreakInteger((INTEGER)_Message)

@@ -42,6 +42,15 @@ IF
 DB_RoguelikeArena_RemovedItems(_Item)
 THEN
 DB_NOOP(1);
+
+PROC
+PROC_RoguelikeArena_ItemGenerateTreasure((ITEMGUID)_Item, (STRING)_Treasure, (INTEGER)_Level, (INTEGER)_Times)
+AND
+QRY_RoguelikeArena_CreateIndices(_Times)
+AND
+DB_RoguelikeArena_CreatedIndices(_)
+THEN
+GenerateTreasure(_Item, _Treasure, _Level, NULL_00000000-0000-0000-0000-000000000000);
 EXITSECTION
 
 ENDEXITSECTION

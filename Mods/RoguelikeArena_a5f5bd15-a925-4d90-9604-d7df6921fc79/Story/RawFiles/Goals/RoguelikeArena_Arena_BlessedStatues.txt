@@ -16,13 +16,9 @@ KBSECTION
 PROC
 PROC_RoguelikeArena_SpawnBlessedStatues((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty)
 AND
-IntegerDivide(_Difficulty, 4, _DifficultyHalved)
+QRY_RoguelikeArena_RandomCount(_Difficulty, 1, 3, 1)
 AND
-IntegerSum(_DifficultyHalved, 1, _MaxBlessedStatues)
-AND
-QRY_RoguelikeArena_RandomInclusive(1, _MaxBlessedStatues)
-AND
-DB_Singleton("RoguelikeArena_RandomResult", _BlessedStatueCount)
+DB_RoguelikeArena_RandomResult(_BlessedStatueCount)
 THEN
 PROC_RoguelikeArena_SpawnBlessedStatues(_Arena, _Level, _Difficulty, _BlessedStatueCount);
 

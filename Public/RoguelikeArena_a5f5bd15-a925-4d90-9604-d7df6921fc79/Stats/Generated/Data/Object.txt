@@ -15,7 +15,7 @@ data "WaterResistance" "100"
 data "AirResistance" "100"
 data "PoisonResistance" "100"
 
-new entry "RoguelikeArena_SourceScarecrow"
+new entry "RoguelikeArena_Object_Weak"
 type "Object"
 using "_Generics"
 data "Act part" "1"
@@ -31,9 +31,4 @@ data "EarthResistance" "0"
 data "WaterResistance" "0"
 data "AirResistance" "0"
 data "PoisonResistance" "0"
-
-new entry "RoguelikeArena_BlessedStatue"
-type "Object"
-using "RoguelikeArena_Object_Indestructible"
-data "UseAPCost" "2"
 

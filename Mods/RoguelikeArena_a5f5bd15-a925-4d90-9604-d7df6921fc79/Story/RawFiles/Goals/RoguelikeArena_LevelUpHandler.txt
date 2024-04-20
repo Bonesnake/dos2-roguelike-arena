@@ -4,7 +4,7 @@ INITSECTION
 
 KBSECTION
 PROC
-PROC_RoguelikeArena_ArenaCombatEnded(_Arena, _Level, _Difficulty)
+PROC_RoguelikeArena_ArenaCombatEnded(_Arena, _Level, _Difficulty, _)
 AND
 DB_RoguelikeArena_Singleton_MaxDifficulty(_MaxDifficulty)
 AND

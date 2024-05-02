@@ -1,0 +1,70 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_RoguelikeArena_LobbyTeleporterItem((ITEMGUID)ITEMGUID_RoguelikeArena_Portal_000_ff11d147-61e9-44bc-a5f8-c106996b875d);
+KBSECTION
+IF
+ObjectFlagSet("RoguelikeArena_LobbyPortal_WasUsed", (CHARACTERGUID)_Character, _)
+THEN
+PROC_RoguelikeArena_UseLobbyTeleporter(_Character);
+
+PROC
+PROC_RoguelikeArena_UseLobbyTeleporter((CHARACTERGUID)_Character)
+AND
+ObjectGetFlag(_Character, "RoguelikeArena_LobbyPortal_NextChallenge", 1)
+THEN
+PROC_RoguelikeArena_ProgressArena();
+
+PROC
+PROC_RoguelikeArena_UseLobbyTeleporter(_Character)
+AND
+ObjectGetFlag(_Character, "RoguelikeArena_LobbyPortal_NextChallenge", 1)
+AND
+DB_RoguelikeArena_Singleton_CurrentLevel(_CurrentLevel)
+AND
+DB_RoguelikeArena_Singleton_CurrentDifficulty(_CurrentDifficulty)
+THEN
+PROC_RoguelikeArena_ResetActiveArena();
+PROC_RoguelikeArena_StartNewArena(_CurrentLevel, _CurrentDifficulty);
+
+PROC
+PROC_RoguelikeArena_UseLobbyTeleporter(_Character)
+AND
+ObjectGetFlag(_Character, "RoguelikeArena_LobbyPortal_TeleportMultiple", 1)
+THEN
+TriggerLaunchIterator(TRIGGERGUID_PortalHub_324e91f9-20ce-42c4-bd2f-b86624ba53df, "RoguelikeArena_CharacterTeleportedToArena");
+
+PROC
+PROC_RoguelikeArena_UseLobbyTeleporter(_Character)
+AND
+ObjectGetFlag(_Character, "RoguelikeArena_LobbyPortal_TeleportSingle", 1)
+THEN
+SetStoryEvent(_Character, "RoguelikeArena_CharacterTeleportedToArena");
+
+IF
+StoryEvent((CHARACTERGUID)_Character, "RoguelikeArena_CharacterTeleportedToArena")
+AND
+CharacterIsPlayer(_Character, 1)
+AND
+DB_RoguelikeArena_ActiveArena(_Arena, _, _, _)
+AND
+DB_RoguelikeArena_RegionTeleportTriggers(_Arena, _Trigger)
+THEN
+TeleportTo(_Character, _Trigger, "", 1);
+
+// Prevents the use of the teleporter in combat.
+PROC
+ProcBlockUseOfItem(_Player, _Item)
+AND
+DB_RoguelikeArena_LobbyTeleporterItem(_Item)
+AND
+DB_IsPlayer(_Player)
+AND
+DB_CombatCharacters(_Player, _)
+THEN
+DB_CustomUseItemResponse(_Player, _Item, 0);
+Proc_StartDialog(1, "GLO_AD_CannotUseNow", _Player);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena_Lobby"

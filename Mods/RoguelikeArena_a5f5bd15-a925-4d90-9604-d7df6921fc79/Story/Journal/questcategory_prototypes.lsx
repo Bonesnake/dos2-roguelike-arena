@@ -8,7 +8,17 @@
                 <node id="QuestCategory">
                     <attribute id="CategoryID" value="RoguelikeArena_Features" type="22" />
                     <attribute id="Description" value="Extra Features" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
-                    <attribute id="SortingPriority" value="0" type="4" />
+                    <attribute id="SortingPriority" value="2" type="4" />
+                </node>
+                <node id="QuestCategory">
+                    <attribute id="CategoryID" value="RoguelikeArena_Lobby" type="22" />
+                    <attribute id="Description" value="Lobby Areas" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="SortingPriority" value="3" type="4" />
+                </node>
+                <node id="QuestCategory">
+                    <attribute id="CategoryID" value="RoguelikeArena_Arena" type="22" />
+                    <attribute id="Description" value="Arena" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="SortingPriority" value="1" type="4" />
                 </node>
             </children>
         </node>

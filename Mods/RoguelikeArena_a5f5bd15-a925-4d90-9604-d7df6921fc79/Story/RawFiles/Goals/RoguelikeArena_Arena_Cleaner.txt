@@ -155,9 +155,9 @@ NOT DB_RoguelikeArena_CleanupRegisteredObjects(_Object, _Arena);
 IF
 ItemDropped(_Item)
 AND
-DB_RoguelikeArena_ArenaRegionTriggers(_Arena, _Trigger)
+DB_RoguelikeArena_Arenas(_Arena)
 AND
-ObjectIsInTrigger(_Item, _Trigger, 1)
+QRY_RoguelikeArena_ObjectIsInArena(_Item, _Arena)
 THEN
 PROC_RoguelikeArena_RegisterForCleanup(_Item, _Arena);
 

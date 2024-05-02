@@ -1,0 +1,33 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_QuestDef_State("RoguelikeArena_TrainingDummy", "FeatureUnavailable", -1);
+KBSECTION
+IF
+ObjectFlagSet("RoguelikeArena_TrainingDummy_WasUsed", _Player, _)
+AND
+QRY_RoguelikeArena_UpdatePlayerCount()
+AND
+DB_Singleton("RoguelikeArena_PlayerCount", _PlayerCount)
+AND
+IntegerProduct(5000, _PlayerCount, _Gold)
+THEN
+DB_RoguelikeArena_Singleton_CurrentLevel(4);
+PROC_RoguelikeArena_PartyLevelUpTo(4);
+PartyAddGold((CHARACTERGUID)_Player, _Gold);
+
+IF
+DB_RoguelikeArena_ActiveArena(_, _, _, _)
+AND
+GlobalGetFlag("RoguelikeArena_TrainingDummyUnavailable", 0)
+THEN
+GlobalSetFlag("RoguelikeArena_TrainingDummyUnavailable");
+
+IF
+GlobalFlagSet("RoguelikeArena_TrainingDummyUnavailable")
+THEN
+ProcSetFlagOnAll("QuestUpdate_RoguelikeArena_TrainingDummy_FeatureUnavailable");
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena_Lobby"

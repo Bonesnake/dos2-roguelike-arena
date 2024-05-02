@@ -6,7 +6,7 @@
         <node id="root">
             <children>
                 <node id="Objective">
-                    <attribute id="Description" value="Feature is available." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="Description" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
                     <attribute id="ObjectiveID" value="RoguelikeArena_EquipmentStatue_FeatureAvailable" type="22" />
                     <attribute id="Priority" value="0" type="4" />
                     <children>
@@ -16,7 +16,7 @@
                     </children>
                 </node>
                 <node id="Objective">
-                    <attribute id="Description" value="Feature is available." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="Description" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
                     <attribute id="ObjectiveID" value="RoguelikeArena_ChestOfFortune_FeatureAvailable" type="22" />
                     <attribute id="Priority" value="0" type="4" />
                     <children>
@@ -26,7 +26,7 @@
                     </children>
                 </node>
                 <node id="Objective">
-                    <attribute id="Description" value="Feature is available." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="Description" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
                     <attribute id="ObjectiveID" value="RoguelikeArena_RecruitmentBoard_FeatureAvailable" type="22" />
                     <attribute id="Priority" value="0" type="4" />
                     <children>
@@ -34,6 +34,124 @@
                             <attribute id="Markers" value="RoguelikeArena_RecruitmentBoard" type="22" />
                         </node>
                     </children>
+                </node>
+                <node id="Objective">
+                    <attribute id="Description" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="ObjectiveID" value="RoguelikeArena_TrainingDummy_FeatureAvailable" type="22" />
+                    <attribute id="Priority" value="0" type="4" />
+                    <children>
+                        <node id="Markers">
+                            <attribute id="Markers" value="RoguelikeArena_TrainingDummy" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Objective">
+                    <attribute id="Description" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="ObjectiveID" value="RoguelikeArena_ArenaControl_FeatureAvailable" type="22" />
+                    <attribute id="Priority" value="0" type="4" />
+                    <children>
+                        <node id="Markers">
+                            <attribute id="Markers" value="RoguelikeArena_ArenaControl" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Objective">
+                    <attribute id="Description" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="ObjectiveID" value="RoguelikeArena_Tavern_Discovered" type="22" />
+                    <attribute id="Priority" value="0" type="4" />
+                    <children>
+                        <node id="Markers">
+                            <attribute id="Markers" value="RoguelikeArena_Tavern" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Objective">
+                    <attribute id="Description" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="ObjectiveID" value="RoguelikeArena_Marketplace_Discovered" type="22" />
+                    <attribute id="Priority" value="0" type="4" />
+                    <children>
+                        <node id="Markers">
+                            <attribute id="Markers" value="RoguelikeArena_Marketplace" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Objective">
+                    <attribute id="Description" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="ObjectiveID" value="RoguelikeArena_Quarters_Discovered" type="22" />
+                    <attribute id="Priority" value="0" type="4" />
+                    <children>
+                        <node id="Markers">
+                            <attribute id="Markers" value="RoguelikeArena_Quarters" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Objective">
+                    <attribute id="Description" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="ObjectiveID" value="RoguelikeArena_TrainingGrounds_Discovered" type="22" />
+                    <attribute id="Priority" value="0" type="4" />
+                    <children>
+                        <node id="Markers">
+                            <attribute id="Markers" value="RoguelikeArena_TrainingGrounds" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Objective">
+                    <attribute id="Description" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="ObjectiveID" value="RoguelikeArena_Hallway_Discovered" type="22" />
+                    <attribute id="Priority" value="0" type="4" />
+                    <children>
+                        <node id="Markers">
+                            <attribute id="Markers" value="RoguelikeArena_Hallway" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Objective">
+                    <attribute id="Description" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="ObjectiveID" value="RoguelikeArena_PortalHub_Discovered" type="22" />
+                    <attribute id="Priority" value="0" type="4" />
+                    <children>
+                        <node id="Markers">
+                            <attribute id="Markers" value="RoguelikeArena_PortalHub" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Objective">
+                    <attribute id="Description" value="Use the portal." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="ObjectiveID" value="RoguelikeArena_UsePortal" type="22" />
+                    <attribute id="Priority" value="1" type="4" />
+                    <children>
+                        <node id="Markers">
+                            <attribute id="Markers" value="RoguelikeArena_LobbyPortal" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Objective">
+                    <attribute id="Description" value="Keep going." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="ObjectiveID" value="RoguelikeArena_KeepGoing" type="22" />
+                    <attribute id="Priority" value="2" type="4" />
+                    <children>
+                        <node id="Markers">
+                            <attribute id="Markers" value="RoguelikeArena_LobbyPortal" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Objective">
+                    <attribute id="Description" value="Leave or continue." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="ObjectiveID" value="RoguelikeArena_LeaveOrContinue" type="22" />
+                    <attribute id="Priority" value="3" type="4" />
+                    <children>
+                        <node id="Markers">
+                            <attribute id="Markers" value="RoguelikeArena_Entrance" type="22" />
+                        </node>
+                        <node id="Markers">
+                            <attribute id="Markers" value="RoguelikeArena_LobbyPortal" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Objective">
+                    <attribute id="Description" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="ObjectiveID" value="COMPLETION" type="22" />
+                    <attribute id="Priority" value="100" type="4" />
                 </node>
             </children>
         </node>

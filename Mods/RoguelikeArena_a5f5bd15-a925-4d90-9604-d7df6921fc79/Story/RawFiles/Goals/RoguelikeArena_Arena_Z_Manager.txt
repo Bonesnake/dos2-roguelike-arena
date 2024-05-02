@@ -13,12 +13,6 @@ DB_RoguelikeArena_RegionTeleportTriggers(3, TRIGGERGUID_TeleportTrigger_050__000
 DB_RoguelikeArena_RegionTeleportTriggers(4, TRIGGERGUID_TeleportTrigger_050__000_3710181b-e09f-8c01-4fef-f65c4f04d25e);
 DB_RoguelikeArena_RegionTeleportTriggers(5, TRIGGERGUID_TeleportTrigger_050__000_f7275a08-5777-8896-3c21-14597a6f26b5);
 
-DB_RoguelikeArena_ArenaTeleporterItems((ITEMGUID)ITEMGUID_RoguelikeArena_Portal_000_25d2e6a5-4449-457e-bc76-ed41995c1a72);
-DB_RoguelikeArena_ArenaTeleporterItems(ITEMGUID_RoguelikeArena_Portal_000__000_7e26861b-822a-8a89-3a43-1853b4f24006);
-DB_RoguelikeArena_ArenaTeleporterItems(ITEMGUID_RoguelikeArena_Portal_000__000_a0041fea-0535-83d0-3903-5b9401b39ab6);
-DB_RoguelikeArena_ArenaTeleporterItems(ITEMGUID_RoguelikeArena_Portal_000__000_a8aa8cbb-59d4-8544-4d49-b11d411c690f);
-DB_RoguelikeArena_ArenaTeleporterItems(ITEMGUID_RoguelikeArena_Portal_000__000_68b1cea8-c0bc-81d9-3a8b-df1a7c77bd66);
-
 DB_RoguelikeArena_ArenaRegionTriggers(1, (TRIGGERGUID)TRIGGERGUID_RegionTrigger_000_b7176a84-3adc-4f91-aae4-ee629488c837);
 DB_RoguelikeArena_ArenaRegionTriggers(2, TRIGGERGUID_RegionTrigger_000_4363c24f-9315-4402-81d3-cd23ed89bb9b);
 DB_RoguelikeArena_ArenaRegionTriggers(3, TRIGGERGUID_RegionTrigger_000__000_f8557e3f-1b5f-8176-3850-3c9ae5e4f076);
@@ -46,15 +40,6 @@ DB_RoguelikeArena_ArenaEventTriggers(5, TRIGGERGUID_EventTrigger_000__000_bbcdac
 PROC_RoguelikeArena_IntegerPoolAddArenas();
 GlobalSetFlag("RoguelikeArena_FirstChallenge");
 KBSECTION
-IF
-CharacterUsedItem(_Character, _UsedItem)
-AND
-DB_RoguelikeArena_ArenaTeleporterItems(_UsedItem)
-AND
-DB_RoguelikeArena_RegionTeleportTriggers(0, _Trigger)
-THEN
-TeleportTo(_Character, _Trigger, "", 1);
-
 // Removes the active arena from the DB.
 PROC
 PROC_RoguelikeArena_ResetActiveArena()
@@ -107,19 +92,6 @@ DB_RoguelikeArena_Arenas(_Arena)
 THEN
 PROC_RoguelikeArena_IntegerPoolAdd("ArenaPool", _Arena);
 
-// Prevents the use of teleporters in combat.
-PROC
-ProcBlockUseOfItem(_Player, _Item)
-AND
-DB_RoguelikeArena_ArenaTeleporterItems(_Item)
-AND
-DB_IsPlayer(_Player)
-AND
-DB_CombatCharacters(_Player, _)
-THEN
-DB_CustomUseItemResponse(_Player, _Item, 0);
-Proc_StartDialog(1, "GLO_AD_CannotUseNow", _Player);
-
 IF
 DB_RoguelikeArena_ActiveArena(_, _, _, _)
 THEN
@@ -146,6 +118,24 @@ AND
 NOT DB_InRegion(_, _Trigger)
 THEN
 GlobalClearFlag("RoguelikeArena_ActiveArenaOccupied");
+
+QRY
+QRY_RoguelikeArena_ObjectIsInArena((GUIDSTRING)_Object)
+AND
+DB_RoguelikeArena_Arenas(_Arena)
+AND
+QRY_RoguelikeArena_ObjectIsInArena(_Object, _Arena)
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RoguelikeArena_ObjectIsInArena((GUIDSTRING)_Object, (INTEGER)_Arena)
+AND
+DB_RoguelikeArena_ArenaRegionTriggers(_Arena, _Trigger)
+AND
+ObjectIsInTrigger(_Object, _Trigger, 1)
+THEN
+DB_NOOP(1);
 EXITSECTION
 
 ENDEXITSECTION

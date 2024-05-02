@@ -7,30 +7,120 @@
             <children>
                 <node id="Marker">
                     <attribute id="DisplayText" value="Equipment Statue" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
-                    <attribute id="MarkerBroadcast" value="Character" type="22" />
+                    <attribute id="MarkerBroadcast" value="Party" type="22" />
                     <attribute id="MarkerID" value="RoguelikeArena_EquipmentStatue" type="22" />
-                    <attribute id="MarkerIcon" value="LocationMarker" type="22" />
+                    <attribute id="MarkerIcon" value="QuestMarker" type="22" />
                     <attribute id="MarkerLevel" value="RoguelikeArena_Level" type="22" />
                     <attribute id="MarkerTargetObjectType" value="Item" type="22" />
                     <attribute id="MarkerTargetObjectUUID" value="f0b00fdf-5679-4b32-af98-32f84af287f2" type="22" />
                 </node>
                 <node id="Marker">
                     <attribute id="DisplayText" value="Chest of Fortune" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
-                    <attribute id="MarkerBroadcast" value="Character" type="22" />
+                    <attribute id="MarkerBroadcast" value="Party" type="22" />
                     <attribute id="MarkerID" value="RoguelikeArena_ChestOfFortune" type="22" />
-                    <attribute id="MarkerIcon" value="LocationMarker" type="22" />
+                    <attribute id="MarkerIcon" value="QuestMarker" type="22" />
                     <attribute id="MarkerLevel" value="RoguelikeArena_Level" type="22" />
                     <attribute id="MarkerTargetObjectType" value="Item" type="22" />
                     <attribute id="MarkerTargetObjectUUID" value="b253200a-1651-43fd-9027-44a7834b7958" type="22" />
                 </node>
                 <node id="Marker">
                     <attribute id="DisplayText" value="Recruitment Board" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
-                    <attribute id="MarkerBroadcast" value="Character" type="22" />
+                    <attribute id="MarkerBroadcast" value="Party" type="22" />
                     <attribute id="MarkerID" value="RoguelikeArena_RecruitmentBoard" type="22" />
-                    <attribute id="MarkerIcon" value="LocationMarker" type="22" />
+                    <attribute id="MarkerIcon" value="QuestMarker" type="22" />
                     <attribute id="MarkerLevel" value="RoguelikeArena_Level" type="22" />
                     <attribute id="MarkerTargetObjectType" value="Item" type="22" />
                     <attribute id="MarkerTargetObjectUUID" value="ae04ac4e-72d8-4247-b82c-5bd82e98262f" type="22" />
+                </node>
+                <node id="Marker">
+                    <attribute id="DisplayText" value="Training Dummy" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="MarkerBroadcast" value="Party" type="22" />
+                    <attribute id="MarkerID" value="RoguelikeArena_TrainingDummy" type="22" />
+                    <attribute id="MarkerIcon" value="QuestMarker" type="22" />
+                    <attribute id="MarkerLevel" value="RoguelikeArena_Level" type="22" />
+                    <attribute id="MarkerTargetObjectType" value="Item" type="22" />
+                    <attribute id="MarkerTargetObjectUUID" value="41007f4d-4477-4dae-8a3b-7b44dd89aa8a" type="22" />
+                </node>
+                <node id="Marker">
+                    <attribute id="DisplayText" value="Arena Control" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="MarkerBroadcast" value="Party" type="22" />
+                    <attribute id="MarkerID" value="RoguelikeArena_ArenaControl" type="22" />
+                    <attribute id="MarkerIcon" value="QuestMarker" type="22" />
+                    <attribute id="MarkerLevel" value="RoguelikeArena_Level" type="22" />
+                    <attribute id="MarkerTargetObjectType" value="Item" type="22" />
+                    <attribute id="MarkerTargetObjectUUID" value="86f3a40c-6ed8-4cea-b612-aa0e9bde8ed7" type="22" />
+                </node>
+                <node id="Marker">
+                    <attribute id="DisplayText" value="Tavern" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="MarkerBroadcast" value="Party" type="22" />
+                    <attribute id="MarkerID" value="RoguelikeArena_Tavern" type="22" />
+                    <attribute id="MarkerIcon" value="LocationMarker" type="22" />
+                    <attribute id="MarkerLevel" value="RoguelikeArena_Level" type="22" />
+                    <attribute id="MarkerTargetObjectType" value="Trigger" type="22" />
+                    <attribute id="MarkerTargetObjectUUID" value="d5ac0223-7266-45ba-90e7-e76bb4b94d02" type="22" />
+                </node>
+                <node id="Marker">
+                    <attribute id="DisplayText" value="Marketplace" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="MarkerBroadcast" value="Party" type="22" />
+                    <attribute id="MarkerID" value="RoguelikeArena_Marketplace" type="22" />
+                    <attribute id="MarkerIcon" value="LocationMarker" type="22" />
+                    <attribute id="MarkerLevel" value="RoguelikeArena_Level" type="22" />
+                    <attribute id="MarkerTargetObjectType" value="Trigger" type="22" />
+                    <attribute id="MarkerTargetObjectUUID" value="d2e3cff2-3936-4931-9b13-330598590763" type="22" />
+                </node>
+                <node id="Marker">
+                    <attribute id="DisplayText" value="Quarters" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="MarkerBroadcast" value="Party" type="22" />
+                    <attribute id="MarkerID" value="RoguelikeArena_Quarters" type="22" />
+                    <attribute id="MarkerIcon" value="LocationMarker" type="22" />
+                    <attribute id="MarkerLevel" value="RoguelikeArena_Level" type="22" />
+                    <attribute id="MarkerTargetObjectType" value="Trigger" type="22" />
+                    <attribute id="MarkerTargetObjectUUID" value="4249981f-a56a-45c5-97a4-40f778d38ccf" type="22" />
+                </node>
+                <node id="Marker">
+                    <attribute id="DisplayText" value="Training Grounds" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="MarkerBroadcast" value="Party" type="22" />
+                    <attribute id="MarkerID" value="RoguelikeArena_TrainingGrounds" type="22" />
+                    <attribute id="MarkerIcon" value="LocationMarker" type="22" />
+                    <attribute id="MarkerLevel" value="RoguelikeArena_Level" type="22" />
+                    <attribute id="MarkerTargetObjectType" value="Trigger" type="22" />
+                    <attribute id="MarkerTargetObjectUUID" value="f7cdc6f3-c0e2-41fb-809c-151a0e9cd0dc" type="22" />
+                </node>
+                <node id="Marker">
+                    <attribute id="DisplayText" value="Hallway" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="MarkerBroadcast" value="Party" type="22" />
+                    <attribute id="MarkerID" value="RoguelikeArena_Hallway" type="22" />
+                    <attribute id="MarkerIcon" value="LocationMarker" type="22" />
+                    <attribute id="MarkerLevel" value="RoguelikeArena_Level" type="22" />
+                    <attribute id="MarkerTargetObjectType" value="Trigger" type="22" />
+                    <attribute id="MarkerTargetObjectUUID" value="7a1c2bfc-cb44-4f59-b679-27cc7fe3f3bc" type="22" />
+                </node>
+                <node id="Marker">
+                    <attribute id="DisplayText" value="Portal Hub" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="MarkerBroadcast" value="Party" type="22" />
+                    <attribute id="MarkerID" value="RoguelikeArena_PortalHub" type="22" />
+                    <attribute id="MarkerIcon" value="LocationMarker" type="22" />
+                    <attribute id="MarkerLevel" value="RoguelikeArena_Level" type="22" />
+                    <attribute id="MarkerTargetObjectType" value="Trigger" type="22" />
+                    <attribute id="MarkerTargetObjectUUID" value="324e91f9-20ce-42c4-bd2f-b86624ba53df" type="22" />
+                </node>
+                <node id="Marker">
+                    <attribute id="DisplayText" value="Arena Portal" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="MarkerBroadcast" value="Party" type="22" />
+                    <attribute id="MarkerID" value="RoguelikeArena_LobbyPortal" type="22" />
+                    <attribute id="MarkerIcon" value="QuestMarker" type="22" />
+                    <attribute id="MarkerLevel" value="RoguelikeArena_Level" type="22" />
+                    <attribute id="MarkerTargetObjectType" value="Item" type="22" />
+                    <attribute id="MarkerTargetObjectUUID" value="ff11d147-61e9-44bc-a5f8-c106996b875d" type="22" />
+                </node>
+                <node id="Marker">
+                    <attribute id="DisplayText" value="Main Entrance" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="MarkerBroadcast" value="Party" type="22" />
+                    <attribute id="MarkerID" value="RoguelikeArena_Entrance" type="22" />
+                    <attribute id="MarkerIcon" value="QuestMarker" type="22" />
+                    <attribute id="MarkerLevel" value="RoguelikeArena_Level" type="22" />
+                    <attribute id="MarkerTargetObjectType" value="Item" type="22" />
+                    <attribute id="MarkerTargetObjectUUID" value="b6c07fc2-7f5e-4c81-8274-2114955b5151" type="22" />
                 </node>
             </children>
         </node>

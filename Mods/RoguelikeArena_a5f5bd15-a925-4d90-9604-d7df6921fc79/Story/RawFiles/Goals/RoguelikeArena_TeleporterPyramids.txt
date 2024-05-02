@@ -18,9 +18,7 @@ PROC_RoguelikeArena_SaveTeleporterPyramids((INTEGER)_Arena)
 AND
 DB_TeleporterPyramid(_Pyramid)
 AND
-DB_RoguelikeArena_ArenaRegionTriggers(_Arena, _Trigger)
-AND
-ObjectIsInTrigger(_Pyramid, _Trigger, 1)
+QRY_RoguelikeArena_ObjectIsInArena(_Pyramid, _Arena)
 AND
 ItemGetOriginalOwner(_Pyramid, _Owner)
 THEN

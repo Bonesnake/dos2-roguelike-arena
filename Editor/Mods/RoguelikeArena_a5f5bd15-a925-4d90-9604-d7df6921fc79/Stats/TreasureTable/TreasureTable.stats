@@ -3575,5 +3575,89 @@
         <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_ChestOfFortune" />
       </fields>
     </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_Mutator" />
+        <field name="DropCount" type="StringStatObjectFieldDefinition" value="1,1" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="SmallGold" />
+        <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="true">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="New_Stat_9" />
+        <field name="DropCount" type="StringStatObjectFieldDefinition" value="0,39;1,1" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_RewardTiny" />
+        <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="4" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_Mutator" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="true">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="New_Stat_6" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_RewardSmall" />
+        <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="3" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_Mutator" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="true">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="New_Stat_7" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_RewardMedium" />
+        <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_Mutator" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="true">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="New_Stat_8" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_RewardBig" />
+        <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_Mutator" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="true">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="New_Stat_4" />
+        <field name="DropCount" type="StringStatObjectFieldDefinition" value="0,39;1,1" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_RoguelikeArena_ScrollSpecial" />
+        <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_Mutator" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="true">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="New_Stat_3" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_RoguelikeArena_SkillbookCrafted" />
+        <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_Mutator" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="true">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="New_Stat_2" />
+        <field name="DropCount" type="StringStatObjectFieldDefinition" value="0,79;1,1" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_RoguelikeArena_Uniques" />
+        <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_Mutator" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="true">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_Mutator_substat" />
+        <field name="DropCount" type="StringStatObjectFieldDefinition" value="0,39;1,1" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="I_SCROLL_Resurrect" />
+        <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_Mutator" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_Guardian" />
+        <field name="DropCount" type="StringStatObjectFieldDefinition" value="5,1" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_RoguelikeArena_Uniques" />
+        <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
+      </fields>
+    </stat_object>
   </stat_objects>
 </stats>

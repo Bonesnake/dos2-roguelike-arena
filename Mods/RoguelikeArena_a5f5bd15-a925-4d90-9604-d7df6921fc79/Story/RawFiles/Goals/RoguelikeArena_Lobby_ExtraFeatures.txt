@@ -1,14 +1,15 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
-DB_Singleton("RoguelikeArena_RecruitmentBoard_UseCount", 0);
-
 DB_RoguelikeArena_LobbyExtraFeatures("RoguelikeArena_DebugStatue", 0, 0, 0, ITEMGUID_BLD_Humans_Statue_Knight_A_Dynamic_001_c2045934-4a0b-47a5-8db1-90f7f965d771);
 DB_RoguelikeArena_LobbyExtraFeatures("RoguelikeArena_EquipmentStatue", 2, 100, 25, (ITEMGUID)ITEMGUID_RoguelikeArena_Lobby_EquipmentStatue_000_f0b00fdf-5679-4b32-af98-32f84af287f2);
-DB_RoguelikeArena_LobbyExtraFeatures("RoguelikeArena_ChestOfFortune", 4, 20, 5, ITEMGUID_CONT_Humans_Citz_Chest_Rich_A_001_b253200a-1651-43fd-9027-44a7834b7958);
+DB_RoguelikeArena_LobbyExtraFeatures("RoguelikeArena_ChestOfFortune", 3, 20, 5, ITEMGUID_CONT_Humans_Citz_Chest_Rich_A_001_b253200a-1651-43fd-9027-44a7834b7958);
 DB_RoguelikeArena_LobbyExtraFeatures("RoguelikeArena_RecruitmentBoard", 1, 0, 0, ITEMGUID_TOOL_SignWall_A_Wood_001_ae04ac4e-72d8-4247-b82c-5bd82e98262f);
 DB_RoguelikeArena_LobbyExtraFeatures("RoguelikeArena_LobbyPortal", 1, 0, 0, ITEMGUID_RoguelikeArena_Portal_000_ff11d147-61e9-44bc-a5f8-c106996b875d);
 DB_RoguelikeArena_LobbyExtraFeatures("RoguelikeArena_Scoreboard", 1, 0, 0, ITEMGUID_TOOL_SignRoad_A_000_c3bb4701-393c-4b2e-8140-10f9ea791752);
+DB_RoguelikeArena_LobbyExtraFeatures("RoguelikeArena_ArenaControl", 4, 0, 0, ITEMGUID_FUR_Raanaar_Desk_B_000_86f3a40c-6ed8-4cea-b612-aa0e9bde8ed7);
+DB_RoguelikeArena_LobbyExtraFeatures("RoguelikeArena_TrainingDummy", 1, 0, 0, ITEMGUID_FUR_Humans_TrainingDummy_D_001_41007f4d-4477-4dae-8a3b-7b44dd89aa8a);
+DB_RoguelikeArena_LobbyExtraFeatures("RoguelikeArena_Entrance", 21, 0, 0, ITEMGUID_DOORS_WorkerHouseWood_A_Door_B_000_b6c07fc2-7f5e-4c81-8274-2114955b5151);
 
 PROC_RoguelikeArena_InitLobbyExtraFeatures();
 KBSECTION
@@ -69,8 +70,6 @@ AND
 _Flag == _FlagExpected
 THEN
 ObjectClearFlag(_Speaker, _Flag);
-PROC_RoguelikeArena_UpdateExtraFeatureUseCount(_FeatureName);
-PROC_RoguelikeArena_ValidateExtraFeaturePrice(_FeatureName);
 
 // Updates extra feature journal entries upon level up.
 IF
@@ -95,33 +94,6 @@ AND
 _Level >= _LevelMin
 THEN
 PartySetFlag(_Player, _Flag);
-
-// Increases recruitment board use count.
-PROC
-PROC_RoguelikeArena_UpdateExtraFeatureUseCount((STRING)_FeatureName)
-AND
-_FeatureName == "RoguelikeArena_RecruitmentBoard"
-AND
-DB_Singleton("RoguelikeArena_RecruitmentBoard_UseCount", _PreviousUseCount)
-AND
-IntegerSum(_PreviousUseCount, 1, _UseCount)
-THEN
-DB_Singleton("RoguelikeArena_RecruitmentBoard_UseCount", _UseCount);
-
-// Updates recruitment board price after reaching the free limit.
-PROC
-PROC_RoguelikeArena_ValidateExtraFeaturePrice((STRING)_FeatureName)
-AND
-_FeatureName == "RoguelikeArena_RecruitmentBoard"
-AND
-DB_Singleton("RoguelikeArena_RecruitmentBoard_UseCount", _UseCount)
-AND
-_UseCount == 3
-AND
-DB_RoguelikeArena_LobbyExtraFeatures(_FeatureName, _LevelMin, _PriceBase, _PriceModifier, _Item)
-THEN
-NOT DB_RoguelikeArena_LobbyExtraFeatures(_FeatureName, _LevelMin, _PriceBase, _PriceModifier, _Item);
-DB_RoguelikeArena_LobbyExtraFeatures(_FeatureName, _LevelMin, 275, 25, _Item);
 EXITSECTION
 
 ENDEXITSECTION

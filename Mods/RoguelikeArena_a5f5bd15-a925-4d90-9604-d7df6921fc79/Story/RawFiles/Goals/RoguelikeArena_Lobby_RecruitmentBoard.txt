@@ -1,6 +1,8 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
+DB_Singleton("RoguelikeArena_RecruitmentBoard_UseCount", 0);
+
 DB_RoguelikeArena_AvailableCompanions((CHARACTERGUID)CHARACTERGUID_RoguelikeArena_Companion_000_c4a2faca-e1e2-4fc9-90dd-a05c8e8fc113);
 DB_RoguelikeArena_AvailableCompanions(CHARACTERGUID_RoguelikeArena_Companion_001_c6c954d3-b839-4c88-ba44-bee1c469fc5d);
 DB_RoguelikeArena_AvailableCompanions(CHARACTERGUID_RoguelikeArena_Companion_002_d380599f-33b5-4dad-af96-338fe7226453);
@@ -69,6 +71,11 @@ PROC_RoguelikeArena_GuidStringPoolAdd("AvailableCompanionPool", _Companion);
 // Recruits a companion character with the help of flags set by the recruitment board.
 IF
 ObjectFlagSet("RoguelikeArena_RecruitmentBoard_WasUsed", _Player, _)
+THEN
+PROC_RoguelikeArena_UseRecruitmentBoard((CHARACTERGUID)_Player);
+
+PROC
+PROC_RoguelikeArena_UseRecruitmentBoard((CHARACTERGUID)_Player)
 AND
 QRY_RoguelikeArena_GuidStringPoolSelectAndRemoveRandom("AvailableCompanionPool")
 AND
@@ -88,6 +95,29 @@ ObjectGetFlag(_Player, _PresetFlag, 1)
 THEN
 SetOnStage(_Companion, 1);
 PROC_RoguelikeArena_MakeCompanion((CHARACTERGUID)_Companion, _Template, _Preset, (CHARACTERGUID)_Player);
+
+// Increases recruitment board use count.
+PROC
+PROC_RoguelikeArena_UseRecruitmentBoard(_Player)
+AND
+DB_Singleton("RoguelikeArena_RecruitmentBoard_UseCount", _PreviousUseCount)
+AND
+IntegerSum(_PreviousUseCount, 1, _UseCount)
+THEN
+DB_Singleton("RoguelikeArena_RecruitmentBoard_UseCount", _UseCount);
+
+// Updates recruitment board price after reaching the free limit.
+PROC
+PROC_RoguelikeArena_UseRecruitmentBoard(_Player)
+AND
+DB_Singleton("RoguelikeArena_RecruitmentBoard_UseCount", _UseCount)
+AND
+_UseCount == 3
+AND
+DB_RoguelikeArena_LobbyExtraFeatures(_FeatureName, _LevelMin, _PriceBase, _PriceModifier, _Item)
+THEN
+NOT DB_RoguelikeArena_LobbyExtraFeatures(_FeatureName, _LevelMin, _PriceBase, _PriceModifier, _Item);
+DB_RoguelikeArena_LobbyExtraFeatures(_FeatureName, _LevelMin, 275, 25, _Item);
 
 // Sets a flag when no companions can be recruited.
 IF

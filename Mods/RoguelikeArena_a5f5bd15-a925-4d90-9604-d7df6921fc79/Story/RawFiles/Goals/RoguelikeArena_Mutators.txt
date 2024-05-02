@@ -1,0 +1,227 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_RoguelikeArena_Mutators("AbsoluteBoneyage");
+DB_RoguelikeArena_Mutators("BolsteredAdversaries");
+DB_RoguelikeArena_Mutators("HinderedBeginnings");
+DB_RoguelikeArena_Mutators("SourceDrain");
+DB_RoguelikeArena_Mutators("SourceFanatics");
+DB_RoguelikeArena_Mutators("ThreadOfLife");
+
+DB_RoguelikeArena_BoneyTemplate("RoguelikeArena_Boney_1bcce5f1-c962-412f-a323-ec05a235bed9");
+
+DB_RoguelikeArena_MutatorBuffs("APOTHEOSIS");
+DB_RoguelikeArena_MutatorBuffs("BLESSED");
+DB_RoguelikeArena_MutatorBuffs("CLEAR_MINDED");
+DB_RoguelikeArena_MutatorBuffs("DEATH_WISH");
+DB_RoguelikeArena_MutatorBuffs("ENCOURAGE");
+DB_RoguelikeArena_MutatorBuffs("FARSIGHT");
+DB_RoguelikeArena_MutatorBuffs("FIRE_BRAND");
+DB_RoguelikeArena_MutatorBuffs("FORTIFIED");
+DB_RoguelikeArena_MutatorBuffs("FROST_AURA");
+DB_RoguelikeArena_MutatorBuffs("GROUNDED");
+DB_RoguelikeArena_MutatorBuffs("HASTED");
+DB_RoguelikeArena_MutatorBuffs("HORNS");
+DB_RoguelikeArena_MutatorBuffs("INNER_DEMON");
+DB_RoguelikeArena_MutatorBuffs("MAGIC_SHELL");
+DB_RoguelikeArena_MutatorBuffs("MEND_METAL");
+DB_RoguelikeArena_MutatorBuffs("RESTED");
+DB_RoguelikeArena_MutatorBuffs("STEEL_SKIN");
+DB_RoguelikeArena_MutatorBuffs("THICK_OF_THE_FIGHT");
+DB_RoguelikeArena_MutatorBuffs("VAMPIRISM");
+DB_RoguelikeArena_MutatorBuffs("WIND_WALKER");
+
+DB_RoguelikeArena_MutatorDebuffs("ACID");
+DB_RoguelikeArena_MutatorDebuffs("BLEEDING");
+DB_RoguelikeArena_MutatorDebuffs("BLIND");
+DB_RoguelikeArena_MutatorDebuffs("BURNING");
+DB_RoguelikeArena_MutatorDebuffs("CHILLED");
+DB_RoguelikeArena_MutatorDebuffs("CRIPPLED");
+DB_RoguelikeArena_MutatorDebuffs("CURSED");
+DB_RoguelikeArena_MutatorDebuffs("DAMAGE_ON_MOVE");
+DB_RoguelikeArena_MutatorDebuffs("DEAF");
+DB_RoguelikeArena_MutatorDebuffs("DECAYING_TOUCH");
+DB_RoguelikeArena_MutatorDebuffs("DISEASED");
+DB_RoguelikeArena_MutatorDebuffs("DRUNK");
+DB_RoguelikeArena_MutatorDebuffs("MUTED");
+DB_RoguelikeArena_MutatorDebuffs("NECROFIRE");
+DB_RoguelikeArena_MutatorDebuffs("SHOCKED");
+DB_RoguelikeArena_MutatorDebuffs("SLOWED");
+DB_RoguelikeArena_MutatorDebuffs("SOURCE_MUTED");
+DB_RoguelikeArena_MutatorDebuffs("UNHEALABLE");
+DB_RoguelikeArena_MutatorDebuffs("WARM");
+DB_RoguelikeArena_MutatorDebuffs("WET");
+
+PROC_RoguelikeArena_StringPoolAddMutatorBuffs();
+PROC_RoguelikeArena_StringPoolAddMutatorDebuffs();
+KBSECTION
+PROC
+PROC_RoguelikeArena_StringPoolAddMutatorBuffs()
+AND
+DB_RoguelikeArena_MutatorBuffs(_Buff)
+THEN
+PROC_RoguelikeArena_StringPoolAdd("MutatorBuffs", _Buff);
+
+PROC
+PROC_RoguelikeArena_StringPoolAddMutatorDebuffs()
+AND
+DB_RoguelikeArena_MutatorDebuffs(_Debuff)
+THEN
+PROC_RoguelikeArena_StringPoolAdd("MutatorDebuffs", _Debuff);
+
+IF
+GlobalFlagSet(_Flag)
+AND
+DB_RoguelikeArena_Mutators(_Mutator)
+AND
+StringConcatenate("RoguelikeArena_Mutators_", _Mutator, _MutatorFlag)
+AND
+_Flag == _MutatorFlag
+THEN
+PROC_RoguelikeArena_EnableMutator(_Mutator);
+
+IF
+GlobalFlagCleared(_Flag)
+AND
+DB_RoguelikeArena_Mutators(_Mutator)
+AND
+StringConcatenate("RoguelikeArena_Mutators_", _Mutator, _MutatorFlag)
+AND
+_Flag == _MutatorFlag
+THEN
+PROC_RoguelikeArena_DisableMutator(_Mutator);
+
+PROC
+PROC_RoguelikeArena_EnableMutator((STRING)_Mutator)
+THEN
+DB_RoguelikeArena_EnabledMutators(_Mutator);
+
+PROC
+PROC_RoguelikeArena_DisableMutator((STRING)_Mutator)
+AND
+DB_RoguelikeArena_EnabledMutators(_Mutator)
+THEN
+NOT DB_RoguelikeArena_EnabledMutators(_Mutator);
+
+QRY
+QRY_RoguelikeArena_MutatorIsEnabled((STRING)_Mutator)
+AND
+DB_RoguelikeArena_EnabledMutators(_Mutator)
+THEN
+DB_NOOP(1);
+
+IF
+DB_RoguelikeArena_ActiveArena(_Arena, _Level, _, _)
+AND
+QRY_RoguelikeArena_MutatorIsEnabled("AbsoluteBoneyage")
+AND
+DB_RoguelikeArena_ArenaSpawnerTriggers(_Arena, _Trigger)
+AND
+GetRandomPositionInTrigger(_Trigger, _X, _Y, _Z)
+AND
+DB_RoguelikeArena_BoneyTemplate(_BoneyTemplate)
+AND
+CharacterCreateAtPosition(_X, _Y, _Z, _BoneyTemplate, 0, _Boney)
+AND
+IntegertoString(_Arena, _CombatGroupID)
+THEN
+SetCombatGroupID(_Boney, _CombatGroupID);
+CharacterLevelUpTo(_Boney, _Level);
+PROC_RoguelikeArena_RegisterForCleanup(_Boney, _Arena);
+
+IF
+ObjectEnteredCombat(_Object, _)
+AND
+ObjectIsCharacter((CHARACTERGUID)_Object, 1)
+AND
+QRY_RoguelikeArena_MutatorIsEnabled("BolsteredAdversaries")
+AND
+GetFaction(_Object, "Evil NPC")
+AND
+CharacterIsSummon(_Object, 0)
+AND
+QRY_RoguelikeArena_ObjectIsInArena(_Object)
+AND
+QRY_RoguelikeArena_StringPoolSelectRandom("MutatorBuffs")
+AND
+DB_RoguelikeArena_StringPoolSelectedValue("MutatorBuffs", _Buff)
+THEN
+ApplyStatus(_Object, _Buff, -1.0);
+
+IF
+ObjectEnteredCombat(_Object, _)
+AND
+ObjectIsCharacter((CHARACTERGUID)_Object, 1)
+AND
+QRY_RoguelikeArena_MutatorIsEnabled("HinderedBeginnings")
+AND
+CharacterIsPlayer(_Object, 1)
+AND
+CharacterIsSummon(_Object, 0)
+AND
+QRY_RoguelikeArena_ObjectIsInArena(_Object)
+AND
+QRY_RoguelikeArena_StringPoolSelectRandom("MutatorDebuffs")
+AND
+DB_RoguelikeArena_StringPoolSelectedValue("MutatorDebuffs", _Debuff)
+THEN
+ApplyStatus(_Object, _Debuff, 18.0, 1);
+
+IF
+ObjectEnteredCombat(_Object, _)
+AND
+ObjectIsCharacter((CHARACTERGUID)_Object, 1)
+AND
+QRY_RoguelikeArena_MutatorIsEnabled("SourceDrain")
+AND
+CharacterIsPlayer(_Object, 1)
+AND
+CharacterIsSummon(_Object, 0)
+AND
+QRY_RoguelikeArena_ObjectIsInArena(_Object)
+AND
+CharacterGetSourcePoints(_Object, _SourcePoints)
+AND
+IntegerProduct(_SourcePoints, -1, _SourcePointsToRemove)
+THEN
+CharacterAddSourcePoints(_Object, _SourcePointsToRemove);
+
+IF
+ObjectTurnStarted(_Object)
+AND
+ObjectIsCharacter((CHARACTERGUID)_Object, 1)
+AND
+QRY_RoguelikeArena_MutatorIsEnabled("SourceFanatics")
+AND
+GetFaction(_Object, "Evil NPC")
+AND
+CharacterIsSummon(_Object, 0)
+AND
+QRY_RoguelikeArena_ObjectIsInArena(_Object)
+THEN
+CharacterAddSourcePoints(_Object, 1);
+
+IF
+ObjectTurnEnded(_Object)
+AND
+ObjectIsCharacter((CHARACTERGUID)_Object, 1)
+AND
+QRY_RoguelikeArena_MutatorIsEnabled("ThreadOfLife")
+AND
+CharacterIsPlayer(_Object, 1)
+AND
+CharacterIsSummon(_Object, 0)
+AND
+QRY_RoguelikeArena_ObjectIsInArena(_Object)
+AND
+CharacterIsInCombat(_Object, 1)
+AND
+CharacterGetHitpointsPercentage(_Object, _HitpointsPercentage)
+AND
+RealSubtract(_HitpointsPercentage, 15.0, _NewHitpointsPercentage)
+THEN
+CharacterSetHitpointsPercentage(_Object, _NewHitpointsPercentage);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena"

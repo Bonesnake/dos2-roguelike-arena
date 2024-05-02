@@ -1,17 +1,26 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
-// Arena scores
-DB_Singleton("RoguelikeArena_Scoreboard_ArenasCleared", 0);
-DB_Singleton("RoguelikeArena_Scoreboard_EnemiesKilled", 0);
-DB_Singleton("RoguelikeArena_Scoreboard_HighestLevelReached", 1);
-DB_Singleton("RoguelikeArena_Scoreboard_ObjectsDestroyed", 0);
-DB_Singleton("RoguelikeArena_Scoreboard_PlayerDeaths", 0);
+// Arena score variables
+DB_RoguelikeArena_ScoreboardVariables("ArenasCleared", 0, "RoguelikeArena_ArenasCleared_2a969352-3e5e-4163-b584-77c11a7bd3fa");
+DB_RoguelikeArena_ScoreboardVariables("EnemiesKilled", 0, "RoguelikeArena_EnemiesKilled_494edaf9-b5be-4109-9188-8582f5d317f2");
+DB_RoguelikeArena_ScoreboardVariables("HighestLevelReached", 1, "RoguelikeArena_HighestLevelReached_e677cdd9-69db-4726-9bae-735f5c63b0e1");
+DB_RoguelikeArena_ScoreboardVariables("ObjectsDestroyed", 0, "RoguelikeArena_ObjectsDestroyed_28fa702a-20ad-44e8-8e03-fed52c03fc40");
+DB_RoguelikeArena_ScoreboardVariables("PlayerDeaths", 0, "RoguelikeArena_PlayerDeaths_7d35e25e-4a7a-469f-a49b-8070ad65b8fe");
 
-// Lobby scores
-DB_Singleton("RoguelikeArena_Scoreboard_ChestOfFortuneUsages", 0);
-DB_Singleton("RoguelikeArena_Scoreboard_EquipmentStatueUsages", 0);
+// Lobby score variables
+DB_RoguelikeArena_ScoreboardVariables("ChestOfFortuneUsages", 0, "RoguelikeArena_ChestOfFortuneUsages_3734d842-43b4-4401-90cb-f37b8d980196");
+DB_RoguelikeArena_ScoreboardVariables("EquipmentStatueUsages", 0, "RoguelikeArena_EquipmentStatueUsages_0f374e3f-7143-4f2b-bd9c-77404d9f7e66");
+
+PROC_RoguelikeArena_InitScoreboard();
 KBSECTION
+PROC
+PROC_RoguelikeArena_InitScoreboard()
+AND
+DB_RoguelikeArena_ScoreboardVariables(_VariableName, _DefaultValue, _)
+THEN
+PROC_RoguelikeArena_UpdateScore(_VariableName, _DefaultValue);
+
 //REGION Arena scores
 PROC
 PROC_RoguelikeArena_ArenaCombatEnded(_, _, _, _)
@@ -20,8 +29,7 @@ DB_Singleton("RoguelikeArena_Scoreboard_ArenasCleared", _ArenasCleared)
 AND
 IntegerSum(_ArenasCleared, 1, _NewArenasCleared)
 THEN
-DB_Singleton("RoguelikeArena_Scoreboard_ArenasCleared", _NewArenasCleared);
-DialogSetVariableInt("RoguelikeArena_Scoreboard", "RoguelikeArena_ArenasCleared_2a969352-3e5e-4163-b584-77c11a7bd3fa", _NewArenasCleared);
+PROC_RoguelikeArena_UpdateScore("ArenasCleared", _NewArenasCleared);
 
 IF
 CharacterDied(_Character)
@@ -30,38 +38,33 @@ GetFaction(_Character, "Evil NPC")
 AND
 CharacterIsSummon(_Character, 0)
 AND
-DB_RoguelikeArena_ArenaEventTriggers(_, _Trigger)
-AND
-ObjectIsInTrigger(_Character, _Trigger, 1)
+QRY_RoguelikeArena_ObjectIsInArena(_Character)
 AND
 DB_Singleton("RoguelikeArena_Scoreboard_EnemiesKilled", _EnemiesKilled)
 AND
 IntegerSum(_EnemiesKilled, 1, _NewEnemiesKilled)
 THEN
-DB_Singleton("RoguelikeArena_Scoreboard_EnemiesKilled", _NewEnemiesKilled);
-DialogSetVariableInt("RoguelikeArena_Scoreboard", "RoguelikeArena_EnemiesKilled_494edaf9-b5be-4109-9188-8582f5d317f2", _NewEnemiesKilled);
+PROC_RoguelikeArena_UpdateScore("EnemiesKilled", _NewEnemiesKilled);
 
 IF
 DB_RoguelikeArena_Singleton_CurrentLevel(_CurrentLevel)
 AND
 IntegerSum(_CurrentLevel, 1, _NewHighestLevel)
 THEN
-DB_Singleton("RoguelikeArena_Scoreboard_HighestLevelReached", _NewHighestLevel);
-DialogSetVariableInt("RoguelikeArena_Scoreboard", "RoguelikeArena_HighestLevelReached_e677cdd9-69db-4726-9bae-735f5c63b0e1", _NewHighestLevel);
+PROC_RoguelikeArena_UpdateScore("HighestLevelReached", _NewHighestLevel);
 
 IF
 ItemDestroying(_Item)
 AND
-DB_RoguelikeArena_ArenaEventTriggers(_, _Trigger)
+DB_RoguelikeArena_Arenas(_Arena) // Not sure why this is needed, but the story breaks without it...
 AND
-ObjectIsInTrigger(_Item, _Trigger, 1)
+QRY_RoguelikeArena_ObjectIsInArena(_Item, _Arena)
 AND
 DB_Singleton("RoguelikeArena_Scoreboard_ObjectsDestroyed", _ObjectsDestroyed)
 AND
 IntegerSum(_ObjectsDestroyed, 1, _NewObjectsDestroyed)
 THEN
-DB_Singleton("RoguelikeArena_Scoreboard_ObjectsDestroyed", _NewObjectsDestroyed);
-DialogSetVariableInt("RoguelikeArena_Scoreboard", "RoguelikeArena_ObjectsDestroyed_28fa702a-20ad-44e8-8e03-fed52c03fc40", _NewObjectsDestroyed);
+PROC_RoguelikeArena_UpdateScore("ObjectsDestroyed", _NewObjectsDestroyed);
 
 IF
 CharacterDied(_Character)
@@ -70,16 +73,13 @@ CharacterIsPlayer(_Character, 1)
 AND
 CharacterIsSummon(_Character, 0)
 AND
-DB_RoguelikeArena_ArenaEventTriggers(_, _Trigger)
-AND
-ObjectIsInTrigger(_Character, _Trigger, 1)
+QRY_RoguelikeArena_ObjectIsInArena(_Character)
 AND
 DB_Singleton("RoguelikeArena_Scoreboard_PlayerDeaths", _PlayerDeaths)
 AND
 IntegerSum(_PlayerDeaths, 1, _NewPlayerDeaths)
 THEN
-DB_Singleton("RoguelikeArena_Scoreboard_PlayerDeaths", _NewPlayerDeaths);
-DialogSetVariableInt("RoguelikeArena_Scoreboard", "RoguelikeArena_PlayerDeaths_7d35e25e-4a7a-469f-a49b-8070ad65b8fe", _NewPlayerDeaths);
+PROC_RoguelikeArena_UpdateScore("PlayerDeaths", _NewPlayerDeaths);
 //END_REGION
 
 //REGION Lobby scores
@@ -90,8 +90,7 @@ DB_Singleton("RoguelikeArena_Scoreboard_ChestOfFortuneUsages", _ChestOfFortuneUs
 AND
 IntegerSum(_ChestOfFortuneUsages, 1, _NewChestOfFortuneUsages)
 THEN
-DB_Singleton("RoguelikeArena_Scoreboard_ChestOfFortuneUsages", _NewChestOfFortuneUsages);
-DialogSetVariableInt("RoguelikeArena_Scoreboard", "RoguelikeArena_ChestOfFortuneUsages_3734d842-43b4-4401-90cb-f37b8d980196", _NewChestOfFortuneUsages);
+PROC_RoguelikeArena_UpdateScore("ChestOfFortuneUsages", _NewChestOfFortuneUsages);
 
 IF
 ObjectFlagSet("RoguelikeArena_EquipmentStatue_WasUsed", _, _)
@@ -100,9 +99,18 @@ DB_Singleton("RoguelikeArena_Scoreboard_EquipmentStatueUsages", _EquipmentStatue
 AND
 IntegerSum(_EquipmentStatueUsages, 1, _NewEquipmentStatueUsages)
 THEN
-DB_Singleton("RoguelikeArena_Scoreboard_EquipmentStatueUsages", _NewEquipmentStatueUsages);
-DialogSetVariableInt("RoguelikeArena_Scoreboard", "RoguelikeArena_EquipmentStatueUsages_0f374e3f-7143-4f2b-bd9c-77404d9f7e66", _NewEquipmentStatueUsages);
+PROC_RoguelikeArena_UpdateScore("EquipmentStatueUsages", _NewEquipmentStatueUsages);
 //END_REGION
+
+PROC
+PROC_RoguelikeArena_UpdateScore((STRING)_VariableName, (INTEGER)_Value)
+AND
+StringConcatenate("RoguelikeArena_Scoreboard_", _VariableName, _SingletonVariableName)
+AND
+DB_RoguelikeArena_ScoreboardVariables(_VariableName, _, _DialogVariable)
+THEN
+DB_Singleton(_SingletonVariableName, _Value);
+DialogSetVariableInt("RoguelikeArena_Scoreboard", _DialogVariable, _Value);
 EXITSECTION
 
 ENDEXITSECTION

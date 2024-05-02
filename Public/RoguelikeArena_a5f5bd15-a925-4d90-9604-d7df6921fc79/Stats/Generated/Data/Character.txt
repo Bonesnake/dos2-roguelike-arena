@@ -314,3 +314,12 @@ type "Character"
 using "Undead_Skeleton_Caster_Fire"
 data "Gain" "None"
 
+new entry "RoguelikeArena_Boney"
+type "Character"
+using "Undead_Bonepile_Troll_A"
+data "Armor" "0"
+data "MagicArmor" "0"
+data "Vitality" "200"
+data "APMaximum" "3"
+data "Gain" "None"
+

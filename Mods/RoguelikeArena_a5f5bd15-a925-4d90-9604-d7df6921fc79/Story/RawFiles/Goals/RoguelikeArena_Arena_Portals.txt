@@ -1,0 +1,34 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_RoguelikeArena_ArenaTeleporterItems((ITEMGUID)ITEMGUID_RoguelikeArena_Portal_000_25d2e6a5-4449-457e-bc76-ed41995c1a72);
+DB_RoguelikeArena_ArenaTeleporterItems(ITEMGUID_RoguelikeArena_Portal_000__000_7e26861b-822a-8a89-3a43-1853b4f24006);
+DB_RoguelikeArena_ArenaTeleporterItems(ITEMGUID_RoguelikeArena_Portal_000__000_a0041fea-0535-83d0-3903-5b9401b39ab6);
+DB_RoguelikeArena_ArenaTeleporterItems(ITEMGUID_RoguelikeArena_Portal_000__000_a8aa8cbb-59d4-8544-4d49-b11d411c690f);
+DB_RoguelikeArena_ArenaTeleporterItems(ITEMGUID_RoguelikeArena_Portal_000__000_68b1cea8-c0bc-81d9-3a8b-df1a7c77bd66);
+KBSECTION
+IF
+CharacterUsedItem(_Character, _UsedItem)
+AND
+DB_RoguelikeArena_ArenaTeleporterItems(_UsedItem)
+AND
+DB_RoguelikeArena_RegionTeleportTriggers(0, _Trigger)
+THEN
+TeleportTo(_Character, _Trigger, "", 1);
+
+// Prevents the use of teleporters in combat.
+PROC
+ProcBlockUseOfItem(_Player, _Item)
+AND
+DB_RoguelikeArena_ArenaTeleporterItems(_Item)
+AND
+DB_IsPlayer(_Player)
+AND
+DB_CombatCharacters(_Player, _)
+THEN
+DB_CustomUseItemResponse(_Player, _Item, 0);
+Proc_StartDialog(1, "GLO_AD_CannotUseNow", _Player);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena_Arena"

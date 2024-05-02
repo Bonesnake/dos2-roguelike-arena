@@ -28,9 +28,7 @@ GetFaction(_Character, "Evil NPC")
 AND
 DB_RoguelikeArena_ActiveArena(_Arena, _Level, _Difficulty, _Players)
 AND
-DB_RoguelikeArena_ArenaEventTriggers(_Arena, _Trigger)
-AND
-ObjectIsInTrigger(_Character, _Trigger, 1)
+QRY_RoguelikeArena_ObjectIsInArena(_Character, _Arena)
 AND
 NOT QRY_RoguelikeArena_AnyArenaEnemiesAlive(_Arena)
 AND

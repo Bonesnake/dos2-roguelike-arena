@@ -17,7 +17,7 @@
                         <node id="QuestState">
                             <attribute id="Achievement" value="" type="22" />
                             <attribute id="Act" value="0" type="4" />
-                            <attribute id="Description" value="The Equipment Statue is now available in the Tavern. You can use it to level up your equipment." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Description" value="The Equipment Statue is now available in the lobby. You can use it to level up your equipment." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
                             <attribute id="DevComment" value="" type="22" />
                             <attribute id="Gain" value="0" type="4" />
                             <attribute id="Mystery" value="" type="22" />
@@ -44,7 +44,7 @@
                         <node id="QuestState">
                             <attribute id="Achievement" value="" type="22" />
                             <attribute id="Act" value="0" type="4" />
-                            <attribute id="Description" value="The Chest of Fortune is now available in the Tavern. You can use it to get completely random items." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Description" value="The Chest of Fortune is now available in the lobby. You can use it to gamble for random items." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
                             <attribute id="DevComment" value="" type="22" />
                             <attribute id="Gain" value="0" type="4" />
                             <attribute id="Mystery" value="" type="22" />
@@ -71,7 +71,7 @@
                         <node id="QuestState">
                             <attribute id="Achievement" value="" type="22" />
                             <attribute id="Act" value="0" type="4" />
-                            <attribute id="Description" value="The Recruitment Board is now available in the Tavern.  You can use it to acquire new companions. The first 3 companions are free." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Description" value="The Recruitment Board is now available in the lobby. You can use it to acquire new companions. The first 3 are free to acquire." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
                             <attribute id="DevComment" value="" type="22" />
                             <attribute id="Gain" value="0" type="4" />
                             <attribute id="Mystery" value="" type="22" />
@@ -83,6 +83,297 @@
                             <attribute id="ReputationGain" value="0" type="4" />
                             <attribute id="StatTriggerGUID" value="" type="22" />
                             <attribute id="Status" value="FeatureAvailable" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Quest">
+                    <attribute id="CategoryID" value="RoguelikeArena_Features" type="22" />
+                    <attribute id="MainQuest" value="0" type="19" />
+                    <attribute id="QuestBroadcastLevel" value="2" type="1" />
+                    <attribute id="QuestID" value="RoguelikeArena_TrainingDummy" type="22" />
+                    <attribute id="QuestTitle" value="Training Dummy" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="Shareable" value="1" type="19" />
+                    <attribute id="SortingPriority" value="0" type="4" />
+                    <children>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="The Training Dummy is now available in the lobby. You can use it to quickly gain a few levels before entering the arena." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="DevComment" value="" type="22" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Mystery" value="" type="22" />
+                            <attribute id="MysteryAction" value="0" type="1" />
+                            <attribute id="MysteryDescription" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Objective" value="RoguelikeArena_TrainingDummy_FeatureAvailable" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="StatTriggerGUID" value="" type="22" />
+                            <attribute id="Status" value="FeatureAvailable" type="22" />
+                        </node>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="The Training Dummy is no longer available." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="DevComment" value="" type="22" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Mystery" value="" type="22" />
+                            <attribute id="MysteryAction" value="0" type="1" />
+                            <attribute id="MysteryDescription" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Objective" value="COMPLETION" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="StatTriggerGUID" value="" type="22" />
+                            <attribute id="Status" value="FeatureUnavailable" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Quest">
+                    <attribute id="CategoryID" value="RoguelikeArena_Features" type="22" />
+                    <attribute id="MainQuest" value="0" type="19" />
+                    <attribute id="QuestBroadcastLevel" value="2" type="1" />
+                    <attribute id="QuestID" value="RoguelikeArena_ArenaControl" type="22" />
+                    <attribute id="QuestTitle" value="Arena Control" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="Shareable" value="1" type="19" />
+                    <attribute id="SortingPriority" value="0" type="4" />
+                    <children>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="The Arena Control is now available in the lobby. You can use it to enable or disable mutators for better rewards." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="DevComment" value="" type="22" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Mystery" value="" type="22" />
+                            <attribute id="MysteryAction" value="0" type="1" />
+                            <attribute id="MysteryDescription" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Objective" value="RoguelikeArena_ArenaControl_FeatureAvailable" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="StatTriggerGUID" value="" type="22" />
+                            <attribute id="Status" value="FeatureAvailable" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Quest">
+                    <attribute id="CategoryID" value="RoguelikeArena_Lobby" type="22" />
+                    <attribute id="MainQuest" value="0" type="19" />
+                    <attribute id="QuestBroadcastLevel" value="2" type="1" />
+                    <attribute id="QuestID" value="RoguelikeArena_Tavern" type="22" />
+                    <attribute id="QuestTitle" value="Tavern" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="Shareable" value="1" type="19" />
+                    <attribute id="SortingPriority" value="0" type="4" />
+                    <children>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="The tavern is a communal space where you can hang out with your friends and maybe get to know other people as well." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="DevComment" value="" type="22" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Mystery" value="" type="22" />
+                            <attribute id="MysteryAction" value="0" type="1" />
+                            <attribute id="MysteryDescription" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Objective" value="RoguelikeArena_Tavern_Discovered" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="StatTriggerGUID" value="" type="22" />
+                            <attribute id="Status" value="Discovered" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Quest">
+                    <attribute id="CategoryID" value="RoguelikeArena_Lobby" type="22" />
+                    <attribute id="MainQuest" value="0" type="19" />
+                    <attribute id="QuestBroadcastLevel" value="2" type="1" />
+                    <attribute id="QuestID" value="RoguelikeArena_Marketplace" type="22" />
+                    <attribute id="QuestTitle" value="Marketplace" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="Shareable" value="1" type="19" />
+                    <attribute id="SortingPriority" value="0" type="4" />
+                    <children>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="The marketplace is where you&apos;ll want to go to spend money. This is where you can buy new gear, skillbooks and other stuff as well." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="DevComment" value="" type="22" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Mystery" value="" type="22" />
+                            <attribute id="MysteryAction" value="0" type="1" />
+                            <attribute id="MysteryDescription" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Objective" value="RoguelikeArena_Marketplace_Discovered" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="StatTriggerGUID" value="" type="22" />
+                            <attribute id="Status" value="Discovered" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Quest">
+                    <attribute id="CategoryID" value="RoguelikeArena_Lobby" type="22" />
+                    <attribute id="MainQuest" value="0" type="19" />
+                    <attribute id="QuestBroadcastLevel" value="2" type="1" />
+                    <attribute id="QuestID" value="RoguelikeArena_Quarters" type="22" />
+                    <attribute id="QuestTitle" value="Quarters" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="Shareable" value="1" type="19" />
+                    <attribute id="SortingPriority" value="0" type="4" />
+                    <children>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="The quarters are your private area. You can rest, store your stuff and find crafting stations here." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="DevComment" value="" type="22" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Mystery" value="" type="22" />
+                            <attribute id="MysteryAction" value="0" type="1" />
+                            <attribute id="MysteryDescription" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Objective" value="RoguelikeArena_Quarters_Discovered" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="StatTriggerGUID" value="" type="22" />
+                            <attribute id="Status" value="Discovered" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Quest">
+                    <attribute id="CategoryID" value="RoguelikeArena_Lobby" type="22" />
+                    <attribute id="MainQuest" value="0" type="19" />
+                    <attribute id="QuestBroadcastLevel" value="2" type="1" />
+                    <attribute id="QuestID" value="RoguelikeArena_TrainingGrounds" type="22" />
+                    <attribute id="QuestTitle" value="Training Grounds" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="Shareable" value="1" type="19" />
+                    <attribute id="SortingPriority" value="0" type="4" />
+                    <children>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="You can practice your combat skills at the training grounds. This is where you are allowed to make a mess without consequences, just make sure to keep it into this area." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="DevComment" value="" type="22" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Mystery" value="" type="22" />
+                            <attribute id="MysteryAction" value="0" type="1" />
+                            <attribute id="MysteryDescription" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Objective" value="RoguelikeArena_TrainingGrounds_Discovered" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="StatTriggerGUID" value="" type="22" />
+                            <attribute id="Status" value="Discovered" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Quest">
+                    <attribute id="CategoryID" value="RoguelikeArena_Lobby" type="22" />
+                    <attribute id="MainQuest" value="0" type="19" />
+                    <attribute id="QuestBroadcastLevel" value="2" type="1" />
+                    <attribute id="QuestID" value="RoguelikeArena_Hallway" type="22" />
+                    <attribute id="QuestTitle" value="Hallway" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="Shareable" value="1" type="19" />
+                    <attribute id="SortingPriority" value="0" type="4" />
+                    <children>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="The hallway is an open space where you can reach all of the other areas." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="DevComment" value="" type="22" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Mystery" value="" type="22" />
+                            <attribute id="MysteryAction" value="0" type="1" />
+                            <attribute id="MysteryDescription" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Objective" value="RoguelikeArena_Hallway_Discovered" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="StatTriggerGUID" value="" type="22" />
+                            <attribute id="Status" value="Discovered" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Quest">
+                    <attribute id="CategoryID" value="RoguelikeArena_Lobby" type="22" />
+                    <attribute id="MainQuest" value="0" type="19" />
+                    <attribute id="QuestBroadcastLevel" value="2" type="1" />
+                    <attribute id="QuestID" value="RoguelikeArena_PortalHub" type="22" />
+                    <attribute id="QuestTitle" value="Portal Hub" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="Shareable" value="1" type="19" />
+                    <attribute id="SortingPriority" value="0" type="4" />
+                    <children>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="The portal hub is where you can ready up and enter the arena. Meet up with your friends here and enter the portal once everyone is ready." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="DevComment" value="" type="22" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Mystery" value="" type="22" />
+                            <attribute id="MysteryAction" value="0" type="1" />
+                            <attribute id="MysteryDescription" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Objective" value="RoguelikeArena_PortalHub_Discovered" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="StatTriggerGUID" value="" type="22" />
+                            <attribute id="Status" value="Discovered" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Quest">
+                    <attribute id="CategoryID" value="RoguelikeArena_Arena" type="22" />
+                    <attribute id="MainQuest" value="1" type="19" />
+                    <attribute id="QuestBroadcastLevel" value="2" type="1" />
+                    <attribute id="QuestID" value="RoguelikeArena_EnterTheArena" type="22" />
+                    <attribute id="QuestTitle" value="Enter the Arena" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="Shareable" value="1" type="19" />
+                    <attribute id="SortingPriority" value="0" type="4" />
+                    <children>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="Take a look around and gather everything you need. If you need help familiarizing yourself with the lobby, the journal entries may be of use. Once you&apos;re familiar with the lobby and ready to enter the arena, gather at the portal hub and use the portal. Once you enter the arena, you&apos;ll immediately face your enemies. Good luck!" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="DevComment" value="" type="22" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Mystery" value="" type="22" />
+                            <attribute id="MysteryAction" value="0" type="1" />
+                            <attribute id="MysteryDescription" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Objective" value="RoguelikeArena_UsePortal" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="StatTriggerGUID" value="" type="22" />
+                            <attribute id="Status" value="UsePortal" type="22" />
+                        </node>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="Each time you clear an arena, return to the lobby and prepare for the next challenge. Once ready, gather at the portal hub and use the portal. Keep going and clear as many arenas as you can. If you ever need anything, check the journal or look around the lobby. Don&apos;t forget to collect your rewards from the arena chests!" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="DevComment" value="" type="22" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Mystery" value="" type="22" />
+                            <attribute id="MysteryAction" value="0" type="1" />
+                            <attribute id="MysteryDescription" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Objective" value="RoguelikeArena_KeepGoing" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="StatTriggerGUID" value="" type="22" />
+                            <attribute id="Status" value="KeepGoing" type="22" />
+                        </node>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="You&apos;ve cleared enough arenas and may now leave the place. If you wish to leave, use the main entrance. If not, you can keep clearing arenas for as long as you wish. Congratulations for reaching so far!" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="DevComment" value="" type="22" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Mystery" value="" type="22" />
+                            <attribute id="MysteryAction" value="0" type="1" />
+                            <attribute id="MysteryDescription" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Objective" value="RoguelikeArena_LeaveOrContinue" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="StatTriggerGUID" value="" type="22" />
+                            <attribute id="Status" value="LeaveOrContinue" type="22" />
                         </node>
                     </children>
                 </node>

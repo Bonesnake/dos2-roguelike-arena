@@ -439,5 +439,16 @@
         <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
       </fields>
     </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_Boney" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Undead_Bonepile_Troll_A" />
+        <field name="Armor" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="MagicArmor" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="Vitality" type="IntegerStatObjectFieldDefinition" value="200" />
+        <field name="APMaximum" type="IntegerStatObjectFieldDefinition" value="3" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+      </fields>
+    </stat_object>
   </stat_objects>
 </stats>

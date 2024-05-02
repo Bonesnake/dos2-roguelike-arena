@@ -24,10 +24,13 @@ AND
 CreateItemTemplateAtPosition(_Template, _X, _Y, _Z, _Chest)
 AND
 GetRotation(_Trigger, _, _RotY, _)
+AND
+SysCount("DB_RoguelikeArena_EnabledMutators", 1, _MutatorTreasureCount)
 THEN
 ItemLevelUpTo(_Chest, _Level);
 // GenerateTreasure(_Chest, _Treasure, _Level, NULL_00000000-0000-0000-0000-000000000000);
 PROC_RoguelikeArena_ItemGenerateTreasure(_Chest, _Treasure, _Level, _Players);
+PROC_RoguelikeArena_ItemGenerateTreasure(_Chest, "RoguelikeArena_Mutator", _Level, _MutatorTreasureCount);
 ItemRotateToAngleY(_Chest, _RotY, 10000.0);
 PROC_RoguelikeArena_ItemSnapToGround(_Chest);
 PROC_RoguelikeArena_RegisterForCleanup(_Chest, _Arena);

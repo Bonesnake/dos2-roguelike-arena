@@ -61,10 +61,8 @@ DB_RoguelikeArena_AvailableCompanions(_Companion)
 THEN
 SetOnStage(_Companion, 0);
 
-IF
-DB_RoguelikeArena_CompanionsHelper(_Companion, _Recruiter)
-AND
-NOT DB_RoguelikeArena_Companions(_Companion, _Recruiter)
+PROC
+PROC_RoguelikeArena_CompanionDismissed(_Companion, _)
 THEN
 PROC_RoguelikeArena_GuidStringPoolAdd("AvailableCompanionPool", _Companion);
 
@@ -114,10 +112,10 @@ DB_Singleton("RoguelikeArena_RecruitmentBoard_UseCount", _UseCount)
 AND
 _UseCount == 3
 AND
-DB_RoguelikeArena_LobbyExtraFeatures(_FeatureName, _LevelMin, _PriceBase, _PriceModifier, _Item)
+DB_RoguelikeArena_LobbyExtraFeatures("RoguelikeArena_RecruitmentBoard", _LevelMin, _PriceBase, _PriceModifier, _Item)
 THEN
-NOT DB_RoguelikeArena_LobbyExtraFeatures(_FeatureName, _LevelMin, _PriceBase, _PriceModifier, _Item);
-DB_RoguelikeArena_LobbyExtraFeatures(_FeatureName, _LevelMin, 275, 25, _Item);
+NOT DB_RoguelikeArena_LobbyExtraFeatures("RoguelikeArena_RecruitmentBoard", _LevelMin, _PriceBase, _PriceModifier, _Item);
+DB_RoguelikeArena_LobbyExtraFeatures("RoguelikeArena_RecruitmentBoard", _LevelMin, 275, 25, _Item);
 
 // Sets a flag when no companions can be recruited.
 IF

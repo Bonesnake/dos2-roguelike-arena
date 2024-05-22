@@ -26,9 +26,9 @@ PROC_RoguelikeArena_SpawnSourceBeacon((INTEGER)_Arena, (INTEGER)_Level, (INTEGER
 AND
 DB_RoguelikeArena_SourceBeaconTemplate(_Template)
 AND
-DB_RoguelikeArena_ArenaInnerTriggers(_Arena, _Trigger)
+QRY_RoguelikeArena_GetRandomPositionInArena(_Arena, "SPAWNER_EVENT")
 AND
-GetRandomPositionInTrigger(_Trigger, _X, _Y, _Z)
+DB_RoguelikeArena_RandomPositionResult(_X, _Y, _Z)
 AND
 CreateItemTemplateAtPosition(_Template, _X, _Y, _Z, _SourceBeacon)
 THEN
@@ -38,6 +38,22 @@ PROC_RoguelikeArena_ItemSnapToGround(_SourceBeacon);
 ItemLevelUpTo(_SourceBeacon, _Level);
 PROC_RoguelikeArena_RegisterForCleanup(_SourceBeacon, _Arena);
 SetInArena(_SourceBeacon, 1);
+DB_RoguelikeArena_SourceBeacons(_Arena, _SourceBeacon);
+
+// Make sure beacons don't remain hostile after combat ends.
+PROC
+PROC_RoguelikeArena_ArenaCombatEnded(_Arena, _, _, _)
+AND
+DB_RoguelikeArena_SourceBeacons(_Arena, _SourceBeacon)
+// AND
+// QRY_RoguelikeArena_ObjectIsInArena(_SourceBeacon, _Arena)
+AND
+IsInArena(_SourceBeacon, 1)
+THEN
+SetInArena(_SourceBeacon, 0);
+SetCanJoinCombat(_SourceBeacon, 0);
+SetCanFight(_SourceBeacon, 0);
+NOT DB_RoguelikeArena_SourceBeacons(_Arena, _SourceBeacon);
 EXITSECTION
 
 ENDEXITSECTION

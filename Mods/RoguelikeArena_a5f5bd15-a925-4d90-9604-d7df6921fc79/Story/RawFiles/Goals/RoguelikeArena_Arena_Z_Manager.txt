@@ -6,36 +6,24 @@ DB_RoguelikeArena_Arenas(2);
 DB_RoguelikeArena_Arenas(3);
 DB_RoguelikeArena_Arenas(4);
 DB_RoguelikeArena_Arenas(5);
+DB_RoguelikeArena_Arenas(6);
+DB_RoguelikeArena_Arenas(7);
 
 DB_RoguelikeArena_RegionTeleportTriggers(1, TRIGGERGUID_TeleportTrigger_050_0b7e3d3b-f4dd-4224-ba90-e1c70155d1b2);
 DB_RoguelikeArena_RegionTeleportTriggers(2, TRIGGERGUID_TeleportTrigger_050__000_0d9c127b-19e5-8146-3ce9-5d92b2eab955);
 DB_RoguelikeArena_RegionTeleportTriggers(3, TRIGGERGUID_TeleportTrigger_050__000_3f7aab4a-9cf0-8a9d-3ba9-90d30fab0305);
 DB_RoguelikeArena_RegionTeleportTriggers(4, TRIGGERGUID_TeleportTrigger_050__000_3710181b-e09f-8c01-4fef-f65c4f04d25e);
 DB_RoguelikeArena_RegionTeleportTriggers(5, TRIGGERGUID_TeleportTrigger_050__000_f7275a08-5777-8896-3c21-14597a6f26b5);
-
-DB_RoguelikeArena_ArenaRegionTriggers(1, (TRIGGERGUID)TRIGGERGUID_RegionTrigger_000_b7176a84-3adc-4f91-aae4-ee629488c837);
-DB_RoguelikeArena_ArenaRegionTriggers(2, TRIGGERGUID_RegionTrigger_000_4363c24f-9315-4402-81d3-cd23ed89bb9b);
-DB_RoguelikeArena_ArenaRegionTriggers(3, TRIGGERGUID_RegionTrigger_000__000_f8557e3f-1b5f-8176-3850-3c9ae5e4f076);
-DB_RoguelikeArena_ArenaRegionTriggers(4, TRIGGERGUID_RegionTrigger_000__000_f0fbeb00-6ffe-83ea-4c96-9213254dcfcf);
-DB_RoguelikeArena_ArenaRegionTriggers(5, TRIGGERGUID_RegionTrigger_000__000_b0022dfd-d6d6-8f7f-39d8-b01050a81326);
-
-DB_RoguelikeArena_ArenaInnerTriggers(1, (TRIGGERGUID)TRIGGERGUID_BoxTrigger_001_f33ee0e6-508f-4407-9e6e-41ddabc12334);
-DB_RoguelikeArena_ArenaInnerTriggers(2, TRIGGERGUID_BoxTrigger_001__000_6152944e-0b5d-8326-0d42-6aac2846961a);
-DB_RoguelikeArena_ArenaInnerTriggers(3, TRIGGERGUID_BoxTrigger_001__000_93302d1d-8e68-8c7d-0c02-aded7507e0ca);
-DB_RoguelikeArena_ArenaInnerTriggers(4, TRIGGERGUID_BoxTrigger_001__000_9bd69aee-d207-8ee1-1048-0366b560bf13);
-DB_RoguelikeArena_ArenaInnerTriggers(5, TRIGGERGUID_BoxTrigger_001__000_5beddcdb-49ef-8a76-0d8a-2163e0cb037a);
-
-DB_RoguelikeArena_ArenaSpawnerTriggers(1, (TRIGGERGUID)TRIGGERGUID_BoxTrigger_000_0d0127a8-7fe6-4ea3-ae95-4640090fb203);
-DB_RoguelikeArena_ArenaSpawnerTriggers(2, TRIGGERGUID_BoxTrigger_000__000_256224ec-f744-8b70-2ffc-050042fad83c);
-DB_RoguelikeArena_ArenaSpawnerTriggers(3, TRIGGERGUID_BoxTrigger_000__000_5740bdbb-7a5f-84c7-2ebc-48419fbb22ec);
-DB_RoguelikeArena_ArenaSpawnerTriggers(4, TRIGGERGUID_BoxTrigger_000__000_5fe62a8c-cefe-863b-32f2-aecadf14f135);
-DB_RoguelikeArena_ArenaSpawnerTriggers(5, TRIGGERGUID_BoxTrigger_000__000_1ffd6c79-35d6-82c0-2f34-ccc70a7f459c);
+DB_RoguelikeArena_RegionTeleportTriggers(6, TRIGGERGUID_TeleportTrigger_050__000_e26fc78e-823e-895f-6c6d-5798099e0592);
+DB_RoguelikeArena_RegionTeleportTriggers(7, TRIGGERGUID_TeleportTrigger_050__000_d0e0eb9a-07f6-867b-4ca2-f0237a0c12b8);
 
 DB_RoguelikeArena_ArenaEventTriggers(1, (TRIGGERGUID)TRIGGERGUID_EventTrigger_000_c5d2c42e-28d9-4c92-87e9-fb0c9ecc4e11);
 DB_RoguelikeArena_ArenaEventTriggers(2, TRIGGERGUID_EventTrigger_000__000_c1326444-366d-85f5-2534-2937d02c3bd9);
 DB_RoguelikeArena_ArenaEventTriggers(3, TRIGGERGUID_EventTrigger_000__000_f310fd13-b978-8e4c-24f4-6c782ded8589);
 DB_RoguelikeArena_ArenaEventTriggers(4, TRIGGERGUID_EventTrigger_000__000_fbb66ae4-0d17-80b0-383a-c2f16d4654d2);
 DB_RoguelikeArena_ArenaEventTriggers(5, TRIGGERGUID_EventTrigger_000__000_bbcdacd1-74ff-8c45-257c-e0fe98a1a839);
+DB_RoguelikeArena_ArenaEventTriggers(6, TRIGGERGUID_EventTrigger_000__000_a6051957-afb6-8d0e-55b8-233d27d08716);
+DB_RoguelikeArena_ArenaEventTriggers(7, TRIGGERGUID_EventTrigger_000__000_94863d63-247e-8a2a-35fd-ccc8984e943c);
 
 PROC_RoguelikeArena_IntegerPoolAddArenas();
 GlobalSetFlag("RoguelikeArena_FirstChallenge");
@@ -47,6 +35,12 @@ AND
 DB_RoguelikeArena_ActiveArena(_Arena, _Level, _Difficulty, _Players)
 THEN
 NOT DB_RoguelikeArena_ActiveArena(_Arena, _Level, _Difficulty, _Players);
+PROC_RoguelikeArena_ArenaEnded(_Arena, _Level, _Difficulty, _Players);
+
+PROC
+PROC_RoguelikeArena_ArenaEnded((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty, (INTEGER)_Players)
+THEN
+DB_NOOP(1);
 
 // Selects a new arena and prepares it for population.
 PROC
@@ -61,6 +55,12 @@ AND
 DB_Singleton("RoguelikeArena_PlayerCount", _Players)
 THEN
 DB_RoguelikeArena_ActiveArena(_Arena, _Level, _Difficulty, _Players);
+PROC_RoguelikeArena_ArenaStarted(_Arena, _Level, _Difficulty, _Players);
+
+PROC
+PROC_RoguelikeArena_ArenaStarted((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty, (INTEGER)_Players)
+THEN
+DB_NOOP(1);
 
 QRY
 QRY_RoguelikeArena_UpdatePlayerCount()
@@ -92,8 +92,8 @@ DB_RoguelikeArena_Arenas(_Arena)
 THEN
 PROC_RoguelikeArena_IntegerPoolAdd("ArenaPool", _Arena);
 
-IF
-DB_RoguelikeArena_ActiveArena(_, _, _, _)
+PROC
+PROC_RoguelikeArena_ArenaStarted(_, _, _, _)
 THEN
 GlobalClearFlag("RoguelikeArena_FirstChallenge");
 GlobalClearFlag("RoguelikeArena_ActiveChallengeComplete");
@@ -131,7 +131,7 @@ DB_NOOP(1);
 QRY
 QRY_RoguelikeArena_ObjectIsInArena((GUIDSTRING)_Object, (INTEGER)_Arena)
 AND
-DB_RoguelikeArena_ArenaRegionTriggers(_Arena, _Trigger)
+DB_RoguelikeArena_ArenaEventTriggers(_Arena, _Trigger)
 AND
 ObjectIsInTrigger(_Object, _Trigger, 1)
 THEN

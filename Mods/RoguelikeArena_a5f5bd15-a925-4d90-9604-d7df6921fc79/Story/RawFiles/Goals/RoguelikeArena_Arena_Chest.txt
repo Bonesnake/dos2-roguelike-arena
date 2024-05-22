@@ -7,8 +7,8 @@ DB_RoguelikeArena_ChestTemplates(3, "RoguelikeArena_Chest_Rank3_b36982b7-5e5b-4e
 DB_RoguelikeArena_ChestTemplates(4, "RoguelikeArena_Chest_Rank4_8ef15111-6318-4b78-a154-58f35fa744a5", "RoguelikeArena_Chest_Rank4");
 DB_RoguelikeArena_ChestTemplates(5, "RoguelikeArena_Chest_Rank5_539587db-c187-430b-9d3c-c8e166193559", "RoguelikeArena_Chest_Rank5");
 KBSECTION
-IF
-DB_RoguelikeArena_ActiveArena(_Arena, _Level, _Difficulty, _Players)
+PROC
+PROC_RoguelikeArena_ArenaCombatEnded(_Arena, _Level, _Difficulty, _Players)
 THEN
 PROC_RoguelikeArena_SpawnChest(_Arena, _Level, _Difficulty, _Players);
 
@@ -17,23 +17,23 @@ PROC_RoguelikeArena_SpawnChest((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Diffi
 AND
 DB_RoguelikeArena_ChestTemplates(_Difficulty, _Template, _Treasure)
 AND
-DB_RoguelikeArena_ArenaSpawnerTriggers(_Arena, _Trigger)
+QRY_RoguelikeArena_GetRandomPositionInArena(_Arena, "SPAWNER_CHEST")
 AND
-GetPosition(_Trigger, _X, _Y, _Z)
+DB_RoguelikeArena_RandomPositionResult(_X, _Y, _Z)
 AND
 CreateItemTemplateAtPosition(_Template, _X, _Y, _Z, _Chest)
 AND
-GetRotation(_Trigger, _, _RotY, _)
+SysCount("DB_RoguelikeArena_EnabledMutators", 1, _EnabledMutators)
 AND
-SysCount("DB_RoguelikeArena_EnabledMutators", 1, _MutatorTreasureCount)
+IntegerProduct(_EnabledMutators, _Players, _MutatorTreasureCount)
 THEN
 ItemLevelUpTo(_Chest, _Level);
-// GenerateTreasure(_Chest, _Treasure, _Level, NULL_00000000-0000-0000-0000-000000000000);
 PROC_RoguelikeArena_ItemGenerateTreasure(_Chest, _Treasure, _Level, _Players);
 PROC_RoguelikeArena_ItemGenerateTreasure(_Chest, "RoguelikeArena_Mutator", _Level, _MutatorTreasureCount);
-ItemRotateToAngleY(_Chest, _RotY, 10000.0);
+ItemRotateToAngleY(_Chest, 180.0, 10000.0);
 PROC_RoguelikeArena_ItemSnapToGround(_Chest);
 PROC_RoguelikeArena_RegisterForCleanup(_Chest, _Arena);
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01", _X, _Y, _Z);
 EXITSECTION
 
 ENDEXITSECTION

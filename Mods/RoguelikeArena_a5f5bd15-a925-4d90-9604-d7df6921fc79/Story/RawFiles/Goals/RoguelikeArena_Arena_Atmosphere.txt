@@ -6,6 +6,8 @@ DB_RoguelikeArena_AtmosphereTriggers(2, TRIGGERGUID_AtmosphereTrigger_000__000_7
 DB_RoguelikeArena_AtmosphereTriggers(3, TRIGGERGUID_AtmosphereTrigger_000__000_accc0b5a-57e0-89b2-3883-50d495aef017);
 DB_RoguelikeArena_AtmosphereTriggers(4, TRIGGERGUID_AtmosphereTrigger_000__000_a462782b-ab8f-8b26-4cc9-b65dd507cf60);
 DB_RoguelikeArena_AtmosphereTriggers(5, TRIGGERGUID_AtmosphereTrigger_000__000_6479ba18-1267-87bb-390b-d45a006213c7);
+DB_RoguelikeArena_AtmosphereTriggers(6, TRIGGERGUID_AtmosphereTrigger_000__000_5fb1279e-4d2e-8874-6947-17999f91f2a4);
+DB_RoguelikeArena_AtmosphereTriggers(7, TRIGGERGUID_AtmosphereTrigger_000__000_4d324baa-c2e6-8590-498c-b024000f0fca);
 
 DB_RoguelikeArena_Atmospheres(1, "746dd96b-09e1-4b82-b81a-5e46935c372a");
 DB_RoguelikeArena_Atmospheres(1, "08c6e64b-ca3a-4df2-a466-740e07a26539");
@@ -41,9 +43,21 @@ DB_RoguelikeArena_Atmospheres(5, "6b647fc9-1f97-4f53-840e-656506d8d19f");
 DB_RoguelikeArena_Atmospheres(5, "aea7af91-7f6c-46c0-be11-dbf8a9ec3f9d");
 DB_RoguelikeArena_Atmospheres(5, "df7c8fd1-c879-47f4-97ef-8b80fa29a441");
 DB_RoguelikeArena_Atmospheres(5, "8b0f9d80-d583-45c9-ba2b-62577d3a25f6");
+
+DB_RoguelikeArena_Atmospheres(6, "0df84336-da38-4791-afca-32d11120a0c3");
+DB_RoguelikeArena_Atmospheres(6, "7cc0be96-2ece-4cb5-886b-e24b8a8b51e6");
+DB_RoguelikeArena_Atmospheres(6, "88e8bb21-4974-4327-bbf1-fe508575a630");
+
+DB_RoguelikeArena_Atmospheres(7, "919f3ed5-38d4-4d54-91bc-31ce21734a30");
+DB_RoguelikeArena_Atmospheres(7, "75e039d7-0385-4374-962c-aa89cdae5bfb");
+DB_RoguelikeArena_Atmospheres(7, "bf24b070-e9c0-4430-9f4c-99b532004aa9");
+DB_RoguelikeArena_Atmospheres(7, "358c9db9-ccda-40dc-a8c8-bb417343f6eb");
+DB_RoguelikeArena_Atmospheres(7, "7ac643f4-a208-4406-accf-ac2a42dc782f");
+DB_RoguelikeArena_Atmospheres(7, "31343cb8-7bb2-4e1c-844c-2dbb5c0f5651");
+
 KBSECTION
-IF
-DB_RoguelikeArena_ActiveArena(_Arena, _, _, _)
+PROC
+PROC_RoguelikeArena_ArenaStarted(_Arena, _, _, _)
 THEN
 PROC_RoguelikeArena_StringPoolClear("AtmospherePool");
 PROC_RoguelikeArena_StringPoolAddAtmospheres(_Arena);

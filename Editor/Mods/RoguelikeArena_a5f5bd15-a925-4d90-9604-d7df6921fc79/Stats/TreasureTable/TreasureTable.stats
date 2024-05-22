@@ -2481,6 +2481,15 @@
     </stat_object>
     <stat_object is_substat="true">
       <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="New_Stat_5" />
+        <field name="DropCount" type="StringStatObjectFieldDefinition" value="1,1" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_GenericContainer" />
+        <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_Chest_Rank1" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="true">
+      <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_Chest_Rank1_substat" />
         <field name="DropCount" type="StringStatObjectFieldDefinition" value="0,1;1,1" />
         <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_RewardTiny" />
@@ -3101,6 +3110,14 @@
         <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_ST_KitchenThings" />
         <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_Trader_General" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_Trader_TheCollector" />
+        <field name="DropCount" type="StringStatObjectFieldDefinition" value="16,1" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="Trader Gold" />
+        <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">

@@ -17,18 +17,18 @@ ProcSetFlagOnAll("QuestUpdate_RoguelikeArena_TrainingGrounds_Discovered");
 ProcSetFlagOnAll("QuestUpdate_RoguelikeArena_Hallway_Discovered");
 ProcSetFlagOnAll("QuestUpdate_RoguelikeArena_PortalHub_Discovered");
 
-DB_QuestDef_State("RoguelikeArena_EnterTheArena", "UsePortal", 1);
-DB_QuestDef_State("RoguelikeArena_EnterTheArena", "KeepGoing", 1);
-DB_QuestDef_State("RoguelikeArena_EnterTheArena", "LeaveOrContinue", 1);
+DB_QuestDef_State("RoguelikeArena_ConquerTheArena", "UsePortal", 1);
+DB_QuestDef_State("RoguelikeArena_ConquerTheArena", "KeepGoing", 1);
+DB_QuestDef_State("RoguelikeArena_ConquerTheArena", "LeaveOrContinue", 1);
 
-ProcSetFlagOnAll("QuestUpdate_RoguelikeArena_EnterTheArena_UsePortal");
+ProcSetFlagOnAll("QuestUpdate_RoguelikeArena_ConquerTheArena_UsePortal");
 KBSECTION
 PROC
 PROC_RoguelikeArena_UseLobbyTeleporter(_Character)
 AND
-PartyGetFlag(_Character, "QuestUpdate_RoguelikeArena_EnterTheArena_KeepGoing", 0)
+PartyGetFlag(_Character, "QuestUpdate_RoguelikeArena_ConquerTheArena_KeepGoing", 0)
 THEN
-PartySetFlag(_Character, "QuestUpdate_RoguelikeArena_EnterTheArena_KeepGoing");
+PartySetFlag(_Character, "QuestUpdate_RoguelikeArena_ConquerTheArena_KeepGoing");
 
 IF
 CharacterLeveledUp(_Character)
@@ -37,9 +37,9 @@ CharacterGetLevel(_Character, _Level)
 AND
 _Level >= 21
 AND
-PartyGetFlag(_Character, "QuestUpdate_RoguelikeArena_EnterTheArena_LeaveOrContinue", 0)
+PartyGetFlag(_Character, "QuestUpdate_RoguelikeArena_ConquerTheArena_LeaveOrContinue", 0)
 THEN
-PartySetFlag(_Character, "QuestUpdate_RoguelikeArena_EnterTheArena_LeaveOrContinue");
+PartySetFlag(_Character, "QuestUpdate_RoguelikeArena_ConquerTheArena_LeaveOrContinue");
 
 IF
 ObjectFlagSet("RoguelikeArena_Entrance_WasUsed", _Character, _)

@@ -1,0 +1,42 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_RoguelikeArena_PillarTemplate("RoguelikeArena_Pillar_4b9320bf-906d-4de6-a37f-fcd0b695b392");
+KBSECTION
+PROC
+PROC_RoguelikeArena_SpawnPillars((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty)
+AND
+QRY_RoguelikeArena_RandomCount(_Difficulty, 1, 1, 2)
+AND
+DB_RoguelikeArena_RandomResult(_PillarCount)
+THEN
+PROC_RoguelikeArena_SpawnPillars(_Arena, _Level, _Difficulty, _PillarCount);
+
+PROC
+PROC_RoguelikeArena_SpawnPillars((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty, (INTEGER)_Count)
+AND
+QRY_RoguelikeArena_CreateIndices(_Count)
+AND
+DB_RoguelikeArena_CreatedIndices(_)
+THEN
+PROC_RoguelikeArena_SpawnPillar(_Arena, _Level, _Difficulty);
+
+PROC
+PROC_RoguelikeArena_SpawnPillar((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty)
+AND
+DB_RoguelikeArena_PillarTemplate(_Template)
+AND
+QRY_RoguelikeArena_GetRandomPositionInArena(_Arena, "SPAWNER_EVENT")
+AND
+DB_RoguelikeArena_RandomPositionResult(_X, _Y, _Z)
+AND
+CreateItemTemplateAtPosition(_Template, _X, _Y, _Z, _Pillar)
+THEN
+PROC_RoguelikeArena_ItemRandomRotate(_Pillar);
+PROC_RoguelikeArena_ItemTeleportToValidPosition(_Pillar);
+PROC_RoguelikeArena_ItemSnapToGround(_Pillar);
+PROC_RoguelikeArena_RegisterForCleanup(_Pillar, _Arena);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena_Arena_Event"

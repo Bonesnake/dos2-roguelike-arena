@@ -110,14 +110,14 @@ DB_RoguelikeArena_EnabledMutators(_Mutator)
 THEN
 DB_NOOP(1);
 
-IF
-DB_RoguelikeArena_ActiveArena(_Arena, _Level, _, _)
+PROC
+PROC_RoguelikeArena_ArenaStarted(_Arena, _Level, _, _)
 AND
 QRY_RoguelikeArena_MutatorIsEnabled("AbsoluteBoneyage")
 AND
-DB_RoguelikeArena_ArenaSpawnerTriggers(_Arena, _Trigger)
+QRY_RoguelikeArena_GetRandomPositionInArena(_Arena, "SPAWNER_ENEMY")
 AND
-GetRandomPositionInTrigger(_Trigger, _X, _Y, _Z)
+DB_RoguelikeArena_RandomPositionResult(_X, _Y, _Z)
 AND
 DB_RoguelikeArena_BoneyTemplate(_BoneyTemplate)
 AND

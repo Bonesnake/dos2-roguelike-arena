@@ -16,6 +16,21 @@
                 <node id="Relations">
                     <children>
                         <node id="Relation">
+                            <attribute id="Source" value="Evil" type="22" />
+                            <attribute id="Target" value="RoguelikeArena_Environment" type="22" />
+                            <attribute id="Value" value="0" type="4" />
+                        </node>
+                        <node id="Relation">
+                            <attribute id="Source" value="Good" type="22" />
+                            <attribute id="Target" value="RoguelikeArena_Environment" type="22" />
+                            <attribute id="Value" value="0" type="4" />
+                        </node>
+                        <node id="Relation">
+                            <attribute id="Source" value="Hero" type="22" />
+                            <attribute id="Target" value="RoguelikeArena_Environment" type="22" />
+                            <attribute id="Value" value="0" type="4" />
+                        </node>
+                        <node id="Relation">
                             <attribute id="Source" value="RoguelikeArena_Environment" type="22" />
                             <attribute id="Target" value="Evil" type="22" />
                             <attribute id="Value" value="0" type="4" />
@@ -23,12 +38,12 @@
                         <node id="Relation">
                             <attribute id="Source" value="RoguelikeArena_Environment" type="22" />
                             <attribute id="Target" value="Good" type="22" />
-                            <attribute id="Value" value="50" type="4" />
+                            <attribute id="Value" value="0" type="4" />
                         </node>
                         <node id="Relation">
                             <attribute id="Source" value="RoguelikeArena_Environment" type="22" />
                             <attribute id="Target" value="Hero" type="22" />
-                            <attribute id="Value" value="50" type="4" />
+                            <attribute id="Value" value="0" type="4" />
                         </node>
                     </children>
                 </node>

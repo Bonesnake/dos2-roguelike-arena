@@ -13,77 +13,6 @@ DB_RoguelikeArena_EquipmentSlots("Shield");
 DB_RoguelikeArena_EquipmentSlots("Ring");
 DB_RoguelikeArena_EquipmentSlots("Ring2");
 
-////REGION Attributes
-//DB_RoguelikeArena_Attributes("STR", "Strength");
-//DB_RoguelikeArena_Attributes("FIN", "Finesse");
-//DB_RoguelikeArena_Attributes("INT", "Intelligence");
-//DB_RoguelikeArena_Attributes("CON", "Constitution");
-//DB_RoguelikeArena_Attributes("MEM", "Memory");
-//DB_RoguelikeArena_Attributes("WIT", "Wits");
-//
-//DB_Singleton("RoguelikeArena_AttributeIncreaseInterval", 4); // attributes increase every x levels, where x is this amount
-//DB_Singleton("RoguelikeArena_AttributeIncreaseAmount", 1); // each attribute increases by this amount per interval
-//DB_Singleton("RoguelikeArena_AttributeBonusInterval", 4); // attributes can have up to x bonus points, where x is character level devided by this amount
-//DB_Singleton("RoguelikeArena_AttributeIncreaseModifierPrimary", 3); // primary attribute modifier
-//DB_Singleton("RoguelikeArena_AttributeIncreaseModifierSecondary", 3); // secondary attribute modifier
-//DB_Singleton("RoguelikeArena_AttributeIncreaseModifierTertiary", 3); // tertiary attribute modifier
-//DB_Singleton("RoguelikeArena_AttributeIncreaseModifierRandomModulo", 3); // other, non-important attribute modifier random modulo
-////END_REGION
-
-////REGION Abilities
-//DB_Singleton("RoguelikeArena_AbilityIncreaseInterval", 2);
-//DB_Singleton("RoguelikeArena_AbilityBonusInterval", 2);
-//DB_Singleton("RoguelikeArena_AbilityUnnecessaryModulo", 5); // a random ability will increase if random == 0; this value is its modulo
-//DB_Singleton("RoguelikeArena_AbilityUnnecessaryModifier", 2); // if a random ability is selected, it will be weaker than the others by times this amount
-//DB_Singleton("RoguelikeArena_AbilityBaseModifier", 1);
-//
-//DB_RoguelikeArena_Abilities("DW", "DualWielding");
-//DB_RoguelikeArena_Abilities("RA", "Ranged");
-//DB_RoguelikeArena_Abilities("1H", "SingleHanded");
-//DB_RoguelikeArena_Abilities("2H", "TwoHanded");
-//
-//DB_RoguelikeArena_Abilities("AERO", "AirSpecialist");
-//DB_RoguelikeArena_Abilities("GEOM", "EarthSpecialist");
-//DB_RoguelikeArena_Abilities("HUNT", "RangerLore");
-//DB_RoguelikeArena_Abilities("HYDR", "WaterSpecialist");
-//DB_RoguelikeArena_Abilities("NECR", "Necromancy");
-//DB_RoguelikeArena_Abilities("POLY", "Polymorph");
-//DB_RoguelikeArena_Abilities("PYRO", "FireSpecialist");
-//DB_RoguelikeArena_Abilities("SCOU", "RogueLore");
-//DB_RoguelikeArena_Abilities("SUMM", "Summoning");
-//DB_RoguelikeArena_Abilities("WARF", "WarriorLore");
-////END_REGION
-
-////REGION Equipment
-//// Warrior weapons
-//DB_RoguelikeArena_Weapons(0, "2H", "SWO", "WPN_Common_Sword_2H_A1_a59ac111-dfe9-4dcc-8ede-9ebd757b1bfc");
-//DB_RoguelikeArena_Weapons(0, "1H", "SWO", "WPN_Common_Sword_1H_A1_3dd01bc4-65e7-4468-9854-b19bc980b3f8");
-//DB_RoguelikeArena_Weapons(0, "2H", "SPE", "WPN_Common_Spear_2H_A_15b17f97-4354-4f6e-98e9-818f87fe95f7");
-//DB_RoguelikeArena_Weapons(0, "1H", "MAC", "WPN_Common_Mace_1H_A_1272c2d0-1cdb-4ecf-b27a-8923a0f545f3");
-//DB_RoguelikeArena_Weapons(0, "2H", "MAC", "WPN_Common_Mace_2H_A_a3778f4f-abd4-44aa-8e4f-7f444e3c795a");
-//
-//// Rogue weapons
-//DB_RoguelikeArena_Weapons(0, "DW", "DAG", "WPN_Common_Dagger_1H_A_f1e0f3fc-c94b-48b6-a843-7d8072f87e9e");
-//DB_RoguelikeArena_Weapons(0, "RA", "BOW", "WPN_Common_Bow_2H_A_628f31a6-1250-42dc-a09d-567726e0937b");
-//
-//// Mage weapons
-//DB_RoguelikeArena_Weapons(0, "2H", "STA", "WPN_Common_Staff_2H_A_f9395532-5efe-4561-bef1-3f603b32c082");
-//DB_RoguelikeArena_Weapons(0, "DW", "WAN", "WPN_Common_Wand_1H_A_0edf88b5-f09f-473c-bae1-a992af4dba69");
-//
-//// Shields
-//DB_RoguelikeArena_Weapons(0, "1H", "SHI", "WPN_Common_Shield_1H_A_c2bbfbd1-6361-4f2e-bad9-a6b46880f501");
-//
-//DB_RoguelikeArena_Armors(0, "Helmet", "EQ_Clothing_Civilian_Helmet_A_e8d53fab-bbd8-4929-8dbe-658baf168555");
-//DB_RoguelikeArena_Armors(0, "Breast", "EQ_Clothing_Civilian_Upperbody_A_3ec8a86d-1df6-4923-9e7a-ce81800e9438");
-//DB_RoguelikeArena_Armors(0, "Gloves", "");
-//DB_RoguelikeArena_Armors(0, "Belt", "");
-//DB_RoguelikeArena_Armors(0, "Boots", "EQ_Clothing_Civilian_Legs_A_043055d0-f5fc-400c-ae2e-29fb3a20902c");
-//DB_RoguelikeArena_Armors(0, "Amulet", "LOOT_Amulet_B_Gold_8691db32-e103-4cc5-8470-c18a6df98650");
-//DB_RoguelikeArena_Armors(0, "Ring1", "LOOT_Copper_Ring_A_2df11137-ad29-414a-85b9-1a6eb952b488");
-//DB_RoguelikeArena_Armors(0, "Ring2", "LOOT_Copper_Ring_A_2df11137-ad29-414a-85b9-1a6eb952b488");
-//DB_RoguelikeArena_Armors(0, "Leggings", "EQ_Clothing_Civilian_Lowerbody_A_98b2a268-6bc4-4357-8cb6-c33bdf6aaa63");
-////END_REGION
-
 //REGION Skills
 // Min, max, increase interval.
 DB_RoguelikeArena_SkillCountParameters(0, 1, 5);
@@ -563,161 +492,14 @@ AND
 CharacterGetEquippedItem(_Character, _Slot, _Item)
 THEN
 ItemLevelUpTo((ITEMGUID)_Item, _Level);
-CharacterUnequipItem(_Character, (ITEMGUID)_Item);
-CharacterEquipItem(_Character, (ITEMGUID)_Item);
+// CharacterUnequipItem(_Character, (ITEMGUID)_Item);
+// CharacterEquipItem(_Character, (ITEMGUID)_Item);
 
-// Prevents a bug.
-// PROC
-// PROC_RoguelikeArena_CharacterLevelUpEquipmentTo((CHARACTERGUID)_Character, (INTEGER)_Level)
-// THEN
-// CharacterSetHitpointsPercentage(_Character, 100.0);
-// CharacterSetArmorPercentage(_Character, 100.0);
-// CharacterSetMagicArmorPercentage(_Character, 100.0);
-//Proc_CharacterFullRestore(_Character);
-
-////REGION Adding attributes
-//// Adds attributes to the character that are not set as primary, secondary or tertiary.
-//PROC
-//PROC_RoguelikeArena_CharacterAddRandomAttributes((CHARACTERGUID)_Character, (INTEGER)_Level, (STRING)_Primary, (STRING)_Secondary, (STRING)_Tertiary)
-//AND
-//DB_RoguelikeArena_Attributes(_Id, _Attribute)
-//AND
-//_Id != _Primary
-//AND
-//_Id != _Secondary
-//AND
-//_Id != _Tertiary
-//AND
-//DB_Singleton("RoguelikeArena_AttributeIncreaseModifierRandomModulo", _Modulo)
-//AND
-//Random(_Modulo, _Modifier)
-//THEN
-//PROC_RoguelikeArena_CharacterAddRandomAttribute(_Character, _Level, _Attribute, _Modifier);
-//
-//// Adds primary attribute to the character.
-//PROC
-//PROC_RoguelikeArena_CharacterAddRandomAttributes((CHARACTERGUID)_Character, (INTEGER)_Level, (STRING)_Primary, (STRING)_Secondary, (STRING)_Tertiary)
-//AND
-//DB_RoguelikeArena_Attributes(_Id, _Attribute)
-//AND
-//_Id == _Primary
-//AND
-//DB_Singleton("RoguelikeArena_AttributeIncreaseModifierPrimary", _Modifier)
-//THEN
-//PROC_RoguelikeArena_CharacterAddRandomAttribute(_Character, _Level, _Attribute, _Modifier);
-//
-//// Adds secondary attribute to the character.
-//PROC
-//PROC_RoguelikeArena_CharacterAddRandomAttributes((CHARACTERGUID)_Character, (INTEGER)_Level, (STRING)_Primary, (STRING)_Secondary, (STRING)_Tertiary)
-//AND
-//DB_RoguelikeArena_Attributes(_Id, _Attribute)
-//AND
-//_Id == _Secondary
-//AND
-//DB_Singleton("RoguelikeArena_AttributeIncreaseModifierSecondary", _Modifier)
-//THEN
-//PROC_RoguelikeArena_CharacterAddRandomAttribute(_Character, _Level, _Attribute, _Modifier);
-//
-//// Adds tertiary attribute to the character.
-//PROC
-//PROC_RoguelikeArena_CharacterAddRandomAttributes((CHARACTERGUID)_Character, (INTEGER)_Level, (STRING)_Primary, (STRING)_Secondary, (STRING)_Tertiary)
-//AND
-//DB_RoguelikeArena_Attributes(_Id, _Attribute)
-//AND
-//_Id == _Tertiary
-//AND
-//DB_Singleton("RoguelikeArena_AttributeIncreaseModifierTertiary", _Modifier)
-//THEN
-//PROC_RoguelikeArena_CharacterAddRandomAttribute(_Character, _Level, _Attribute, _Modifier);
-//
-//// Adds a random value of the given attribute to the character. The higher the modifier, the more the points given.
-//PROC
-//PROC_RoguelikeArena_CharacterAddRandomAttribute((CHARACTERGUID)_Character, (INTEGER)_Level, (STRING)_Attribute, (INTEGER)_Modifier)
-//AND
-//DB_Singleton("RoguelikeArena_AttributeIncreaseInterval", _IncreaseInterval)
-//AND
-//DB_Singleton("RoguelikeArena_AttributeIncreaseAmount", _IncreaseAmount)
-//AND
-//IntegerSubtract(_IncreaseInterval, _Modifier, _ModifiedIncreaseInterval)
-//AND
-//IntegerDivide(_Level, _ModifiedIncreaseInterval, _IncreaseCount)
-//AND
-//IntegerProduct(_IncreaseCount, _IncreaseAmount, _Points)
-//AND
-//DB_Singleton("RoguelikeArena_AttributeBonusInterval", _BonusInterval)
-//AND
-//IntegerSubtract(_BonusInterval, _Modifier, _BonusIntervalModified)
-//AND
-//IntegerDivide(_Level, _BonusIntervalModified, _BonusModulo)
-//AND
-//Random(_BonusModulo, _Bonus)
-//AND
-//IntegerSum(_Points, _Bonus, _FinalPoints)
-//THEN
-//CharacterAddAttribute(_Character, _Attribute, _FinalPoints);
-////END_REGION
-//
-////REGION Adding abilities
-//PROC
-//PROC_RoguelikeArena_CharacterAddRandomAbilities((CHARACTERGUID)_Character, (INTEGER)_Level, (STRING)_WeaponSkillId, (STRING)_Specialization1Id, (STRING)_Specialization2Id, (STRING)_Specialization3Id)
-//AND
-//DB_Singleton("RoguelikeArena_AbilityBaseModifier", _Modifier)
-//THEN
-//PROC_RoguelikeArena_CharacterAddRandomAbility(_Character, _Level, _WeaponSkillId, _Modifier);
-//PROC_RoguelikeArena_CharacterAddRandomAbility(_Character, _Level, _Specialization1Id, _Modifier);
-//PROC_RoguelikeArena_CharacterAddRandomAbility(_Character, _Level, _Specialization2Id, _Modifier);
-//PROC_RoguelikeArena_CharacterAddRandomAbility(_Character, _Level, _Specialization3Id, _Modifier);
-//
-//PROC
-//PROC_RoguelikeArena_CharacterAddRandomAbilities((CHARACTERGUID)_Character, (INTEGER)_Level, (STRING)_WeaponSkillId, (STRING)_Specialization1Id, (STRING)_Specialization2Id, (STRING)_Specialization3Id)
-//AND
-//DB_RoguelikeArena_Abilities(_Id, _)
-//AND
-//_Id != _WeaponSkillId
-//AND
-//_Id != _Specialization1Id
-//AND
-//_Id != _Specialization2Id
-//AND
-//_Id != _Specialization3Id
-//AND
-//DB_Singleton("RoguelikeArena_AbilityUnnecessaryModulo", _Modulo)
-//AND
-//Random(_Modulo, 0)
-//AND
-//DB_Singleton("RoguelikeArena_AbilityUnnecessaryModifier", _Modifier)
-//THEN
-//PROC_RoguelikeArena_CharacterAddRandomAbility(_Character, _Level, _Id, _Modifier);
-//
-//PROC
-//PROC_RoguelikeArena_CharacterAddRandomAbility((CHARACTERGUID)_Character, (INTEGER)_Level, (STRING)_AbilityId, (INTEGER)_Modifier)
-//AND
-//DB_RoguelikeArena_Abilities(_AbilityId, _AbilityName)
-//AND
-//DB_Singleton("RoguelikeArena_AbilityIncreaseInterval", _IncreaseInterval)
-//AND
-//IntegerProduct(_IncreaseInterval, _Modifier, _IncreaseIntervalModified)
-//AND
-//IntegerDivide(_Level, _IncreaseIntervalModified, _Points)
-//AND
-//IntegerSum(_Points, 1, _PointsIncreased)
-//AND
-//DB_Singleton("RoguelikeArena_AbilityBonusInterval", _BonusInterval)
-//AND
-//IntegerProduct(_BonusInterval, _Modifier, _BonusIntervalModified)
-//AND
-//IntegerDivide(_Level, _BonusIntervalModified, _Bonus)
-//AND
-//IntegerSum(_Bonus, 1, _BonusIncreased)
-//AND
-//Random(_BonusIncreased, _BonusPoints)
-//AND
-//IntegerSum(_PointsIncreased, _BonusPoints, _PointsAdded)
-//AND
-//IntegerMin(_PointsAdded, 10, _PointsFinal)
-//THEN
-//CharacterAddAbility(_Character, _AbilityName, _PointsFinal);
-////END_REGION
+// Prevents a visual bug.
+PROC
+PROC_RoguelikeArena_CharacterLevelUpEquipmentTo((CHARACTERGUID)_Character, (INTEGER)_Level)
+THEN
+ApplyStatus(_Character, "RESTED", 0.0, 0, NULL_00000000-0000-0000-0000-000000000000);
 
 //REGION Skills
 PROC
@@ -867,41 +649,21 @@ CharacterOverrideMaxSourcePoints(_Character, _Max);
 CharacterAddSourcePoints(_Character, _Points);
 //END_REGION
 
-////REGION Adding equipment
-//PROC
-//PROC_RoguelikeArena_CharacterAddRandomEquipment((CHARACTERGUID)_Character, (INTEGER)_Level, (STRING)_WeaponSkill, (STRING)_Weapon1Type, (STRING)_Weapon2Type)
-//THEN
-//PROC_RoguelikeArena_CharacterArmorCreateAndEquip(_Character, _Level);
-//PROC_RoguelikeArena_CharacterWeaponCreateAndEquip(_Character, _Level, _WeaponSkill, _Weapon2Type); // in case of a shield, it has to be equipped first
-//PROC_RoguelikeArena_CharacterWeaponCreateAndEquip(_Character, _Level, _WeaponSkill, _Weapon1Type);
-//
-//PROC
-//PROC_RoguelikeArena_CharacterArmorCreateAndEquip((CHARACTERGUID)_Character, (INTEGER)_Level)
-//AND
-//DB_RoguelikeArena_Armors(_ArmorIndex, _ArmorSlot, _ArmorTemplateId)
-//AND
-//Random(2, 1)
-//THEN
-//PROC_RoguelikeArena_CharacterItemCreateAndEquip(_Character, _Level, _ArmorTemplateId);
-//
-//PROC
-//PROC_RoguelikeArena_CharacterWeaponCreateAndEquip((CHARACTERGUID)_Character, (INTEGER)_Level, (STRING)_WeaponSkill, (STRING)_WeaponType)
-//AND
-//DB_RoguelikeArena_Weapons(_WeaponIndex, _WeaponSkill, _WeaponType, _WeaponTemplateId)
-//THEN
-//PROC_RoguelikeArena_CharacterItemCreateAndEquip(_Character, _Level, _WeaponTemplateId);
-//
-//PROC
-//PROC_RoguelikeArena_CharacterItemCreateAndEquip((CHARACTERGUID)_Character, (INTEGER)_Level, (STRING)_ItemTemplateId)
-//AND
-//CreateItemTemplateAtPosition(_ItemTemplateId, 0.0, 0.0, 0.0, _Item)
-//THEN
-//ItemLevelUpTo(_Item, _Level);
-//CharacterEquipItem(_Character, _Item);
-////END_REGION
-
+// Restores character similarly to the built-in restore proc but without removing all kinds of statuses.
 PROC
 PROC_RoguelikeArena_CharacterFullRestore((CHARACTERGUID)_Character)
+THEN
+CharacterResurrect(_Character);
+CharacterSetHitpointsPercentage(_Character, 100.0);
+CharacterSetArmorPercentage(_Character, 100.0);
+CharacterSetMagicArmorPercentage(_Character, 100.0);
+CharacterResetCooldowns(_Character);
+
+// Restores source points for characters that are alive (does not work for dead characters unfortunately).
+PROC
+PROC_RoguelikeArena_CharacterFullRestore((CHARACTERGUID)_Character)
+AND
+CharacterIsDead(_Character, 0)
 AND
 CharacterGetMaxSourcePoints(_Character, _MaxSourcePoints)
 AND
@@ -909,11 +671,6 @@ CharacterGetSourcePoints(_Character, _SourcePoints)
 AND
 IntegerSubtract(_MaxSourcePoints, _SourcePoints, _SourcePointsToRestore)
 THEN
-CharacterResurrect(_Character);
-CharacterSetHitpointsPercentage(_Character, 100.0);
-CharacterSetArmorPercentage(_Character, 100.0);
-CharacterSetMagicArmorPercentage(_Character, 100.0);
-CharacterResetCooldowns(_Character);
 CharacterAddSourcePoints(_Character, _SourcePointsToRestore);
 
 // Removes a character from the game.

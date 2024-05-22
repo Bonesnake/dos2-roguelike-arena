@@ -4,12 +4,13 @@ INITSECTION
 DB_RoguelikeArena_Events("BlessedStatueEvent");
 DB_RoguelikeArena_Events("HazardEvent");
 DB_RoguelikeArena_Events("MeteorShowerEvent");
+DB_RoguelikeArena_Events("PillarEvent");
 DB_RoguelikeArena_Events("SourceBeaconEvent");
 DB_RoguelikeArena_Events("SourceScarecrowEvent");
 DB_RoguelikeArena_Events("SurfaceEvent");
 KBSECTION
-IF
-DB_RoguelikeArena_ActiveArena(_Arena, _Level, _Difficulty, _)
+PROC
+PROC_RoguelikeArena_ArenaStarted(_Arena, _Level, _Difficulty, _)
 THEN
 PROC_RoguelikeArena_StartRandomEvents(_Arena, _Level, _Difficulty);
 
@@ -66,6 +67,13 @@ AND
 _Event == "MeteorShowerEvent"
 THEN
 PROC_RoguelikeArena_SpawnMeteorShowers(_Arena, _Level, _Difficulty);
+
+PROC
+PROC_RoguelikeArena_StartEvent(_Arena, _Level, _Difficulty, _Event)
+AND
+_Event == "PillarEvent"
+THEN
+PROC_RoguelikeArena_SpawnPillars(_Arena, _Level, _Difficulty);
 
 PROC
 PROC_RoguelikeArena_StartEvent(_Arena, _Level, _Difficulty, _Event)

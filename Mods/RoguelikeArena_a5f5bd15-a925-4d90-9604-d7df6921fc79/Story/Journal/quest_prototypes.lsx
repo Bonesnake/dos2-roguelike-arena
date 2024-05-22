@@ -98,7 +98,7 @@
                         <node id="QuestState">
                             <attribute id="Achievement" value="" type="22" />
                             <attribute id="Act" value="0" type="4" />
-                            <attribute id="Description" value="The Training Dummy is now available in the lobby. You can use it to quickly gain a few levels before entering the arena." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Description" value="The Training Dummy is now available in the lobby. You can use it to enter the arena at a higher level. This feature will become unavailable once you enter the arena." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
                             <attribute id="DevComment" value="" type="22" />
                             <attribute id="Gain" value="0" type="4" />
                             <attribute id="Mystery" value="" type="22" />
@@ -133,21 +133,21 @@
                     <attribute id="CategoryID" value="RoguelikeArena_Features" type="22" />
                     <attribute id="MainQuest" value="0" type="19" />
                     <attribute id="QuestBroadcastLevel" value="2" type="1" />
-                    <attribute id="QuestID" value="RoguelikeArena_ArenaControl" type="22" />
-                    <attribute id="QuestTitle" value="Arena Control" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="QuestID" value="RoguelikeArena_ArenaMutator" type="22" />
+                    <attribute id="QuestTitle" value="Arena Mutator" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
                     <attribute id="Shareable" value="1" type="19" />
                     <attribute id="SortingPriority" value="0" type="4" />
                     <children>
                         <node id="QuestState">
                             <attribute id="Achievement" value="" type="22" />
                             <attribute id="Act" value="0" type="4" />
-                            <attribute id="Description" value="The Arena Control is now available in the lobby. You can use it to enable or disable mutators for better rewards." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Description" value="The Arena Mutator is now available in the lobby. You can use it to enable or disable mutators for increased rewards." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
                             <attribute id="DevComment" value="" type="22" />
                             <attribute id="Gain" value="0" type="4" />
                             <attribute id="Mystery" value="" type="22" />
                             <attribute id="MysteryAction" value="0" type="1" />
                             <attribute id="MysteryDescription" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
-                            <attribute id="Objective" value="RoguelikeArena_ArenaControl_FeatureAvailable" type="22" />
+                            <attribute id="Objective" value="RoguelikeArena_ArenaMutator_FeatureAvailable" type="22" />
                             <attribute id="QuestRewardCount" value="0" type="4" />
                             <attribute id="QuestRewardLevel" value="0" type="4" />
                             <attribute id="ReputationGain" value="0" type="4" />
@@ -168,7 +168,7 @@
                         <node id="QuestState">
                             <attribute id="Achievement" value="" type="22" />
                             <attribute id="Act" value="0" type="4" />
-                            <attribute id="Description" value="The tavern is a communal space where you can hang out with your friends and maybe get to know other people as well." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Description" value="The tavern is a welcoming place to socialize and unwind with fellow adventurers." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
                             <attribute id="DevComment" value="" type="22" />
                             <attribute id="Gain" value="0" type="4" />
                             <attribute id="Mystery" value="" type="22" />
@@ -195,7 +195,7 @@
                         <node id="QuestState">
                             <attribute id="Achievement" value="" type="22" />
                             <attribute id="Act" value="0" type="4" />
-                            <attribute id="Description" value="The marketplace is where you&apos;ll want to go to spend money. This is where you can buy new gear, skillbooks and other stuff as well." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Description" value="The marketplace is where you can spend your money on equipment, skillbooks, miscellaneous items and other useful services." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
                             <attribute id="DevComment" value="" type="22" />
                             <attribute id="Gain" value="0" type="4" />
                             <attribute id="Mystery" value="" type="22" />
@@ -222,7 +222,7 @@
                         <node id="QuestState">
                             <attribute id="Achievement" value="" type="22" />
                             <attribute id="Act" value="0" type="4" />
-                            <attribute id="Description" value="The quarters are your private area. You can rest, store your stuff and find crafting stations here." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Description" value="The quarters are your own personal space to relax, store your belongings and do some crafting." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
                             <attribute id="DevComment" value="" type="22" />
                             <attribute id="Gain" value="0" type="4" />
                             <attribute id="Mystery" value="" type="22" />
@@ -276,7 +276,7 @@
                         <node id="QuestState">
                             <attribute id="Achievement" value="" type="22" />
                             <attribute id="Act" value="0" type="4" />
-                            <attribute id="Description" value="The hallway is an open space where you can reach all of the other areas." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Description" value="The hallway is the main passage connecting all areas." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
                             <attribute id="DevComment" value="" type="22" />
                             <attribute id="Gain" value="0" type="4" />
                             <attribute id="Mystery" value="" type="22" />
@@ -303,7 +303,7 @@
                         <node id="QuestState">
                             <attribute id="Achievement" value="" type="22" />
                             <attribute id="Act" value="0" type="4" />
-                            <attribute id="Description" value="The portal hub is where you can ready up and enter the arena. Meet up with your friends here and enter the portal once everyone is ready." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Description" value="The portal hub is where you should gather when ready to head into the arena." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
                             <attribute id="DevComment" value="" type="22" />
                             <attribute id="Gain" value="0" type="4" />
                             <attribute id="Mystery" value="" type="22" />
@@ -322,15 +322,15 @@
                     <attribute id="CategoryID" value="RoguelikeArena_Arena" type="22" />
                     <attribute id="MainQuest" value="1" type="19" />
                     <attribute id="QuestBroadcastLevel" value="2" type="1" />
-                    <attribute id="QuestID" value="RoguelikeArena_EnterTheArena" type="22" />
-                    <attribute id="QuestTitle" value="Enter the Arena" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="QuestID" value="RoguelikeArena_ConquerTheArena" type="22" />
+                    <attribute id="QuestTitle" value="Conquer the Arena" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
                     <attribute id="Shareable" value="1" type="19" />
                     <attribute id="SortingPriority" value="0" type="4" />
                     <children>
                         <node id="QuestState">
                             <attribute id="Achievement" value="" type="22" />
                             <attribute id="Act" value="0" type="4" />
-                            <attribute id="Description" value="Take a look around and gather everything you need. If you need help familiarizing yourself with the lobby, the journal entries may be of use. Once you&apos;re familiar with the lobby and ready to enter the arena, gather at the portal hub and use the portal. Once you enter the arena, you&apos;ll immediately face your enemies. Good luck!" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Description" value="Welcome! Take a look around the lobby and gather everything you need. Once you&apos;re ready to enter the arena, gather at the portal hub and teleport in. You&apos;ll immediately face the first batch of enemies. Good luck!" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
                             <attribute id="DevComment" value="" type="22" />
                             <attribute id="Gain" value="0" type="4" />
                             <attribute id="Mystery" value="" type="22" />
@@ -346,7 +346,7 @@
                         <node id="QuestState">
                             <attribute id="Achievement" value="" type="22" />
                             <attribute id="Act" value="0" type="4" />
-                            <attribute id="Description" value="Each time you clear an arena, return to the lobby and prepare for the next challenge. Once ready, gather at the portal hub and use the portal. Keep going and clear as many arenas as you can. If you ever need anything, check the journal or look around the lobby. Don&apos;t forget to collect your rewards from the arena chests!" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Description" value="Each time you clear an arena, return to the lobby and prepare for the next challenge. Once ready, use the portal to proceed. Keep going and clear as many arenas as you can to gain levels and unlock new features. Don&apos;t forget to collect your rewards from the arena chests!" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
                             <attribute id="DevComment" value="" type="22" />
                             <attribute id="Gain" value="0" type="4" />
                             <attribute id="Mystery" value="" type="22" />
@@ -362,7 +362,7 @@
                         <node id="QuestState">
                             <attribute id="Achievement" value="" type="22" />
                             <attribute id="Act" value="0" type="4" />
-                            <attribute id="Description" value="You&apos;ve cleared enough arenas and may now leave the place. If you wish to leave, use the main entrance. If not, you can keep clearing arenas for as long as you wish. Congratulations for reaching so far!" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Description" value="You&apos;ve cleared enough arenas to leave the place via the main entrance. If you wish to stay, you can keep clearing arenas. There&apos;s no end to it, so you can stay for as long as you wish. Congratulations for reaching so far!" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
                             <attribute id="DevComment" value="" type="22" />
                             <attribute id="Gain" value="0" type="4" />
                             <attribute id="Mystery" value="" type="22" />

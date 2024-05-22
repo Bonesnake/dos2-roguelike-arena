@@ -6,10 +6,8 @@ DB_TeleporterPyramid(ITEMGUID_UNI_Teleport_Pyramid_B_001_17ced270-988c-461c-85ad
 DB_TeleporterPyramid(ITEMGUID_UNI_Teleport_Pyramid_C_001_fb46e766-6a35-4d8a-ae7c-cf27dd355f40);
 DB_TeleporterPyramid(ITEMGUID_UNI_Teleport_Pyramid_D_001_1ba9562f-44fa-4378-80dc-0258fc044786);
 KBSECTION
-IF
-DB_RoguelikeArena_ActiveArenaHelper(_Arena, _Level, _Difficulty, _Players)
-AND
-NOT DB_RoguelikeArena_ActiveArena(_Arena, _Level, _Difficulty, _Players)
+PROC
+PROC_RoguelikeArena_ArenaEnded(_Arena, _Level, _Difficulty, _Players)
 THEN
 PROC_RoguelikeArena_SaveTeleporterPyramids(_Arena);
 

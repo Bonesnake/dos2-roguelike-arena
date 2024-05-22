@@ -911,7 +911,7 @@
                                                 "TagText" : {
                                                    "handle" : "ls::TranslatedStringRepository::s_HandleUnknown",
                                                    "type" : 28,
-                                                   "value" : "Your party is currently full. Come back later when there are free spaces."
+                                                   "value" : "Your party is currently full. Try again when there are free spaces."
                                                 },
                                                 "stub" : {"type" : 19, "value" : 1}
                                              }
@@ -1959,7 +1959,7 @@
                                                 "TagText" : {
                                                    "handle" : "ls::TranslatedStringRepository::s_HandleUnknown",
                                                    "type" : 28,
-                                                   "value" : "Select the identity of the new companion."
+                                                   "value" : "Select the identity of your new companion."
                                                 },
                                                 "stub" : {"type" : 19, "value" : 1}
                                              }
@@ -3223,7 +3223,7 @@
                                                 "TagText" : {
                                                    "handle" : "ls::TranslatedStringRepository::s_HandleUnknown",
                                                    "type" : 28,
-                                                   "value" : "Your party is currently full. Come back later when there are free spaces."
+                                                   "value" : "Your party is currently full. Try again when there are free spaces.<br>"
                                                 },
                                                 "stub" : {"type" : 19, "value" : 1}
                                              }
@@ -4401,7 +4401,7 @@
                                                 "TagText" : {
                                                    "handle" : "ls::TranslatedStringRepository::s_HandleUnknown",
                                                    "type" : 28,
-                                                   "value" : "This feature is not available for companions. Use your main character."
+                                                   "value" : "This feature is not available for this character."
                                                 },
                                                 "stub" : {"type" : 19, "value" : 1}
                                              }
@@ -5240,7 +5240,7 @@
          },
          "editorData" : {
             "needLayout" : {"type" : 19, "value" : 0},
-            "nextNodeId" : {"type" : 5, "value" : 176}
+            "nextNodeId" : {"type" : 5, "value" : 177}
          }
       }
    }

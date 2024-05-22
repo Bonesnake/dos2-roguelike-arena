@@ -331,7 +331,7 @@
                                                 "TagText" : {
                                                    "handle" : "ls::TranslatedStringRepository::s_HandleUnknown",
                                                    "type" : 28,
-                                                   "value" : "You've cleared enough arenas to leave. Once you do, you won't be able to come back and continue."
+                                                   "value" : "You've cleared enough arenas to leave. Once you do, you won't be able to come back and need to start over."
                                                 },
                                                 "stub" : {"type" : 19, "value" : 1}
                                              }
@@ -531,7 +531,7 @@
                                                 "TagText" : {
                                                    "handle" : "ls::TranslatedStringRepository::s_HandleUnknown",
                                                    "type" : 28,
-                                                   "value" : "Thank you for participating in the arena, hope you had a good time! Goodbye and take care!"
+                                                   "value" : "Congratulations for progressing so far, hope you had a great time! Goodbye and take care!"
                                                 },
                                                 "stub" : {"type" : 19, "value" : 1}
                                              }

@@ -85,6 +85,59 @@ DB_RoguelikeArena_ArenaItems(5, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_F2_01
 DB_RoguelikeArena_ArenaItems(5, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_F2_016_ddf38e0c-48e3-46cc-8f0a-973e0a14deb1);
 DB_RoguelikeArena_ArenaItems(5, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_F2_017_e5b02b79-c70b-40c9-84fe-678df700899a);
 
+DB_RoguelikeArena_ArenaItems(6, ITEMGUID_CON_Food_Poisoned_Fish_A_001_740c69e6-92e9-4723-9a4c-0130c89e6fa6);
+DB_RoguelikeArena_ArenaItems(6, ITEMGUID_CON_Food_Poisoned_Fish_A_002_21bfe330-1b21-4fba-97f8-1eddd41d12a2);
+DB_RoguelikeArena_ArenaItems(6, ITEMGUID_CON_Food_Poisoned_Fish_C_000_99be80fc-5f9d-4611-914e-ef7c00523469);
+DB_RoguelikeArena_ArenaItems(6, ITEMGUID_CON_Food_Poisoned_Fish_C_001_568f43fe-00e9-4100-824b-f73d6075eb84);
+DB_RoguelikeArena_ArenaItems(6, ITEMGUID_CONT_Arena_Humans_Citz_Barrel_A_000_9a636b09-982c-4df8-9cca-0194ed04202c);
+DB_RoguelikeArena_ArenaItems(6, ITEMGUID_HAR_Shell_A_000_f100108b-3829-4dca-82e1-80e38a0c73ac);
+DB_RoguelikeArena_ArenaItems(6, ITEMGUID_HAR_Shell_A_001_86eabaaa-0547-404f-a107-562462a4d5c6);
+DB_RoguelikeArena_ArenaItems(6, ITEMGUID_HAR_Shell_B_000_a7e0caa4-59d5-4585-8a3f-0559d630ab2b);
+DB_RoguelikeArena_ArenaItems(6, ITEMGUID_HAR_Shell_B_001_0171d547-0425-464b-8475-6148d336eb09);
+DB_RoguelikeArena_ArenaItems(6, ITEMGUID_HAR_Shell_B_PilgrimsShell_000_d27238b1-15b2-4f3c-8c69-1dc3a2b4fd9f);
+DB_RoguelikeArena_ArenaItems(6, ITEMGUID_HAR_Shell_B_PilgrimsShell_001_84fedbaf-df69-456b-ae01-cd21977ec0ab);
+DB_RoguelikeArena_ArenaItems(6, ITEMGUID_HAR_Shell_Big_A_000_153d9d35-a5df-4367-8c3d-894ceb89d96b);
+DB_RoguelikeArena_ArenaItems(6, ITEMGUID_HAR_Shell_Big_A_001_3eba69f4-fae4-4b3b-9ca7-e52c77385859);
+DB_RoguelikeArena_ArenaItems(6, ITEMGUID_HAR_Shell_Big_B_000_a12c08c8-4774-4947-adfc-5dd195838abc);
+DB_RoguelikeArena_ArenaItems(6, ITEMGUID_HAR_Shell_Big_C_000_3d494217-1645-4115-bfbb-7426d8f76fa3);
+DB_RoguelikeArena_ArenaItems(6, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_F1_004_bd841dbe-0931-4a6c-930a-ab993c8927e4);
+DB_RoguelikeArena_ArenaItems(6, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_F1_005_fd42f857-353b-4d04-9c66-e7dad492e6f6);
+DB_RoguelikeArena_ArenaItems(6, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_F1_006_92898fad-bbf0-409a-bcaf-43189a284594);
+DB_RoguelikeArena_ArenaItems(6, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_F1_007_0a3a1533-2c08-429e-9e0a-d29a9454b3d9);
+DB_RoguelikeArena_ArenaItems(6, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_F1_008_a72ba7a7-775e-466f-a9ea-84bc5c0fcd50);
+DB_RoguelikeArena_ArenaItems(6, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_F1_009_a3a990ab-8230-478c-af1b-c09e75df65bb);
+DB_RoguelikeArena_ArenaItems(6, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_F1_010_5494e611-1ac4-41f9-ae17-6f630f7f373d);
+DB_RoguelikeArena_ArenaItems(6, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_F1_011_9069dbda-26b6-49c1-bfcf-0fd0ed02a11d);
+DB_RoguelikeArena_ArenaItems(6, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_F1_013_ecd8650d-c7c6-4a6d-b5b8-632b8c367d7a);
+DB_RoguelikeArena_ArenaItems(6, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_F1_017_041de9ef-cf4a-4afb-b69c-558636761766);
+DB_RoguelikeArena_ArenaItems(6, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_F1_022_4edf2934-94ca-4f57-ae33-9614a1b5f183);
+DB_RoguelikeArena_ArenaItems(6, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_F1_024_5f9d5f33-ff4e-40b8-adb2-b2e2bb29f23d);
+
+DB_RoguelikeArena_ArenaItems(7, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_B_000_3560ccb1-9ae4-4153-b9b1-b3bb9321aff9);
+DB_RoguelikeArena_ArenaItems(7, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_B_001_56a74f00-3c54-4213-82ca-b4ab8cf092fe);
+DB_RoguelikeArena_ArenaItems(7, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_B_002_9e34b228-4d8c-48e0-8521-715e6aad9be4);
+DB_RoguelikeArena_ArenaItems(7, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_B_003_fcf45135-4b3b-4df0-9ca3-4675724481f9);
+DB_RoguelikeArena_ArenaItems(7, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_B_004_59f61f71-5f18-4129-bc96-cc1c83f2afcd);
+DB_RoguelikeArena_ArenaItems(7, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_B_005_730c3820-6a92-4115-8a90-a357981e10d6);
+DB_RoguelikeArena_ArenaItems(7, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_B_006_7f0f41ad-d11c-4298-a805-b37f0404c2e9);
+DB_RoguelikeArena_ArenaItems(7, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_B_007_7692dc53-7578-4917-aa97-2f81e177ab88);
+DB_RoguelikeArena_ArenaItems(7, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_B_008_2f8ca4bf-b80f-484c-b393-3b721a580f24);
+DB_RoguelikeArena_ArenaItems(7, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_B_009_d9b6e3f9-9c71-45dd-8289-57655217d13f);
+DB_RoguelikeArena_ArenaItems(7, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_B_010_6a6dbc7c-2b85-4f4e-abc4-9563e87696ee);
+DB_RoguelikeArena_ArenaItems(7, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_B_011_0f2120b5-2498-486c-a0b5-a9d173bb8c34);
+DB_RoguelikeArena_ArenaItems(7, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_B_012_bf47880f-d584-486a-809b-0a8f7d6d7244);
+DB_RoguelikeArena_ArenaItems(7, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_B_013_de06f8d8-2831-4654-b916-c6e52fbcc261);
+DB_RoguelikeArena_ArenaItems(7, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_B_014_644571d7-aa47-46e1-9c41-33091f857b7a);
+DB_RoguelikeArena_ArenaItems(7, ITEMGUID_LTS_Humans_Dungeon_Torch_Standing_B_015_cdea4d51-b830-415a-949e-04e80a3258cf);
+DB_RoguelikeArena_ArenaItems(7, ITEMGUID_LTS_Humans_Dungeon_Coalbasket_B_Dynamic_005_4835c9ef-ed44-467a-b8ce-8cda32da6280);
+DB_RoguelikeArena_ArenaItems(7, ITEMGUID_LTS_Humans_Dungeon_Coalbasket_B_Dynamic_008_5e7a029c-82b7-4574-89d6-2edea283b528);
+DB_RoguelikeArena_ArenaItems(7, ITEMGUID_LTS_Humans_Dungeon_Coalbasket_B_Dynamic_002_9409b5b0-0acf-411b-a2c6-3430f48eca4e);
+DB_RoguelikeArena_ArenaItems(7, ITEMGUID_LTS_Humans_Dungeon_Coalbasket_B_Dynamic_001_3c178603-ea36-480e-acdf-21e8e1340b1d);
+DB_RoguelikeArena_ArenaItems(7, ITEMGUID_LTS_Humans_Dungeon_Coalbasket_B_Dynamic_004_0023ce4d-2bbf-4b01-a433-41a2b8690f92);
+DB_RoguelikeArena_ArenaItems(7, ITEMGUID_LTS_Humans_Dungeon_Coalbasket_B_Dynamic_003_61053cd6-3617-4552-b854-40b3e9bb9f51);
+DB_RoguelikeArena_ArenaItems(7, ITEMGUID_LTS_Humans_Dungeon_Coalbasket_B_Dynamic_006_a4089447-4fe1-41c7-abe9-8833c87fcb06);
+DB_RoguelikeArena_ArenaItems(7, ITEMGUID_LTS_Humans_Dungeon_Coalbasket_B_Dynamic_007_d07c6f30-36ad-41e0-8051-d8629fbe6457);
+
 PROC_RoguelikeArena_InitArenaItems();
 KBSECTION
 PROC
@@ -108,8 +161,8 @@ DB_RoguelikeArena_ArenaItemTemplates(_Arena, _Template, _XPos, _YPos, _ZPos, _XR
 PROC_RoguelikeArena_ItemRemove(_Item);
 NOT DB_RoguelikeArena_ArenaItems(_Arena, _Item);
 
-IF
-DB_RoguelikeArena_ActiveArena(_Arena, _, _, _)
+PROC
+PROC_RoguelikeArena_ArenaStarted(_Arena, _, _, _)
 THEN
 PROC_RoguelikeArena_SpawnArenaItems(_Arena);
 

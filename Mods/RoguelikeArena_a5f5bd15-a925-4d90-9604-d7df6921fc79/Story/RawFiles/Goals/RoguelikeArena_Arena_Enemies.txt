@@ -6,9 +6,6 @@ DB_RoguelikeArena_Factions("Magister");
 DB_RoguelikeArena_Factions("Paladin");
 DB_RoguelikeArena_Factions("Blackring");
 DB_RoguelikeArena_Factions("Undead");
-//DB_RoguelikeArena_Factions("Animal");
-
-//DB_RoguelikeArena_BossFactions("Griff");
 //END_REGION
 
 //REGION Enemies, enemy spawn triggers and enemy settings
@@ -100,32 +97,12 @@ DB_RoguelikeArena_EnemyTemplates("Undead", 2, "Battlemage", "", "RoguelikeArena_
 DB_RoguelikeArena_EnemyTemplates("Undead", 2, "Battlemage", "", "RoguelikeArena_Undead_Eternal_Male_70f0f7d0-5073-40a1-91d5-c243341abc5c");
 DB_RoguelikeArena_EnemyTemplates("Undead", 2, "Wizard", "", "RoguelikeArena_Undead_Lich_d983e510-0963-4699-b6f4-c5d26e6841ae");
 DB_RoguelikeArena_EnemyTemplates("Undead", 2, "Inquisitor", "", "RoguelikeArena_Undead_Revenant_3b361cd7-30dd-4013-adbf-f0555e9ff896");
-
-//DB_RoguelikeArena_EnemyTemplates("Animal", 0, "GEOM", "CROC", "Animals_Crocodile_Sea_A_2cbfe981-ff06-4993-8198-e8af7a1b91fe");
-//DB_RoguelikeArena_EnemyTemplates("Animal", 0, "AERO", "TURT", "Animals_Turtle_A_c128f322-d738-49ef-9ee1-0dbb9e2ae9e2");
-//DB_RoguelikeArena_EnemyTemplates("Animal", 0, "PYRO", "SALA", "Animals_Salamander_A_15158da9-f1fb-41dd-8460-e31565a76764");
-//DB_RoguelikeArena_EnemyTemplates("Animal", 1, "PYRO", "SALA", "Animals_Salamander_A_Fire_c09c210e-f16b-4326-af8c-010f4b54f1d0");
-//DB_RoguelikeArena_EnemyTemplates("Animal", 0, "WARF", "BEAR", "Animals_Bear_A_db1772ac-3a79-4ea4-95eb-01c40ceb44ed");
-//DB_RoguelikeArena_EnemyTemplates("Animal", 1, "WARF", "WOLF", "Animals_Wolf_A_aa7235cd-e24f-4da9-b240-6eb0c5f08ae6");
-//DB_RoguelikeArena_EnemyTemplates("Animal", 1, "WARF", "WOLF", "Animals_Wolf_A_Black_1e024c1e-45be-4492-bcaf-39a47f20e682");
-//DB_RoguelikeArena_EnemyTemplates("Animal", 1, "WARF", "WOLF", "Animals_Wolf_A_White_25e30a78-c140-4c37-a560-51fc8847f25e");
-//DB_RoguelikeArena_EnemyTemplates("Animal", 1, "BEET", "NONE", "Animals_Beetle_A_White_ca996322-27cd-407e-aadc-4aa3d7cea32e");
-//DB_RoguelikeArena_EnemyTemplates("Animal", 0, "WARF", "NONE", "Animals_Boar_A_72046308-f1c9-44e9-93b4-d2bb88d1a0b2");
-//DB_RoguelikeArena_EnemyTemplates("Animal", 0, "WARF", "BULL", "Animals_Bull_A_51a41c5e-190c-44c5-9b16-320a749de4df");
-//DB_RoguelikeArena_EnemyTemplates("Animal", 0, "WARF", "BULL", "Animals_Bull_B_4c888ec0-2d1f-4b8c-83d2-f61946b707fe");
-
-//DB_RoguelikeArena_BossEnemyTemplates("Griff", 1, "SCOU", "NONE", "NONE", "RoguelikeArena_Griff_553e4f69-30d4-47ec-911b-a6ea26251de9");
-//DB_RoguelikeArena_BossEnemyTemplates("Griff", 0, "HYDR", "NONE", "NONE", "RoguelikeArena_Griff_Waltz_b79cb6a9-7100-4fae-8c0c-fb55775028e4");
-//DB_RoguelikeArena_BossEnemyTemplates("Griff", 0, "HUNT", "NONE", "NONE", "RoguelikeArena_Griff_Butter_c2b9db35-c408-4764-b531-aa0af5db62ea");
-//DB_RoguelikeArena_BossEnemyTemplates("Griff", 0, "SCOU", "NONE", "NONE", "RoguelikeArena_Griff_Noosey_761fd2a3-74f4-4022-b920-0d684970b843");
-//DB_RoguelikeArena_BossEnemyTemplates("Griff", 0, "HUNT", "NONE", "NONE", "RoguelikeArena_Griff_Hilde_930e5938-2ce8-40d0-8cbb-15342deab4e2");
-//DB_RoguelikeArena_BossEnemyTemplates("Griff", 0, "AERO", "HYDR", "NONE", "RoguelikeArena_Griff_Needle_03b43092-add5-4d15-901c-93cefa9c10fe");
 //END_REGION
 
 PROC_RoguelikeArena_StringPoolAddFactions();
 KBSECTION
-IF
-DB_RoguelikeArena_ActiveArena(_Arena, _Level, _Difficulty, _Players)
+PROC
+PROC_RoguelikeArena_ArenaStarted(_Arena, _Level, _Difficulty, _Players)
 THEN
 PROC_RoguelikeArena_SpawnEnemies(_Arena, _Level, _Difficulty, _Players);
 
@@ -184,21 +161,21 @@ DB_RoguelikeArena_StringPoolSelectedValue(_Key, _EnemyTemplateId)
 AND
 DB_RoguelikeArena_EnemyTemplates(_Faction, _Rank, _Class, _Specialization, _EnemyTemplateId)
 AND
-DB_RoguelikeArena_ArenaSpawnerTriggers(_Arena, _Trigger)
+QRY_RoguelikeArena_GetRandomPositionInArena(_Arena, "SPAWNER_ENEMY")
 AND
-GetRandomPositionInTrigger(_Trigger, _X, _Y, _Z)
+DB_RoguelikeArena_RandomPositionResult(_X, _Y, _Z)
 AND
 CharacterCreateAtPosition(_X, _Y, _Z, _EnemyTemplateId, 0, _Enemy)
 AND
 IntegertoString(_Arena, _CombatGroupID)
 THEN
 SetCombatGroupID(_Enemy, _CombatGroupID);
-//SetFaction(_Enemy, "Evil NPC");
 CharacterLevelUpTo(_Enemy, _Level);
 // PROC_RoguelikeArena_CharacterLevelUpEquipmentTo(_Enemy, _Level);
 PROC_RoguelikeArena_CharacterAddRandomSkills(_Enemy, _Level, _Rank, _Class, _Specialization);
 PROC_RoguelikeArena_CharacterSetSourcePoints(_Enemy, _Level, _Rank);
 PROC_RoguelikeArena_RegisterForCleanup(_Enemy, _Arena);
+ApplyStatus(_Enemy, "RESTED", 0.0, 0, NULL_00000000-0000-0000-0000-000000000000); // For some reason this prevents a bug where some enemies start without full armor.
 
 // Adds factions to the faction pool.
 PROC

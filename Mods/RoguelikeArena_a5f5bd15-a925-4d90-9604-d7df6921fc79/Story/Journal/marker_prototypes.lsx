@@ -42,9 +42,9 @@
                     <attribute id="MarkerTargetObjectUUID" value="41007f4d-4477-4dae-8a3b-7b44dd89aa8a" type="22" />
                 </node>
                 <node id="Marker">
-                    <attribute id="DisplayText" value="Arena Control" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="DisplayText" value="Arena Mutator" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
                     <attribute id="MarkerBroadcast" value="Party" type="22" />
-                    <attribute id="MarkerID" value="RoguelikeArena_ArenaControl" type="22" />
+                    <attribute id="MarkerID" value="RoguelikeArena_ArenaMutator" type="22" />
                     <attribute id="MarkerIcon" value="QuestMarker" type="22" />
                     <attribute id="MarkerLevel" value="RoguelikeArena_Level" type="22" />
                     <attribute id="MarkerTargetObjectType" value="Item" type="22" />

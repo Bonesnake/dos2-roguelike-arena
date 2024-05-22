@@ -3,13 +3,23 @@ SubGoalCombiner SGC_AND
 INITSECTION
 
 KBSECTION
-// Makes an auto save at the last arena.
-IF
-DB_RoguelikeArena_ActiveArena(_, _, _Difficulty, _)
+PROC
+PROC_RoguelikeArena_ArenaCombatEnded(_, _, _Difficulty, _)
 AND
 DB_RoguelikeArena_Singleton_MaxDifficulty(_MaxDifficulty)
 AND
-_Difficulty >= _MaxDifficulty
+IntegerDivide(_MaxDifficulty, 2, _MaxDifficultyHalved)
+AND
+_Difficulty == _MaxDifficultyHalved
+THEN
+AutoSave();
+
+PROC
+PROC_RoguelikeArena_ArenaStarted(_, _, _Difficulty, _)
+AND
+DB_RoguelikeArena_Singleton_MaxDifficulty(_MaxDifficulty)
+AND
+_Difficulty == _MaxDifficulty
 THEN
 AutoSave();
 EXITSECTION

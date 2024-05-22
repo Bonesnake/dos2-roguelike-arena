@@ -20,25 +20,6 @@ RemoveSurfaceLayer(_Source, 0, 64.0);
 RemoveSurfaceLayer(_Source, 1, 64.0);
 DebugBreak("Cleaned up debug surface");
 
-IF
-CharacterUsedItem(_Char, ITEMGUID_BLD_Dwarves_Statue_Duna_A_Dynamic_002_aa611b50-cda7-48cb-b367-957b63afc899)
-AND
-GetPosition(ITEMGUID_BLD_Dwarves_Statue_Duna_A_Dynamic_002_aa611b50-cda7-48cb-b367-957b63afc899, _X, _Y, _Z)
-// AND
-// DB_RoguelikeArena_ArenaSpawnerTriggers(1, _Trigger)
-// AND
-// GetRandomPositionInTrigger(_Trigger, _X, _Y, _Z)
-AND
-CharacterCreateAtPosition(_X, _Y, _Z, "RoguelikeArena_Magister_Grunt_b0e049b6-876b-493c-bd06-1285d5bc36e9", 0, _Enemy)
-THEN
-SetCombatGroupID(_Enemy, "1");
-//SetFaction(_Enemy, "Evil NPC");
-CharacterLevelUpTo(_Enemy, 2);
-// PROC_RoguelikeArena_CharacterLevelUpEquipmentTo(_Enemy, _Level);
-PROC_RoguelikeArena_CharacterAddRandomSkills(_Enemy, 2, 1, "Witch", "");
-PROC_RoguelikeArena_CharacterSetSourcePoints(_Enemy, 2, 1);
-PROC_RoguelikeArena_RegisterForCleanup(_Enemy, 1);
-
 PROC
 PROC_RoguelikeArena_DebugBreakInteger((INTEGER)_Message)
 AND

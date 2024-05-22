@@ -26,9 +26,9 @@ PROC_RoguelikeArena_SpawnMeteorShower((INTEGER)_Arena, (INTEGER)_Level, (INTEGER
 AND
 DB_RoguelikeArena_MeteorShowerTemplate(_MeteorShowerTemplate)
 AND
-DB_RoguelikeArena_ArenaInnerTriggers(_Arena, _Trigger)
+QRY_RoguelikeArena_GetRandomPositionInArena(_Arena, "SPAWNER_EVENT")
 AND
-GetRandomPositionInTrigger(_Trigger, _X, _Y, _Z)
+DB_RoguelikeArena_RandomPositionResult(_X, _Y, _Z)
 AND
 CharacterCreateAtPosition(_X, _Y, _Z, _MeteorShowerTemplate, 0, _MeteorShower)
 THEN

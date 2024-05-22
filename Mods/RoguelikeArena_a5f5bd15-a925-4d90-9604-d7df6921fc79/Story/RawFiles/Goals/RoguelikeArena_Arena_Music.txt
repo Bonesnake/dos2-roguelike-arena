@@ -24,15 +24,13 @@ DB_RoguelikeArena_ActiveMusicTrigger(_Arena, _Trigger)
 THEN
 PROC_RoguelikeArena_MoveInMusicTrigger(_Arena, _Trigger);
 
-IF
-DB_RoguelikeArena_ActiveArena(_Arena, _, _Difficulty, _)
+PROC
+PROC_RoguelikeArena_ArenaStarted(_Arena, _, _Difficulty, _)
 THEN
 PROC_RoguelikeArena_PlayRandomMusic(_Arena, _Difficulty);
 
-IF
-DB_RoguelikeArena_ActiveArenaHelper(_Arena, _Level, _Difficulty, _Players)
-AND
-NOT DB_RoguelikeArena_ActiveArena(_Arena, _Level, _Difficulty, _Players)
+PROC
+PROC_RoguelikeArena_ArenaEnded(_Arena, _Level, _Difficulty, _Players)
 THEN
 PROC_RoguelikeArena_StopMusic(_Arena);
 
@@ -94,7 +92,7 @@ PROC_RoguelikeArena_MoveOutMusicTrigger(_Trigger);
 PROC
 PROC_RoguelikeArena_MoveInMusicTrigger((INTEGER)_Arena, (GUIDSTRING)_Trigger)
 AND
-DB_RoguelikeArena_ArenaRegionTriggers(_Arena, _Target)
+DB_RoguelikeArena_ArenaEventTriggers(_Arena, _Target)
 THEN
 TeleportTo(_Trigger, _Target, "", 0);
 

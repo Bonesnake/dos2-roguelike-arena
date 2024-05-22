@@ -47,11 +47,11 @@
                 </node>
                 <node id="Objective">
                     <attribute id="Description" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
-                    <attribute id="ObjectiveID" value="RoguelikeArena_ArenaControl_FeatureAvailable" type="22" />
+                    <attribute id="ObjectiveID" value="RoguelikeArena_ArenaMutator_FeatureAvailable" type="22" />
                     <attribute id="Priority" value="0" type="4" />
                     <children>
                         <node id="Markers">
-                            <attribute id="Markers" value="RoguelikeArena_ArenaControl" type="22" />
+                            <attribute id="Markers" value="RoguelikeArena_ArenaMutator" type="22" />
                         </node>
                     </children>
                 </node>
@@ -126,7 +126,7 @@
                     </children>
                 </node>
                 <node id="Objective">
-                    <attribute id="Description" value="Keep going." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="Description" value="Keep clearing arenas." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
                     <attribute id="ObjectiveID" value="RoguelikeArena_KeepGoing" type="22" />
                     <attribute id="Priority" value="2" type="4" />
                     <children>

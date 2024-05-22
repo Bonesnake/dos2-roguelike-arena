@@ -26,9 +26,9 @@ PROC_RoguelikeArena_SpawnSourceScarecrow((INTEGER)_Arena, (INTEGER)_Level, (INTE
 AND
 DB_RoguelikeArena_SourceScarecrowTemplate(_Template)
 AND
-DB_RoguelikeArena_ArenaInnerTriggers(_Arena, _Trigger)
+QRY_RoguelikeArena_GetRandomPositionInArena(_Arena, "SPAWNER_EVENT")
 AND
-GetRandomPositionInTrigger(_Trigger, _X, _Y, _Z)
+DB_RoguelikeArena_RandomPositionResult(_X, _Y, _Z)
 AND
 CreateItemTemplateAtPosition(_Template, _X, _Y, _Z, _SourceScarecrow)
 THEN

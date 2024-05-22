@@ -7,7 +7,7 @@ DB_RoguelikeArena_LobbyExtraFeatures("RoguelikeArena_ChestOfFortune", 3, 20, 5, 
 DB_RoguelikeArena_LobbyExtraFeatures("RoguelikeArena_RecruitmentBoard", 1, 0, 0, ITEMGUID_TOOL_SignWall_A_Wood_001_ae04ac4e-72d8-4247-b82c-5bd82e98262f);
 DB_RoguelikeArena_LobbyExtraFeatures("RoguelikeArena_LobbyPortal", 1, 0, 0, ITEMGUID_RoguelikeArena_Portal_000_ff11d147-61e9-44bc-a5f8-c106996b875d);
 DB_RoguelikeArena_LobbyExtraFeatures("RoguelikeArena_Scoreboard", 1, 0, 0, ITEMGUID_TOOL_SignRoad_A_000_c3bb4701-393c-4b2e-8140-10f9ea791752);
-DB_RoguelikeArena_LobbyExtraFeatures("RoguelikeArena_ArenaControl", 4, 0, 0, ITEMGUID_FUR_Raanaar_Desk_B_000_86f3a40c-6ed8-4cea-b612-aa0e9bde8ed7);
+DB_RoguelikeArena_LobbyExtraFeatures("RoguelikeArena_ArenaMutator", 4, 0, 0, ITEMGUID_FUR_Raanaar_Desk_B_000_86f3a40c-6ed8-4cea-b612-aa0e9bde8ed7);
 DB_RoguelikeArena_LobbyExtraFeatures("RoguelikeArena_TrainingDummy", 1, 0, 0, ITEMGUID_FUR_Humans_TrainingDummy_D_001_41007f4d-4477-4dae-8a3b-7b44dd89aa8a);
 DB_RoguelikeArena_LobbyExtraFeatures("RoguelikeArena_Entrance", 21, 0, 0, ITEMGUID_DOORS_WorkerHouseWood_A_Door_B_000_b6c07fc2-7f5e-4c81-8274-2114955b5151);
 

@@ -4,9 +4,16 @@ INITSECTION
 DB_QuestDef_State("RoguelikeArena_TrainingDummy", "FeatureUnavailable", -1);
 KBSECTION
 IF
-ObjectFlagSet("RoguelikeArena_TrainingDummy_WasUsed", _Player, _)
+ObjectFlagSet("RoguelikeArena_TrainingDummy_WasUsed", _Character, _)
 AND
 QRY_RoguelikeArena_UpdatePlayerCount()
+THEN
+PROC_RoguelikeArena_UseTrainingDummy((CHARACTERGUID)_Character);
+
+PROC
+PROC_RoguelikeArena_UseTrainingDummy((CHARACTERGUID)_Character)
+AND
+ObjectGetFlag(_Character, "RoguelikeArena_TrainingDummy_Level4", 1)
 AND
 DB_Singleton("RoguelikeArena_PlayerCount", _PlayerCount)
 AND
@@ -14,10 +21,23 @@ IntegerProduct(5000, _PlayerCount, _Gold)
 THEN
 DB_RoguelikeArena_Singleton_CurrentLevel(4);
 PROC_RoguelikeArena_PartyLevelUpTo(4);
-PartyAddGold((CHARACTERGUID)_Player, _Gold);
+PartyAddGold(_Character, _Gold);
 
-IF
-DB_RoguelikeArena_ActiveArena(_, _, _, _)
+PROC
+PROC_RoguelikeArena_UseTrainingDummy(_Character)
+AND
+ObjectGetFlag(_Character, "RoguelikeArena_TrainingDummy_Level9", 1)
+AND
+DB_Singleton("RoguelikeArena_PlayerCount", _PlayerCount)
+AND
+IntegerProduct(15000, _PlayerCount, _Gold)
+THEN
+DB_RoguelikeArena_Singleton_CurrentLevel(9);
+PROC_RoguelikeArena_PartyLevelUpTo(9);
+PartyAddGold(_Character, _Gold);
+
+PROC
+PROC_RoguelikeArena_ArenaStarted(_, _, _, _)
 AND
 GlobalGetFlag("RoguelikeArena_TrainingDummyUnavailable", 0)
 THEN

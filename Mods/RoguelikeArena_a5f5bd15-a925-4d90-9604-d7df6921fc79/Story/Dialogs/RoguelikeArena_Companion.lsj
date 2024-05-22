@@ -157,7 +157,7 @@
                                                 "TagText" : {
                                                    "handle" : "ls::TranslatedStringRepository::s_HandleUnknown",
                                                    "type" : 28,
-                                                   "value" : "Are you sure you want to dismiss your companion? This will permanently remove them from your party, and their items will be transferred to your inventory automatically."
+                                                   "value" : "Are you sure you want to dismiss your companion? This will permanently remove them from your party and transfer their items to your inventory."
                                                 },
                                                 "stub" : {"type" : 19, "value" : 1}
                                              }

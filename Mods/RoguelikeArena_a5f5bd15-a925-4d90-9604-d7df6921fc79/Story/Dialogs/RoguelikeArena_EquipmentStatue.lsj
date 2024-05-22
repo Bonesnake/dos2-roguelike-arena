@@ -154,7 +154,7 @@
                                                 "TagText" : {
                                                    "handle" : "ls::TranslatedStringRepository::s_HandleUnknown",
                                                    "type" : 28,
-                                                   "value" : "Using this statue will level up your equipped items to match your current level. Warning: this might cause some items to be unequipped if you lack the new requirements."
+                                                   "value" : "Donating gold to the statue will level up your equipped items to match your current level. Note: this may unequip some items if you lack the new requirements."
                                                 },
                                                 "stub" : {"type" : 19, "value" : 1}
                                              }

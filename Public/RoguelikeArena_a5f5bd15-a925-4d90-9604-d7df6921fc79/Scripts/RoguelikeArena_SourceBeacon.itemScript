@@ -23,7 +23,11 @@ VARS
 ON
 	OnIterateCharacter(_Char,"RoguelikeArena_SourceBeacon_Pulse")
 ACTIONS
-	CharacterApplyStatus(_Char,%Status,2,1)
+	IF "!c1"
+		IsTagged(_Char,"AI_IGNORED_TARGET")
+	THEN
+		CharacterApplyStatus(_Char,%Status,2,1)
+	ENDIF
 	
 BEHAVIOUR
 REACTION SourceBeacon_Charging, 1000

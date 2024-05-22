@@ -37,7 +37,7 @@ THEN
 PROC_RoguelikeArena_ArenaCombatEnded(_Arena, _Level, _Difficulty, _Players);
 
 PROC
-PROC_RoguelikeArena_ArenaCombatEnded((INTEGER)_Arena, (INTEGER)_, (INTEGER)_, (INTEGER)_)
+PROC_RoguelikeArena_ArenaCombatEnded((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty, (INTEGER)_Players)
 AND
 DB_RoguelikeArena_ArenaEventTriggers(_Arena, _Trigger)
 AND

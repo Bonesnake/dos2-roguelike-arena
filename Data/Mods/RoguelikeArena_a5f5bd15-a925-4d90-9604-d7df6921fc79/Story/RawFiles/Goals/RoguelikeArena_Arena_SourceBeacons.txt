@@ -45,8 +45,8 @@ PROC
 PROC_RoguelikeArena_ArenaCombatEnded(_Arena, _, _, _)
 AND
 DB_RoguelikeArena_SourceBeacons(_Arena, _SourceBeacon)
-// AND
-// QRY_RoguelikeArena_ObjectIsInArena(_SourceBeacon, _Arena)
+AND
+QRY_RoguelikeArena_ObjectIsInArena(_SourceBeacon, _Arena)
 AND
 IsInArena(_SourceBeacon, 1)
 THEN

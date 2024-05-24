@@ -40,7 +40,7 @@
                 <node id="ModuleInfo">
                     <attribute id="Author" value="Bonesnake" type="30" />
                     <attribute id="CharacterCreationLevelName" value="" type="22" />
-                    <attribute id="Description" value="" type="30" />
+                    <attribute id="Description" value="Roguelike Arena is a level 1-35 adventure module centered on intense, dynamically generated combat arenas. Face progressively tougher encounters, experiment with different character builds, and enjoy high replayability. Whether solo or with friends, this module offers a challenging and rewarding experience with scaling difficulty and extensive preparation options in a comprehensive lobby. Ready up, enter the arena, and see how far you can go!" type="30" />
                     <attribute id="DescriptionName" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
                     <attribute id="DisplayName" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
                     <attribute id="Folder" value="RoguelikeArena_a5f5bd15-a925-4d90-9604-d7df6921fc79" type="30" />
@@ -49,7 +49,7 @@
                     <attribute id="MD5" value="" type="23" />
                     <attribute id="MenuLevelName" value="" type="22" />
                     <attribute id="Name" value="Roguelike Arena" type="22" />
-                    <attribute id="NumPlayers" value="2" type="1" />
+                    <attribute id="NumPlayers" value="4" type="1" />
                     <attribute id="PhotoBooth" value="SYS_NPC_Portrait_A" type="22" />
                     <attribute id="StartupLevelName" value="" type="22" />
                     <attribute id="Tags" value="" type="30" />

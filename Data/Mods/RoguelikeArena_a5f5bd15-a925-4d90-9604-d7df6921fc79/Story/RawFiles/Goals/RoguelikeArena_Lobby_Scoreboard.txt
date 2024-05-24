@@ -38,7 +38,7 @@ GetFaction(_Character, "Evil NPC")
 AND
 CharacterIsSummon(_Character, 0)
 AND
-QRY_RoguelikeArena_ObjectIsInArena(_Character)
+QRY_RoguelikeArena_ObjectIsInArena((GUIDSTRING)_Character) // This type cast is needed, otherwise the story breaks for some reason.
 AND
 DB_Singleton("RoguelikeArena_Scoreboard_EnemiesKilled", _EnemiesKilled)
 AND
@@ -54,9 +54,7 @@ PROC_RoguelikeArena_UpdateScore("HighestLevelReached", _CurrentLevel);
 IF
 ItemDestroying(_Item)
 AND
-DB_RoguelikeArena_Arenas(_Arena) // Not sure why this is needed, but the story breaks without it...
-AND
-QRY_RoguelikeArena_ObjectIsInArena(_Item, _Arena)
+QRY_RoguelikeArena_ObjectIsInArena(_Item)
 AND
 DB_Singleton("RoguelikeArena_Scoreboard_ObjectsDestroyed", _ObjectsDestroyed)
 AND

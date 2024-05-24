@@ -1,0 +1,159 @@
+[Vertex shader]
+
+#version 450
+#extension GL_NV_gpu_shader5 : enable
+#include "Shaders/NX/CommonHelpers.shdh"
+#include "Shaders/GlobalConstants_NX.shdh"
+
+layout(location = 0) in vec3 inPosition0;
+layout(location = 10) in vec4 inColor1;
+layout(location = 11) in vec4 inColor2;
+layout(location = 12) in vec4 inColor3;
+layout(location = 1) in vec4 inNormal0;
+
+layout(location = 0) out gl_PerVertex
+{
+	vec4 gl_Position;
+};
+layout(location = 1) out vec4 Position0;
+layout(location = 2) out vec3 TexCoord0;
+layout(location = 3) out vec3 TexCoord1;
+layout(location = 4) out vec3 TexCoord2;
+layout(location = 5) out vec3 TexCoord3;
+
+void main()
+{
+	//Create Instance World Matrix
+	vec4 col1 = vec4(inColor1.x, inColor1.y, inColor1.z, 0.0f);
+	vec4 col2 = vec4(inColor1.w, inColor2.x, inColor2.y, 0.0f);
+	vec4 col3 = vec4(inColor2.z, inColor2.w, inColor3.x, 0.0f);
+	vec4 col4 = vec4(inColor3.y, inColor3.z, inColor3.w, 1.0f);
+	mat4x4 WorldMatrix = mat4x4(col1, col2, col3, col4);
+
+	//World space position
+	vec4 worldPosition = (WorldMatrix * vec4(inPosition0, 1.0f));
+
+	//Projected position
+	vec4 projectedPosition = (global_ViewProjection * worldPosition);
+
+	//Pass projected position to pixel shader
+	Position0 = projectedPosition;
+
+	//Compute local tangent frame
+	mat3x3 LocalTangentFrame = GetTangentFrame(inNormal0);
+
+	vec3 localNormal = LocalTangentFrame[2];
+
+	//Normalize Local Normal
+	vec3 localNormalNormalized = normalize(localNormal);
+
+	//World space Normal
+	vec3 worldNormal = (mat3x3(WorldMatrix[0].xyz, WorldMatrix[1].xyz, WorldMatrix[2].xyz) * localNormalNormalized);
+
+	//Normalize World Normal
+	vec3 worldNormalNormalized = normalize(worldNormal);
+
+	TexCoord0 = worldNormalNormalized;
+
+	vec3 LocalBinormal = LocalTangentFrame[1];
+
+	//Normalize Local Binormal
+	vec3 localBinormalNormalized = normalize(LocalBinormal);
+
+	//World space Binormal
+	vec3 worldBinormal = (mat3x3(WorldMatrix[0].xyz, WorldMatrix[1].xyz, WorldMatrix[2].xyz) * localBinormalNormalized);
+
+	//Normalize World Binormal
+	vec3 worldBinormalNormalized = normalize(worldBinormal);
+
+	TexCoord1 = worldBinormalNormalized;
+
+	vec3 LocalTangent = LocalTangentFrame[0];
+
+	//Normalize Local Tangent
+	vec3 localTangentNormalized = normalize(LocalTangent);
+
+	//World space Tangent
+	vec3 worldTangent = (mat3x3(WorldMatrix[0].xyz, WorldMatrix[1].xyz, WorldMatrix[2].xyz) * localTangentNormalized);
+
+	//Normalize World Tangent
+	vec3 worldTangentNormalized = normalize(worldTangent);
+
+	TexCoord2 = worldTangentNormalized;
+
+	//World space view vector
+	vec3 worldView = (global_ViewPos.xyz - worldPosition.xyz);
+
+	TexCoord3 = worldView;
+
+	gl_Position = Position0;
+}
+
+
+[Fragment shader]
+
+#version 450
+#extension GL_NV_gpu_shader5 : enable
+#include "Shaders/NX/CommonHelpers.shdh"
+#include "Shaders/NX/PBR.shdh"
+
+layout(location = 1) in vec4 Position0;
+layout(location = 2) in vec3 TexCoord0;
+layout(location = 3) in vec3 TexCoord1;
+layout(location = 4) in vec3 TexCoord2;
+layout(location = 5) in vec3 TexCoord3;
+
+layout(location = 0) out vec4 outColor0;
+layout(location = 1) out vec4 outColor1;
+layout(location = 2) out vec4 outColor2;
+layout(location = 3) out vec4 outColor3;
+
+layout(binding = 0, std140) uniform PGlobals
+{
+	vec4 Vector4Parameter_Color;
+	float _OpacityFade;
+};
+
+void CalculateMatEmissiveColor(vec3 in_0,
+	out vec3 out_0)
+{
+	float Local0 = pow((1.0f - clamp(dot(vec3(0.0f, 1.0f, 0.0f), in_0), 0, 1)), 1.0f);
+	vec4 Local1 = (Vector4Parameter_Color * Local0);
+	vec4 Local2 = (Vector4Parameter_Color + Local1);
+	out_0 = Local2.xyz;
+}
+
+void main()
+{
+	vec3 matEmissiveColor;
+	//Normalize World Normal
+	vec3 worldNormalNormalized = normalize(TexCoord0);
+
+	//Normalize World Binormal
+	vec3 worldBinormalNormalized = normalize(TexCoord1);
+
+	//Normalize World Tangent
+	vec3 worldTangentNormalized = normalize(TexCoord2);
+
+	mat3x3 NBT = mat3x3(vec3(worldTangentNormalized.x, worldNormalNormalized.x, worldBinormalNormalized.x), vec3(worldTangentNormalized.y, worldNormalNormalized.y, worldBinormalNormalized.y), vec3(worldTangentNormalized.z, worldNormalNormalized.z, worldBinormalNormalized.z));
+
+	//Normalized world space view vector
+	vec3 worldViewNormalized = normalize(TexCoord3);
+
+	//Calculate tangent space view vector
+	vec3 tangentView = (NBT * worldViewNormalized);
+
+	CalculateMatEmissiveColor(tangentView, matEmissiveColor);
+	GBufferData gBufferData;
+	gBufferData.Emissive = matEmissiveColor;
+	gBufferData.ViewSpaceNormal = vec3(0.0f, 1.0f, 0.0f);
+	gBufferData.BaseColor = vec3(0.0f, 0.0f, 0.0f);
+	gBufferData.FadeOpacity = _OpacityFade;
+	gBufferData.Roughness = 0.5f;
+	gBufferData.Reflectance = 0.5f;
+	gBufferData.MetalMask = 0.0f;
+	gBufferData.FXEmissive = true;
+	gBufferData.ShadingModel = 1;
+	gBufferData.Custom = vec4(0.0f, 0.0f, 0.0f, 0.0f);
+	EncodeGBufferData(gBufferData, outColor0, outColor1, outColor2, outColor3);
+}

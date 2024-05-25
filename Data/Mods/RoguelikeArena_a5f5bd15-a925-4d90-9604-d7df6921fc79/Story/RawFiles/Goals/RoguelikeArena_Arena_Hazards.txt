@@ -42,8 +42,8 @@ AND
 CreateItemTemplateAtPosition(_Template, _X, _Y, _Z, _Hazard)
 THEN
 PROC_RoguelikeArena_ItemRandomRotate(_Hazard);
-PROC_RoguelikeArena_ItemTeleportToValidPosition(_Hazard);
-PROC_RoguelikeArena_ItemSnapToGround(_Hazard);
+// PROC_RoguelikeArena_ItemTeleportToValidPosition(_Hazard);
+// PROC_RoguelikeArena_ItemSnapToGround(_Hazard);
 ItemLevelUpTo(_Hazard, _Level);
 PROC_RoguelikeArena_RegisterForCleanup(_Hazard, _Arena);
 

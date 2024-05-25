@@ -4,13 +4,15 @@ INITSECTION
 
 KBSECTION
 PROC
-PROC_RoguelikeArena_ArenaCombatEnded(_, _, _Difficulty, _)
+PROC_RoguelikeArena_ArenaStarted(_, _, _Difficulty, _)
 AND
 DB_RoguelikeArena_Singleton_MaxDifficulty(_MaxDifficulty)
 AND
 IntegerDivide(_MaxDifficulty, 2, _MaxDifficultyHalved)
 AND
-_Difficulty == _MaxDifficultyHalved
+IntegerSum(_MaxDifficultyHalved, 1, _TargetDifficulty)
+AND
+_Difficulty == _TargetDifficulty
 THEN
 AutoSave();
 

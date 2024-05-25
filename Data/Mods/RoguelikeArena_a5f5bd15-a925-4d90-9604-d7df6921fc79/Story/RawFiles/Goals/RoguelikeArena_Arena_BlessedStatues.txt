@@ -47,8 +47,8 @@ AND
 DB_RoguelikeArena_StringPoolSelectedValue("BlessedStatueSurfaceTypePool", _SurfaceType)
 THEN
 PROC_RoguelikeArena_ItemRandomRotate(_BlessedStatue);
-PROC_RoguelikeArena_ItemTeleportToValidPosition(_BlessedStatue);
-PROC_RoguelikeArena_ItemSnapToGround(_BlessedStatue);
+// PROC_RoguelikeArena_ItemTeleportToValidPosition(_BlessedStatue);
+// PROC_RoguelikeArena_ItemSnapToGround(_BlessedStatue);
 PROC_RoguelikeArena_RegisterForCleanup(_BlessedStatue, _Arena);
 DB_RoguelikeArena_BlessedStatues(_BlessedStatue, _SurfaceType);
 

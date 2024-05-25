@@ -26,7 +26,7 @@ DB_RoguelikeArena_DebugStatuePresets("Wayfarer");
 DB_RoguelikeArena_DebugStatuePresets("Witch");
 DB_RoguelikeArena_DebugStatuePresets("Wizard");
 
-// SetOnStage(ITEMGUID_BLD_Humans_Statue_Knight_A_Dynamic_001_c2045934-4a0b-47a5-8db1-90f7f965d771, 0);
+SetOnStage(ITEMGUID_BLD_Humans_Statue_Knight_A_Dynamic_001_c2045934-4a0b-47a5-8db1-90f7f965d771, 0);
 KBSECTION
 // Levels up the character.
 IF

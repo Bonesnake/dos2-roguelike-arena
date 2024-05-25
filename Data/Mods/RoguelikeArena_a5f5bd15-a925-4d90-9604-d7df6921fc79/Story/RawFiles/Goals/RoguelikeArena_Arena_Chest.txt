@@ -31,7 +31,7 @@ ItemLevelUpTo(_Chest, _Level);
 PROC_RoguelikeArena_ItemGenerateTreasure(_Chest, _Treasure, _Level, _Players);
 PROC_RoguelikeArena_ItemGenerateTreasure(_Chest, "RoguelikeArena_Mutator", _Level, _MutatorTreasureCount);
 ItemRotateToAngleY(_Chest, 180.0, 10000.0);
-PROC_RoguelikeArena_ItemSnapToGround(_Chest);
+// PROC_RoguelikeArena_ItemSnapToGround(_Chest);
 PROC_RoguelikeArena_RegisterForCleanup(_Chest, _Arena);
 PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01", _X, _Y, _Z);
 EXITSECTION

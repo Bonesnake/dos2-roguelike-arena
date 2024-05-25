@@ -33,8 +33,8 @@ AND
 CreateItemTemplateAtPosition(_Template, _X, _Y, _Z, _SourceScarecrow)
 THEN
 PROC_RoguelikeArena_ItemRandomRotate(_SourceScarecrow);
-PROC_RoguelikeArena_ItemTeleportToValidPosition(_SourceScarecrow);
-PROC_RoguelikeArena_ItemSnapToGround(_SourceScarecrow);
+// PROC_RoguelikeArena_ItemTeleportToValidPosition(_SourceScarecrow);
+// PROC_RoguelikeArena_ItemSnapToGround(_SourceScarecrow);
 PROC_RoguelikeArena_RegisterForCleanup(_SourceScarecrow, _Arena);
 EXITSECTION
 

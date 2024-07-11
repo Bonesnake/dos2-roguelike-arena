@@ -32,17 +32,17 @@ PROC_RoguelikeArena_UseLobbyTeleporter(_Character)
 AND
 ObjectGetFlag(_Character, "RoguelikeArena_LobbyPortal_TeleportMultiple", 1)
 THEN
-TriggerLaunchIterator(TRIGGERGUID_PortalHub_324e91f9-20ce-42c4-bd2f-b86624ba53df, "RoguelikeArena_CharacterTeleportedToArena");
+TriggerLaunchIterator(TRIGGERGUID_PortalHub_324e91f9-20ce-42c4-bd2f-b86624ba53df, "RoguelikeArena_CharacterTeleportToArena");
 
 PROC
 PROC_RoguelikeArena_UseLobbyTeleporter(_Character)
 AND
 ObjectGetFlag(_Character, "RoguelikeArena_LobbyPortal_TeleportSingle", 1)
 THEN
-SetStoryEvent(_Character, "RoguelikeArena_CharacterTeleportedToArena");
+SetStoryEvent(_Character, "RoguelikeArena_CharacterTeleportToArena");
 
 IF
-StoryEvent((CHARACTERGUID)_Character, "RoguelikeArena_CharacterTeleportedToArena")
+StoryEvent((CHARACTERGUID)_Character, "RoguelikeArena_CharacterTeleportToArena")
 AND
 CharacterIsPlayer(_Character, 1)
 AND
@@ -50,7 +50,7 @@ DB_RoguelikeArena_ActiveArena(_Arena, _, _, _)
 AND
 DB_RoguelikeArena_RegionTeleportTriggers(_Arena, _Trigger)
 THEN
-TeleportTo(_Character, _Trigger, "", 1);
+TeleportTo(_Character, _Trigger, "RoguelikeArena_CharacterTeleportedToArena", 1);
 
 // Prevents the use of the teleporter in combat.
 PROC

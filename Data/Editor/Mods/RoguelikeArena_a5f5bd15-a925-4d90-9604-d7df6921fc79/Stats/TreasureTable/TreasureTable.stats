@@ -2794,7 +2794,7 @@
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_Trader_Skillbook_substat_0" />
         <field name="StartLevel" type="IntegerStatObjectFieldDefinition" value="1" />
-        <field name="DropCount" type="StringStatObjectFieldDefinition" value="15,1;20,1;25,1" />
+        <field name="DropCount" type="StringStatObjectFieldDefinition" value="25,1;30,1;35,1" />
         <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_ST_SkillbookStarter" />
         <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_Trader_Skillbook" />
@@ -2804,7 +2804,7 @@
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_Trader_Skillbook_substat_1" />
         <field name="StartLevel" type="IntegerStatObjectFieldDefinition" value="4" />
-        <field name="DropCount" type="StringStatObjectFieldDefinition" value="15,1;20,1;25,1" />
+        <field name="DropCount" type="StringStatObjectFieldDefinition" value="25,1;30,1;35,1" />
         <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_ST_SkillbookEarly" />
         <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_Trader_Skillbook" />
@@ -2814,7 +2814,7 @@
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_Trader_Skillbook_substat_2" />
         <field name="StartLevel" type="IntegerStatObjectFieldDefinition" value="9" />
-        <field name="DropCount" type="StringStatObjectFieldDefinition" value="15,1;20,1;25,1" />
+        <field name="DropCount" type="StringStatObjectFieldDefinition" value="25,1;30,1;35,1" />
         <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_ST_SkillbookMid" />
         <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_Trader_Skillbook" />
@@ -2824,7 +2824,7 @@
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_Trader_Skillbook_substat_3" />
         <field name="StartLevel" type="IntegerStatObjectFieldDefinition" value="16" />
-        <field name="DropCount" type="StringStatObjectFieldDefinition" value="15,1;20,1;25,1" />
+        <field name="DropCount" type="StringStatObjectFieldDefinition" value="25,1;30,1;35,1" />
         <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_ST_SkillbookLate" />
         <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_Trader_Skillbook" />

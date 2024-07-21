@@ -1,0 +1,84 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+IF
+DialogStarted("RoguelikeArena_Trader", _DialogInstance)
+AND
+DB_DialogPlayers(_DialogInstance, _Player, _)
+AND
+CharacterGetLevel((CHARACTERGUID)_Player, _Level)
+AND
+QRY_RoguelikeArena_Price(_Level, 10, 5)
+AND
+DB_Singleton("RoguelikeArena_PriceResult", _Price)
+THEN
+DB_DialogMoneyTransfer(1, "RoguelikeArena_Trader", _Price);
+ProcSetDialogGoldCheckAmount("RoguelikeArena_Trader");
+
+IF
+ObjectFlagSet("RoguelikeArena_Trader_Restock", _Trader, _DialogInstance)
+AND
+DB_DialogNPCs(_DialogInstance, _Trader, _)
+THEN
+PROC_RoguelikeArena_TraderRestock((CHARACTERGUID)_Trader);
+
+// Regenerates the treasure.
+PROC
+PROC_RoguelikeArena_TraderRestock((CHARACTERGUID)_Trader)
+AND
+DB_DialogNPCs(_DialogInstance, _Trader, _)
+AND
+DB_DialogPlayers(_DialogInstance, _Player, _)
+THEN
+ProcGenerateTradeTreasure((CHARACTERGUID)_Player, _Trader);
+ObjectClearFlag(_Trader, "RoguelikeArena_Trader_Restock");
+
+// Removes items sold by players.
+PROC
+PROC_RoguelikeArena_TraderRestock(_Trader)
+AND
+DB_RoguelikeArena_SoldItems(_Trader, _Item)
+AND
+ObjectExists(_Item, 1)
+AND
+ObjectIsOnStage(_Item, 1)
+AND
+ItemIsInCharacterInventory(_Item, _Trader, 1)
+THEN
+ItemRemove(_Item);
+
+// Updates the DB.
+PROC
+PROC_RoguelikeArena_TraderRestock(_Trader)
+AND
+DB_RoguelikeArena_SoldItems(_Trader, _Item)
+THEN
+NOT DB_RoguelikeArena_SoldItems(_Trader, _Item);
+
+// Adds sold items to the DB.
+IF
+ItemMovedFromTo(_Item, _From, _To, 1)
+AND
+ObjectIsCharacter(_From, 1)
+AND
+ObjectIsCharacter(_To, 1)
+AND
+CharacterIsPlayer((CHARACTERGUID)_From, 1)
+AND
+CharacterIsPlayer((CHARACTERGUID)_To, 0)
+THEN
+DB_RoguelikeArena_SoldItems(_To, _Item);
+
+// Removes sold items from the DB if they're no longer on the trader.
+IF
+ItemRemovedFromCharacter(_Item, _Character)
+AND
+DB_RoguelikeArena_SoldItems(_Character, _Item)
+THEN
+NOT DB_RoguelikeArena_SoldItems(_Character, _Item);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena_Lobby"

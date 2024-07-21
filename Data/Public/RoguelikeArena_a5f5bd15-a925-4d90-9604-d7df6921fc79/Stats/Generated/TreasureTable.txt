@@ -438,16 +438,16 @@ object category "T_MiniBoss",1,0,0,0,0,0,0,0
 new treasuretable "RoguelikeArena_Trader_Skillbook"
 new subtable "2,1"
 object category "Trader Gold",1,0,0,0,0,0,0,0
-new subtable "15,1;20,1;25,1"
+new subtable "25,1;30,1;35,1"
 StartLevel "1"
 object category "T_ST_SkillbookStarter",1,0,0,0,0,0,0,0
-new subtable "15,1;20,1;25,1"
+new subtable "25,1;30,1;35,1"
 StartLevel "4"
 object category "T_ST_SkillbookEarly",1,0,0,0,0,0,0,0
-new subtable "15,1;20,1;25,1"
+new subtable "25,1;30,1;35,1"
 StartLevel "9"
 object category "T_ST_SkillbookMid",1,0,0,0,0,0,0,0
-new subtable "15,1;20,1;25,1"
+new subtable "25,1;30,1;35,1"
 StartLevel "16"
 object category "T_ST_SkillbookLate",1,0,0,0,0,0,0,0
 new subtable "1,1"

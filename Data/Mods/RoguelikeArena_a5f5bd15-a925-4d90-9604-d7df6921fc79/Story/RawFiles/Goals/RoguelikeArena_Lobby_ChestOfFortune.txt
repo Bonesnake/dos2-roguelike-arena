@@ -6,9 +6,36 @@ KBSECTION
 // Gives random treasure if the corresponding flag is set.
 IF
 ObjectFlagSet("RoguelikeArena_ChestOfFortune_WasUsed", _Player, _)
+AND
+ObjectGetFlag(_Player, "RoguelikeArena_ChestOfFortune_Random", 1)
 THEN
 CharacterGiveReward((CHARACTERGUID)_Player, "RoguelikeArena_ChestOfFortune", 1);
-//PlayEffect(ITEMGUID_CONT_Humans_Citz_Chest_Rich_A_000_cad144cc-f8ad-4688-823c-ced82aeb3b18, "RS3_FX_GP_Status_LevelUp_01");
+
+// Gives high-quality treasure if the corresponding flag is set.
+IF
+ObjectFlagSet("RoguelikeArena_ChestOfFortune_WasUsed", _Player, _)
+AND
+ObjectGetFlag(_Player, "RoguelikeArena_ChestOfFortune_HighQuality", 1)
+THEN
+CharacterGiveReward((CHARACTERGUID)_Player, "RoguelikeArena_ChestOfFortune_HighQuality", 1);
+
+IF
+CharacterUsedItem(_Character, _Item)
+AND
+DB_RoguelikeArena_LobbyExtraFeatures(_FeatureName, _LevelMin, _, _, _Item)
+AND
+_FeatureName == "RoguelikeArena_ChestOfFortune"
+AND
+CharacterGetLevel(_Character, _Level)
+AND
+_Level >= _LevelMin
+AND
+QRY_RoguelikeArena_Price(_Level, 10, 10)
+AND
+DB_Singleton("RoguelikeArena_PriceResult", _Price)
+THEN
+DB_DialogMoneyTransfer(2, _FeatureName, _Price);
+ProcSetDialogGoldCheckAmount(_FeatureName);
 EXITSECTION
 
 ENDEXITSECTION

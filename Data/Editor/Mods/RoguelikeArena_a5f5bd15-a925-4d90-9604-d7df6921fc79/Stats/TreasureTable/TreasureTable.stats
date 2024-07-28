@@ -3676,5 +3676,139 @@
         <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
       </fields>
     </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_ChestOfFortune_HighQualityEquipment" />
+        <field name="DropCount" type="StringStatObjectFieldDefinition" value="-1" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_ST_Trader_ArmorNormal" />
+        <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Epic" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="IgnoreLevelDiff" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="true">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="New_Stat_12_substat_0" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_ST_Trader_RingAmuletBeltNormal" />
+        <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Epic" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_ChestOfFortune_HighQualityEquipment" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="true">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="New_Stat_12_substat_1" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_ST_Trader_WeaponNormal" />
+        <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Epic" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_ChestOfFortune_HighQualityEquipment" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="true">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="New_Stat_12_substat_2" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_RoguelikeArena_Uniques" />
+        <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_ChestOfFortune_HighQualityEquipment" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_ChestOfFortune_HighQualitySkillbook" />
+        <field name="DropCount" type="StringStatObjectFieldDefinition" value="-1" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_ST_SkillbookLate" />
+        <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="IgnoreLevelDiff" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="true">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="New_Stat_13_substat_4" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_RoguelikeArena_SkillbookCraftedLate" />
+        <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_ChestOfFortune_HighQualitySkillbook" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="true">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="New_Stat_13_substat_5" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_RoguelikeArena_SkillbookSpecial" />
+        <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_ChestOfFortune_HighQualitySkillbook" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_ChestOfFortune_HighQualityUsable" />
+        <field name="DropCount" type="StringStatObjectFieldDefinition" value="-1" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="ResPotionEnd" />
+        <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="IgnoreLevelDiff" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="true">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="New_Stat_14_substat_5" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="StatPotionLate" />
+        <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_ChestOfFortune_HighQualityUsable" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="true">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="New_Stat_14_substat_10" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="GrenadeLate" />
+        <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_ChestOfFortune_HighQualityUsable" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="true">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="New_Stat_14_substat_14" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="ScrollLate" />
+        <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_ChestOfFortune_HighQualityUsable" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="true">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="New_Stat_14_substat_18" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="ArrowLate" />
+        <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_ChestOfFortune_HighQualityUsable" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="true">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="New_Stat_14_substat_22" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_RoguelikeArena_ScrollSpecialLate" />
+        <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_ChestOfFortune_HighQualityUsable" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_ChestOfFortune_HighQuality" />
+        <field name="DropCount" type="StringStatObjectFieldDefinition" value="1,1" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_RoguelikeArena_ChestOfFortune_HighQualityEquipment" />
+        <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="true">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_ChestOfLegends_substat" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_RoguelikeArena_ChestOfFortune_HighQualitySkillbook" />
+        <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_ChestOfFortune_HighQuality" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="true">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="New_Stat_10" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_RoguelikeArena_ChestOfFortune_HighQualityUsable" />
+        <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_ChestOfFortune_HighQuality" />
+      </fields>
+    </stat_object>
   </stat_objects>
 </stats>

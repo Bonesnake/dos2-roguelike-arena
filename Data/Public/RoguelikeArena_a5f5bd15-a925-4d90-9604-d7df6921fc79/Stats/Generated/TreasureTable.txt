@@ -603,3 +603,30 @@ object category "I_SCROLL_Resurrect",1,0,0,0,0,0,0,0
 new treasuretable "RoguelikeArena_Guardian"
 new subtable "5,1"
 object category "T_RoguelikeArena_Uniques",1,0,0,0,0,0,0,0
+new treasuretable "RoguelikeArena_ChestOfFortune_HighQualityEquipment"
+IgnoreLevelDiff 1
+new subtable "-1"
+object category "T_ST_Trader_ArmorNormal",1,0,0,0,1,0,0,0
+object category "T_ST_Trader_RingAmuletBeltNormal",1,0,0,0,1,0,0,0
+object category "T_ST_Trader_WeaponNormal",1,0,0,0,1,0,0,0
+object category "T_RoguelikeArena_Uniques",1,0,0,0,0,0,0,0
+new treasuretable "RoguelikeArena_ChestOfFortune_HighQualitySkillbook"
+IgnoreLevelDiff 1
+new subtable "-1"
+object category "T_ST_SkillbookLate",1,0,0,0,0,0,0,0
+object category "T_RoguelikeArena_SkillbookCraftedLate",1,0,0,0,0,0,0,0
+object category "T_RoguelikeArena_SkillbookSpecial",1,0,0,0,0,0,0,0
+new treasuretable "RoguelikeArena_ChestOfFortune_HighQualityUsable"
+IgnoreLevelDiff 1
+new subtable "-1"
+object category "ResPotionEnd",1,0,0,0,0,0,0,0
+object category "StatPotionLate",1,0,0,0,0,0,0,0
+object category "GrenadeLate",1,0,0,0,0,0,0,0
+object category "ScrollLate",1,0,0,0,0,0,0,0
+object category "ArrowLate",1,0,0,0,0,0,0,0
+object category "T_RoguelikeArena_ScrollSpecialLate",1,0,0,0,0,0,0,0
+new treasuretable "RoguelikeArena_ChestOfFortune_HighQuality"
+new subtable "1,1"
+object category "T_RoguelikeArena_ChestOfFortune_HighQualityEquipment",1,0,0,0,0,0,0,0
+object category "T_RoguelikeArena_ChestOfFortune_HighQualitySkillbook",1,0,0,0,0,0,0,0
+object category "T_RoguelikeArena_ChestOfFortune_HighQualityUsable",1,0,0,0,0,0,0,0

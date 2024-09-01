@@ -3,6 +3,7 @@ SubGoalCombiner SGC_AND
 INITSECTION
 
 KBSECTION
+// Enables arena mode for characters entering an arena.
 IF
 CharacterEnteredTrigger(_Character, _Trigger)
 AND
@@ -10,6 +11,7 @@ DB_RoguelikeArena_ArenaEventTriggers(_, _Trigger)
 THEN
 SetInArena(_Character, 1);
 
+// Disables arena mode for characters exiting an arena.
 IF
 CharacterLeftTrigger(_Character, _Trigger)
 AND
@@ -21,6 +23,7 @@ DB_RoguelikeArena_ArenaEventTriggers(_Arena, _Trigger)
 THEN
 SetInArena(_Character, 0);
 
+// Tries to end combat if an enemy dies.
 IF
 CharacterDied(_Character)
 AND
@@ -30,10 +33,62 @@ DB_RoguelikeArena_ActiveArena(_Arena, _Level, _Difficulty, _Players)
 AND
 QRY_RoguelikeArena_ObjectIsInArena(_Character, _Arena)
 AND
-NOT QRY_RoguelikeArena_AnyArenaEnemiesAlive(_Arena)
+DB_CombatCharacters(_Character, _CombatID)
 AND
-QRY_RoguelikeArena_AnyoneInCombat(_Arena)
+QRY_RoguelikeArena_ShouldEndArenaCombat(_Arena, _CombatID)
 THEN
+EndCombat(_CombatID);
+PROC_RoguelikeArena_ArenaCombatEnded(_Arena, _Level, _Difficulty, _Players);
+
+// Tries to end combat if an enemy goes off stage.
+IF
+CharacterWentOnStage(_Character, _Bool)
+AND
+GetFaction(_Character, "Evil NPC")
+AND
+_Bool == 0
+AND
+DB_RoguelikeArena_ActiveArena(_Arena, _Level, _Difficulty, _Players)
+AND
+QRY_RoguelikeArena_ObjectIsInArena(_Character, _Arena)
+AND
+DB_CombatCharacters(_Character, _CombatID)
+AND
+QRY_RoguelikeArena_ShouldEndArenaCombat(_Arena, _CombatID)
+THEN
+EndCombat(_CombatID);
+PROC_RoguelikeArena_ArenaCombatEnded(_Arena, _Level, _Difficulty, _Players);
+
+// Tries to end combat if an enemy leaves an arena.
+IF
+CharacterLeftTrigger(_Character, _Trigger)
+AND
+GetFaction(_Character, "Evil NPC")
+AND
+DB_RoguelikeArena_ActiveArena(_Arena, _Level, _Difficulty, _Players)
+AND
+DB_RoguelikeArena_ArenaEventTriggers(_Arena, _Trigger)
+AND
+DB_CombatCharacters(_Character, _CombatID)
+AND
+QRY_RoguelikeArena_ShouldEndArenaCombat(_Arena, _CombatID)
+THEN
+EndCombat(_CombatID);
+PROC_RoguelikeArena_ArenaCombatEnded(_Arena, _Level, _Difficulty, _Players);
+
+// Tries to end combat if an enemy exits combat.
+IF
+ObjectLeftCombat(_Character, _CombatID)
+AND
+GetFaction(_Character, "Evil NPC")
+AND
+DB_RoguelikeArena_ActiveArena(_Arena, _Level, _Difficulty, _Players)
+AND
+QRY_RoguelikeArena_ObjectIsInArena(_Character, _Arena)
+AND
+QRY_RoguelikeArena_ShouldEndArenaCombat(_Arena, _CombatID)
+THEN
+EndCombat(_CombatID);
 PROC_RoguelikeArena_ArenaCombatEnded(_Arena, _Level, _Difficulty, _Players);
 
 PROC
@@ -44,7 +99,6 @@ AND
 DB_InRegion(_Character, _Trigger)
 THEN
 SetInArena(_Character, 0);
-LeaveCombat(_Character);
 PROC_RoguelikeArena_CharacterFullRestore(_Character);
 
 PROC
@@ -59,11 +113,9 @@ THEN
 SetOnStage(_Character, 0);
 
 QRY
-QRY_RoguelikeArena_AnyArenaEnemiesAlive((INTEGER)_Arena)
+QRY_RoguelikeArena_AnyEnemiesInCombat((INTEGER)_CombatID)
 AND
-DB_RoguelikeArena_ArenaEventTriggers(_Arena, _Trigger)
-AND
-DB_InRegion(_Character, _Trigger)
+DB_CombatCharacters(_Character, _CombatID)
 AND
 GetFaction(_Character, "Evil NPC")
 AND
@@ -72,11 +124,15 @@ THEN
 DB_NOOP(1);
 
 QRY
-QRY_RoguelikeArena_AnyoneInCombat((INTEGER)_Arena)
+QRY_RoguelikeArena_ShouldEndArenaCombat((INTEGER)_Arena, (INTEGER)_CombatID)
 AND
-DB_InRegion(_Character, _Trigger)
+DB_CombatCharacters(_Character, _CombatID)
 AND
-CharacterIsInCombat(_Character, 1)
+QRY_RoguelikeArena_ObjectIsInArena(_Character, _Arena)
+AND
+NOT QRY_RoguelikeArena_AnyEnemiesInCombat(_CombatID)
+AND
+IsCombatActive(_CombatID, 1)
 THEN
 DB_NOOP(1);
 EXITSECTION

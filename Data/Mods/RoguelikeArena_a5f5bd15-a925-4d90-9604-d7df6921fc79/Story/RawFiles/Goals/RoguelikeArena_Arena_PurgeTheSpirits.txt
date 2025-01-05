@@ -1,0 +1,214 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_RoguelikeArena_SpiritTemplate("RoguelikeArena_SpiritChicken_f8495e10-cdf9-40fd-b62b-e8145e97bf6f");
+KBSECTION
+PROC
+PROC_RoguelikeArena_StartPurgeTheSpirits((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty, (INTEGER)_Players)
+THEN
+DB_RoguelikeArena_PurgeTheSpirits(_Arena, _Level, _Difficulty, _Players);
+PROC_RoguelikeArena_SpawnEnemies(_Arena, _Level, _Difficulty, _Players);
+PROC_RoguelikeArena_SpawnSpirits(_Arena, _Level, _Difficulty, _Players);
+
+PROC
+PROC_RoguelikeArena_SpawnSpirits((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty, (INTEGER)_Players)
+AND
+QRY_RoguelikeArena_RandomCount(_Difficulty, 2, 1, 1)
+AND
+DB_RoguelikeArena_RandomResult(_SpiritCount)
+AND
+IntegerProduct(_SpiritCount, _Players, _SpiritCountMultiplied)
+AND
+IntegerDivide(_SpiritCountMultiplied, 4, _SpiritCountAdjusted)
+AND
+IntegerMax(_SpiritCountAdjusted, 1, _SpiritCountCorrected)
+THEN
+PROC_RoguelikeArena_SpawnSpirits(_Arena, _Level, _Difficulty, _Players, _SpiritCountCorrected);
+
+PROC
+PROC_RoguelikeArena_SpawnSpirits((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty, (INTEGER)_Players, (INTEGER)_Count)
+AND
+QRY_RoguelikeArena_CreateIndices(_Count)
+AND
+DB_RoguelikeArena_CreatedIndices(_)
+AND
+QRY_RoguelikeArena_GetRandomPositionInArena(_Arena, "SPAWNER_EVENT")
+AND
+DB_RoguelikeArena_RandomPositionResult(_X, _Y, _Z)
+AND
+DB_RoguelikeArena_SpiritTemplate(_SpiritTemplate)
+AND
+CharacterCreateAtPosition(_X, _Y, _Z, _SpiritTemplate, 0, _Spirit)
+THEN
+DB_RoguelikeArena_Spirits(_Arena, _Spirit);
+CharacterLevelUpTo(_Spirit, _Level);
+PROC_RoguelikeArena_SpiritSpawned(_Spirit, _Arena);
+
+// Triggered when a spirit is spawned inside an arena.
+PROC
+PROC_RoguelikeArena_SpiritSpawned((CHARACTERGUID)_Spirit, (INTEGER)_Arena)
+THEN
+DB_NOOP(1);
+
+PROC
+PROC_RoguelikeArena_EnemySpawned(_Enemy, _Arena, _)
+AND
+DB_RoguelikeArena_PurgeTheSpirits(_Arena, _, _, _)
+AND
+QRY_RoguelikeArena_GetRandomPositionInArena(_Arena, "SPAWNER_ENEMY")
+AND
+DB_RoguelikeArena_RandomPositionResult(_X, _Y, _Z)
+THEN
+PROC_RoguelikeArena_CharacterMakeUndying(_Enemy, _X, _Y, _Z);
+
+PROC
+PROC_RoguelikeArena_CharacterEnteredArena(_Character, _Arena)
+AND
+CharacterIsPlayer(_Character, 1)
+AND
+CharacterIsSummon(_Character, 0)
+AND
+DB_RoguelikeArena_PurgeTheSpirits(_Arena, _, _, _)
+AND
+CharacterHasSkill(_Character, "Target_SourceVampirism", 0)
+THEN
+CharacterAddSkill(_Character, "Target_SourceVampirism");
+
+PROC
+PROC_RoguelikeArena_CharacterEnteredArena(_Character, _Arena)
+AND
+CharacterIsPlayer(_Character, 1)
+AND
+CharacterIsSummon(_Character, 0)
+AND
+DB_RoguelikeArena_PurgeTheSpirits(_Arena, _, _, _)
+AND
+CharacterHasSkill(_Character, "Shout_SpiritVision", 0)
+THEN
+CharacterAddSkill(_Character, "Shout_SpiritVision");
+
+PROC
+PROC_RoguelikeArena_CharacterLeftArena(_Character, _Arena)
+AND
+CharacterHasSkill(_Character, "Shout_SpiritVision", 1)
+THEN
+CharacterRemoveSkill(_Character, "Shout_SpiritVision");
+
+PROC
+PROC_RoguelikeArena_CharacterRespawning(_Character)
+AND
+DB_RoguelikeArena_ArenaCharacters(_Arena, _Character)
+AND
+DB_RoguelikeArena_PurgeTheSpirits(_Arena, _, _, _)
+AND
+GetFaction(_Character, "Evil NPC")
+AND
+QRY_RoguelikeArena_GetRandomPositionInArena(_Arena, "SPAWNER_ENEMY")
+AND
+DB_RoguelikeArena_RandomPositionResult(_X, _Y, _Z)
+THEN
+PROC_RoguelikeArena_CharacterSetRespawnPosition(_Character, _X, _Y, _Z);
+PROC_RoguelikeArena_DestroySpiritInArena(_Arena);
+
+// Destroys 1 spirit that is not yet being destroyed.
+PROC
+PROC_RoguelikeArena_DestroySpiritInArena((INTEGER)_Arena)
+AND
+DB_RoguelikeArena_Spirits(_Arena, _Spirit)
+AND
+NOT DB_RoguelikeArena_SpiritDestroying(_Spirit)
+AND
+NOT DB_Singleton("RoguelikeArena_DestroyOnlyOneSpirit", 1)
+AND
+GetPosition(_Spirit, _X, _Y, _Z)
+THEN
+DestroyGhost(_Spirit);
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_SourceJar_Break_01", _X, _Y, _Z);
+DB_RoguelikeArena_SpiritDestroying(_Spirit);
+DB_Singleton("RoguelikeArena_DestroyOnlyOneSpirit", 1);
+
+PROC
+PROC_RoguelikeArena_DestroySpiritInArena(_Arena)
+THEN
+DB_Singleton("RoguelikeArena_DestroyOnlyOneSpirit", 0);
+
+IF
+CharacterGhostDestroyed(_, _Ghost)
+AND
+DB_RoguelikeArena_Spirits(_Arena, _Ghost)
+THEN
+PROC_RoguelikeArena_SpiritDestroyedInArena(_Ghost, _Arena);
+SetOnStage(_Ghost, 0); // Prevents issues where spirits no longer exist but are still registered inside the arena
+
+PROC
+PROC_RoguelikeArena_SpiritDestroyedInArena((CHARACTERGUID)_Spirit, (INTEGER)_Arena)
+AND
+DB_RoguelikeArena_Spirits(_Arena, _Spirit)
+THEN
+NOT DB_RoguelikeArena_Spirits(_Arena, _Spirit);
+
+PROC
+PROC_RoguelikeArena_SpiritDestroyedInArena(_Spirit, _Arena)
+AND
+DB_RoguelikeArena_SpiritDestroying(_Spirit)
+THEN
+NOT DB_RoguelikeArena_SpiritDestroying(_Spirit);
+
+PROC
+PROC_RoguelikeArena_SpiritDestroyedInArena(_Spirit, _Arena)
+AND
+NOT QRY_RoguelikeArena_AnySpiritsInArena(_Arena)
+AND
+DB_CombatCharacters(_Spirit, _CombatID)
+THEN
+PROC_RoguelikeArena_LastSpiritDestroyed(_Arena, _CombatID);
+
+QRY
+QRY_RoguelikeArena_AnySpiritsInArena((INTEGER)_Arena)
+AND
+DB_RoguelikeArena_Spirits(_Arena, _)
+THEN
+DB_NOOP(1);
+
+PROC
+PROC_RoguelikeArena_LastSpiritDestroyed((INTEGER)_Arena, (INTEGER)_)
+AND
+DB_RoguelikeArena_ArenaCharacters(_Arena, _Character)
+AND
+QRY_RoguelikeArena_CharacterIsUndying(_Character)
+THEN
+PROC_RoguelikeArena_CharacterMakeDying(_Character);
+
+PROC
+PROC_RoguelikeArena_LastSpiritDestroyed(_Arena, _)
+AND
+DB_RoguelikeArena_ArenaCharacters(_Arena, _Character)
+AND
+GetFaction(_Character, "Evil NPC")
+AND
+CharacterIsDead(_Character, 0)
+THEN
+CharacterDie(_Character, 1, "Explode");
+
+PROC
+PROC_RoguelikeArena_LastSpiritDestroyed(_Arena, _CombatID)
+THEN
+PROC_RoguelikeArena_EndArenaCombat(_Arena, _CombatID);
+
+PROC
+PROC_RoguelikeArena_ArenaCombatEnded(_Arena, _)
+AND
+DB_RoguelikeArena_PurgeTheSpirits(_Arena, _, _, _)
+THEN
+PROC_RoguelikeArena_PurgeTheSpiritsEnded(_Arena);
+
+PROC
+PROC_RoguelikeArena_PurgeTheSpiritsEnded((INTEGER)_Arena)
+AND
+DB_RoguelikeArena_PurgeTheSpirits(_Arena, _Level, _Difficulty, _Players)
+THEN
+NOT DB_RoguelikeArena_PurgeTheSpirits(_Arena, _Level, _Difficulty, _Players);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena_Arena_GameMode"

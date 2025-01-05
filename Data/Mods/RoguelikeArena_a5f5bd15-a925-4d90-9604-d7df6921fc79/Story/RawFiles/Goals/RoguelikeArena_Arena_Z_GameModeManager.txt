@@ -1,0 +1,166 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+// DB_RoguelikeArena_GameModes("TeamDeathmatch"); // Excluded from random game mode selection
+DB_RoguelikeArena_GameModes("SurvivalMode");
+DB_RoguelikeArena_GameModes("DefeatTheChampion");
+DB_RoguelikeArena_GameModes("Battleground");
+DB_RoguelikeArena_GameModes("PurgeTheSpirits");
+
+DB_RoguelikeArena_GameModeObjectives("TeamDeathmatch", "Objective: Kill all enemies");
+DB_RoguelikeArena_GameModeObjectives("SurvivalMode", "Objective: Survive");
+DB_RoguelikeArena_GameModeObjectives("DefeatTheChampion", "Objective: Defeat the champion");
+DB_RoguelikeArena_GameModeObjectives("Battleground", "Objective: Kill all enemies");
+DB_RoguelikeArena_GameModeObjectives("PurgeTheSpirits", "Objective: Purge the spirits");
+
+PROC_RoguelikeArena_StringPoolAddGameModes();
+KBSECTION
+PROC
+PROC_RoguelikeArena_ArenaStarted(_Arena, _Level, _Difficulty, _Players)
+AND
+DB_RoguelikeArena_Singleton_MaxDifficulty(_MaxDifficulty)
+AND
+_Difficulty < _MaxDifficulty
+THEN
+PROC_RoguelikeArena_StartTeamDeathmatch(_Arena, _Level, _Difficulty, _Players);
+
+PROC
+PROC_RoguelikeArena_ArenaStarted(_Arena, _Level, _Difficulty, _Players)
+AND
+DB_RoguelikeArena_Singleton_MaxDifficulty(_MaxDifficulty)
+AND
+_Difficulty >= _MaxDifficulty
+AND
+GlobalGetFlag("RoguelikeArena_Preference_GameModesDisabled", 1)
+THEN
+PROC_RoguelikeArena_StartTeamDeathmatch(_Arena, _Level, _Difficulty, _Players);
+
+PROC
+PROC_RoguelikeArena_ArenaStarted(_Arena, _Level, _Difficulty, _Players)
+AND
+DB_RoguelikeArena_Singleton_MaxDifficulty(_MaxDifficulty)
+AND
+_Difficulty >= _MaxDifficulty
+AND
+GlobalGetFlag("RoguelikeArena_Preference_GameModesDisabled", 0)
+THEN
+PROC_RoguelikeArena_StartRandomGameMode(_Arena, _Level, _Difficulty, _Players);
+
+PROC
+PROC_RoguelikeArena_StartRandomGameMode((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty, (INTEGER)_Players)
+AND
+QRY_RoguelikeArena_StringPoolSelectRandom("GameModePool")
+AND
+DB_RoguelikeArena_StringPoolSelectedValue("GameModePool", _GameMode)
+THEN
+PROC_RoguelikeArena_StartGameMode(_Arena, _Level, _Difficulty, _Players, _GameMode);
+DB_RoguelikeArena_ActiveGameModes(_Arena, _GameMode);
+
+PROC
+PROC_RoguelikeArena_ArenaCombatEnded(_Arena, _)
+AND
+DB_RoguelikeArena_ActiveGameModes(_Arena, _GameMode)
+THEN
+PROC_RoguelikeArena_EndGameMode(_Arena, _GameMode);
+NOT DB_RoguelikeArena_ActiveGameModes(_Arena, _GameMode);
+
+//REGION Game modes
+PROC
+PROC_RoguelikeArena_StartGameMode((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty, (INTEGER)_Players, (STRING)_GameMode)
+AND
+_GameMode == "TeamDeathmatch"
+THEN
+PROC_RoguelikeArena_StartTeamDeathmatch(_Arena, _Level, _Difficulty, _Players);
+
+PROC
+PROC_RoguelikeArena_StartGameMode(_Arena, _Level, _Difficulty, _Players, _GameMode)
+AND
+_GameMode == "SurvivalMode"
+THEN
+PROC_RoguelikeArena_StartSurvivalMode(_Arena, _Level, _Difficulty, _Players);
+
+PROC
+PROC_RoguelikeArena_StartGameMode(_Arena, _Level, _Difficulty, _Players, _GameMode)
+AND
+_GameMode == "DefeatTheChampion"
+THEN
+PROC_RoguelikeArena_StartDefeatTheChampion(_Arena, _Level, _Difficulty, _Players);
+
+PROC
+PROC_RoguelikeArena_StartGameMode(_Arena, _Level, _Difficulty, _Players, _GameMode)
+AND
+_GameMode == "Battleground"
+THEN
+PROC_RoguelikeArena_StartBattleground(_Arena, _Level, _Difficulty, _Players);
+
+PROC
+PROC_RoguelikeArena_StartGameMode(_Arena, _Level, _Difficulty, _Players, _GameMode)
+AND
+_GameMode == "PurgeTheSpirits"
+THEN
+PROC_RoguelikeArena_StartPurgeTheSpirits(_Arena, _Level, _Difficulty, _Players);
+//END_REGION
+
+//REGION Statuses
+// Applies status to players when starting a game mode.
+PROC
+PROC_RoguelikeArena_StartGameMode(_Arena, _, _, _, _GameMode)
+AND
+DB_RoguelikeArena_ArenaCharacters(_Arena, _Character)
+AND
+CharacterIsPlayer(_Character, 1)
+AND
+StringConcatenate("RoguelikeArena_", _GameMode, _GameModeStatus)
+THEN
+ApplyStatus(_Character, _GameModeStatus, -1.0);
+
+// Removes status from characters when ending a game mode.
+PROC
+PROC_RoguelikeArena_EndGameMode((INTEGER)_Arena, (STRING)_GameMode)
+AND
+DB_RoguelikeArena_ArenaCharacters(_Arena, _Character)
+AND
+StringConcatenate("RoguelikeArena_", _GameMode, _GameModeStatus)
+AND
+HasActiveStatus(_Character, _GameModeStatus, 1)
+THEN
+RemoveStatus(_Character, _GameModeStatus);
+
+// Applies status to players that enter.
+PROC
+PROC_RoguelikeArena_CharacterEnteredArena(_Character, _Arena)
+AND
+CharacterIsPlayer(_Character, 1)
+AND
+DB_RoguelikeArena_ActiveGameModes(_Arena, _GameMode)
+AND
+StringConcatenate("RoguelikeArena_", _GameMode, _GameModeStatus)
+AND
+DB_RoguelikeArena_GameModeObjectives(_GameMode, _Objective)
+THEN
+ApplyStatus(_Character, _GameModeStatus, -1.0);
+ShowNotification(_Character, _Objective);
+
+// Removes status from players that leave.
+PROC
+PROC_RoguelikeArena_CharacterLeftArena(_Character, _Arena)
+AND
+DB_RoguelikeArena_ActiveGameModes(_Arena, _GameMode)
+AND
+StringConcatenate("RoguelikeArena_", _GameMode, _GameModeStatus)
+AND
+HasActiveStatus(_Character, _GameModeStatus, 1)
+THEN
+RemoveStatus(_Character, _GameModeStatus);
+//END_REGION
+
+PROC
+PROC_RoguelikeArena_StringPoolAddGameModes()
+AND
+DB_RoguelikeArena_GameModes(_GameMode)
+THEN
+PROC_RoguelikeArena_StringPoolAdd("GameModePool", _GameMode);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena_Arena_GameMode"

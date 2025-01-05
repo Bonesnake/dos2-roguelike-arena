@@ -101,11 +101,6 @@ DB_RoguelikeArena_EnemyTemplates("Undead", 2, "Inquisitor", "", "RoguelikeArena_
 
 PROC_RoguelikeArena_StringPoolAddFactions();
 KBSECTION
-PROC
-PROC_RoguelikeArena_ArenaStarted(_Arena, _Level, _Difficulty, _Players)
-THEN
-PROC_RoguelikeArena_SpawnEnemies(_Arena, _Level, _Difficulty, _Players);
-
 // Calculates the amount of enemies to be spawned and spawns that amount.
 PROC
 PROC_RoguelikeArena_SpawnEnemies((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty, (INTEGER)_Players)
@@ -174,8 +169,15 @@ CharacterLevelUpTo(_Enemy, _Level);
 // PROC_RoguelikeArena_CharacterLevelUpEquipmentTo(_Enemy, _Level);
 PROC_RoguelikeArena_CharacterAddRandomSkills(_Enemy, _Level, _Rank, _Class, _Specialization);
 PROC_RoguelikeArena_CharacterSetSourcePoints(_Enemy, _Level, _Rank);
-PROC_RoguelikeArena_RegisterForCleanup(_Enemy, _Arena);
-ApplyStatus(_Enemy, "RESTED", 0.0, 0, NULL_00000000-0000-0000-0000-000000000000); // For some reason this prevents a bug where some enemies start without full armor.
+PROC_RoguelikeArena_CharacterFullRestore(_Enemy);
+// ApplyStatus(_Enemy, "RESTED", 0.0, 0, NULL_00000000-0000-0000-0000-000000000000); // For some reason this prevents a bug where some enemies start without full armor.
+PROC_RoguelikeArena_EnemySpawned(_Enemy, _Arena, _Rank);
+
+// Triggered when an enemy is spawned inside an arena. _Rank is the enemy's rank, which can be either 1, 2, or 3.
+PROC
+PROC_RoguelikeArena_EnemySpawned((CHARACTERGUID)_Enemy, (INTEGER)_Arena, (INTEGER)_Rank)
+THEN
+DB_NOOP(1);
 
 // Adds factions to the faction pool.
 PROC

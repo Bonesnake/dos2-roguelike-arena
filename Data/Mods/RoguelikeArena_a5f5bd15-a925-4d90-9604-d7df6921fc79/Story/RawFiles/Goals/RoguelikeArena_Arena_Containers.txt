@@ -94,7 +94,6 @@ PROC_RoguelikeArena_ItemRandomRotate(_Container);
 // PROC_RoguelikeArena_ItemSnapToGround(_Container);
 ItemLevelUpTo(_Container, _Level);
 GenerateTreasure(_Container, _Treasure, _Level, NULL_00000000-0000-0000-0000-000000000000);
-PROC_RoguelikeArena_RegisterForCleanup(_Container, _Arena);
 EXITSECTION
 
 ENDEXITSECTION

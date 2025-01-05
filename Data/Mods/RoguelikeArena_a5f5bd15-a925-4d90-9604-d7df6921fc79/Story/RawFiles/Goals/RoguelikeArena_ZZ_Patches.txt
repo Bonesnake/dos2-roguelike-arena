@@ -1,20 +1,118 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
-
+// Important: the mod version needs to be changed at 2 places within this script when updating the mod (it should match the version inside Project Settings)
+// Note: the mod version was untracked before 1.1.0.0 and this script did not exist on 1.0.0.0, so some special cases are handled separately
+DB_RoguelikeArena_ModVersion(1, 1, 0, 0); // Change this when updating the mod !!!
 KBSECTION
+// Updates mod version.
+PROC
+PROC_RoguelikeArena_SavegameLoaded((INTEGER)_Major, (INTEGER)_Minor, (INTEGER)_Revision, (INTEGER)_Build)
+THEN
+NOT DB_RoguelikeArena_ModVersion(_Major, _Minor, _Revision, _Build);
+DB_RoguelikeArena_ModVersion(1, 1, 0, 0); // Change this when updating the mod !!!
+
+QRY
+QRY_RoguelikeArena_ShouldApplyPatch((INTEGER)_LoadedMajor, (INTEGER)_, (INTEGER)_, (INTEGER)_, (INTEGER)_PatchMajor, (INTEGER)_, (INTEGER)_, (INTEGER)_)
+AND
+_LoadedMajor < _PatchMajor
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RoguelikeArena_ShouldApplyPatch(_LoadedMajor, _LoadedMinor, _, _, _PatchMajor, _PatchMinor, _, _)
+AND
+_LoadedMajor == _PatchMajor
+AND
+_LoadedMinor < _PatchMinor
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RoguelikeArena_ShouldApplyPatch(_LoadedMajor, _LoadedMinor, _LoadedRevision, _, _PatchMajor, _PatchMinor, _PatchRevision, _)
+AND
+_LoadedMajor == _PatchMajor
+AND
+_LoadedMinor == _PatchMinor
+AND
+_LoadedRevision < _PatchRevision
+THEN
+DB_NOOP(1);
+
+QRY
+QRY_RoguelikeArena_ShouldApplyPatch(_LoadedMajor, _LoadedMinor, _LoadedRevision, _LoadedBuild, _PatchMajor, _PatchMinor, _PatchRevision, _PatchBuild)
+AND
+_LoadedMajor == _PatchMajor
+AND
+_LoadedMinor == _PatchMinor
+AND
+_LoadedRevision == _PatchRevision
+AND
+_LoadedBuild < _PatchBuild
+THEN
+DB_NOOP(1);
+
+// Handles a special case where an 1.0.0.0 save game is loaded after 1.1.0.0.
 IF
 SavegameLoaded(_, _, _, _)
+AND
+DB_RoguelikeArena_ModVersion(_Major, _Minor, _Revision, _Build)
 AND
 SysCount("DB_RoguelikeArena_AvailableCompanions", 2, _Count)
 AND
 _Count == 0
 THEN
-PROC_RoguelikeArena_PatchRecruitmentBoardAvailableCompanions();
-DebugBreak("Patching recruitment board available companions");
+NOT DB_RoguelikeArena_ModVersion(_Major, _Minor, _Revision, _Build);
+DB_RoguelikeArena_ModVersion(1, 0, 0, 0);
+
+// Predicts save game version to be 1.0.0.0.
+IF
+SavegameLoaded(_, _, _, _)
+AND
+NOT DB_RoguelikeArena_ModVersion(_, _, _, _)
+AND
+SysCount("DB_RoguelikeArena_AvailableCompanions", 2, _Count)
+AND
+_Count == 0
+THEN
+DB_RoguelikeArena_ModVersion(1, 0, 0, 0);
+
+// Predicts save game version to be 1.0.1.0.
+IF
+SavegameLoaded(_, _, _, _)
+AND
+NOT DB_RoguelikeArena_ModVersion(_, _, _, _)
+AND
+NOT DB_RoguelikeArena_SpawnTriggers(1, TRIGGERGUID_RoguelikeArena_AllySpawnerTrigger_000_8ab9c409-7d47-4ed0-bb02-7f8e1f7eae2e)
+THEN
+DB_RoguelikeArena_ModVersion(1, 0, 1, 0);
+
+// Predicts save game version to be 1.0.5.0.
+IF
+SavegameLoaded(_, _, _, _)
+AND
+NOT DB_RoguelikeArena_ModVersion(_, _, _, _)
+THEN
+DB_RoguelikeArena_ModVersion(1, 0, 5, 0); // Latest untracked version
+
+IF
+SavegameLoaded(_, _, _, _)
+AND
+DB_RoguelikeArena_ModVersion(_Major, _Minor, _Revision, _Build)
+THEN
+PROC_RoguelikeArena_SavegameLoaded(_Major, _Minor, _Revision, _Build);
+
+//REGION 1.0.1.0
+PROC
+PROC_RoguelikeArena_SavegameLoaded(_Major, _Minor, _Revision, _Build)
+AND
+QRY_RoguelikeArena_ShouldApplyPatch(_Major, _Minor, _Revision, _Build, 1, 0, 1, 0)
+THEN
+DebugBreak("Applying patch 1.0.1.0");
+PROC_RoguelikeArena_ApplyPatch_1_0_1_0();
 
 PROC
-PROC_RoguelikeArena_PatchRecruitmentBoardAvailableCompanions()
+PROC_RoguelikeArena_ApplyPatch_1_0_1_0()
 THEN
 DB_RoguelikeArena_AvailableCompanions("HumanMale", (CHARACTERGUID)CHARACTERGUID_RoguelikeArena_Companion_000_c4a2faca-e1e2-4fc9-90dd-a05c8e8fc113);
 DB_RoguelikeArena_AvailableCompanions("HumanMale", CHARACTERGUID_RoguelikeArena_Companion_001_c6c954d3-b839-4c88-ba44-bee1c469fc5d);
@@ -259,7 +357,7 @@ DB_RoguelikeArena_AvailableCompanions("UndeadLizardFemale", CHARACTERGUID_Roguel
 PROC_RoguelikeArena_GuidStringPoolAddAvailableCompanions();
 
 PROC
-PROC_RoguelikeArena_PatchRecruitmentBoardAvailableCompanions()
+PROC_RoguelikeArena_ApplyPatch_1_0_1_0()
 AND
 DB_RoguelikeArena_Companions(_Companion, _)
 AND
@@ -268,17 +366,19 @@ AND
 StringConcatenate("AvailableCompanionPool_", _Identity, _Pool)
 THEN
 PROC_RoguelikeArena_GuidStringPoolRemove(_Pool, _Companion);
+//END_REGION
 
-IF
-SavegameLoaded(_, _, _, _)
+//REGION 1.0.2.0
+PROC
+PROC_RoguelikeArena_SavegameLoaded(_Major, _Minor, _Revision, _Build)
 AND
-NOT DB_RoguelikeArena_SpawnTriggers(1, TRIGGERGUID_RoguelikeArena_AllySpawnerTrigger_000_8ab9c409-7d47-4ed0-bb02-7f8e1f7eae2e)
+QRY_RoguelikeArena_ShouldApplyPatch(_Major, _Minor, _Revision, _Build, 1, 0, 2, 0)
 THEN
-PROC_RoguelikeArena_PatchAllySpawnerTriggers();
-DebugBreak("Patching ally spawner triggers");
+DebugBreak("Applying patch 1.0.2.0");
+PROC_RoguelikeArena_ApplyPatch_1_0_2_0();
 
 PROC
-PROC_RoguelikeArena_PatchAllySpawnerTriggers()
+PROC_RoguelikeArena_ApplyPatch_1_0_2_0()
 THEN
 DB_RoguelikeArena_SpawnTriggers(1, TRIGGERGUID_RoguelikeArena_AllySpawnerTrigger_000_8ab9c409-7d47-4ed0-bb02-7f8e1f7eae2e);
 DB_RoguelikeArena_SpawnTriggers(1, TRIGGERGUID_RoguelikeArena_AllySpawnerTrigger_001_c0a4371b-cfb5-49a9-a7dd-c57b104f3b46);
@@ -347,6 +447,48 @@ DB_RoguelikeArena_SpawnTriggers(7, TRIGGERGUID_RoguelikeArena_AllySpawnerTrigger
 DB_RoguelikeArena_SpawnTriggers(7, TRIGGERGUID_RoguelikeArena_AllySpawnerTrigger_009_07e8cc0c-77d1-49a7-b44f-2e09e694caea);
 DB_RoguelikeArena_SpawnTriggers(7, TRIGGERGUID_RoguelikeArena_AllySpawnerTrigger_010_4b0deaac-a434-4570-8e86-d9bd323362da);
 DB_RoguelikeArena_SpawnTriggers(7, TRIGGERGUID_RoguelikeArena_AllySpawnerTrigger_011_86c3d679-ec08-4ac7-a316-b2ba4b4e6d0b);
+//END_REGION
+
+//REGION 1.1.0.0
+PROC
+PROC_RoguelikeArena_SavegameLoaded(_Major, _Minor, _Revision, _Build)
+AND
+QRY_RoguelikeArena_ShouldApplyPatch(_Major, _Minor, _Revision, _Build, 1, 1, 0, 0)
+THEN
+DebugBreak("Applying patch 1.1.0.0");
+PROC_RoguelikeArena_ApplyPatch_1_1_0_0();
+
+PROC
+PROC_RoguelikeArena_ApplyPatch_1_1_0_0()
+AND
+DB_RoguelikeArena_CleanupRegisteredObjects(_Object, _Arena)
+AND
+ObjectIsCharacter(_Object, 1)
+THEN
+DB_RoguelikeArena_ArenaCharacters(_Arena, (CHARACTERGUID)_Object);
+
+PROC
+PROC_RoguelikeArena_ApplyPatch_1_1_0_0()
+AND
+DB_RoguelikeArena_CleanupRegisteredObjects(_Object, _Arena)
+AND
+ObjectIsItem(_Object, 1)
+THEN
+DB_RoguelikeArena_ArenaItems(_Arena, (ITEMGUID)_Object);
+
+PROC
+PROC_RoguelikeArena_ApplyPatch_1_1_0_0()
+AND
+DB_RoguelikeArena_CleanupRegisteredObjects(_Object, _Arena)
+THEN
+DB_RoguelikeArena_ArenaObjects(_Arena, _Object);
+NOT DB_RoguelikeArena_CleanupRegisteredObjects(_Object, _Arena);
+
+PROC
+PROC_RoguelikeArena_ApplyPatch_1_1_0_0()
+THEN
+PROC_RoguelikeArena_InitArenaGameModeStory();
+//END_REGION
 EXITSECTION
 
 ENDEXITSECTION

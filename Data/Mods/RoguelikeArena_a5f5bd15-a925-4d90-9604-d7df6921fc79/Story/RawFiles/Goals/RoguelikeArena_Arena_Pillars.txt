@@ -35,7 +35,13 @@ THEN
 PROC_RoguelikeArena_ItemRandomRotate(_Pillar);
 // PROC_RoguelikeArena_ItemTeleportToValidPosition(_Pillar);
 // PROC_RoguelikeArena_ItemSnapToGround(_Pillar);
-PROC_RoguelikeArena_RegisterForCleanup(_Pillar, _Arena);
+PROC_RoguelikeArena_PillarSpawned(_Pillar, _Arena);
+
+// Triggered when a pillar is spawned inside an arena.
+PROC
+PROC_RoguelikeArena_PillarSpawned((ITEMGUID)_Pillar, (INTEGER)_Arena)
+THEN
+DB_NOOP(1);
 EXITSECTION
 
 ENDEXITSECTION

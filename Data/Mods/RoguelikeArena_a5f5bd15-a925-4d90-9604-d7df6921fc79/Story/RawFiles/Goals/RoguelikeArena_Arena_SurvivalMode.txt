@@ -1,0 +1,173 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+PROC
+PROC_RoguelikeArena_StartSurvivalMode((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty, (INTEGER)_Players)
+AND
+QRY_RoguelikeArena_RandomCount(_Difficulty, 2, 1, 1)
+AND
+DB_RoguelikeArena_RandomResult(_MaxWave)
+THEN
+DB_RoguelikeArena_SurvivalMode(_Arena, _Level, _Difficulty, _Players);
+DB_RoguelikeArena_CurrentWave(_Arena, 1);
+DB_RoguelikeArena_MaxWave(_Arena, _MaxWave);
+PROC_RoguelikeArena_SpawnEnemies(_Arena, _Level, _Difficulty, _Players);
+PROC_RoguelikeArena_SurvivalModeWaveStarted(_Arena, 1);
+
+PROC
+PROC_RoguelikeArena_EnemySpawned(_Enemy, _Arena, _)
+AND
+DB_RoguelikeArena_SurvivalMode(_Arena, _, _, _)
+AND
+QRY_RoguelikeArena_GetRandomPositionInArena(_Arena, "SPAWNER_ENEMY")
+AND
+DB_RoguelikeArena_RandomPositionResult(_X, _Y, _Z)
+THEN
+PROC_RoguelikeArena_CharacterMakeUndying(_Enemy, _X, _Y, _Z);
+
+PROC
+PROC_RoguelikeArena_CharacterRespawned(_Character)
+AND
+DB_RoguelikeArena_ArenaCharacters(_Arena, _Character)
+AND
+DB_RoguelikeArena_SurvivalMode(_Arena, _, _, _)
+AND
+GetFaction(_Character, "Evil NPC")
+AND
+QRY_RoguelikeArena_GetRandomPositionInArena(_Arena, "SPAWNER_ENEMY")
+AND
+DB_RoguelikeArena_RandomPositionResult(_X, _Y, _Z)
+THEN
+PROC_RoguelikeArena_CharacterSetRespawnPosition(_Character, _X, _Y, _Z);
+
+PROC
+PROC_RoguelikeArena_ArenaCombatRoundStarted(_Arena, _CombatID, _Round)
+AND
+DB_RoguelikeArena_CurrentWave(_Arena, _CurrentWave)
+AND
+DB_RoguelikeArena_MaxWave(_Arena, _MaxWave)
+THEN
+PROC_RoguelikeArena_SurvivalModeCombatRoundStarted(_Arena, _CombatID, _Round, _CurrentWave, _MaxWave);
+
+PROC
+PROC_RoguelikeArena_SurvivalModeCombatRoundStarted((INTEGER)_Arena, (INTEGER)_CombatID, (INTEGER)_Round, (INTEGER)_CurrentWave, (INTEGER)_MaxWave)
+AND
+_Round > 1
+AND
+QRY_RoguelikeArena_AnyPlayersInCombat(_CombatID)
+AND
+_CurrentWave >= _MaxWave
+THEN
+PROC_RoguelikeArena_LastWaveSurvived(_Arena, _CombatID);
+
+PROC
+PROC_RoguelikeArena_SurvivalModeCombatRoundStarted(_Arena, _CombatID, _Round, _CurrentWave, _MaxWave)
+AND
+_Round > 1
+AND
+QRY_RoguelikeArena_AnyPlayersInCombat(_CombatID)
+AND
+_CurrentWave < _MaxWave
+AND
+IntegerSum(_CurrentWave, 1, _NextWave)
+THEN
+NOT DB_RoguelikeArena_CurrentWave(_Arena, _CurrentWave);
+DB_RoguelikeArena_CurrentWave(_Arena, _NextWave);
+PROC_RoguelikeArena_SurvivalModeWaveStarted(_Arena, _NextWave);
+
+// Shows a notification about waves survived.
+PROC
+PROC_RoguelikeArena_SurvivalModeWaveStarted((INTEGER)_Arena, (INTEGER)_Wave)
+AND
+DB_RoguelikeArena_ArenaCharacters(_Arena, _Character)
+AND
+CharacterIsPlayer(_Character, 1)
+AND
+IntegerSubtract(_Wave, 1, _WavesSurvived)
+AND
+IntegertoString(_WavesSurvived, _WavesSurvivedString)
+AND
+DB_RoguelikeArena_MaxWave(_Arena, _MaxWave)
+AND
+IntegertoString(_MaxWave, _MaxWaveString)
+AND
+StringConcatenate(_WavesSurvivedString, "/", _NotificationPart1)
+AND
+StringConcatenate(_MaxWaveString, " waves survived", _NotificationPart2)
+AND
+StringConcatenate(_NotificationPart1, _NotificationPart2, _Notification)
+THEN
+ShowNotification(_Character, _Notification);
+
+// Prevent race conditions where the last enemy dies on their own turn and gets resurrected after the combat ends.
+PROC
+PROC_RoguelikeArena_SurvivalModeWaveStarted(_Arena, _Wave)
+AND
+DB_RoguelikeArena_MaxWave(_Arena, _MaxWave)
+AND
+_Wave == _MaxWave
+AND
+DB_RoguelikeArena_ArenaCharacters(_Arena, _Character)
+AND
+QRY_RoguelikeArena_CharacterIsUndying(_Character)
+THEN
+PROC_RoguelikeArena_CharacterMakeDying(_Character);
+
+PROC
+PROC_RoguelikeArena_LastWaveSurvived((INTEGER)_Arena, (INTEGER)_CombatID)
+AND
+DB_CombatCharacters(_Character, _CombatID)
+AND
+QRY_RoguelikeArena_CharacterIsUndying(_Character)
+THEN
+PROC_RoguelikeArena_CharacterMakeDying(_Character);
+
+PROC
+PROC_RoguelikeArena_LastWaveSurvived(_, _CombatID)
+AND
+DB_CombatCharacters(_Character, _CombatID)
+AND
+GetFaction(_Character, "Evil NPC")
+AND
+CharacterIsDead(_Character, 0)
+THEN
+CharacterDie(_Character, 1, "Explode");
+
+PROC
+PROC_RoguelikeArena_LastWaveSurvived(_Arena, _CombatID)
+THEN
+PROC_RoguelikeArena_EndArenaCombat(_Arena, _CombatID);
+
+PROC
+PROC_RoguelikeArena_ArenaCombatEnded(_Arena, _)
+AND
+DB_RoguelikeArena_SurvivalMode(_Arena, _, _, _)
+THEN
+PROC_RoguelikeArena_SurvivalModeEnded(_Arena);
+
+PROC
+PROC_RoguelikeArena_SurvivalModeEnded((INTEGER)_Arena)
+AND
+DB_RoguelikeArena_SurvivalMode(_Arena, _Level, _Difficulty, _Players)
+THEN
+NOT DB_RoguelikeArena_SurvivalMode(_Arena, _Level, _Difficulty, _Players);
+
+PROC
+PROC_RoguelikeArena_SurvivalModeEnded(_Arena)
+AND
+DB_RoguelikeArena_CurrentWave(_Arena, _CurrentWave)
+THEN
+NOT DB_RoguelikeArena_CurrentWave(_Arena, _CurrentWave);
+
+PROC
+PROC_RoguelikeArena_SurvivalModeEnded(_Arena)
+AND
+DB_RoguelikeArena_MaxWave(_Arena, _MaxWave)
+THEN
+NOT DB_RoguelikeArena_MaxWave(_Arena, _MaxWave);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena_Arena_GameMode"

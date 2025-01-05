@@ -49,8 +49,14 @@ THEN
 PROC_RoguelikeArena_ItemRandomRotate(_BlessedStatue);
 // PROC_RoguelikeArena_ItemTeleportToValidPosition(_BlessedStatue);
 // PROC_RoguelikeArena_ItemSnapToGround(_BlessedStatue);
-PROC_RoguelikeArena_RegisterForCleanup(_BlessedStatue, _Arena);
 DB_RoguelikeArena_BlessedStatues(_BlessedStatue, _SurfaceType);
+PROC_RoguelikeArena_BlessedStatueSpawned(_BlessedStatue, _Arena, _SurfaceType);
+
+// Triggered when a blessed statue is spawned inside an arena. _SurfaceType is the type of surface the statue creates when used.
+PROC
+PROC_RoguelikeArena_BlessedStatueSpawned((ITEMGUID)_BlessedStatue, (INTEGER)_Arena, (STRING)_SurfaceType)
+THEN
+DB_NOOP(1);
 
 IF
 CharacterUsedItemTemplate(_Character, _Template, _Item)
@@ -66,8 +72,8 @@ THEN
 CreateSurfaceAtPosition(_X, _Y, _Z, _SurfaceType, 3.0, 12.0);
 ApplyStatus(_Character, "BLESSED", 12.0);
 
-IF
-DB_RoguelikeArena_RemovedItems(_Item)
+PROC
+PROC_RoguelikeArena_ItemRemove(_Item)
 AND
 DB_RoguelikeArena_BlessedStatues(_Item, _SurfaceType)
 THEN

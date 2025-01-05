@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<stats stat_object_definition_id="e2a8d59b-0e34-4a7c-bf5f-db7a2bb34cde">
+  <stat_objects>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_TeamDeathmatch" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Team Deathmatch" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Kill all enemies to win." />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="statIcons_Reputation" />
+        <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="15" enumeration_type_name="FormatStringColor" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_RoguelikeArena_TeamDeathmatch" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_SurvivalMode" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Survival Mode" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Survive to win." />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="statIcons_Reputation" />
+        <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="15" enumeration_type_name="FormatStringColor" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_RoguelikeArena_SurvivalMode" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_DefeatTheChampion" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Defeat the Champion" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Defeat the champion to win." />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="statIcons_Reputation" />
+        <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="15" enumeration_type_name="FormatStringColor" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_RoguelikeArena_DefeatTheChampion" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_Champion" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Champion" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Character gains unique powers and is empowered by thralls." />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="Skill_Summoning_Supercharge" />
+        <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="15" enumeration_type_name="FormatStringColor" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_RoguelikeArena_Champion" />
+        <field name="ApplyEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_GP_Status_Hypercharged_Apply_01:Dummy_BodyFX" />
+        <field name="StatusEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_GP_Status_Hypercharged_01:Dummy_StatusFX;RS3_FX_GP_Status_Hypercharged_Hands_01:Dummy_L_HandFX,Dummy_R_HandFX" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_RoguelikeArena_Champion" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_Thrall" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Thrall" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Character is empowering the champion." />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="statIcons_SoulBond" />
+        <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="15" enumeration_type_name="FormatStringColor" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_RoguelikeArena_Thrall" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_Undying" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Undying" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Character respawns shortly after killed." />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="Skill_Racial_PlayDead" />
+        <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="15" enumeration_type_name="FormatStringColor" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_RoguelikeArena_Undying" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_Battleground" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Battleground" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Kill all enemies to win. You are accompanied by allies." />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="statIcons_Reputation" />
+        <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="15" enumeration_type_name="FormatStringColor" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_RoguelikeArena_Battleground" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_PurgeTheSpirits" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Purge the Spirits" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Purge all spirits using source skills or by killing enemies to win." />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="statIcons_Reputation" />
+        <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="15" enumeration_type_name="FormatStringColor" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_RoguelikeArena_PurgeTheSpirits" />
+      </fields>
+    </stat_object>
+  </stat_objects>
+</stats>

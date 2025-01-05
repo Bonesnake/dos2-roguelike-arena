@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<stats stat_object_definition_id="48e63fff-81e0-42bb-ac51-39f5904b97be">
+  <stat_objects>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_RoguelikeArena_Respawning" />
+        <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
+        <field name="Duration" type="IntegerStatObjectFieldDefinition" value="3" />
+        <field name="StatusIcon" type="StringStatObjectFieldDefinition" value="statIcons_Weak" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Stats_PermaFrost" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_RoguelikeArena_Champion" />
+        <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
+        <field name="VitalityBoost" type="IntegerStatObjectFieldDefinition" value="50" />
+        <field name="APStart" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="APRecovery" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="ArmorBoost" type="IntegerStatObjectFieldDefinition" value="50" />
+        <field name="MagicArmorBoost" type="IntegerStatObjectFieldDefinition" value="50" />
+        <field name="Duration" type="IntegerStatObjectFieldDefinition" value="-1" />
+        <field name="StatusIcon" type="StringStatObjectFieldDefinition" value="Skill_Summoning_Supercharge" />
+        <field name="Wits" type="EnumerationStatObjectFieldDefinition" value="151" enumeration_type_name="Penalty PreciseQualifier" />
+        <field name="SPCostBoost" type="IntegerStatObjectFieldDefinition" value="-1" />
+      </fields>
+    </stat_object>
+  </stat_objects>
+</stats>

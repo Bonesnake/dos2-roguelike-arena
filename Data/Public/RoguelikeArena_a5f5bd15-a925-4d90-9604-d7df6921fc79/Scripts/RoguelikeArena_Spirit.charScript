@@ -1,0 +1,24 @@
+INIT
+	CHARACTER:__Me
+	EXTERN FLOAT:%WanderRange = 5.0
+	EXTERN FLOAT:%WanderDuration = 1
+	EXTERN FLOAT:%FleeRange = 5.0
+	EXTERN FLOAT:%FleeDistance = 10.0
+
+BEHAVIOUR
+REACTION Flee, 1000
+USAGE COMBAT
+VARS
+	CHARACTER:_Char
+ACTIONS
+	IF "c1"
+		CharacterGet(_Char,__Me,%FleeRange,Lowest,Distance,Player)
+	THEN
+		CharacterLookAt(_Char,1)
+		Sleep(0.2)
+		CharacterFleeFrom(Player,%FleeDistance)
+		CharacterLookAt(_Char)
+	ELSE
+		CharacterWander(%WanderRange,%WanderDuration,1)
+	ENDIF
+	EndTurn(__Me)

@@ -483,6 +483,7 @@ DB_RoguelikeArena_Skills("Sourcehound_Ranger", 4, 0, 0, "Projectile_EnemyHoundDa
 //DB_RoguelikeArena_Skills(1, 0, "BULL", "Rush_EnemyBullRush");
 //END_REGION
 KBSECTION
+//REGION Equipment
 // Sets equipment level of the character to the specified level.
 PROC
 PROC_RoguelikeArena_CharacterLevelUpEquipmentTo((CHARACTERGUID)_Character, (INTEGER)_Level)
@@ -500,6 +501,7 @@ PROC
 PROC_RoguelikeArena_CharacterLevelUpEquipmentTo((CHARACTERGUID)_Character, (INTEGER)_Level)
 THEN
 ApplyStatus(_Character, "RESTED", 0.0, 0, NULL_00000000-0000-0000-0000-000000000000);
+//END_REGION
 
 //REGION Skills
 PROC
@@ -649,6 +651,78 @@ CharacterOverrideMaxSourcePoints(_Character, _Max);
 CharacterAddSourcePoints(_Character, _Points);
 //END_REGION
 
+//REGION Undying
+PROC
+PROC_RoguelikeArena_CharacterMakeUndying((CHARACTERGUID)_Character)
+AND
+GetPosition(_Character, _X, _Y, _Z)
+THEN
+PROC_RoguelikeArena_CharacterMakeUndying(_Character, _X, _Y, _Z);
+
+PROC
+PROC_RoguelikeArena_CharacterMakeUndying((CHARACTERGUID)_Character, (REAL)_X, (REAL)_Y, (REAL)_Z)
+THEN
+ApplyStatus(_Character, "RoguelikeArena_Undying", -1.0);
+DB_RoguelikeArena_UndyingCharacters(_Character, _X, _Y, _Z);
+
+PROC
+PROC_RoguelikeArena_CharacterSetRespawnPosition((CHARACTERGUID)_Character, (REAL)_X, (REAL)_Y, (REAL)_Z)
+AND
+DB_RoguelikeArena_UndyingCharacters(_Character, _OldX, _OldY, _OldZ)
+THEN
+NOT DB_RoguelikeArena_UndyingCharacters(_Character, _OldX, _OldY, _OldZ);
+DB_RoguelikeArena_UndyingCharacters(_Character, _X, _Y, _Z);
+
+IF
+CharacterDied(_Character)
+AND
+DB_RoguelikeArena_UndyingCharacters(_Character, _X, _Y, _Z)
+THEN
+TeleportToPosition(_Character, _X, _Y, _Z, "", 0);
+CharacterResurrect(_Character);
+
+IF
+CharacterResurrected(_Character)
+AND
+DB_RoguelikeArena_UndyingCharacters(_Character, _, _, _)
+THEN
+PROC_RoguelikeArena_CharacterFullRestore(_Character);
+ApplyStatus(_Character, "RoguelikeArena_Respawning", 18.0, 1);
+ApplyStatus(_Character, "RoguelikeArena_Undying", -1.0);
+PROC_RoguelikeArena_CharacterRespawning(_Character);
+
+PROC
+PROC_RoguelikeArena_CharacterRespawning((CHARACTERGUID)_Character)
+THEN
+DB_NOOP(1);
+
+IF
+CharacterStatusRemoved(_Character, "RoguelikeArena_Respawning", _)
+THEN
+PROC_RoguelikeArena_CharacterRespawned(_Character);
+
+PROC
+PROC_RoguelikeArena_CharacterRespawned((CHARACTERGUID)_Character)
+THEN
+DB_NOOP(1);
+
+PROC
+PROC_RoguelikeArena_CharacterMakeDying((CHARACTERGUID)_Character)
+AND
+DB_RoguelikeArena_UndyingCharacters(_Character, _X, _Y, _Z)
+THEN
+RemoveStatus(_Character, "RoguelikeArena_Undying");
+NOT DB_RoguelikeArena_UndyingCharacters(_Character, _X, _Y, _Z);
+
+QRY
+QRY_RoguelikeArena_CharacterIsUndying((CHARACTERGUID)_Character)
+AND
+DB_RoguelikeArena_UndyingCharacters(_Character, _X, _Y, _Z)
+THEN
+DB_NOOP(1);
+//END_REGION
+
+//REGION Misc
 // Restores character similarly to the built-in restore proc but without removing all kinds of statuses.
 PROC
 PROC_RoguelikeArena_CharacterFullRestore((CHARACTERGUID)_Character)
@@ -679,12 +753,7 @@ PROC_RoguelikeArena_CharacterRemove((CHARACTERGUID)_Character)
 THEN
 CharacterDieImmediate(_Character, 0, "None");
 SetOnStage(_Character, 0);
-DB_RoguelikeArena_RemovedCharacters(_Character);
-
-IF
-DB_RoguelikeArena_RemovedCharacters(_Character)
-THEN
-DB_NOOP(1);
+//END_REGION
 EXITSECTION
 
 ENDEXITSECTION

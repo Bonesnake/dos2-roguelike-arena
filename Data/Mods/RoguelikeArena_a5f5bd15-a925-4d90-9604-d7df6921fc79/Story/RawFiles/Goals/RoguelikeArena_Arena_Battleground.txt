@@ -1,0 +1,91 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+PROC
+PROC_RoguelikeArena_StartBattleground((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty, (INTEGER)_Players)
+THEN
+DB_RoguelikeArena_Battleground(_Arena, _Level, _Difficulty, _Players);
+DB_Singleton("RoguelikeArena_SpawnAsAlly", 1);
+PROC_RoguelikeArena_SpawnEnemies(_Arena, _Level, _Difficulty, _Players);
+DB_Singleton("RoguelikeArena_SpawnAsAlly", 0);
+PROC_RoguelikeArena_SpawnEnemies(_Arena, _Level, _Difficulty, _Players);
+PROC_RoguelikeArena_SpawnEnemies(_Arena, _Level, _Difficulty, _Players);
+
+PROC
+PROC_RoguelikeArena_EnemySpawned(_Enemy, _Arena, _)
+AND
+DB_RoguelikeArena_Battleground(_Arena, _, _, _)
+AND
+DB_Singleton("RoguelikeArena_SpawnAsAlly", 1)
+AND
+QRY_RoguelikeArena_GetRandomPositionInArena(_Arena, "SPAWNER_ALLY")
+AND
+DB_RoguelikeArena_RandomPositionResult(_X, _Y, _Z)
+AND
+IntegertoString(_Arena, _ArenaString)
+AND
+StringConcatenate(_ArenaString, "-Ally", _CombatGroupID)
+THEN
+TeleportToPosition(_Enemy, _X, _Y, _Z, "", 0);
+SetFaction(_Enemy, "Good NPC"); // This doesn't always work for some reason
+SetCombatGroupID(_Enemy, _CombatGroupID);
+DB_RoguelikeArena_BattlegroundAllies(_Enemy);
+
+// Changes ally alignment if it previously failed.
+PROC
+PROC_RoguelikeArena_ArenaCombatRoundStarted(_Arena, _, _Round)
+AND
+_Round == 1
+AND
+DB_RoguelikeArena_BattlegroundAllies(_Ally)
+AND
+GetFaction(_Ally, "Evil NPC")
+THEN
+SetFaction(_Ally, "Good NPC");
+
+PROC
+PROC_RoguelikeArena_ArenaCombatRoundStarted(_Arena, _, _Round)
+AND
+DB_RoguelikeArena_BattlegroundAllies(_Ally)
+THEN
+NOT DB_RoguelikeArena_BattlegroundAllies(_Ally);
+
+PROC
+PROC_RoguelikeArena_ArenaCombatEnemiesDied(_Arena, _CombatID)
+AND
+DB_RoguelikeArena_Battleground(_Arena, _, _, _)
+AND
+DB_RoguelikeArena_ArenaCharacters(_Arena, _Character)
+AND
+GetFaction(_Character, "Good NPC")
+AND
+CharacterIsDead(_Character, 0)
+THEN
+CharacterDie(_Character, 1, "Explode");
+
+PROC
+PROC_RoguelikeArena_ArenaCombatEnemiesDied(_Arena, _CombatID)
+AND
+DB_RoguelikeArena_Battleground(_Arena, _, _, _)
+THEN
+PROC_RoguelikeArena_EndArenaCombat(_Arena, _CombatID);
+
+PROC
+PROC_RoguelikeArena_ArenaCombatEnded(_Arena, _)
+AND
+DB_RoguelikeArena_Battleground(_Arena, _, _, _)
+THEN
+PROC_RoguelikeArena_BattlegroundEnded(_Arena);
+
+PROC
+PROC_RoguelikeArena_BattlegroundEnded((INTEGER)_Arena)
+AND
+DB_RoguelikeArena_Battleground(_Arena, _Level, _Difficulty, _Players)
+THEN
+NOT DB_RoguelikeArena_Battleground(_Arena, _Level, _Difficulty, _Players);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena_Arena_GameMode"

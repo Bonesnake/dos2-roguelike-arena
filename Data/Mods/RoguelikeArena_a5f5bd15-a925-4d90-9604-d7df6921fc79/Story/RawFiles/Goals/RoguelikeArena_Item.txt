@@ -35,13 +35,8 @@ ItemMoveToPosition(_Item, _X, _Y, _Z, 10000.0, 0.0, "", 0);
 PROC
 PROC_RoguelikeArena_ItemRemove((ITEMGUID)_Item)
 THEN
+SetOnStage(_Item, 0); // Prevents some issues where items are removed from the game but still registered to triggers.
 ItemRemove(_Item);
-DB_RoguelikeArena_RemovedItems(_Item);
-
-IF
-DB_RoguelikeArena_RemovedItems(_Item)
-THEN
-DB_NOOP(1);
 
 PROC
 PROC_RoguelikeArena_ItemGenerateTreasure((ITEMGUID)_Item, (STRING)_Treasure, (INTEGER)_Level, (INTEGER)_Times)

@@ -1,0 +1,76 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+//REGION Events
+IF
+CharacterEnteredTrigger(_Character, _Trigger)
+AND
+DB_RoguelikeArena_ArenaEventTriggers(_Arena, _Trigger)
+THEN
+PROC_RoguelikeArena_CharacterEnteredArena(_Character, _Arena);
+
+// Triggered when a character enters an arena.
+PROC
+PROC_RoguelikeArena_CharacterEnteredArena((CHARACTERGUID)_Character, (INTEGER)_Arena)
+THEN
+DB_NOOP(1);
+
+IF
+CharacterLeftTrigger(_Character, _Trigger)
+AND
+DB_RoguelikeArena_ArenaEventTriggers(_Arena, _Trigger)
+THEN
+PROC_RoguelikeArena_CharacterLeftArena(_Character, _Arena);
+
+// Triggered when a character leaves an arena.
+PROC
+PROC_RoguelikeArena_CharacterLeftArena((CHARACTERGUID)_Character, (INTEGER)_Arena)
+THEN
+DB_NOOP(1);
+
+IF
+CharacterDied(_Character)
+AND
+DB_RoguelikeArena_ArenaCharacters(_Arena, _Character)
+THEN
+PROC_RoguelikeArena_CharacterDiedInArena(_Character, _Arena);
+
+// Triggered when a character dies in an arena.
+PROC
+PROC_RoguelikeArena_CharacterDiedInArena((CHARACTERGUID)_Character, (INTEGER)_Arena)
+THEN
+DB_NOOP(1);
+
+IF
+CharacterWentOnStage(_Character, _Bool)
+AND
+DB_RoguelikeArena_ArenaCharacters(_Arena, _Character)
+THEN
+PROC_RoguelikeArena_CharacterWentOnStageInArena(_Character, _Bool, _Arena);
+
+// Triggered whenever a character goes on/off-stage.
+PROC
+PROC_RoguelikeArena_CharacterWentOnStageInArena((CHARACTERGUID)_Character, (INTEGER)_Bool, (INTEGER)_Arena)
+THEN
+DB_NOOP(1);
+//END_REGION
+
+//REGION DBs
+PROC
+PROC_RoguelikeArena_CharacterEnteredArena(_Character, _Arena)
+THEN
+DB_RoguelikeArena_ArenaCharacters(_Arena, _Character);
+
+PROC
+PROC_RoguelikeArena_CharacterLeftArena(_Character, _Arena)
+AND
+DB_RoguelikeArena_ArenaCharacters(_Arena, _Character)
+THEN
+NOT DB_RoguelikeArena_ArenaCharacters(_Arena, _Character);
+//END_REGION
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena_Arena"

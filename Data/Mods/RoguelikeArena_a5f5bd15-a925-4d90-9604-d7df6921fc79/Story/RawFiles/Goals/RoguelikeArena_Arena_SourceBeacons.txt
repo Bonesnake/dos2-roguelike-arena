@@ -36,17 +36,21 @@ PROC_RoguelikeArena_ItemRandomRotate(_SourceBeacon);
 // PROC_RoguelikeArena_ItemTeleportToValidPosition(_SourceBeacon);
 // PROC_RoguelikeArena_ItemSnapToGround(_SourceBeacon);
 ItemLevelUpTo(_SourceBeacon, _Level);
-PROC_RoguelikeArena_RegisterForCleanup(_SourceBeacon, _Arena);
 SetInArena(_SourceBeacon, 1);
 DB_RoguelikeArena_SourceBeacons(_Arena, _SourceBeacon);
+PROC_RoguelikeArena_SourceBeaconSpawned(_SourceBeacon, _Arena);
+
+// Triggered when a source beacon is spawned inside an arena.
+PROC
+PROC_RoguelikeArena_SourceBeaconSpawned((ITEMGUID)_SourceBeacon, (INTEGER)_Arena)
+THEN
+DB_NOOP(1);
 
 // Make sure beacons don't remain hostile after combat ends.
 PROC
-PROC_RoguelikeArena_ArenaCombatEnded(_Arena, _, _, _)
+PROC_RoguelikeArena_ArenaCombatEnded(_Arena, _)
 AND
 DB_RoguelikeArena_SourceBeacons(_Arena, _SourceBeacon)
-AND
-QRY_RoguelikeArena_ObjectIsInArena(_SourceBeacon, _Arena)
 AND
 IsInArena(_SourceBeacon, 1)
 THEN

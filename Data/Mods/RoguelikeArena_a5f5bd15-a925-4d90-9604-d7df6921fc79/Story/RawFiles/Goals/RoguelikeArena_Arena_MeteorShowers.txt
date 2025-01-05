@@ -33,7 +33,27 @@ AND
 CharacterCreateAtPosition(_X, _Y, _Z, _MeteorShowerTemplate, 0, _MeteorShower)
 THEN
 CharacterLevelUpTo(_MeteorShower, _Level);
-PROC_RoguelikeArena_RegisterForCleanup(_MeteorShower, _Arena);
+PROC_RoguelikeArena_MeteorShowerSpawned(_MeteorShower, _Arena);
+
+// Triggered when a meteor shower is spawned inside an arena.
+PROC
+PROC_RoguelikeArena_MeteorShowerSpawned((CHARACTERGUID)_MeteorShower, (INTEGER)_Arena)
+THEN
+DB_NOOP(1);
+
+// Make sure meteor showers are disabled after combat ends.
+PROC
+PROC_RoguelikeArena_ArenaCombatEnded(_Arena, _)
+AND
+DB_RoguelikeArena_ArenaCharacters(_Arena, _Character)
+AND
+GetTemplate(_Character, _CharacterTemplate)
+AND
+DB_RoguelikeArena_MeteorShowerTemplate(_MeteorShowerTemplate)
+AND
+_CharacterTemplate == _MeteorShowerTemplate
+THEN
+SetOnStage(_Character, 0);
 EXITSECTION
 
 ENDEXITSECTION

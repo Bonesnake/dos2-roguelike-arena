@@ -450,5 +450,24 @@
         <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
       </fields>
     </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_Spirit" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Base" />
+        <field name="Strength" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
+        <field name="Finesse" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
+        <field name="Intelligence" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
+        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
+        <field name="Memory" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
+        <field name="Wits" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
+        <field name="Armor" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="MagicArmor" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="Vitality" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+        <field name="Initiative" type="IntegerStatObjectFieldDefinition" value="-999" />
+        <field name="Flags" type="EnumerationListStatObjectFieldDefinition" value="10" enumeration_type_name="AttributeFlags" />
+        <field name="Talents" type="StringStatObjectFieldDefinition" value="NoAttackOfOpportunity" />
+      </fields>
+    </stat_object>
   </stat_objects>
 </stats>

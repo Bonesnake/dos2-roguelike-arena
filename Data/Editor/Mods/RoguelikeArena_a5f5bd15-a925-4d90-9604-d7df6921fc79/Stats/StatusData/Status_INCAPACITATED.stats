@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<stats stat_object_definition_id="05f87e82-499d-4e0b-8dd7-859b8b3e5beb">
+  <stat_objects>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_Respawning" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Respawning" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Character is respawning." />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="statIcons_Weak" />
+        <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="15" enumeration_type_name="FormatStringColor" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_RoguelikeArena_Respawning" />
+        <field name="ApplyEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_GP_Combat_Resurrect_Generic_01" />
+        <field name="SoundStart" type="StringStatObjectFieldDefinition" value="GP_Combat_Resurrect_Generic_Overlay" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="PETRIFIED" />
+        <field name="SavingThrow" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="SavingThrow" />
+        <field name="ImmuneFlag" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="AttributeFlag" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_RoguelikeArena_Respawning" />
+      </fields>
+    </stat_object>
+  </stat_objects>
+</stats>

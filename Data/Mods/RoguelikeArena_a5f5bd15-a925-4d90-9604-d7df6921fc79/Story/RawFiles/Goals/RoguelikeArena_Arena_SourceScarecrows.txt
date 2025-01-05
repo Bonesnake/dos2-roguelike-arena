@@ -35,7 +35,13 @@ THEN
 PROC_RoguelikeArena_ItemRandomRotate(_SourceScarecrow);
 // PROC_RoguelikeArena_ItemTeleportToValidPosition(_SourceScarecrow);
 // PROC_RoguelikeArena_ItemSnapToGround(_SourceScarecrow);
-PROC_RoguelikeArena_RegisterForCleanup(_SourceScarecrow, _Arena);
+PROC_RoguelikeArena_SourceScarecrowSpawned(_SourceScarecrow, _Arena);
+
+// Triggered when a source scarecrow is spawned inside an arena.
+PROC
+PROC_RoguelikeArena_SourceScarecrowSpawned((ITEMGUID)_SourceScarecrow, (INTEGER)_Arena)
+THEN
+DB_NOOP(1);
 EXITSECTION
 
 ENDEXITSECTION

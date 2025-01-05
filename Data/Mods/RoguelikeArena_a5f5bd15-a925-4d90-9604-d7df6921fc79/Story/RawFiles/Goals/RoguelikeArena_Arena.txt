@@ -8,6 +8,7 @@ PROC_RoguelikeArena_InitArenaStory()
 THEN
 GoalCompleted;
 PROC_RoguelikeArena_InitArenaEventStory();
+PROC_RoguelikeArena_InitArenaGameModeStory();
 EXITSECTION
 
 ENDEXITSECTION

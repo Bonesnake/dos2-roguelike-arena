@@ -1,0 +1,114 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+//REGION Events
+IF
+ObjectEnteredCombat(_Object, _CombatID)
+AND
+DB_RoguelikeArena_Arenas(_Arena)
+AND
+QRY_RoguelikeArena_CombatIsInArena(_CombatID, _Arena)
+THEN
+PROC_RoguelikeArena_ObjectEnteredArenaCombat(_Object, _Arena, _CombatID);
+
+// Triggered when an object (character or item) enters a combat in an arena.
+PROC
+PROC_RoguelikeArena_ObjectEnteredArenaCombat((GUIDSTRING)_Object, (INTEGER)_Arena, (INTEGER)_CombatID)
+THEN
+DB_NOOP(1);
+
+IF
+ObjectLeftCombat(_Object, _CombatID)
+AND
+DB_RoguelikeArena_Arenas(_Arena)
+AND
+QRY_RoguelikeArena_CombatIsInArena(_CombatID, _Arena)
+THEN
+PROC_RoguelikeArena_ObjectLeftArenaCombat(_Object, _Arena, _CombatID);
+
+// Triggered when an object (character or item) leaves a combat in an arena.
+PROC
+PROC_RoguelikeArena_ObjectLeftArenaCombat((GUIDSTRING)_Object, (INTEGER)_Arena, (INTEGER)_CombatID)
+THEN
+DB_NOOP(1);
+
+IF
+ObjectTurnStarted(_Object)
+AND
+DB_RoguelikeArena_ArenaObjects(_Arena, _Object)
+THEN
+PROC_RoguelikeArena_ObjectArenaTurnStarted(_Object, _Arena);
+
+// Triggered when an object is in combat in an arena, and its current turn has just started.
+PROC
+PROC_RoguelikeArena_ObjectArenaTurnStarted((GUIDSTRING)_Object, (INTEGER)_Arena)
+THEN
+DB_NOOP(1);
+
+IF
+ObjectTurnEnded(_Object)
+AND
+DB_RoguelikeArena_ArenaObjects(_Arena, _Object)
+THEN
+PROC_RoguelikeArena_ObjectArenaTurnEnded(_Object, _Arena);
+
+// Triggered when an object is in combat in an arena, and its current turn has ended.
+PROC
+PROC_RoguelikeArena_ObjectArenaTurnEnded((GUIDSTRING)_Object, (INTEGER)_Arena)
+THEN
+DB_NOOP(1);
+//END_REGION
+
+//REGION DBs
+PROC
+PROC_RoguelikeArena_CharacterEnteredArena(_Character, _Arena)
+THEN
+DB_RoguelikeArena_ArenaObjects(_Arena, (GUIDSTRING)_Character);
+
+PROC
+PROC_RoguelikeArena_CharacterLeftArena(_Character, _Arena)
+AND
+DB_RoguelikeArena_ArenaObjects(_Arena, _Character)
+THEN
+NOT DB_RoguelikeArena_ArenaObjects(_Arena, _Character);
+
+PROC
+PROC_RoguelikeArena_ItemEnteredArena(_Item, _Arena)
+THEN
+DB_RoguelikeArena_ArenaObjects(_Arena, (GUIDSTRING)_Item);
+
+PROC
+PROC_RoguelikeArena_ItemLeftArena(_Item, _Arena)
+AND
+DB_RoguelikeArena_ArenaObjects(_Arena, _Item)
+THEN
+NOT DB_RoguelikeArena_ArenaObjects(_Arena, _Item);
+//END_REGION
+
+//REGION Queries
+// Returns whether _Object is inside an arena.
+QRY
+QRY_RoguelikeArena_ObjectIsInArena((GUIDSTRING)_Object)
+AND
+DB_RoguelikeArena_Arenas(_Arena)
+AND
+QRY_RoguelikeArena_ObjectIsInArena(_Object, _Arena)
+THEN
+DB_NOOP(1);
+
+// Returns whether _Object is inside _Arena.
+QRY
+QRY_RoguelikeArena_ObjectIsInArena((GUIDSTRING)_Object, (INTEGER)_Arena)
+AND
+DB_RoguelikeArena_ArenaEventTriggers(_Arena, _Trigger)
+AND
+ObjectIsInTrigger(_Object, _Trigger, 1)
+THEN
+DB_NOOP(1);
+//END_REGION
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena_Arena"

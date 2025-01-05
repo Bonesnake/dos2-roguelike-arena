@@ -110,41 +110,34 @@ GlobalClearFlag("RoguelikeArena_FirstChallenge");
 GlobalClearFlag("RoguelikeArena_ActiveChallengeComplete");
 
 PROC
-PROC_RoguelikeArena_ArenaCombatEnded(_, _, _, _)
+PROC_RoguelikeArena_ArenaCombatEnded(_, _)
 THEN
 GlobalSetFlag("RoguelikeArena_ActiveChallengeComplete");
 
-IF
-CharacterEnteredTrigger(_, _Trigger)
-AND
-DB_RoguelikeArena_ArenaEventTriggers(_Arena, _Trigger)
+PROC
+PROC_RoguelikeArena_CharacterEnteredArena(_, _Arena)
 AND
 DB_RoguelikeArena_ActiveArena(_Arena, _, _, _)
+AND
+GlobalGetFlag("RoguelikeArena_ActiveArenaOccupied", 0)
 THEN
 GlobalSetFlag("RoguelikeArena_ActiveArenaOccupied");
 
-IF
-CharacterLeftTrigger(_, _Trigger)
+PROC
+PROC_RoguelikeArena_CharacterLeftArena(_, _Arena)
 AND
-NOT DB_InRegion(_, _Trigger)
+DB_RoguelikeArena_ActiveArena(_Arena, _, _, _)
+AND
+NOT QRY_RoguelikeArena_AnyPlayersInArena(_Arena)
 THEN
 GlobalClearFlag("RoguelikeArena_ActiveArenaOccupied");
 
 QRY
-QRY_RoguelikeArena_ObjectIsInArena((GUIDSTRING)_Object)
+QRY_RoguelikeArena_AnyPlayersInArena((INTEGER)_Arena)
 AND
-DB_RoguelikeArena_Arenas(_Arena)
+DB_RoguelikeArena_ArenaCharacters(_Arena, _Character)
 AND
-QRY_RoguelikeArena_ObjectIsInArena(_Object, _Arena)
-THEN
-DB_NOOP(1);
-
-QRY
-QRY_RoguelikeArena_ObjectIsInArena((GUIDSTRING)_Object, (INTEGER)_Arena)
-AND
-DB_RoguelikeArena_ArenaEventTriggers(_Arena, _Trigger)
-AND
-ObjectIsInTrigger(_Object, _Trigger, 1)
+CharacterIsPlayer(_Character, 1)
 THEN
 DB_NOOP(1);
 EXITSECTION

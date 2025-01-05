@@ -36,7 +36,6 @@ PROC_RoguelikeArena_ArenaEnded(_Arena, _Level, _Difficulty, _Players)
 THEN
 PROC_RoguelikeArena_CleanUp(_Arena);
 
-// Cleans up the given arena.
 PROC
 PROC_RoguelikeArena_CleanUp((INTEGER)_Arena)
 THEN
@@ -44,55 +43,24 @@ PROC_RoguelikeArena_CleanUpCharacters(_Arena);
 PROC_RoguelikeArena_CleanUpItems(_Arena);
 PROC_RoguelikeArena_CleanUpSurfaces(_Arena);
 
-//REGION Clean up characters
-// Kills and hides characters, then unregisters them from cleanup.
 PROC
 PROC_RoguelikeArena_CleanUpCharacters((INTEGER)_Arena)
 AND
-DB_RoguelikeArena_CleanupRegisteredObjects(_Character, _Arena)
+DB_RoguelikeArena_ArenaCharacters(_Arena, _Character)
 AND
-ObjectExists(_Character, 1)
-AND
-ObjectIsCharacter(_Character, 1)
+IsTagged(_Character, "IGNORE_CLEANUP", 0)
 THEN
 PROC_RoguelikeArena_CharacterRemove((CHARACTERGUID)_Character);
 
-// Kills and hides characters, then unregisters them from cleanup.
-PROC
-PROC_RoguelikeArena_CleanUpCharacters((INTEGER)_Arena)
-AND
-DB_RoguelikeArena_CleanupRegisteredObjects(_Character, _Arena)
-AND
-ObjectIsCharacter(_Character, 1)
-THEN
-PROC_RoguelikeArena_UnregisterFromCleanup(_Character);
-//END_REGION
-
-//REGION Clean up items
-// Removes items from the game and unregisters them from cleanup.
 PROC
 PROC_RoguelikeArena_CleanUpItems((INTEGER)_Arena)
 AND
-DB_RoguelikeArena_CleanupRegisteredObjects(_Item, _Arena)
+DB_RoguelikeArena_ArenaItems(_Arena, _Item)
 AND
-ObjectExists(_Item, 1)
-AND
-ObjectIsItem(_Item, 1)
+IsTagged(_Item, "IGNORE_CLEANUP", 0)
 THEN
 PROC_RoguelikeArena_ItemRemove((ITEMGUID)_Item);
 
-// Removes items from the game and unregisters them from cleanup.
-PROC
-PROC_RoguelikeArena_CleanUpItems((INTEGER)_Arena)
-AND
-DB_RoguelikeArena_CleanupRegisteredObjects(_Item, _Arena)
-AND
-ObjectIsItem(_Item, 1)
-THEN
-PROC_RoguelikeArena_UnregisterFromCleanup(_Item);
-//END_REGION
-
-//REGION Clean up surfaces
 PROC
 PROC_RoguelikeArena_CleanUpSurfaces((INTEGER)_Arena)
 AND
@@ -136,45 +104,6 @@ RemoveSurfaceLayer(_Source, 1, 64.0);
 // THEN
 // RemoveSurfaceLayerAtPosition(_SourceX, _Y, _SourceZ, 0, _Radius);
 // RemoveSurfaceLayerAtPosition(_SourceX, _Y, _SourceZ, 1, _Radius);
-//END_REGION
-
-//REGION Manual cleanup registration
-// Registers object for cleanup.
-PROC
-PROC_RoguelikeArena_RegisterForCleanup((GUIDSTRING)_Object, (INTEGER)_Arena)
-AND
-IsTagged(_Object, "IGNORE_CLEANUP", 0)
-THEN
-DB_RoguelikeArena_CleanupRegisteredObjects(_Object, _Arena);
-
-// Unregisters object from cleanup.
-PROC
-PROC_RoguelikeArena_UnregisterFromCleanup((GUIDSTRING)_Object)
-AND
-IsTagged(_Object, "IGNORE_CLEANUP", 0)
-AND
-DB_RoguelikeArena_CleanupRegisteredObjects(_Object, _Arena)
-THEN
-NOT DB_RoguelikeArena_CleanupRegisteredObjects(_Object, _Arena);
-//END_REGION
-
-//REGION Automatic cleanup registration
-// Registers dropped items for cleanup.
-IF
-ItemDropped(_Item)
-AND
-DB_RoguelikeArena_Arenas(_Arena)
-AND
-QRY_RoguelikeArena_ObjectIsInArena(_Item, _Arena)
-THEN
-PROC_RoguelikeArena_RegisterForCleanup(_Item, _Arena);
-
-// Unregisters dropped items from cleanup if they are picked up.
-IF
-ItemAddedToCharacter(_Item, _)
-THEN
-PROC_RoguelikeArena_UnregisterFromCleanup(_Item);
-//END_REGION
 EXITSECTION
 
 ENDEXITSECTION

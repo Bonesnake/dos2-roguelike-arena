@@ -20,11 +20,14 @@ ACTIONS
 EVENT SourceBeacon_OnPulse
 VARS
 	CHARACTER:_Char
+	FIXEDSTRING:_Faction
 ON
 	OnIterateCharacter(_Char,"RoguelikeArena_SourceBeacon_Pulse")
 ACTIONS
-	IF "!c1"
+	IF "!c1&c2&!c3"
 		IsTagged(_Char,"AI_IGNORED_TARGET")
+		GetFaction(_Faction,_Char)
+		IsEqual(_Faction,"RoguelikeArena_Environment")
 	THEN
 		CharacterApplyStatus(_Char,%Status,2,1)
 	ENDIF
@@ -35,45 +38,37 @@ VARS
 	INT:_Rand
 USAGE COMBAT
 ACTIONS
-	IF "c1"
-		IsInActiveTurn(__Me)
+	Sleep(0.5)
+	StopLoopEffect(%CoreFx)
+	GetRandomBetween(_Rand,1,100)
+	IF "c1|c2"
+		IsLessThen(_Rand,%GoodPulseChance)
+		IsEqual(_Rand,%GoodPulseChance)
 	THEN
-		Sleep(0.5)
-		StopLoopEffect(%CoreFx)
-		GetRandomBetween(_Rand,1,100)
-		IF "c1|c2"
-			IsLessThen(_Rand,%GoodPulseChance)
-			IsEqual(_Rand,%GoodPulseChance)
-		THEN
-			ItemPlayLoopEffect(%CoreFx,__Me,%CoreGoodEffect)
-			// Max 30
-			GetRandom(%Status,"APOTHEOSIS","BLESSED","CLEAR_MINDED","DEATH_RESIST","DEATH_WISH","DEFLECTING","ENRAGED","EXTRA_TURN","FARSIGHT","FIRE_BRAND","FORTIFIED","FROST_AURA","GROUNDED","HASTED","HORNS","INNER_DEMON","INVISIBLE","INVULNERABLE","MAGIC_SHELL","MEND_METAL","RESTED","STEEL_SKIN","THICK_OF_THE_FIGHT","VAMPIRISM","WIND_WALKER")
-		ELSE
-			ItemPlayLoopEffect(%CoreFx,__Me,%CoreBadEffect)
-			// Max 30
-			GetRandom(%Status,"ACID","BLEEDING","BLIND","BURNING","CHICKEN","CHILLED","CRIPPLED","CURSED","DAMAGE_ON_MOVE","DEAF","DECAYING_TOUCH","DISARMED","DISEASED","DRUNK","FEAR","FROZEN","KNOCKED_DOWN","MADNESS","MUTED","NECROFIRE","PETRIFIED","SHOCKED","SLOWED","SOURCE_MUTED","STUNNED","UNCONSCIOUS","UNHEALABLE","WARM","WET")
-		ENDIF
-		PlaySound(__Me,%CoreChargedSound)
-		Sleep(1.0)
-		EndTurn(__Me)
-		SetPriority("SourceBeacon_Pulsing",1000)
-		SetPriority("SourceBeacon_Charging",0)
+		ItemPlayLoopEffect(%CoreFx,__Me,%CoreGoodEffect)
+		// Max 30
+		GetRandom(%Status,"APOTHEOSIS","BLESSED","CLEAR_MINDED","DEATH_RESIST","DEATH_WISH","DEFLECTING","ENRAGED","EXTRA_TURN","FARSIGHT","FIRE_BRAND","FORTIFIED","FROST_AURA","GROUNDED","HASTED","HORNS","INNER_DEMON","INVISIBLE","MAGIC_SHELL","MEND_METAL","RESTED","STEEL_SKIN","THICK_OF_THE_FIGHT","VAMPIRISM","WIND_WALKER")
+	ELSE
+		ItemPlayLoopEffect(%CoreFx,__Me,%CoreBadEffect)
+		// Max 30
+		GetRandom(%Status,"ACID","BLEEDING","BLIND","BURNING","CHICKEN","CHILLED","CRIPPLED","CURSED","DAMAGE_ON_MOVE","DEAF","DECAYING_TOUCH","DISARMED","DISEASED","DRUNK","FEAR","FROZEN","KNOCKED_DOWN","MADNESS","MUTED","NECROFIRE","PETRIFIED","SHOCKED","SLOWED","SOURCE_MUTED","STUNNED","UNCONSCIOUS","UNHEALABLE","WARM","WET")
 	ENDIF
+	PlaySound(__Me,%CoreChargedSound)
+	Sleep(1.0)
+	EndTurn(__Me)
+	SetPriority("SourceBeacon_Pulsing",1000)
+	SetPriority("SourceBeacon_Charging",0)
 
 REACTION SourceBeacon_Pulsing, 0
 USAGE COMBAT
 ACTIONS
-	IF "c1"
-		IsInActiveTurn(__Me)
-	THEN
-		Sleep(0.5)
-		ItemPlayEffect(__Me,%PulseEffect)
-		IterateCharactersNear(__Me,%Range,"RoguelikeArena_SourceBeacon_Pulse")
-		Sleep(0.5)
-		StopLoopEffect(%CoreFx)
-		ItemPlayLoopEffect(%CoreFx,__Me,%CoreChargingEffect)
-		Sleep(1.0)
-		EndTurn(__Me)
-		SetPriority("SourceBeacon_Charging",1000)
-		SetPriority("SourceBeacon_Pulsing",0)
-	ENDIF
+	Sleep(0.5)
+	ItemPlayEffect(__Me,%PulseEffect)
+	IterateCharactersNear(__Me,%Range,"RoguelikeArena_SourceBeacon_Pulse")
+	Sleep(0.5)
+	StopLoopEffect(%CoreFx)
+	ItemPlayLoopEffect(%CoreFx,__Me,%CoreChargingEffect)
+	Sleep(1.0)
+	EndTurn(__Me)
+	SetPriority("SourceBeacon_Charging",1000)
+	SetPriority("SourceBeacon_Pulsing",0)

@@ -1,0 +1,241 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_RoguelikeArena_ChampionEnemyBuffs("BLESSED");
+DB_RoguelikeArena_ChampionEnemyBuffs("CLEAR_MINDED");
+DB_RoguelikeArena_ChampionEnemyBuffs("ENCOURAGED");
+DB_RoguelikeArena_ChampionEnemyBuffs("FORTIFIED");
+DB_RoguelikeArena_ChampionEnemyBuffs("HASTED");
+DB_RoguelikeArena_ChampionEnemyBuffs("MAGIC_SHELL");
+DB_RoguelikeArena_ChampionEnemyBuffs("RESTED");
+DB_RoguelikeArena_ChampionEnemyBuffs("WINGS");
+
+DB_RoguelikeArena_ChampionEnemyAbilities("Leadership");
+DB_RoguelikeArena_ChampionEnemyAbilities("Perseverance");
+KBSECTION
+PROC
+PROC_RoguelikeArena_StartDefeatTheChampion((INTEGER)_Arena, (INTEGER)_Level, (INTEGER)_Difficulty, (INTEGER)_Players)
+THEN
+DB_RoguelikeArena_DefeatTheChampion(_Arena, _Level, _Difficulty, _Players);
+PROC_RoguelikeArena_SpawnEnemies(_Arena, _Level, _Difficulty, _Players);
+DB_Singleton("RoguelikeArena_SpawnAsChampion", 1);
+PROC_RoguelikeArena_SpawnEnemy(_Arena, _Level, _Difficulty);
+DB_Singleton("RoguelikeArena_SpawnAsChampion", 0);
+
+//REGION Thrall spawns
+PROC
+PROC_RoguelikeArena_EnemySpawned(_Thrall, _Arena, _)
+AND
+DB_RoguelikeArena_DefeatTheChampion(_Arena, _, _, _)
+AND
+NOT DB_Singleton("RoguelikeArena_SpawnAsChampion", 1)
+THEN
+DB_RoguelikeArena_ChampionThralls(_Arena, _Thrall);
+ApplyStatus(_Thrall, "RoguelikeArena_Thrall", -1.0);
+//END_REGION
+
+//REGION Champion spawns
+PROC
+PROC_RoguelikeArena_EnemySpawned(_Enemy, _Arena, _)
+AND
+DB_RoguelikeArena_DefeatTheChampion(_Arena, _, _Difficulty, _)
+AND
+DB_Singleton("RoguelikeArena_SpawnAsChampion", 1)
+THEN
+PROC_RoguelikeArena_StringPoolClear("ChampionEnemyBuffs");
+PROC_RoguelikeArena_StringPoolAddChampionEnemyBuffs();
+PROC_RoguelikeArena_MakeChampionEnemy(_Enemy, _Difficulty);
+DB_RoguelikeArena_ChampionEnemy(_Arena, _Enemy);
+
+// Sets up basic stuff.
+PROC
+PROC_RoguelikeArena_MakeChampionEnemy((CHARACTERGUID)_Character, (INTEGER)_Difficulty)
+AND
+CharacterGetDisplayName(_Character, _, _CharacterName)
+AND
+StringConcatenate("Champion ", _CharacterName, _ChampionName)
+THEN
+ApplyStatus(_Character, "RoguelikeArena_Champion", -1.0);
+CharacterSetCustomName(_Character, _ChampionName);
+SetTag(_Character, "AI_PREFERRED_TARGET");
+CharacterAddSourcePoints(_Character, _Difficulty);
+SetIsBoss(_Character, 1);
+
+// Adds a status.
+PROC
+PROC_RoguelikeArena_MakeChampionEnemy(_Character, _Difficulty)
+AND
+DB_RoguelikeArena_ChampionThralls(_Arena, _Thrall)
+AND
+QRY_RoguelikeArena_StringPoolSelectAndRemoveRandom("ChampionEnemyBuffs")
+AND
+DB_RoguelikeArena_StringPoolSelectedValue("ChampionEnemyBuffs", _Buff)
+THEN
+ApplyStatus(_Character, _Buff, -1.0, 1, _Thrall);
+DB_RoguelikeArena_ChampionEnemyActiveBuffs(_Character, _Buff, _Thrall);
+
+// Adds abilities.
+PROC
+PROC_RoguelikeArena_MakeChampionEnemy(_Character, _Difficulty)
+AND
+DB_RoguelikeArena_ChampionThralls(_Arena, _Thrall)
+AND
+DB_RoguelikeArena_ChampionEnemyAbilities(_Ability)
+THEN
+CharacterAddAbility(_Character, _Ability, 1);
+//END_REGION
+
+//REGION Thrall dies
+PROC
+PROC_RoguelikeArena_CharacterDiedInArena(_Character, _Arena)
+AND
+DB_RoguelikeArena_ChampionThralls(_Arena, _Character)
+THEN
+NOT DB_RoguelikeArena_ChampionThralls(_Arena, _Character);
+PROC_RoguelikeArena_ChampionThrallDied(_Arena, _Character);
+
+// Removes the status effect.
+PROC
+PROC_RoguelikeArena_ChampionThrallDied((INTEGER)_Arena, (CHARACTERGUID)_)
+AND
+DB_RoguelikeArena_ChampionEnemy(_Arena, _Champion)
+THEN
+PlayEffect(_Champion, "RS3_FX_GP_ScriptedEvent_GhostDissipate_01");
+
+PROC
+PROC_RoguelikeArena_ChampionThrallDied(_Arena, _Thrall)
+AND
+DB_RoguelikeArena_ChampionEnemyActiveBuffs(_Champion, _Buff, _Thrall)
+THEN
+RemoveStatus(_Champion, _Buff);
+NOT DB_RoguelikeArena_ChampionEnemyActiveBuffs(_Champion, _Buff, _Thrall);
+
+// Removes abilities.
+PROC
+PROC_RoguelikeArena_ChampionThrallDied(_Arena, _)
+AND
+DB_RoguelikeArena_ChampionEnemy(_Arena, _Champion)
+AND
+DB_RoguelikeArena_ChampionEnemyAbilities(_Ability)
+THEN
+CharacterRemoveAbility(_Champion, _Ability, 1);
+
+// Stops the beam effect.
+PROC
+PROC_RoguelikeArena_ChampionThrallDied(_Arena, _Thrall)
+AND
+DB_RoguelikeArena_ChampionEnemy(_Arena, _Champion)
+AND
+GetUUID(_Thrall, _UUID)
+AND
+StringConcatenate("RoguelikeArena_Thrall_", _UUID, _BeamName)
+THEN
+PROC_StopLoopBeamEffect(_Champion, _BeamName);
+//END_REGION
+
+//REGION Champion Dies
+PROC
+PROC_RoguelikeArena_CharacterDiedInArena(_Character, _Arena)
+AND
+DB_RoguelikeArena_ChampionEnemy(_Arena, _Character)
+THEN
+NOT DB_RoguelikeArena_ChampionEnemy(_Arena, _Character);
+PROC_RoguelikeArena_ChampionEnemyDied(_Arena, _Character);
+
+// Kills remaining thralls.
+PROC
+PROC_RoguelikeArena_ChampionEnemyDied((INTEGER)_, (CHARACTERGUID)_Champion)
+AND
+DB_CombatCharacters(_Champion, _CombatID)
+AND
+DB_CombatCharacters(_Character, _CombatID)
+AND
+GetFaction(_Character, "Evil NPC")
+AND
+CharacterIsDead(_Character, 0)
+THEN
+CharacterDie(_Character, 1, "Explode");
+
+// Cleans up the beam effect.
+PROC
+PROC_RoguelikeArena_ChampionEnemyDied(_Arena, _Champion)
+AND
+DB_RoguelikeArena_ChampionThralls(_Arena, _Thrall)
+AND
+GetUUID(_Thrall, _UUID)
+AND
+StringConcatenate("RoguelikeArena_Thrall_", _UUID, _BeamName)
+THEN
+PROC_StopLoopBeamEffect(_Champion, _BeamName);
+//END_REGION
+
+//REGION Misc
+// Plays a beam effect between thralls and the champion. Note: this would make more sense in the spawn proc, but that doesn't work reliably for some reason.
+PROC
+PROC_RoguelikeArena_ArenaCombatRoundStarted(_Arena, _, _Round)
+AND
+_Round == 1
+AND
+DB_RoguelikeArena_ChampionEnemy(_Arena, _Champion)
+AND
+DB_RoguelikeArena_ChampionThralls(_Arena, _Thrall)
+AND
+GetUUID(_Thrall, _UUID)
+AND
+StringConcatenate("RoguelikeArena_Thrall_", _UUID, _BeamName)
+THEN
+PROC_LoopBeamEffect("RS3_FX_Skills_Soul_ShacklesOfPain_LinkBeam_01", _Champion, _Thrall, "Dummy_BodyFX", "Dummy_BodyFX", _BeamName, "RoguelikeArena_Level");
+
+// Reapplies status effect to the champion.
+PROC
+PROC_RoguelikeArena_ObjectArenaTurnStarted(_Object, _Arena)
+AND
+ObjectIsCharacter(_Object, 1)
+AND
+DB_RoguelikeArena_ChampionEnemy(_Arena, (CHARACTERGUID)_Object)
+AND
+DB_RoguelikeArena_ChampionEnemyActiveBuffs(_Object, _Buff, _Thrall)
+AND
+HasActiveStatus(_Object, _Buff, 0)
+THEN
+ApplyStatus(_Object, _Buff, -1.0, 1, _Thrall);
+
+PROC
+PROC_RoguelikeArena_ArenaCombatEnemiesDied(_Arena, _CombatID)
+AND
+DB_RoguelikeArena_DefeatTheChampion(_Arena, _, _, _)
+THEN
+PROC_RoguelikeArena_EndArenaCombat(_Arena, _CombatID);
+
+PROC
+PROC_RoguelikeArena_ArenaCombatEnded(_Arena, _)
+AND
+DB_RoguelikeArena_DefeatTheChampion(_Arena, _, _, _)
+THEN
+PROC_RoguelikeArena_DefeatTheChampionEnded(_Arena);
+
+PROC
+PROC_RoguelikeArena_DefeatTheChampionEnded((INTEGER)_Arena)
+AND
+DB_RoguelikeArena_DefeatTheChampion(_Arena, _Level, _Difficulty, _Players)
+THEN
+NOT DB_RoguelikeArena_DefeatTheChampion(_Arena, _Level, _Difficulty, _Players);
+
+PROC
+PROC_RoguelikeArena_DefeatTheChampionEnded(_Arena)
+AND
+DB_RoguelikeArena_DefeatTheChampion(_Arena, _Level, _Difficulty, _Players)
+THEN
+NOT DB_RoguelikeArena_DefeatTheChampion(_Arena, _Level, _Difficulty, _Players);
+
+PROC
+PROC_RoguelikeArena_StringPoolAddChampionEnemyBuffs()
+AND
+DB_RoguelikeArena_ChampionEnemyBuffs(_Buff)
+THEN
+PROC_RoguelikeArena_StringPoolAdd("ChampionEnemyBuffs", _Buff);
+//END_REGION
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena_Arena_GameMode"

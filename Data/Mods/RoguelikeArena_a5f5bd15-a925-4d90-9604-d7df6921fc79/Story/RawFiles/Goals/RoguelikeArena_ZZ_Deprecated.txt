@@ -1,0 +1,13 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_RoguelikeArena_CleanupRegisteredObjects(NULL_00000000-0000-0000-0000-000000000000, 0);
+KBSECTION
+IF
+DB_RoguelikeArena_CleanupRegisteredObjects(NULL_00000000-0000-0000-0000-000000000000, 0)
+THEN
+NOT DB_RoguelikeArena_CleanupRegisteredObjects(NULL_00000000-0000-0000-0000-000000000000, 0);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena"

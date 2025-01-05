@@ -45,6 +45,13 @@ AND
 DB_RoguelikeArena_RandomPositionResult(_X, _Y, _Z)
 THEN
 CreateSurfaceAtPosition(_X, _Y, _Z, _SurfaceType, 2.0, -1.0);
+PROC_RoguelikeArena_SurfaceCreated(_X, _Y, _Z, _SurfaceType, _Arena);
+
+// Triggered when a surface is created inside an arena.
+PROC
+PROC_RoguelikeArena_SurfaceCreated((REAL)_X, (REAL)_Y, (REAL)_Z, (STRING)_SurfaceType, (INTEGER)_Arena)
+THEN
+DB_NOOP(1);
 
 PROC
 PROC_RoguelikeArena_StringPoolAddSurfaceTypes()

@@ -1,0 +1,102 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+//REGION Events
+IF
+ItemEnteredTrigger(_Item, _Trigger, _)
+AND
+DB_RoguelikeArena_ArenaEventTriggers(_Arena, _Trigger)
+THEN
+PROC_RoguelikeArena_ItemEnteredArena(_Item, _Arena);
+
+// Triggered when an item is placed in an arena.
+PROC
+PROC_RoguelikeArena_ItemEnteredArena((ITEMGUID)_Item, (INTEGER)_Arena)
+THEN
+DB_NOOP(1);
+
+IF
+ItemLeftTrigger(_Item, _Trigger, _)
+AND
+DB_RoguelikeArena_ArenaEventTriggers(_Arena, _Trigger)
+THEN
+PROC_RoguelikeArena_ItemLeftArena(_Item, _Arena);
+
+// Triggered when an item is removed from an arena.
+PROC
+PROC_RoguelikeArena_ItemLeftArena((ITEMGUID)_Item, (INTEGER)_Arena)
+THEN
+DB_NOOP(1);
+
+IF
+ItemDropped(_Item)
+AND
+DB_RoguelikeArena_ArenaItems(_Arena, _Item)
+THEN
+PROC_RoguelikeArena_ItemDroppedInArena(_Item, _Arena);
+
+// Triggered when an item has been dropped in an arena.
+PROC
+PROC_RoguelikeArena_ItemDroppedInArena((ITEMGUID)_Item, (INTEGER)_Arena)
+THEN
+DB_NOOP(1);
+
+IF
+ItemDestroying(_Item)
+AND
+DB_RoguelikeArena_ArenaItems(_Arena, _Item)
+THEN
+PROC_RoguelikeArena_ItemDestroyingInArena(_Item, _Arena);
+
+// Triggered when an item starts being destroyed in an arena.
+PROC
+PROC_RoguelikeArena_ItemDestroyingInArena((ITEMGUID)_Item, (INTEGER)_Arena)
+THEN
+DB_NOOP(1);
+
+IF
+ItemDestroyed(_Item)
+AND
+DB_RoguelikeArena_ArenaItems(_Arena, _Item)
+THEN
+PROC_RoguelikeArena_ItemDestroyedInArena(_Item, _Arena);
+
+// Trigger when an item has been destroyed in an arena.
+PROC
+PROC_RoguelikeArena_ItemDestroyedInArena((ITEMGUID)_Item, (INTEGER)_Arena)
+THEN
+DB_NOOP(1);
+
+IF
+ItemWentOnStage(_Item, _Bool)
+AND
+DB_RoguelikeArena_ArenaItems(_Arena, (ITEMGUID)_Item)
+THEN
+PROC_RoguelikeArena_ItemWentOnStageInArena(_Item, _Bool, _Arena);
+
+// Triggered whenever an item goes on/off-stage in an arena.
+PROC
+PROC_RoguelikeArena_ItemWentOnStageInArena((ITEMGUID)_Item, (INTEGER)_Bool, (INTEGER)_Arena)
+THEN
+DB_NOOP(1);
+//END_REGION
+
+//REGION DBs
+PROC
+PROC_RoguelikeArena_ItemEnteredArena(_Item, _Arena)
+THEN
+DB_RoguelikeArena_ArenaItems(_Arena, _Item);
+
+PROC
+PROC_RoguelikeArena_ItemLeftArena(_Item, _Arena)
+AND
+DB_RoguelikeArena_ArenaItems(_Arena, _Item)
+THEN
+NOT DB_RoguelikeArena_ArenaItems(_Arena, _Item);
+//END_REGION
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "RoguelikeArena_Arena"

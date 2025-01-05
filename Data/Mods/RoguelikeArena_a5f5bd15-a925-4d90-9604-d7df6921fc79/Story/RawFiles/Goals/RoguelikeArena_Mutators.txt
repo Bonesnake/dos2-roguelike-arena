@@ -14,7 +14,7 @@ DB_RoguelikeArena_MutatorBuffs("APOTHEOSIS");
 DB_RoguelikeArena_MutatorBuffs("BLESSED");
 DB_RoguelikeArena_MutatorBuffs("CLEAR_MINDED");
 DB_RoguelikeArena_MutatorBuffs("DEATH_WISH");
-DB_RoguelikeArena_MutatorBuffs("ENCOURAGE");
+DB_RoguelikeArena_MutatorBuffs("ENCOURAGED");
 DB_RoguelikeArena_MutatorBuffs("FARSIGHT");
 DB_RoguelikeArena_MutatorBuffs("FIRE_BRAND");
 DB_RoguelikeArena_MutatorBuffs("FORTIFIED");
@@ -127,10 +127,9 @@ IntegertoString(_Arena, _CombatGroupID)
 THEN
 SetCombatGroupID(_Boney, _CombatGroupID);
 CharacterLevelUpTo(_Boney, _Level);
-PROC_RoguelikeArena_RegisterForCleanup(_Boney, _Arena);
 
-IF
-ObjectEnteredCombat(_Object, _)
+PROC
+PROC_RoguelikeArena_ObjectEnteredArenaCombat(_Object, _, _)
 AND
 ObjectIsCharacter((CHARACTERGUID)_Object, 1)
 AND
@@ -140,16 +139,14 @@ GetFaction(_Object, "Evil NPC")
 AND
 CharacterIsSummon(_Object, 0)
 AND
-QRY_RoguelikeArena_ObjectIsInArena(_Object)
-AND
 QRY_RoguelikeArena_StringPoolSelectRandom("MutatorBuffs")
 AND
 DB_RoguelikeArena_StringPoolSelectedValue("MutatorBuffs", _Buff)
 THEN
 ApplyStatus(_Object, _Buff, -1.0);
 
-IF
-ObjectEnteredCombat(_Object, _)
+PROC
+PROC_RoguelikeArena_ObjectEnteredArenaCombat(_Object, _, _)
 AND
 ObjectIsCharacter((CHARACTERGUID)_Object, 1)
 AND
@@ -159,16 +156,14 @@ CharacterIsPlayer(_Object, 1)
 AND
 CharacterIsSummon(_Object, 0)
 AND
-QRY_RoguelikeArena_ObjectIsInArena(_Object)
-AND
 QRY_RoguelikeArena_StringPoolSelectRandom("MutatorDebuffs")
 AND
 DB_RoguelikeArena_StringPoolSelectedValue("MutatorDebuffs", _Debuff)
 THEN
 ApplyStatus(_Object, _Debuff, 18.0, 1);
 
-IF
-ObjectEnteredCombat(_Object, _)
+PROC
+PROC_RoguelikeArena_ObjectEnteredArenaCombat(_Object, _, _)
 AND
 ObjectIsCharacter((CHARACTERGUID)_Object, 1)
 AND
@@ -178,16 +173,14 @@ CharacterIsPlayer(_Object, 1)
 AND
 CharacterIsSummon(_Object, 0)
 AND
-QRY_RoguelikeArena_ObjectIsInArena(_Object)
-AND
 CharacterGetSourcePoints(_Object, _SourcePoints)
 AND
 IntegerProduct(_SourcePoints, -1, _SourcePointsToRemove)
 THEN
 CharacterAddSourcePoints(_Object, _SourcePointsToRemove);
 
-IF
-ObjectTurnStarted(_Object)
+PROC
+PROC_RoguelikeArena_ObjectArenaTurnStarted(_Object, _)
 AND
 ObjectIsCharacter((CHARACTERGUID)_Object, 1)
 AND
@@ -196,13 +189,11 @@ AND
 GetFaction(_Object, "Evil NPC")
 AND
 CharacterIsSummon(_Object, 0)
-AND
-QRY_RoguelikeArena_ObjectIsInArena(_Object)
 THEN
 CharacterAddSourcePoints(_Object, 1);
 
-IF
-ObjectTurnEnded(_Object)
+PROC
+PROC_RoguelikeArena_ObjectArenaTurnEnded(_Object, _)
 AND
 ObjectIsCharacter((CHARACTERGUID)_Object, 1)
 AND
@@ -211,8 +202,6 @@ AND
 CharacterIsPlayer(_Object, 1)
 AND
 CharacterIsSummon(_Object, 0)
-AND
-QRY_RoguelikeArena_ObjectIsInArena(_Object)
 AND
 CharacterIsInCombat(_Object, 1)
 AND

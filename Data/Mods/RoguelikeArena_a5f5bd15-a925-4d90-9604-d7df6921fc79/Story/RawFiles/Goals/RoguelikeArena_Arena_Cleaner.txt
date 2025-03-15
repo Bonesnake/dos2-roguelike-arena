@@ -28,6 +28,10 @@ DB_RoguelikeArena_CleanupSources(7, TRIGGERGUID_RoguelikeArena_SurfaceCleanupTri
 DB_RoguelikeArena_CleanupSources(7, TRIGGERGUID_RoguelikeArena_SurfaceCleanupTrigger_003_02169f95-e7ca-450a-aba9-81a0b97a66b7);
 DB_RoguelikeArena_CleanupSources(7, TRIGGERGUID_RoguelikeArena_SurfaceCleanupTrigger_004_5255e0a4-db62-4e4b-a72a-cc2dd9e04487);
 
+DB_RoguelikeArena_CleanupSources(8, TRIGGERGUID_RoguelikeArena_SurfaceCleanupTrigger_000_4999f2d8-8c90-40dc-a35b-383bad58cabc);
+DB_RoguelikeArena_CleanupSources(8, TRIGGERGUID_RoguelikeArena_SurfaceCleanupTrigger_001_e7ed68a3-346f-49eb-bc9f-1133ebe904e0);
+DB_RoguelikeArena_CleanupSources(8, TRIGGERGUID_RoguelikeArena_SurfaceCleanupTrigger_002_9a419055-c5c7-44c3-b1cb-a779b2456ea0);
+
 // Radius, from, to, offset.
 // DB_RoguelikeArena_SurfaceCleanupParameters(64.0, -8, 8, 4.0);
 KBSECTION

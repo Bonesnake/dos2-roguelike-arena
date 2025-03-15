@@ -8,6 +8,7 @@ DB_RoguelikeArena_AtmosphereTriggers(4, TRIGGERGUID_AtmosphereTrigger_000__000_a
 DB_RoguelikeArena_AtmosphereTriggers(5, TRIGGERGUID_AtmosphereTrigger_000__000_6479ba18-1267-87bb-390b-d45a006213c7);
 DB_RoguelikeArena_AtmosphereTriggers(6, TRIGGERGUID_AtmosphereTrigger_000__000_5fb1279e-4d2e-8874-6947-17999f91f2a4);
 DB_RoguelikeArena_AtmosphereTriggers(7, TRIGGERGUID_AtmosphereTrigger_000__000_4d324baa-c2e6-8590-498c-b024000f0fca);
+DB_RoguelikeArena_AtmosphereTriggers(8, TRIGGERGUID_AtmosphereTrigger_000__000_39dd88a5-4ebb-8e98-44a0-39c878262e35);
 
 DB_RoguelikeArena_Atmospheres(1, "746dd96b-09e1-4b82-b81a-5e46935c372a");
 DB_RoguelikeArena_Atmospheres(1, "08c6e64b-ca3a-4df2-a466-740e07a26539");
@@ -54,6 +55,10 @@ DB_RoguelikeArena_Atmospheres(7, "bf24b070-e9c0-4430-9f4c-99b532004aa9");
 DB_RoguelikeArena_Atmospheres(7, "358c9db9-ccda-40dc-a8c8-bb417343f6eb");
 DB_RoguelikeArena_Atmospheres(7, "7ac643f4-a208-4406-accf-ac2a42dc782f");
 DB_RoguelikeArena_Atmospheres(7, "31343cb8-7bb2-4e1c-844c-2dbb5c0f5651");
+
+DB_RoguelikeArena_Atmospheres(8, "e63d286f-5b30-4816-8b1e-cf8df745228f");
+DB_RoguelikeArena_Atmospheres(8, "e0f8e84e-e094-4b95-a410-c5c44ac2318a");
+DB_RoguelikeArena_Atmospheres(8, "4b950480-71b2-46fd-86e6-f084c9ad6515");
 
 KBSECTION
 PROC

@@ -1,8 +1,84 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
-
+DB_Singleton("RoguelikeArena_PartyExperiencePercent", 0);
 KBSECTION
+// Adds experience to the party after an arena combat ends.
+PROC
+PROC_RoguelikeArena_ArenaCombatEnded(_Arena, _)
+AND
+DB_RoguelikeArena_ActiveArena(_Arena, _Level, _Difficulty, _)
+AND
+DB_RoguelikeArena_Singleton_MaxDifficulty(_MaxDifficulty)
+AND
+_Difficulty < _MaxDifficulty
+AND
+DB_RoguelikeArena_Singleton_MinDifficulty(_MinDifficulty)
+AND
+QRY_RoguelikeArena_CalculateTargetExperiencePercent(_Difficulty, _MinDifficulty, _MaxDifficulty)
+AND
+DB_Singleton("RoguelikeArena_TargetExperiencePercent", _TargetExperiencePercent)
+AND
+DB_Singleton("RoguelikeArena_PartyExperiencePercent", _PartyExperiencePercent)
+AND
+IntegerSubtract(_TargetExperiencePercent, _PartyExperiencePercent, _ExperiencePercent)
+AND
+_ExperiencePercent > 0
+THEN
+PROC_RoguelikeArena_PartyAddExperience(_Level, _ExperiencePercent);
+
+PROC
+PROC_RoguelikeArena_PartyAddExperience((INTEGER)_Level, (INTEGER)_Percent)
+AND
+CharacterGetHostCharacter(_Player)
+AND
+CharacterGetLevel(_Player, _PlayerLevel)
+AND
+_PlayerLevel <= _Level
+THEN
+PartyAddExperience(_Player, 1, _Level, _Percent);
+
+PROC
+PROC_RoguelikeArena_PartyAddExperience(_, _Percent)
+AND
+DB_Singleton("RoguelikeArena_PartyExperiencePercent", _CurrentPercent)
+AND
+IntegerSum(_CurrentPercent, _Percent, _NewPercent)
+AND
+_NewPercent < 100
+THEN
+DB_Singleton("RoguelikeArena_PartyExperiencePercent", _NewPercent);
+
+PROC
+PROC_RoguelikeArena_PartyAddExperience(_, _Percent)
+AND
+DB_Singleton("RoguelikeArena_PartyExperiencePercent", _CurrentPercent)
+AND
+IntegerSum(_CurrentPercent, _Percent, _NewPercent)
+AND
+_NewPercent >= 100
+THEN
+DB_Singleton("RoguelikeArena_PartyExperiencePercent", 0);
+
+// Calculates the XP percent the party should have based on the formula "(current - min + 1) * 100 / (max - min + 1)".
+QRY
+QRY_RoguelikeArena_CalculateTargetExperiencePercent((INTEGER)_AbsoluteDifficulty, (INTEGER)_MinDifficulty, (INTEGER)_MaxDifficulty)
+AND
+IntegerSubtract(_AbsoluteDifficulty, _MinDifficulty, _DifficultyDifference)
+AND
+IntegerSum(_DifficultyDifference, 1, _RelativeDifficulty)
+AND
+IntegerProduct(_RelativeDifficulty, 100, _RelativeDifficultyMultiplied)
+AND
+IntegerSubtract(_MaxDifficulty, _MinDifficulty, _DifficultyRangeDifference)
+AND
+IntegerSum(_DifficultyRangeDifference, 1, _TotalDifficulties)
+AND
+IntegerDivide(_RelativeDifficultyMultiplied, _TotalDifficulties, _TargetExperiencePercent)
+THEN
+DB_Singleton("RoguelikeArena_TargetExperiencePercent", _TargetExperiencePercent);
+
+// Levels up the party after an arena battle at max arena difficulty instead of giving XP for backwards compatibility and to account for unintended XP gains.
 PROC
 PROC_RoguelikeArena_ArenaCombatEnded(_Arena, _)
 AND
@@ -24,6 +100,11 @@ AND
 CharacterIsSummon(_Player, 0)
 THEN
 CharacterLevelUpTo(_Player, _Level);
+
+PROC
+PROC_RoguelikeArena_PartyLevelUpTo(_Level)
+THEN
+DB_Singleton("RoguelikeArena_PartyExperiencePercent", 0);
 EXITSECTION
 
 ENDEXITSECTION

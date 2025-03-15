@@ -203541,6 +203541,7 @@ Goal(538)
 		DB_RoguelikeArena_Arenas(5);
 		DB_RoguelikeArena_Arenas(6);
 		DB_RoguelikeArena_Arenas(7);
+		DB_RoguelikeArena_Arenas(8);
 		
 		DB_RoguelikeArena_RegionTeleportTriggers(1, TRIGGERGUID_TeleportTrigger_050_0b7e3d3b-f4dd-4224-ba90-e1c70155d1b2);
 		DB_RoguelikeArena_RegionTeleportTriggers(2, TRIGGERGUID_TeleportTrigger_050__000_0d9c127b-19e5-8146-3ce9-5d92b2eab955);
@@ -203549,6 +203550,7 @@ Goal(538)
 		DB_RoguelikeArena_RegionTeleportTriggers(5, TRIGGERGUID_TeleportTrigger_050__000_f7275a08-5777-8896-3c21-14597a6f26b5);
 		DB_RoguelikeArena_RegionTeleportTriggers(6, TRIGGERGUID_TeleportTrigger_050__000_e26fc78e-823e-895f-6c6d-5798099e0592);
 		DB_RoguelikeArena_RegionTeleportTriggers(7, TRIGGERGUID_TeleportTrigger_050__000_d0e0eb9a-07f6-867b-4ca2-f0237a0c12b8);
+		DB_RoguelikeArena_RegionTeleportTriggers(8, TRIGGERGUID_TeleportTrigger_050__000_cc8b2895-83cb-8f73-47c6-79c7e2233123);
 		
 		DB_RoguelikeArena_ArenaEventTriggers(1, (TRIGGERGUID)TRIGGERGUID_EventTrigger_000_c5d2c42e-28d9-4c92-87e9-fb0c9ecc4e11);
 		DB_RoguelikeArena_ArenaEventTriggers(2, TRIGGERGUID_EventTrigger_000__000_c1326444-366d-85f5-2534-2937d02c3bd9);
@@ -203557,6 +203559,7 @@ Goal(538)
 		DB_RoguelikeArena_ArenaEventTriggers(5, TRIGGERGUID_EventTrigger_000__000_bbcdacd1-74ff-8c45-257c-e0fe98a1a839);
 		DB_RoguelikeArena_ArenaEventTriggers(6, TRIGGERGUID_EventTrigger_000__000_a6051957-afb6-8d0e-55b8-233d27d08716);
 		DB_RoguelikeArena_ArenaEventTriggers(7, TRIGGERGUID_EventTrigger_000__000_94863d63-247e-8a2a-35fd-ccc8984e943c);
+		DB_RoguelikeArena_ArenaEventTriggers(8, TRIGGERGUID_EventTrigger_000__000_80217a6e-a043-8322-3011-456c0065b3a7);
 		
 		PROC_RoguelikeArena_IntegerPoolAddArenas();
 		GlobalSetFlag("RoguelikeArena_FirstChallenge");
@@ -203695,6 +203698,7 @@ Goal(539)
 		DB_RoguelikeArena_AtmosphereTriggers(5, TRIGGERGUID_AtmosphereTrigger_000__000_6479ba18-1267-87bb-390b-d45a006213c7);
 		DB_RoguelikeArena_AtmosphereTriggers(6, TRIGGERGUID_AtmosphereTrigger_000__000_5fb1279e-4d2e-8874-6947-17999f91f2a4);
 		DB_RoguelikeArena_AtmosphereTriggers(7, TRIGGERGUID_AtmosphereTrigger_000__000_4d324baa-c2e6-8590-498c-b024000f0fca);
+		DB_RoguelikeArena_AtmosphereTriggers(8, TRIGGERGUID_AtmosphereTrigger_000__000_39dd88a5-4ebb-8e98-44a0-39c878262e35);
 		
 		DB_RoguelikeArena_Atmospheres(1, "746dd96b-09e1-4b82-b81a-5e46935c372a");
 		DB_RoguelikeArena_Atmospheres(1, "08c6e64b-ca3a-4df2-a466-740e07a26539");
@@ -203741,6 +203745,10 @@ Goal(539)
 		DB_RoguelikeArena_Atmospheres(7, "358c9db9-ccda-40dc-a8c8-bb417343f6eb");
 		DB_RoguelikeArena_Atmospheres(7, "7ac643f4-a208-4406-accf-ac2a42dc782f");
 		DB_RoguelikeArena_Atmospheres(7, "31343cb8-7bb2-4e1c-844c-2dbb5c0f5651");
+		
+		DB_RoguelikeArena_Atmospheres(8, "e63d286f-5b30-4816-8b1e-cf8df745228f");
+		DB_RoguelikeArena_Atmospheres(8, "e0f8e84e-e094-4b95-a410-c5c44ac2318a");
+		DB_RoguelikeArena_Atmospheres(8, "4b950480-71b2-46fd-86e6-f084c9ad6515");
 		
 		
 	}
@@ -204098,6 +204106,10 @@ Goal(544)
 		DB_RoguelikeArena_CleanupSources(7, TRIGGERGUID_RoguelikeArena_SurfaceCleanupTrigger_002_ef62bd77-6859-46df-92df-961a7aa0462d);
 		DB_RoguelikeArena_CleanupSources(7, TRIGGERGUID_RoguelikeArena_SurfaceCleanupTrigger_003_02169f95-e7ca-450a-aba9-81a0b97a66b7);
 		DB_RoguelikeArena_CleanupSources(7, TRIGGERGUID_RoguelikeArena_SurfaceCleanupTrigger_004_5255e0a4-db62-4e4b-a72a-cc2dd9e04487);
+		
+		DB_RoguelikeArena_CleanupSources(8, TRIGGERGUID_RoguelikeArena_SurfaceCleanupTrigger_000_4999f2d8-8c90-40dc-a35b-383bad58cabc);
+		DB_RoguelikeArena_CleanupSources(8, TRIGGERGUID_RoguelikeArena_SurfaceCleanupTrigger_001_e7ed68a3-346f-49eb-bc9f-1133ebe904e0);
+		DB_RoguelikeArena_CleanupSources(8, TRIGGERGUID_RoguelikeArena_SurfaceCleanupTrigger_002_9a419055-c5c7-44c3-b1cb-a779b2456ea0);
 		
 		// Radius, from, to, offset.
 		// DB_RoguelikeArena_SurfaceCleanupParameters(64.0, -8, 8, 4.0);
@@ -205580,6 +205592,7 @@ Goal(556)
 		DB_RoguelikeArena_ArenaTeleporterItems(ITEMGUID_RoguelikeArena_Portal_000__000_68b1cea8-c0bc-81d9-3a8b-df1a7c77bd66);
 		DB_RoguelikeArena_ArenaTeleporterItems(ITEMGUID_RoguelikeArena_Portal_000__000_53f93b2e-fb73-8292-6ac7-12590ba69c43);
 		DB_RoguelikeArena_ArenaTeleporterItems(ITEMGUID_RoguelikeArena_Portal_000__000_417a5f3a-703b-8fbe-4a0c-bbe47c14a969);
+		DB_RoguelikeArena_ArenaTeleporterItems(ITEMGUID_RoguelikeArena_Portal_000__000_3d159c35-fc00-88b6-4520-3488e43bc8d4);
 		
 	}
 	KB
@@ -206585,6 +206598,56 @@ Goal(560)
 		DB_RoguelikeArena_SpawnTriggers(7, TRIGGERGUID_RoguelikeArena_AllySpawnerTrigger_009_07e8cc0c-77d1-49a7-b44f-2e09e694caea);
 		DB_RoguelikeArena_SpawnTriggers(7, TRIGGERGUID_RoguelikeArena_AllySpawnerTrigger_010_4b0deaac-a434-4570-8e86-d9bd323362da);
 		DB_RoguelikeArena_SpawnTriggers(7, TRIGGERGUID_RoguelikeArena_AllySpawnerTrigger_011_86c3d679-ec08-4ac7-a316-b2ba4b4e6d0b);
+		
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_ChestSpawnerTrigger_000_e0815e8e-6fad-4692-93f9-fde355d427b2);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_AllySpawnerTrigger_000_881d6434-f8b3-4d12-9f3d-6892aa83c7b7);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_AllySpawnerTrigger_001_08ed7552-b997-46ef-b7e4-6d4a551b6bc0);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_AllySpawnerTrigger_002_7db7ec9e-f6ae-4beb-af07-244c10caa0e2);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_AllySpawnerTrigger_003_3083751b-85b3-403a-9da5-bbbe1fc44bad);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_AllySpawnerTrigger_004_51821dd6-ce65-4034-b5c3-4bfe529ba625);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_AllySpawnerTrigger_005_5a8886df-49b4-4721-89f0-28bb4f18ae9f);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_AllySpawnerTrigger_006_724ec0e7-a5e7-468b-8572-dbcebc974c7e);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_AllySpawnerTrigger_007_80dcd3f1-5a70-4ab5-a08d-2241e80be318);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EnemySpawnerTrigger_000_c435fcaf-d7bb-407e-bad9-022f91198bb7);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EnemySpawnerTrigger_001_191ef7b9-98ca-4574-bd7d-445ede8a2c6a);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EnemySpawnerTrigger_002_9f9d97d0-8390-4a26-844e-f0856f5fe88d);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EnemySpawnerTrigger_003_9636a02a-5c16-490c-8d7e-addefdba7cc9);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EnemySpawnerTrigger_004_33dd950e-0245-41e7-bdfb-df7418ded0cf);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EnemySpawnerTrigger_005_df60a55b-b006-4970-b530-ecf2870b22e8);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EnemySpawnerTrigger_006_72d03815-f663-4fb8-b7ce-783018fd5215);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EnemySpawnerTrigger_007_07873f44-f6c6-41dd-9a9d-51737b897b98);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EnemySpawnerTrigger_008_c16238fc-2397-420c-8dbd-65cf8788f371);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EnemySpawnerTrigger_009_de7369f7-e0d4-4606-bbb9-98b656f8f43e);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EnemySpawnerTrigger_010_21cc822b-5855-4f3a-a08d-826a5493b272);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EnemySpawnerTrigger_011_9b8dec85-d6e2-455d-8ac7-916cf3fc44e9);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EnemySpawnerTrigger_012_8cc63b53-3f49-4be5-8b39-0c32147d13cd);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EventSpawnerTrigger_000_fd1e8be8-f76d-4c05-a128-74cbc81f1302);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EventSpawnerTrigger_001_2c38f910-aa40-4eab-b04d-68468a955342);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EventSpawnerTrigger_002_e6a8a584-5e64-466b-adf1-cdccb601301d);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EventSpawnerTrigger_004_af6e3dfe-7f18-4df6-93de-0cde7ee968b9);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EventSpawnerTrigger_005_4c6f9f5f-cafd-45b1-8e3c-8d69697b4edb);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EventSpawnerTrigger_006_ad535b7b-2b77-4c98-b2d1-4cd0bad9cd09);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EventSpawnerTrigger_007_2555d813-8e22-4ebf-af4d-d9a761c06464);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EventSpawnerTrigger_008_5c1e7414-81f5-43b9-a298-8ab6db0dab2d);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EventSpawnerTrigger_009_9ee7e95d-4e88-4403-92c6-eeecf9e2a61a);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EventSpawnerTrigger_010_bb752b84-ca76-4085-a2d4-6fb1d9517b7c);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EventSpawnerTrigger_011_3095198c-f8cc-499f-a679-891f2d599abb);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EventSpawnerTrigger_013_fa97e23d-fd40-4f90-bdf4-794dc87575f8);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EventSpawnerTrigger_014_44c8946e-e790-44af-9bcb-28623faa4c5d);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EventSpawnerTrigger_016_4722e686-a26d-4de8-9f15-4c249029f8d2);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EventSpawnerTrigger_017_983b3ff4-7442-4189-943a-b047bd8a0103);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EventSpawnerTrigger_018_fddb554c-5ccd-4baf-9c64-461fc1bc5523);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EventSpawnerTrigger_019_ead94b71-2b62-45ed-be8f-d73c6a4166df);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EventSpawnerTrigger_020_25f179e1-162d-46c0-b995-e100b64e890e);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EventSpawnerTrigger_021_6399c56b-b3e5-47f1-9e1d-58b30a998bbb);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EventSpawnerTrigger_024_5779ebce-929d-479b-b49c-467e48497d29);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EventSpawnerTrigger_025_bd7fbb60-990a-44ef-890a-edc765d14556);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EventSpawnerTrigger_026_e60b6bc2-734e-4309-b555-0e9f4717b69d);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EventSpawnerTrigger_027_17572602-3b2f-472f-9c2f-a9806943f277);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EventSpawnerTrigger_028_ca959fed-deec-4e89-ac7e-e10286c10273);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EventSpawnerTrigger_029_68aab43c-c043-43ee-9326-74d7cd31adea);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EventSpawnerTrigger_030_87805339-b4ee-44c2-a547-74017fd87816);
+		DB_RoguelikeArena_SpawnTriggers(8, TRIGGERGUID_RoguelikeArena_EventSpawnerTrigger_031_67ad1bf2-8d7e-4d1e-962f-e812993a71e2);
 		
 	}
 	KB
@@ -208187,10 +208250,87 @@ Goal(570)
 {
 	INIT
 	{
+		DB_Singleton("RoguelikeArena_PartyExperiencePercent", 0);
 		
 	}
 	KB
 	{
+		// Adds experience to the party after an arena combat ends.
+		PROC
+		PROC_RoguelikeArena_ArenaCombatEnded(_Arena, _)
+		AND
+		DB_RoguelikeArena_ActiveArena(_Arena, _Level, _Difficulty, _)
+		AND
+		DB_RoguelikeArena_Singleton_MaxDifficulty(_MaxDifficulty)
+		AND
+		_Difficulty < _MaxDifficulty
+		AND
+		DB_RoguelikeArena_Singleton_MinDifficulty(_MinDifficulty)
+		AND
+		QRY_RoguelikeArena_CalculateTargetExperiencePercent(_Difficulty, _MinDifficulty, _MaxDifficulty)
+		AND
+		DB_Singleton("RoguelikeArena_TargetExperiencePercent", _TargetExperiencePercent)
+		AND
+		DB_Singleton("RoguelikeArena_PartyExperiencePercent", _PartyExperiencePercent)
+		AND
+		IntegerSubtract(_TargetExperiencePercent, _PartyExperiencePercent, _ExperiencePercent)
+		AND
+		_ExperiencePercent > 0
+		THEN
+		PROC_RoguelikeArena_PartyAddExperience(_Level, _ExperiencePercent);
+		
+		PROC
+		PROC_RoguelikeArena_PartyAddExperience((INTEGER)_Level, (INTEGER)_Percent)
+		AND
+		CharacterGetHostCharacter(_Player)
+		AND
+		CharacterGetLevel(_Player, _PlayerLevel)
+		AND
+		_PlayerLevel <= _Level
+		THEN
+		PartyAddExperience(_Player, 1, _Level, _Percent);
+		
+		PROC
+		PROC_RoguelikeArena_PartyAddExperience(_, _Percent)
+		AND
+		DB_Singleton("RoguelikeArena_PartyExperiencePercent", _CurrentPercent)
+		AND
+		IntegerSum(_CurrentPercent, _Percent, _NewPercent)
+		AND
+		_NewPercent < 100
+		THEN
+		DB_Singleton("RoguelikeArena_PartyExperiencePercent", _NewPercent);
+		
+		PROC
+		PROC_RoguelikeArena_PartyAddExperience(_, _Percent)
+		AND
+		DB_Singleton("RoguelikeArena_PartyExperiencePercent", _CurrentPercent)
+		AND
+		IntegerSum(_CurrentPercent, _Percent, _NewPercent)
+		AND
+		_NewPercent >= 100
+		THEN
+		DB_Singleton("RoguelikeArena_PartyExperiencePercent", 0);
+		
+		// Calculates the XP percent the party should have based on the formula "(current - min + 1) * 100 / (max - min + 1)".
+		QRY
+		QRY_RoguelikeArena_CalculateTargetExperiencePercent((INTEGER)_AbsoluteDifficulty, (INTEGER)_MinDifficulty, (INTEGER)_MaxDifficulty)
+		AND
+		IntegerSubtract(_AbsoluteDifficulty, _MinDifficulty, _DifficultyDifference)
+		AND
+		IntegerSum(_DifficultyDifference, 1, _RelativeDifficulty)
+		AND
+		IntegerProduct(_RelativeDifficulty, 100, _RelativeDifficultyMultiplied)
+		AND
+		IntegerSubtract(_MaxDifficulty, _MinDifficulty, _DifficultyRangeDifference)
+		AND
+		IntegerSum(_DifficultyRangeDifference, 1, _TotalDifficulties)
+		AND
+		IntegerDivide(_RelativeDifficultyMultiplied, _TotalDifficulties, _TargetExperiencePercent)
+		THEN
+		DB_Singleton("RoguelikeArena_TargetExperiencePercent", _TargetExperiencePercent);
+		
+		// Levels up the party after an arena battle at max arena difficulty instead of giving XP for backwards compatibility and to account for unintended XP gains.
 		PROC
 		PROC_RoguelikeArena_ArenaCombatEnded(_Arena, _)
 		AND
@@ -208212,6 +208352,11 @@ Goal(570)
 		CharacterIsSummon(_Player, 0)
 		THEN
 		CharacterLevelUpTo(_Player, _Level);
+		
+		PROC
+		PROC_RoguelikeArena_PartyLevelUpTo(_Level)
+		THEN
+		DB_Singleton("RoguelikeArena_PartyExperiencePercent", 0);
 		
 	}
 	EXIT
@@ -210154,7 +210299,7 @@ Goal(598)
 	{
 		// Important: the mod version needs to be changed at 2 places within this script when updating the mod (it should match the version inside Project Settings)
 		// Note: the mod version was untracked before 1.1.0.0 and this script did not exist on 1.0.0.0, so some special cases are handled separately
-		DB_RoguelikeArena_ModVersion(1, 1, 0, 0); // Change this when updating the mod !!!
+		DB_RoguelikeArena_ModVersion(1, 1, 1, 0); // Change this when updating the mod !!!
 		
 	}
 	KB
@@ -210164,7 +210309,7 @@ Goal(598)
 		PROC_RoguelikeArena_SavegameLoaded((INTEGER)_Major, (INTEGER)_Minor, (INTEGER)_Revision, (INTEGER)_Build)
 		THEN
 		NOT DB_RoguelikeArena_ModVersion(_Major, _Minor, _Revision, _Build);
-		DB_RoguelikeArena_ModVersion(1, 1, 0, 0); // Change this when updating the mod !!!
+		DB_RoguelikeArena_ModVersion(1, 1, 1, 0); // Change this when updating the mod !!!
 		
 		QRY
 		QRY_RoguelikeArena_ShouldApplyPatch((INTEGER)_LoadedMajor, (INTEGER)_, (INTEGER)_, (INTEGER)_, (INTEGER)_PatchMajor, (INTEGER)_, (INTEGER)_, (INTEGER)_)

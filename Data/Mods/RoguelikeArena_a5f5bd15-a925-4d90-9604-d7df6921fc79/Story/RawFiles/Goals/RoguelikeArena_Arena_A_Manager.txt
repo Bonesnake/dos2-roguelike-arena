@@ -8,6 +8,7 @@ DB_RoguelikeArena_Arenas(4);
 DB_RoguelikeArena_Arenas(5);
 DB_RoguelikeArena_Arenas(6);
 DB_RoguelikeArena_Arenas(7);
+DB_RoguelikeArena_Arenas(8);
 
 DB_RoguelikeArena_RegionTeleportTriggers(1, TRIGGERGUID_TeleportTrigger_050_0b7e3d3b-f4dd-4224-ba90-e1c70155d1b2);
 DB_RoguelikeArena_RegionTeleportTriggers(2, TRIGGERGUID_TeleportTrigger_050__000_0d9c127b-19e5-8146-3ce9-5d92b2eab955);
@@ -16,6 +17,7 @@ DB_RoguelikeArena_RegionTeleportTriggers(4, TRIGGERGUID_TeleportTrigger_050__000
 DB_RoguelikeArena_RegionTeleportTriggers(5, TRIGGERGUID_TeleportTrigger_050__000_f7275a08-5777-8896-3c21-14597a6f26b5);
 DB_RoguelikeArena_RegionTeleportTriggers(6, TRIGGERGUID_TeleportTrigger_050__000_e26fc78e-823e-895f-6c6d-5798099e0592);
 DB_RoguelikeArena_RegionTeleportTriggers(7, TRIGGERGUID_TeleportTrigger_050__000_d0e0eb9a-07f6-867b-4ca2-f0237a0c12b8);
+DB_RoguelikeArena_RegionTeleportTriggers(8, TRIGGERGUID_TeleportTrigger_050__000_cc8b2895-83cb-8f73-47c6-79c7e2233123);
 
 DB_RoguelikeArena_ArenaEventTriggers(1, (TRIGGERGUID)TRIGGERGUID_EventTrigger_000_c5d2c42e-28d9-4c92-87e9-fb0c9ecc4e11);
 DB_RoguelikeArena_ArenaEventTriggers(2, TRIGGERGUID_EventTrigger_000__000_c1326444-366d-85f5-2534-2937d02c3bd9);
@@ -24,6 +26,7 @@ DB_RoguelikeArena_ArenaEventTriggers(4, TRIGGERGUID_EventTrigger_000__000_fbb66a
 DB_RoguelikeArena_ArenaEventTriggers(5, TRIGGERGUID_EventTrigger_000__000_bbcdacd1-74ff-8c45-257c-e0fe98a1a839);
 DB_RoguelikeArena_ArenaEventTriggers(6, TRIGGERGUID_EventTrigger_000__000_a6051957-afb6-8d0e-55b8-233d27d08716);
 DB_RoguelikeArena_ArenaEventTriggers(7, TRIGGERGUID_EventTrigger_000__000_94863d63-247e-8a2a-35fd-ccc8984e943c);
+DB_RoguelikeArena_ArenaEventTriggers(8, TRIGGERGUID_EventTrigger_000__000_80217a6e-a043-8322-3011-456c0065b3a7);
 
 PROC_RoguelikeArena_IntegerPoolAddArenas();
 GlobalSetFlag("RoguelikeArena_FirstChallenge");

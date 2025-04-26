@@ -3,14 +3,14 @@ SubGoalCombiner SGC_AND
 INITSECTION
 // Important: the mod version needs to be changed at 2 places within this script when updating the mod (it should match the version inside Project Settings)
 // Note: the mod version was untracked before 1.1.0.0 and this script did not exist on 1.0.0.0, so some special cases are handled separately
-DB_RoguelikeArena_ModVersion(1, 1, 1, 0); // Change this when updating the mod !!!
+DB_RoguelikeArena_ModVersion(1, 1, 2, 0); // Change this when updating the mod !!!
 KBSECTION
 // Updates mod version.
 PROC
 PROC_RoguelikeArena_SavegameLoaded((INTEGER)_Major, (INTEGER)_Minor, (INTEGER)_Revision, (INTEGER)_Build)
 THEN
 NOT DB_RoguelikeArena_ModVersion(_Major, _Minor, _Revision, _Build);
-DB_RoguelikeArena_ModVersion(1, 1, 1, 0); // Change this when updating the mod !!!
+DB_RoguelikeArena_ModVersion(1, 1, 2, 0); // Change this when updating the mod !!!
 
 QRY
 QRY_RoguelikeArena_ShouldApplyPatch((INTEGER)_LoadedMajor, (INTEGER)_, (INTEGER)_, (INTEGER)_, (INTEGER)_PatchMajor, (INTEGER)_, (INTEGER)_, (INTEGER)_)

@@ -2784,6 +2784,32 @@
     </stat_object>
     <stat_object is_substat="false">
       <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_Trader_Bartender" />
+        <field name="DropCount" type="StringStatObjectFieldDefinition" value="1,1" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="Trader Gold" />
+        <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="true">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_Trader_Bartender_substat" />
+        <field name="DropCount" type="StringStatObjectFieldDefinition" value="1,1" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_ST_TavernKeepNPC" />
+        <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_Trader_Bartender" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="true">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="New_Stat_11" />
+        <field name="DropCount" type="StringStatObjectFieldDefinition" value="9,1;10,1;11,1" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="Junk" />
+        <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_Trader_Bartender" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_Trader_Skillbook" />
         <field name="DropCount" type="StringStatObjectFieldDefinition" value="2,1" />
         <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="Trader Gold" />
@@ -3108,6 +3134,15 @@
         <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_Trader_General_substat_12" />
         <field name="DropCount" type="StringStatObjectFieldDefinition" value="9,1;10,1;11,1" />
         <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="T_ST_KitchenThings" />
+        <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_Trader_General" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="true">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="RoguelikeArena_Trader_General_substat" />
+        <field name="DropCount" type="StringStatObjectFieldDefinition" value="9,1;10,1;11,1" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="Rune" />
         <field name="Frequency" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Using" type="BaseClassStatObjectFieldDefinition" value="RoguelikeArena_Trader_General" />
       </fields>

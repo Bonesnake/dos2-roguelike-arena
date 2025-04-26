@@ -435,6 +435,13 @@ object category "T_RewardCombat",1,0,0,0,0,0,0,0
 new treasuretable "RoguelikeArena_Enemy_Rank3"
 new subtable "1,1"
 object category "T_MiniBoss",1,0,0,0,0,0,0,0
+new treasuretable "RoguelikeArena_Trader_Bartender"
+new subtable "1,1"
+object category "Trader Gold",1,0,0,0,0,0,0,0
+new subtable "1,1"
+object category "T_ST_TavernKeepNPC",1,0,0,0,0,0,0,0
+new subtable "9,1;10,1;11,1"
+object category "Junk",1,0,0,0,0,0,0,0
 new treasuretable "RoguelikeArena_Trader_Skillbook"
 new subtable "2,1"
 object category "Trader Gold",1,0,0,0,0,0,0,0
@@ -511,6 +518,8 @@ new subtable "9,1;10,1;11,1"
 object category "T_ST_SmallThings",1,0,0,0,0,0,0,0
 new subtable "9,1;10,1;11,1"
 object category "T_ST_KitchenThings",1,0,0,0,0,0,0,0
+new subtable "9,1;10,1;11,1"
+object category "Rune",1,0,0,0,0,0,0,0
 new treasuretable "RoguelikeArena_Trader_TheCollector"
 new subtable "16,1"
 object category "Trader Gold",1,0,0,0,0,0,0,0

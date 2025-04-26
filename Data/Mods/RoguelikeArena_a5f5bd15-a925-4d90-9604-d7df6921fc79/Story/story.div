@@ -208373,27 +208373,31 @@ Goal(571)
 	}
 	KB
 	{
-		// Increases available source points to 2.
+		// Increases available source points to 2 (does not work for dead characters unfortunately).
 		IF
 		CharacterLeveledUp(_Character)
 		AND
-		QRY_RoguelikeArena_ClaimLevelUpRewardIfAvailable(_Character, 4, "SecondSourcePoint")
+		CharacterIsDead(_Character, 0)
 		AND
 		CharacterGetMaxSourcePoints(_Character, _CurrentMax)
 		AND
 		_CurrentMax < 2
+		AND
+		QRY_RoguelikeArena_ClaimLevelUpRewardIfAvailable(_Character, 4, "SecondSourcePoint")
 		THEN
 		CharacterOverrideMaxSourcePoints(_Character, 2);
 		
-		// Increases available source points to 3.
+		// Increases available source points to 3 (does not work for dead characters unfortunately).
 		IF
 		CharacterLeveledUp(_Character)
 		AND
-		QRY_RoguelikeArena_ClaimLevelUpRewardIfAvailable(_Character, 9, "ThirdSourcePoint")
+		CharacterIsDead(_Character, 0)
 		AND
 		CharacterGetMaxSourcePoints(_Character, _CurrentMax)
 		AND
 		_CurrentMax < 3
+		AND
+		QRY_RoguelikeArena_ClaimLevelUpRewardIfAvailable(_Character, 9, "ThirdSourcePoint")
 		THEN
 		CharacterOverrideMaxSourcePoints(_Character, 3);
 		
@@ -208401,9 +208405,9 @@ Goal(571)
 		IF
 		CharacterLeveledUp(_Character)
 		AND
-		QRY_RoguelikeArena_ClaimLevelUpRewardIfAvailable(_Character, 2, "SourceVampirism")
-		AND
 		CharacterHasSkill(_Character, "Target_SourceVampirism", 0)
+		AND
+		QRY_RoguelikeArena_ClaimLevelUpRewardIfAvailable(_Character, 2, "SourceVampirism")
 		THEN
 		CharacterAddSkill(_Character, "Target_SourceVampirism", 1);
 		
@@ -208411,9 +208415,9 @@ Goal(571)
 		IF
 		CharacterLeveledUp(_Character)
 		AND
-		QRY_RoguelikeArena_ClaimLevelUpRewardIfAvailable(_Character, 3, "Bless")
-		AND
 		CharacterHasSkill(_Character, "Target_Bless", 0)
+		AND
+		QRY_RoguelikeArena_ClaimLevelUpRewardIfAvailable(_Character, 3, "Bless")
 		THEN
 		CharacterAddSkill(_Character, "Target_Bless", 1);
 		
@@ -208421,9 +208425,9 @@ Goal(571)
 		IF
 		CharacterLeveledUp(_Character)
 		AND
-		QRY_RoguelikeArena_ClaimLevelUpRewardIfAvailable(_Character, 4, "Curse")
-		AND
 		CharacterHasSkill(_Character, "Target_Curse", 0)
+		AND
+		QRY_RoguelikeArena_ClaimLevelUpRewardIfAvailable(_Character, 4, "Curse")
 		THEN
 		CharacterAddSkill(_Character, "Target_Curse", 1);
 		
